@@ -63,8 +63,7 @@ public class DAO extends DBContext{
       //,[Create_Date]
       //,[Update_Date]
         String sql = "INSERT INTO [dbo].[User]\n" +
-"           ([ID]\n" +
-"           ,[Role]\n" +
+"           ([Role]\n" +
 "           ,[LName]\n" +
 "           ,[FName]\n" +
 "           ,[UserName]\n" +
@@ -77,7 +76,7 @@ public class DAO extends DBContext{
 "           ,[Email]\n" +
 "           ,[CreatedDate]\n" +
 "           ,[ModifiedDate])\n" +
-"     VALUES";
+"     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, roleID);
