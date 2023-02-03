@@ -7,9 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+
     
+    <html>
     
+   
     <header class="container-fluid bg-white">
         <c:if test="${sessionScope.acc ==null}">
             <div class="header-top bg-gray  border-bottom">
@@ -30,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            </c:if>
+        </c:if>
         <c:if test="${sessionScope.acc !=null}">
             <div class="header-top bg-gray  border-bottom">
                 <div class="container">
@@ -43,14 +45,19 @@
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
-                                <li class="p-2"><a  href="login.jsp"><button class="btn px-4 btn-danger">Logout</button></a></li>
-                                <li class="p-2"><a  href="signup.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
+                                <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Logout</button></a></li>
+                                <li class="p-2"><a  href="#"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            </c:if>
+        </c:if>
+            
+            
+        
+            
+            
            
             
             
@@ -141,6 +148,8 @@
                 </div>
             </div>
         </header>
+    
+   
      
     
      
