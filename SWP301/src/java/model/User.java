@@ -15,11 +15,12 @@ public class User {
    private String dob;
    private boolean gender;
    private String phone, email;
+   private String createDate, modifyDate;
 
     public User() {
     }
 
-    public User(int uId, int roleId, String fName, String lName, String username, String pass, String address, String image, String dob, boolean gender, String phone, String email) {
+    public User(int uId, int roleId, String fName, String lName, String username, String pass, String address, String image, String dob, boolean gender, String phone, String email,String createDate, String modifyDate) {
         this.uId = uId;
         this.roleId = roleId;
         this.fName = fName;
@@ -32,10 +33,28 @@ public class User {
         this.gender = gender;
         this.phone = phone;
         this.email = email;
+        this.createDate = createDate;
+        this.modifyDate     = modifyDate;
     }
 
     public int getuId() {
         return uId;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(String modifyDate) {
+        this.modifyDate = modifyDate;
     }
 
     public void setuId(int uId) {
