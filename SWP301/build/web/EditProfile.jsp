@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Gift Shoping Website Template  | Smarteyeapps.com</title>
+        <title> Edit Profile  |</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -16,11 +16,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         
-        <style>
-            input[name="id"] {
-              display: none;
-            }
-        </style>
        
     </head>
     <bod>
@@ -81,15 +76,7 @@
                                         <input type="text"  name="address" value="${sessionScope.acc.address}" class="form-control">
                                     </div>
                                 </div>
-                                <div class="form-row row">
-                                    <div class="col-md-4 pt-2">
-                                        <label for="">Image</label>
-                                        <span class="fw-bolder float-end">:</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="text"  name="image" value="${sessionScope.acc.image}" class="form-control">
-                                    </div>
-                                </div>
+                             
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
                                         <label for="">Date of bird</label>
@@ -99,16 +86,7 @@
                                         <input type="datetime"  name="dob" value="${sessionScope.acc.dob}" class="form-control">
                                     </div>
                                 </div>
-                                <div class="form-row row">
-                                    <div class="col-md-4 pt-2">
-                                        <label for="">Gender</label>
-                                        <span class="fw-bolder float-end">:</span>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <input type="radio" checked="checked"  name="gender" value="male">Nam
-                                        <input type="radio"   name="gender" value="female" >Nu
-                                    </div>
-                                </div>
+                               
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
                                         <label for="">Phone number</label>

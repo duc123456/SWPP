@@ -255,11 +255,12 @@ public class DAO extends DBContext{
     
     public static void main(String[] args) {
         DAO d = new DAO();
-        User u = d.login("a", "123");
+        User u = d.login("sa", "123");
+        d.changePass("3333", "Sa");
         
-        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
-        System.out.println(d.checkUsername("levanduc").getEmail());
-        System.out.println("dd");
+//        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
+//        System.out.println(d.checkUsername("levanduc").getEmail());
+//        System.out.println("dd");
     }
 
     

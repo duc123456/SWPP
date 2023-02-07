@@ -56,16 +56,8 @@
                                 <div class="col-md-8">
                                     ${sessionScope.acc.address}
                                 </div>
-                            </div>
-                            <div class="form-row row">
-                                <div class="col-md-4 pt-2">
-                                    <label for="">Image</label>
-                                    <span class="fw-bolder float-end">:</span>
-                                </div>
-                                <div class="col-md-8">
-                                    ${sessionScope.acc.image}
-                                </div>
-                            </div>
+                            </div>               
+
                             <div class="form-row row">
                                 <div class="col-md-4 pt-2">
                                     <label for="">Date of bird</label>
@@ -81,7 +73,7 @@
                                     <span class="fw-bolder float-end">:</span>
                                 </div>
                                 <div class="col-md-8">
-                                  
+
                                     <c:if test="${sessionScope.acc.gender == true}">
                                         Nam
                                     </c:if>
@@ -113,8 +105,8 @@
 
                                 </div>
                                 <div class="col-md-8">
-
-                                    <a href="EditProfile.jsp"><span class="float-end pt-2">Change Profile</span></a> 
+                                    <a href="EditProfile.jsp"><span class="float-end pt-2">Change Profile</span></a><br/>
+                                    <a href="ChangePassword.jsp"><span class="float-end pt-2">Change Password</span></a> 
                                 </div>
                             </div>
                         </div>
