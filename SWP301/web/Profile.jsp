@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <bod>
-        <jsp:include page="Menu.jsp"></jsp:include>
+        <jsp:include page="menu.jsp"></jsp:include>
 
 
             <!--####################### About US Starts Here ###################-->

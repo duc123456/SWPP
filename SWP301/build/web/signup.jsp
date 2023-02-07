@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        
     </head>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
@@ -47,7 +49,7 @@
                                 <label for="">First Name</label>
                                 <span  class="fw-bolder float-end" >:</span>
                             </div>
-                             <div class="col-md-3" style="background-color: red">
+                             <div class="col-md-3" >
                                 <input  name="fname" type="text" placeholder="Enter First Name" class="form-control">
                             </div>
                              <div class="col-md-3 pt-2">
@@ -138,7 +140,7 @@
                               
                             </div>
                             <div class="col-md-8">
-                               <button class="btn btn-danger">Click to Login</button>
+                               <button class="btn btn-danger">Register</button>
                               <a href=""><span class="float-end pt-2">forget Password ?</span></a> 
                             </div>
                         </div>
@@ -257,5 +259,116 @@
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
+    
+
+<script>
+  $(document).ready(function() {
+    var pass = $("input[name='pass']");
+    var repass = $("input[name='repass']");
+    var icon = $("<i class='fa'></i>");
+    
+    repass.after(icon);
+    
+    repass.on("keyup", function() {
+      if (repass.val() === pass.val()) {
+        icon.removeClass().addClass("fa fa-check text-success");
+      } else {
+        icon.removeClass().addClass("fa fa-times text-danger");
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    var pass = $("input[name='pass']");
+    var repass = $("input[name='repass']");
+    var error = $("<p class='text-danger'>Password must be at least 8 characters long and contain at least one uppercase letter</p>");
+    var match = $("<p class='text-danger'>Password does not match</p>");
+    
+    pass.after(error);
+    error.hide();
+    repass.after(match);
+    match.hide();
+    
+    pass.on("keyup", function() {
+      if (pass.val().length < 8 || !/[A-Z]/.test(pass.val())) {
+        error.show();
+      } else {
+        error.hide();
+      }
+    });
+    
+    repass.on("keyup", function() {
+      if (repass.val() !== pass.val()) {
+        match.show();
+      } else {
+        match.hide();
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    var email = $("input[name='email']");
+    var error = $("<p class='text-danger'>Please enter a valid email address</p>");
+    
+    email.after(error);
+    error.hide();
+    
+    email.on("keyup", function() {
+      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
+        error.show();
+      } else {
+        error.hide();
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    var phone = $("input[name='phone']");
+    var error = $("<p class='text-danger'>Please enter a valid mobile number</p>");
+    
+    phone.after(error);
+    error.hide();
+    
+    phone.on("keyup", function() {
+      if (!/^\d{10}$/.test(phone.val())) {
+        error.show();
+      } else {
+        error.hide();
+      }
+    });
+  });
+</script>
+<script>
+    $(document).ready(function(){
+$('button.btn-danger').click(function(e){
+var password = $('input[name="pass"]').val();
+var repassword = $('input[name="repass"]').val();
+var email = $('input[name="email"]').val();
+var phone = $('input[name="phone"]').val();
+if(password.length < 8 || !/[A-Z]/.test(password)){
+alert('Password must be at least 8 characters long and contain at least one uppercase letter.');
+e.preventDefault();
+} else if(password !== repassword){
+alert('Password and Confirm Password must match.');
+e.preventDefault();
+} else if(!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
+alert('Email address is invalid.');
+e.preventDefault();
+} else if(!(/^\d{10}$/.test(phone))) {
+alert('Phone number must be 10 digits long.');
+e.preventDefault();
+}
+});
+});
+</script>
+
+
+
+
+
+
 
 </html>

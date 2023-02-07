@@ -52,6 +52,24 @@ public class DAO extends DBContext{
         }
         return null;
     }
+    
+    public User checkUsUid(int id) {
+
+        String query = "Select * from [User] where  [ID]  =?\n";
+                
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1, id);
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return new User(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getBoolean(10),rs.getString(11), rs.getString(12),rs.getString(13),rs.getString(14)); 
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
     public void register(int roleID, String fname, String lname, String username, String pass,String address, String image,String dob, boolean gen,String phone, String email, String createDate,String modifyDate ) {
  //       SELECT [UserID]
    //   ,[FullName]
@@ -117,6 +135,52 @@ public class DAO extends DBContext{
             System.out.println(e);
         }
         return false;
+    }
+     public void changePass (String newPassword, String user){
+        try {
+				
+				PreparedStatement st = connection.prepareStatement("update [User] set PassWord = ? where [UserName] = ? ");
+				st.setString(1, newPassword);
+				st.setString(2, user);
+                                st.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    }
+    public void changeprofile(String fname,String lname, String address, String image, String dob, boolean gen, String phone,String email,String modify,int id ) {
+        String sql = "UPDATE [dbo].[User]\n" +
+"   SET [LName] =  ?" +
+"      ,[FName] =  ?" +    
+"      ,[Address] = ?" +
+"      ,[image] = ? " +
+"      ,[DOB] = ? " +
+"      ,[Gender] = ? " +
+"      ,[Phone] = ? " +
+"      ,[Email] = ? " +
+"      ,[ModifiedDate] = ?" +
+" WHERE [ID] = ? ";
+
+//        String sql ="insert into Categories values(?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, lname);
+            st.setString(2, fname);
+            st.setString(3, address);
+            st.setString(4, image);
+            st.setString(5, dob);
+            st.setBoolean(6, gen);
+            st.setString(7, phone );
+            st.setString(8,email);
+            st.setString(9,modify);
+            st.setInt(10,id);
+            
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
     }
 
     //check
@@ -185,35 +249,17 @@ public class DAO extends DBContext{
 //
 //        }
 //    }
-    public void changeprofile(User a) {
-        String sql = "UPDATE [dbo].[User] set [FirstName] = ?,[LastName] = ?,[Address] = ?,[image] = ?, [DOB] = ?, [Gender] =?"
-                + ", [Phone] = ?, [Email] = ? "
-                + "  where [UserName] = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, a.getfName());
-            st.setString(2, a.getlName());
-            st.setString(3, a.getAddress());
-            st.setString(4, a.getImage());
-            st.setString(5, a.getDob());
-            st.setBoolean(6, a.isGender());
-            st.setString(7, a.getPhone());
-            st.setString(8, a.getEmail());
-            st.setString(9, a.getUsername());
 
-            st.executeUpdate();
-        } catch (SQLException e) {
-
-        }
-    }
+    
     //check
     
     public static void main(String[] args) {
         DAO d = new DAO();
         User u = d.login("a", "123");
         
-        d.register(1,null,null,null,null,null,null,null,true,null,null, null ,null);
-        
+        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
+        System.out.println(d.checkUsername("levanduc").getEmail());
+        System.out.println("dd");
     }
 
     

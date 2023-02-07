@@ -12,6 +12,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.User;
 
 /**
@@ -74,27 +77,42 @@ public class ChangeProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("user");
-        String password = request.getParameter("pass");
+        String id = request.getParameter("id");
+        int uid = Integer.parseInt(id);
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
-
         String address = request.getParameter("address");
+
         String image = request.getParameter("image");
         String dob = request.getParameter("dob");
-        Boolean active = Boolean.valueOf(request.getParameter("gender"));
-        //to get a priimitive boolean
-        boolean gender = active.booleanValue();
-
+        String gender = request.getParameter("gender");
+        boolean gen ;
+        if(gender == "male"){
+            gen = true;
+        }else {
+            gen = false;
+        }
+        String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        String phonenumber = request.getParameter("phone_number");
+        
+        //to get a priimitive boolean
+        
 
         //check
         DAO d = new DAO();
-        User a = d.login(username, password);          
+        Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.applyPattern("yyyy-MM-dd");
+            String format = simpleDateFormat.format(date);
+        d.changeprofile( lname, fname,  address,  image,  dob,  gen,  phone, email, format, uid );
+        User u = d.checkUsUid(uid);
+        HttpSession session = request.getSession();
+            session.setAttribute("acc", u);
+            response.sendRedirect("Profile.jsp");
+        
            // User ac = new User(a.getuId(), a.getRoleId(), fname, lname, username, password, address, image, dob, gender, phonenumber, email);
            // d.changeprofile(ac);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            
         
     }
 

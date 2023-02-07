@@ -68,8 +68,14 @@ body {
 						next page</li>
 					</ol>
 				</div>
+                            <h1 style="color: red;size: 12px">${requestScope.ms}</h1>
 				<form class="card mt-4" action="forgotPassword" method="POST">
 					<div class="card-body">
+                                            <div class="form-group">
+							<label for="email-for-pass">Enter your User name</label> <input
+								class="form-control" type="text" name="user" id="email-for-pass" required=""><small
+								class="form-text text-muted"></small>
+						</div>
 						<div class="form-group">
 							<label for="email-for-pass">Enter your email address</label> <input
 								class="form-control" type="text" name="email" id="email-for-pass" required=""><small
