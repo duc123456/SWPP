@@ -107,19 +107,9 @@
                         <li class="p-21 px-4"><a class="text-white" href="">Categories <i class="bi pt-2 bi-chevron-down"></i></a> 
                             <div class="inner-div">
                                 <ul class="">
-                                    <li><a href=""></a></li>
-                                    <li><a href="">Beauty & Personal Care</a></li>
-                                    <li><a href="">Business & Executive Gifts</a></li>
-                                    <li><a href="">Chocolates & Cookies</a></li>
-                                    <li><a href="">Computer & Mobile Accessories</a></li>
-                                    <li><a href="">Flowers & Cakes</a></li>
-                                    <li><a href="">Garden Gifts</a></li>
-                                    <li><a href="">Gag & Quirky Gifts</a></li>
-                                    <li><a href="">Gift Baskets & Hampers</a></li>
-                                    <li><a href="">Gift Cards</a></li>
-                                    <li><a href="">Home & Living</a></li>
-                                    <li><a href="">Jewellery</a></li>
-                                    <li><a href="">Love & Romance</a></li>
+                                    <c:forEach items="${requestScope.cate}" var="ca">
+                                    <li><a href="">${ca.getcName()}</a></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </li>

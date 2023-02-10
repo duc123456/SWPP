@@ -7,6 +7,13 @@ package dal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import model.Category;
+import model.Image;
+import model.Product;
+import model.Size;
+import model.Type;
 import model.User;
 
 /**
@@ -148,6 +155,162 @@ public class DAO extends DBContext{
 				e.printStackTrace();
 			}
     }
+     public List<Category> getAllCat() {
+        List<Category> list = new ArrayList<>();
+        String sql = "select * from Category";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Category c = new Category();
+                c.setCid(rs.getInt(1));
+                c.setcName(rs.getString(2));
+                
+
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+     public List<Type> getAllType() {
+        List<Type> list = new ArrayList<>();
+        String sql = "select * from Type";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Type t = new Type();
+                t.settId(rs.getInt(1));
+                t.settName(rs.getString(2));
+               
+                
+
+                list.add(t);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+     public Category getCategoryById(int id) {
+        String sql = "select * from category where CATID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Category c = new Category();
+                c.setCid(rs.getInt(1));
+                c.setcName(rs.getString(2));
+                
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+     public Type getTypeById(int id) {
+        String sql = "select * from Type where TID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Type t = new Type();
+               t.settId(rs.getInt(1));
+               t.settName(rs.getString(2));
+                
+                return t;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+      public List<Product> getAllProd() {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice((int)rs.getFloat(4));
+                p.setName(rs.getString(5));
+                p.setImageDf(rs.getString("ImageDefault"));
+                
+
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+      public List<Size> getAllSizeById(int id){
+           List<Size> list = new ArrayList<>();
+        String sql = "select * from Size where PID = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Size s = new Size();
+                s.setsId(rs.getInt(1));
+                s.setQuantity(rs.getInt(2));
+                s.setSize(rs.getInt(4));
+                list.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+      }
+       public List<Image> getAllImageById(int id){
+           List<Image> list = new ArrayList<>();
+        String sql = "select * from Image where PID = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Image m = new Image();
+                m.setiId(rs.getInt(1));
+                m.setImage(rs.getString(3));
+                list.add(m);
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+      }
+        public String getImageById(int id){
+           List<Image> list = new ArrayList<>();
+        String sql = "select * from Image where PID = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Image m = new Image();
+                m.setiId(rs.getInt(1));
+                m.setImage(rs.getString(3));
+                list.add(m);
+                
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list.get(0).getImage();
+      }
     public void changeprofile(String fname,String lname, String address, String image, String dob, boolean gen, String phone,String email,String modify,int id ) {
         String sql = "UPDATE [dbo].[User]\n" +
 "   SET [LName] =  ?" +
@@ -254,9 +417,7 @@ public class DAO extends DBContext{
     //check
     
     public static void main(String[] args) {
-        DAO d = new DAO();
-        User u = d.login("sa", "123");
-        d.changePass("3333", "Sa");
+       
         
 //        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
 //        System.out.println(d.checkUsername("levanduc").getEmail());
