@@ -82,6 +82,15 @@
 
                     <div class="col-md-10">
                         <div class="row">
+                            <nav aria-label="breadcrumb">
+                                <ul class="pagination">
+
+                                    <c:forEach begin="1" end="${endP}" var="pa">
+                                        <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
+                                        </c:forEach>
+
+                                </ul>    
+                            </nav>    
                             <c:forEach items="${product}" var="p">
 
                                 <div class="col-lg-3 col-md-3 mb-4">

@@ -59,10 +59,21 @@ public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String find =request.getParameter("find");
+        
+          String indexPage = request.getParameter("index");
+        if (indexPage == null) {
+            indexPage = "1";
+        }
+        int index = Integer.parseInt(indexPage);
+
         DAO d = new DAO();
-        List<Product> list1;
-        list1 =d.getAllProd();
+        List<Product> list1 = d.pagingProduct(index);
+        
+    
+        
+        ///search
+        String find =request.getParameter("find");
+      
         //gui ve front end
          List<Category> list2=d.getAllCat();
         //gui ve front end
@@ -73,7 +84,16 @@ public class ListProduct extends HttpServlet {
              list1 = d.search(find);
              request.setAttribute("product", list1);
         }
-        
+        //moi trang web chia san pham ra la 9
+        int count = d.getTotalProduct();
+        int endPage = count / 9;
+        if (count % 9 != 0) {
+            endPage++;
+        }
+
+      
+        request.setAttribute("endP", endPage);
+        request.setAttribute("tagw", index);
         
         request.setAttribute("cate", list2);
         request.setAttribute("product", list1);
