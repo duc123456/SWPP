@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <body>
-        <jsp:useBean id="d" class="dal.DAO"/>
+        
         <jsp:include page="menu.jsp"></jsp:include>
         <div class="slider">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -60,7 +60,7 @@
                         <div class="bg-white p-2 shadow-md">
                             <div class="text-center">
                                 
-                                <img  src="Image/${d.getImageById(p.pId)}" alt="">
+                                <img  src="Image/${p.imageDf}" alt="">
                             </div>
                             <div class="detail p-2">
                                 <h4 class="mb-1 fs-5 fw-bold">${p.name}</h4>

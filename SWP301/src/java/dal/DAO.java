@@ -243,6 +243,7 @@ public class DAO extends DBContext{
                 p.setCat(getCategoryById(rs.getInt(3)));
                 p.setPrice((int)rs.getFloat(4));
                 p.setName(rs.getString(5));
+                p.setImageDf(rs.getString("ImageDefault"));
                 
 
 
