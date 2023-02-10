@@ -418,6 +418,46 @@ public class DAO extends DBContext{
 
     
     //check
+    ///////////////////////////////////////////////////////////////////////////////
+
+  
+//tim san pham tren thanh search
+    
+    public List<Product> search(String key) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT * "
+                + "  FROM [dbo].[Product]"
+                + "where 1=1 ";
+        if (key != null && !key.equals("")) {
+            sql += " and Description like '%" + key + "%' or Name  like '%" + key + "%' or Resolution  like '%" + key + "%'";
+        } 
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setImageDf(rs.getString(12));
+                list.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
     
     public static void main(String[] args) {
        
@@ -425,6 +465,10 @@ public class DAO extends DBContext{
 //        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
 //        System.out.println(d.checkUsername("levanduc").getEmail());
 //        System.out.println("dd");
+
+        DAO d = new DAO();
+        List<Product> list =d.search("4K");
+        System.out.println(list.get(0).getName());
     }
 
     

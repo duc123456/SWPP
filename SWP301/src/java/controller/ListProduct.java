@@ -59,12 +59,20 @@ public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String find =request.getParameter("find");
         DAO d = new DAO();
-        List<Product> list1=d.getAllProd();
+        List<Product> list1;
+        list1 =d.getAllProd();
         //gui ve front end
          List<Category> list2=d.getAllCat();
         //gui ve front end
-       
+        
+        if(find==null){
+            
+        }else {
+             list1 = d.search(find);
+             request.setAttribute("product", list1);
+        }
         
         
         request.setAttribute("cate", list2);

@@ -69,12 +69,18 @@
                                 <img class="logo" src="assets/images/logo.jpg" alt="">
                             </a> 
                          </div>
+                         
                          <div class="col-md-6 d-none d-md-block pt-2">
                               <div class="input-group pt-1 mb-0">
-                                  <input type="text" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                  <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+                                  <form action="listproduct">
+                                  
+                                      <input type="text" name="find" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  </form>
+                                      <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+                                  
                             </div>
                          </div>
+                             
                          <div class="col-md-3 col-3 pt-1 text-end">
                              <a href="cart.jsp">
                                  <button type="button" class="btn btn-light shadow-md border position-relative">

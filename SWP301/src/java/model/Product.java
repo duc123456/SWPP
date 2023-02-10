@@ -16,7 +16,7 @@ public class Product {
    private String color;
    private String description;
    private String resolution;
-   private String insurance;
+   private int insurance;
    private String cDate;
    private Type type;
    private String imageDf;
@@ -24,7 +24,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, String insurance, String cDate, Type type, String imageDf) {
+    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf) {
         this.pId = pId;
         this.addedBy = addedBy;
         this.cat = cat;
@@ -103,11 +103,11 @@ public class Product {
         this.resolution = resolution;
     }
 
-    public String getInsurance() {
+    public int getInsurance() {
         return insurance;
     }
 
-    public void setInsurance(String insurance) {
+    public void setInsurance(int insurance) {
         this.insurance = insurance;
     }
 
