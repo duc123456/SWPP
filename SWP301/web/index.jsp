@@ -20,7 +20,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <body>
-        
+        <jsp:useBean id="d" class="dal.DAO"/>
         <jsp:include page="menu.jsp"></jsp:include>
         <div class="slider">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -52,55 +52,19 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet est sit amet sem malesuada bibendum. Nulla eget mauris at dolor fermentum blandit. Maecenas</p>
                    </div>
                 </div>
+
                 <div class="row mt-5">
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                           <div class="text-center">
-                               <a href="detail.html">
-                                   <img height="300px" width="300px" src="assets/images/product/1.jpg" alt="">
-                               </a>
-                           </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
+                                <c:forEach items="${product}" var="p">
+                
+                            <div class="col-lg-3 col-md-4 mb-4">
                         <div class="bg-white p-2 shadow-md">
                             <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/2.jpg" alt="">
-                                </a>
+                                
+                                <img  src="Image/${d.getImageById(p.pId)}" alt="">
                             </div>
                             <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
+                                <h4 class="mb-1 fs-5 fw-bold">${p.name}</h4>
+                                <b class="fs-4 text-danger">${p.price}</b>
                                 <s class="fs-5 ps-3">60.00</s>
                                 
                                 <ul class="mt-0 vgth">
@@ -117,245 +81,19 @@
                                 </ul>
                                 <div class="row pt-2">
                                     <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
+                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                    
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
+                                        <button class="btn fw-bold w-100 btn-outline-danger">Thêm vào giỏ hàng</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/1.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <a href="detail.jsp">
-                                    <img height="300px" width="300px" src="assets/images/product/4.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <a href="detail.jsp">
-                                            <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-md-4 mb-4">
-                        <div class="bg-white p-2 shadow-md">
-                            <div class="text-center">
-                                <img height="300px" width="300px" src="assets/images/product/3.jpg" alt="">
-                            </div>
-                            <div class="detail p-2">
-                                <h4 class="mb-1 fs-5 fw-bold">Personalised Birthday Easel</h4>
-                                <b class="fs-4 text-danger">$44.00</b>
-                                <s class="fs-5 ps-3">60.00</s>
-                                
-                                <ul class="mt-0 vgth">
-                                    <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </li>
-                                    <li class="float-end gvi">
-                                        <i class="bi text-danger bi-heart-fill"></i>
-                                    </li>
-                                </ul>
-                                <div class="row pt-2">
-                                    <div class="col-md-6">
-                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     </c:forEach>
                 </div>
+               
             </div>
         </div>
         
