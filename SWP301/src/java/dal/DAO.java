@@ -174,6 +174,9 @@ public class DAO extends DBContext{
         }
         return list;
     }
+       
+     
+     
      public List<Type> getAllType() {
         List<Type> list = new ArrayList<>();
         String sql = "select * from Type";

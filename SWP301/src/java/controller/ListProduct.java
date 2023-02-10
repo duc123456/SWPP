@@ -64,6 +64,8 @@ public class ListProduct extends HttpServlet {
         //gui ve front end
          List<Category> list2=d.getAllCat();
         //gui ve front end
+       
+        
         
         request.setAttribute("cate", list2);
         request.setAttribute("product", list1);
@@ -93,9 +95,5 @@ public class ListProduct extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        List<Product> p  = d.getAllProd();
-        System.out.println("" + p.get(0).getName());
-    }
+ 
 }

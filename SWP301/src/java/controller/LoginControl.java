@@ -91,7 +91,7 @@ public class LoginControl extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
             // request.getRequestDispatcher("home").forward(request, response);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("listproduct");
         }
 
     }
