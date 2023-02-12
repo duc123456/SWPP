@@ -69,12 +69,18 @@
                                 <img class="logo" src="assets/images/logo.jpg" alt="">
                             </a> 
                          </div>
+                         
                          <div class="col-md-6 d-none d-md-block pt-2">
                               <div class="input-group pt-1 mb-0">
-                                  <input type="text" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                  <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+                                  <form action="listproduct">
+                                  
+                                      <input type="text" name="find" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  </form>
+                                      <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+                                  
                             </div>
                          </div>
+                             
                          <div class="col-md-3 col-3 pt-1 text-end">
                              <a href="cart.jsp">
                                  <button type="button" class="btn btn-light shadow-md border position-relative">
@@ -107,19 +113,9 @@
                         <li class="p-21 px-4"><a class="text-white" href="">Categories <i class="bi pt-2 bi-chevron-down"></i></a> 
                             <div class="inner-div">
                                 <ul class="">
-                                    <li><a href=""></a></li>
-                                    <li><a href="">Beauty & Personal Care</a></li>
-                                    <li><a href="">Business & Executive Gifts</a></li>
-                                    <li><a href="">Chocolates & Cookies</a></li>
-                                    <li><a href="">Computer & Mobile Accessories</a></li>
-                                    <li><a href="">Flowers & Cakes</a></li>
-                                    <li><a href="">Garden Gifts</a></li>
-                                    <li><a href="">Gag & Quirky Gifts</a></li>
-                                    <li><a href="">Gift Baskets & Hampers</a></li>
-                                    <li><a href="">Gift Cards</a></li>
-                                    <li><a href="">Home & Living</a></li>
-                                    <li><a href="">Jewellery</a></li>
-                                    <li><a href="">Love & Romance</a></li>
+                                    <c:forEach items="${requestScope.cate}" var="ca">
+                                    <li><a href="">${ca.getcName()}</a></li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </li>
