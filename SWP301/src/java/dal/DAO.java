@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
+import model.FeedBack;
 import model.Image;
 import model.Product;
 import model.Size;
@@ -256,8 +257,8 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
-        //dem xem co tat ca bao nhieu san pham
+
+    //dem xem co tat ca bao nhieu san pham
     public int getTotalProduct() {
         String query = "Select count(*) from Product";
         try {
@@ -494,15 +495,118 @@ public class DAO extends DBContext {
 
     }
 
+    public Product getProductByID(int id) {
+        String sql = "select * from Product\n"
+                + "where PID = ?";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                return p;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public String getTypebyPID(int id) {
+        String sql = "select TName from Product p\n"
+                + "Inner join [Type] t on t.TID = p.TID\n"
+                + "where PID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+
+        }
+        return null;
+    }
+
+    public List<FeedBack> getFBbyPID(int pid) {
+        List<FeedBack> list = new ArrayList<>();
+        String sql = "SELECT [FID]\n"
+                + "      ,[UID]\n"
+                + "      ,[PID]\n"
+                + "      ,[Description]\n"
+                + "      ,[Date]\n"
+                + "      ,[Vote]\n"
+                + "  FROM [dbo].[FeedBack]\n"
+                + "  where PID =?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                FeedBack f = new FeedBack();
+                f.setFID(rs.getInt(1));
+                f.setUID(rs.getInt(2));
+                f.setUser(checkUsUid(rs.getInt(2)));
+                f.setPID(rs.getInt(3));
+                f.setDescription(rs.getString(4));
+                f.setDate(rs.getString(5));
+                f.setVote(rs.getInt(6));
+                list.add(f);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+
+    public String getName(int id) {
+        String sql = "select FName from [User]\n"
+                + "  where ID = ?";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getString(1);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
 
 //        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
 //        System.out.println(d.checkUsername("levanduc").getEmail());
 //        System.out.println("dd");
         DAO d = new DAO();
-        List<Product> list = d.search("4K");
-        System.out.println(list.get(0).getName());
+        System.out.println(d.getTypebyPID(1));
+        List<FeedBack> list = d.getFBbyPID(1);
+        System.out.println(list.get(0).getDate());
     }
 
- 
 }
