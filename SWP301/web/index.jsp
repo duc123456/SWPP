@@ -56,18 +56,18 @@
 
                     <div class="row mt-5">
 
-                        <div class="col md-2">
-                            <h2>Tivi</h2>
+                        <div class="col md-2 bentrai" style="background-color: white">
+                            <h2 >Tivi</h2>
                         <c:forEach items="${requestScope.cate}" var="ca">
                             <p><a href="">${ca.getcName()}</a></p>  
                             </c:forEach>
 
                         <h2> KHOẢNG GIÁ(VNĐ)</h2> 
-                        <li>3 triệu - 5 triệu</li>
-                        <li>5 triệu - 8 triệu</li>
-                        <li>8 triệu - 10 triệu</li>
-                        <li>15 triệu - 20 triệu </li>
-                        <li>20 triệu - 25 triệu </li>
+                       <input href="#" name="" type="radio"/>3 triệu - 5 triệu<br/>
+                       <input href="#" name="" type="checkbox"/>5 triệu - 8 triệu<br/>
+                       <input href="#" name="" type="checkbox"/>8 triệu - 10 triệ<br/>
+                        <input href="#" name="" type="checkbox"/>15 triệu - 20 triệu<br/>
+                       <input href="#" name="" type="checkbox"/>20 triệu - 25 triệu <br/>
 
 
                         <h2>Inch</h2>
