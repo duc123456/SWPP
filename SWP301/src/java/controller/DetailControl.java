@@ -65,6 +65,8 @@ public class DetailControl extends HttpServlet {
         Product  p = d.getProductByID(id);
         String type = d.getTypebyPID(id);
         // truyen feedback sang detail jsp
+        List<Product> listRefer = d.get4ProdRan();
+        request.setAttribute("listRe", listRefer);
         List<FeedBack> feedbacks =d.getFBbyPID(id);
         request.setAttribute("feedbacks", feedbacks);
         request.setAttribute("type", type);

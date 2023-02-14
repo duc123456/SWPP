@@ -598,6 +598,36 @@ public class DAO extends DBContext {
         return null;
     }
 
+    public List<Product> get4ProdRan() {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT TOP 4 * FROM Product\n"
+                + "ORDER BY NEWID()";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
 
 //        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
@@ -607,6 +637,8 @@ public class DAO extends DBContext {
         System.out.println(d.getTypebyPID(1));
         List<FeedBack> list = d.getFBbyPID(1);
         System.out.println(list.get(0).getDate());
+        List<Product> list2 = d.get4ProdRan();
+        System.out.println(list2.get(0).getImageDf());
     }
 
 }
