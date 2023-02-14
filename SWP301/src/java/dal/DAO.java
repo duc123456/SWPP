@@ -237,10 +237,10 @@ public class DAO extends DBContext {
     //phan trang dua tren so san pham sau do chia ra
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 9 row only";
+        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 12 row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, (index - 1) * 9);
+            st.setInt(1, (index - 1) * 12);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product p = new Product();

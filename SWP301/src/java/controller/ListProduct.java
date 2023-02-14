@@ -86,8 +86,8 @@ public class ListProduct extends HttpServlet {
         }
         //moi trang web chia san pham ra la 9
         int count = d.getTotalProduct();
-        int endPage = count / 9;
-        if (count % 9 != 0) {
+        int endPage = count / 12;
+        if (count % 12 != 0) {
             endPage++;
         }
 

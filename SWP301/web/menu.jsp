@@ -65,7 +65,7 @@
                  <div class="container">
                      <div class="row">
                          <div class="col-md-3 col-9 pt-1 pb-2">
-                            <a href="index.jsp">
+                            <a href="listproduct">
                                 <img class="logo" src="assets/images/logo.jpg" alt="">
                             </a> 
                          </div>
