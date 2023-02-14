@@ -84,7 +84,7 @@ public class ListProduct extends HttpServlet {
              list1 = d.search(find);
              request.setAttribute("product", list1);
         }
-        //moi trang web chia san pham ra la 9
+        //moi trang web chia san pham ra la 12
         int count = d.getTotalProduct();
         int endPage = count / 12;
         if (count % 12 != 0) {
