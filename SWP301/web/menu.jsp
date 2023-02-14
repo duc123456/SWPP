@@ -11,7 +11,7 @@
     .logo{
         height: 60px;
         width: 120px;
-        padding-bottom: 0: 
+        padding-bottom: 0;
             
         
     }
@@ -74,8 +74,9 @@
                  <div class="container">
                      <div class="row">
                          <div class="col-md-3 col-9 pt-1 pb-2">
-                            <a href="index.jsp">
+                            <a href="listproduct">
                                 <img class="logo" src="Image/logo2.png" alt="">
+
                             </a> 
                          </div>
                          
