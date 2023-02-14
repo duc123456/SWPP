@@ -92,8 +92,9 @@
                                 </ul>    
                             </nav>    
                             <c:forEach items="${product}" var="p">
-
+                                
                                 <div class="col-lg-3 col-md-3 mb-4">
+                                    <a href="detail?pid=${p.pId}">
                                     <div class="bg-white p-2 shadow-md">
                                         <div class="text-center">
 
@@ -126,8 +127,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                      </a>      
                                 </div>
-
+                                
                             </c:forEach>
                         </div>
                     </div>
