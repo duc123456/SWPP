@@ -83,6 +83,16 @@
                 <div class="col-md-7">
                     <h2>${product.name}</h2>
                     <p>${type}</p>
+                    <ul class="mt-0 mt-2 mb-3 vgth">
+                        <h4>Inch</h4>
+                        <c:forEach items="${sizes}" var="s">
+                            <i class="chooseSize" >${s.size} </i>
+                            <input type="radio" name="size" id="size-radio">
+                            
+                            
+                            
+                        </c:forEach>
+                    </ul>
                     <b class="fs-3 py-4 text-danger vietnamese-currency">${product.price}</b>
                      
                      <ul class="mt-0 mt-2 mb-3 vgth">
@@ -97,14 +107,7 @@
                         </li>
                         
                     </ul>
-                    <ul class="key-features mt-2">
-                        <li><i class="bi bi-caret-right"></i> Newly Added</li>
-                        <li><i class="bi bi-caret-right"></i> Made with Fresh Flowers</li>
-                        <li><i class="bi bi-caret-right"></i> Well Packed</li>
-                        <li><i class="bi bi-caret-right"></i> Timely Delivery</li>
-                        <li><i class="bi bi-caret-right"></i> Fresh Leafes Used</li>
-                        <li><i class="bi bi-caret-right"></i> Properly Packed</li>
-                    </ul>
+                    
                 </div>
             </div>
                     
@@ -418,6 +421,9 @@
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ 
     
 
 </html>

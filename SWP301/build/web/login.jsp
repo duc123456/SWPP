@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <button type="submit" value="Login" class="btn btn-danger">Click to Login</button>
-                                        <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/SWP391/logingg&response_type=code&client_id=366188553399-ojakc202g699b7dee79tur2hgcntn3vi.apps.googleusercontent.com&approval_prompt=force">Login GG</a>
+                                        <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/SWP391/logingg&response_type=code&client_id=55055519665-ah0bae7b1vdvc36fdd0c78tl3c6v0cpf.apps.googleusercontent.com&approval_prompt=force">Login GG</a>
 
                                         <a href="forgotPassword.jsp"><span class="float-end pt-2">forget Password ?</span></a> 
                                     </div>

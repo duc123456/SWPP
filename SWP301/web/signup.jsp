@@ -45,18 +45,13 @@
                         <h1 style="color: red;size: 12px">${requestScope.ms}</h1>
                         <h4 class="text-center mb-5">Enter your detail to Signup</h4>
                          <div class="form-row row">
-                            <div class="col-md-3 pt-2">
-                                <label for="">First Name</label>
+                            
+                          
+                             <div class="col-md-4 pt-2">
+                                <label for="">Your Name</label>
                                 <span  class="fw-bolder float-end" >:</span>
                             </div>
-                             <div class="col-md-3" >
-                                <input  name="fname" type="text" placeholder="Enter First Name" class="form-control">
-                            </div>
-                             <div class="col-md-3 pt-2">
-                                <label for="">Last Name</label>
-                                <span  class="fw-bolder float-end" >:</span>
-                            </div>
-                             <div class="col-md-3">
+                             <div class="col-md-8">
                                 <input  name="lname" type="text" placeholder="Enter Last Name" class="form-control">
                             </div>
                         </div>
@@ -81,41 +76,9 @@
                                 <input name="phone" type="text" placeholder="Enter Mobile Number" class="form-control">
                             </div>
                         </div>
-                        <div class="form-row row">
-                            <div class="col-md-4 pt-2">
-                                <label for="">Address</label>
-                                <span class="fw-bolder float-end">:</span>
-                            </div>
-                            <div class="col-md-8">
-                                <input name="address" type="text" placeholder="Enter Address" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-row row">
-                            <div class="col-md-4 pt-2">
-                                <label for="">Email Address</label>
-                                <span class="fw-bolder float-end">:</span>
-                            </div>
-                            <div class="col-md-8">
-                                
-                                <input name="email" type="text" placeholder="Enter Email Address" class="form-control">
-                            </div>
-                        </div>
-                         <div class="form-row row">
-                            <div class="col-md-4 pt-2">
-                                <label for="">Gender</label>
-                                <span class="fw-bolder float-end">:</span>
-                            </div>
-                             <div class="col-md-4" >
-                                 <div>
-                                <label>Male <input name="gen" type="radio" value="1"  class="form-control"></label>
-                                </div>
-                            </div>
-                             <div class="col-md-4">
-                                 <div>
-                                 <label>Female <input name="gen" type="radio" value="0"   class="form-control"></label>
-                                 </div>
-                            </div>
-                        </div>
+                        
+                        
+                         
                         
                          <div class="form-row row">
                             <div class="col-md-4 pt-2">
@@ -307,23 +270,7 @@
     });
   });
 </script>
-<script>
-  $(document).ready(function() {
-    var email = $("input[name='email']");
-    var error = $("<p class='text-danger'>Please enter a valid email address</p>");
-    
-    email.after(error);
-    error.hide();
-    
-    email.on("keyup", function() {
-      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
-        error.show();
-      } else {
-        error.hide();
-      }
-    });
-  });
-</script>
+
 <script>
   $(document).ready(function() {
     var phone = $("input[name='phone']");
@@ -346,20 +293,14 @@
 $('button.btn-danger').click(function(e){
 var password = $('input[name="pass"]').val();
 var repassword = $('input[name="repass"]').val();
-var email = $('input[name="email"]').val();
-var phone = $('input[name="phone"]').val();
+
 if(password.length < 8 || !/[A-Z]/.test(password)){
 alert('Password must be at least 8 characters long and contain at least one uppercase letter.');
 e.preventDefault();
 } else if(password !== repassword){
 alert('Password and Confirm Password must match.');
 e.preventDefault();
-} else if(!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
-alert('Email address is invalid.');
-e.preventDefault();
-} else if(!(/^\d{10}$/.test(phone))) {
-alert('Phone number must be 10 digits long.');
-e.preventDefault();
+}
 }
 });
 });

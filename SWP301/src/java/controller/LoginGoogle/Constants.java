@@ -10,9 +10,9 @@ package controller.LoginGoogle;
  */
 public class Constants {
     
-    public static String GOOGLE_CLIENT_ID = "366188553399-ojakc202g699b7dee79tur2hgcntn3vi.apps.googleusercontent.com";
+    public static String GOOGLE_CLIENT_ID = "55055519665-ah0bae7b1vdvc36fdd0c78tl3c6v0cpf.apps.googleusercontent.com";
 
-	public static String GOOGLE_CLIENT_SECRET = "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";
+	public static String GOOGLE_CLIENT_SECRET = "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";
 
 	public static String GOOGLE_REDIRECT_URI = "http://localhost:9999/SWP391/logingg";
 

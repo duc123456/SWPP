@@ -55,7 +55,7 @@
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
                                 <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Logout</button></a></li>
-                                <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
+                                <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.lName}</button></a></li>
                             </ul>
                         </div>
                     </div>

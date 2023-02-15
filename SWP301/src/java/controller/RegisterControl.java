@@ -60,19 +60,13 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String fname = request.getParameter("fname");
+       // PrintWriter out = response.getWriter();
+        
         String lname = request.getParameter("lname");
         String username = request.getParameter("username");
         String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-        String gen = request.getParameter("gen");
-        boolean gender;
-        if(gen=="male"){
-            gender = true;
-        }else{
-            gender = false;      
-        }
+       
+       
         String pass = request.getParameter("pass");
         String repass = request.getParameter("repass");
         DAO d = new DAO();
@@ -86,11 +80,11 @@ public class RegisterControl extends HttpServlet {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             simpleDateFormat.applyPattern("yyyy-MM-dd");
             String format = simpleDateFormat.format(date);
-            d.register(1, fname, lname, username, pass, address, null, null, gender, phone, email, format, format);
+            d.register(1, lname, username, pass,  phone, format, format);
             User a = d.login(username, pass);
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("listproduct");
         }
         
         
