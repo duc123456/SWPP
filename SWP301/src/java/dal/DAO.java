@@ -78,7 +78,7 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public void register(int roleID, String fname, String lname, String username, String pass, String address, String image, String dob, boolean gen, String phone, String email, String createDate, String modifyDate) {
+    public void register(int roleID, String name, String username, String pass, String phone, String createDate, String modifyDate) {
         //       SELECT [UserID]
         //   ,[FullName]
         // ,[Email]
@@ -90,34 +90,24 @@ public class DAO extends DBContext {
         //,[Update_Date]
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([Role]\n"
-                + "           ,[LName]\n"
                 + "           ,[FName]\n"
                 + "           ,[UserName]\n"
                 + "           ,[PassWord]\n"
-                + "           ,[Address]\n"
-                + "           ,[image]\n"
-                + "           ,[DOB]\n"
-                + "           ,[Gender]\n"
                 + "           ,[Phone]\n"
-                + "           ,[Email]\n"
                 + "           ,[CreatedDate]\n"
                 + "           ,[ModifiedDate])\n"
-                + "     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "     VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, roleID);
-            st.setString(2, lname);
-            st.setString(3, fname);
-            st.setString(4, username);
-            st.setString(5, pass);
-            st.setString(6, address);
-            st.setString(7, image);
-            st.setString(8, dob);
-            st.setBoolean(9, gen);
-            st.setString(10, phone);
-            st.setString(11, email);
-            st.setString(12, createDate);
-            st.setString(13, modifyDate);
+            st.setString(2, name);
+            st.setString(3, username);
+            st.setString(4, pass);
+
+            st.setString(5, phone);
+
+            st.setString(6, createDate);
+            st.setString(7, modifyDate);
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -598,6 +588,8 @@ public class DAO extends DBContext {
         return null;
     }
 
+  
+
     public static void main(String[] args) {
 
 //        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
@@ -606,7 +598,9 @@ public class DAO extends DBContext {
         DAO d = new DAO();
         System.out.println(d.getTypebyPID(1));
         List<FeedBack> list = d.getFBbyPID(1);
-        System.out.println(list.get(0).getDate());
+     
+        List<Size> lists= d.getAllSizeById(1);
+        System.out.println(lists.get(0).getSize());
     }
 
 }

@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.FeedBack;
 import model.Product;
+import model.Size;
 
 /**
  *
@@ -65,6 +66,8 @@ public class DetailControl extends HttpServlet {
         Product  p = d.getProductByID(id);
         String type = d.getTypebyPID(id);
         // truyen feedback sang detail jsp
+        List<Size> sizes =d.getAllSizeById(id);
+        request.setAttribute("sizes", sizes);
         List<FeedBack> feedbacks =d.getFBbyPID(id);
         request.setAttribute("feedbacks", feedbacks);
         request.setAttribute("type", type);
