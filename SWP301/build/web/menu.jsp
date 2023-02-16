@@ -19,14 +19,14 @@
                     <div class="row">
                         <div class="col-md-8">
                             <ul class="d-inline-flex pt-0 pt-md-2 fs-6">
-                                <li class="p-2 "><i class="bi bi-envelope"></i> Support@smarteyeapps.com</li>
-                                <li class="p-2 d-none d-md-block"><i class="bi bi-headphones"></i> +987 676 7676 676</li>
+                                <li class="p-2 "><i class="bi bi-envelope"></i> Truongan@gmail.com </li>
+                                <li class="p-2 d-none d-md-block"><i class="bi bi-headphones"></i> 0986868686 </li>
                             </ul>
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
-                                <li class="p-2"><a  href="login.jsp"><button class="btn px-4 btn-danger">Login</button></a></li>
-                                <li class="p-2"><a  href="signup.jsp"><button class="btn px-4 btn-outline-danger">Sign Up</button></a></li>
+                                <li class="p-2"><a  href="login.jsp"><button class="btn px-4 btn-danger">Đăng Nhập</button></a></li>
+                                <li class="p-2"><a  href="signup.jsp"><button class="btn px-4 btn-outline-danger">Đăng Ký</button></a></li>
                             </ul>
                         </div>
                     </div>
@@ -39,13 +39,13 @@
                     <div class="row">
                         <div class="col-md-8">
                             <ul class="d-inline-flex pt-0 pt-md-2 fs-6">
-                                <li class="p-2 "><i class="bi bi-envelope"></i> Support@smarteyeapps.com</li>
-                                <li class="p-2 d-none d-md-block"><i class="bi bi-headphones"></i> +987 676 7676 676</li>
+                                <li class="p-2 "><i class="bi bi-envelope"></i> Truongan@gmail.com</li>
+                                <li class="p-2 d-none d-md-block"><i class="bi bi-headphones"></i> 0986868686</li>
                             </ul>
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
-                                <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Logout</button></a></li>
+                                <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
                                 <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
                             </ul>
                         </div>
@@ -65,7 +65,7 @@
                  <div class="container">
                      <div class="row">
                          <div class="col-md-3 col-9 pt-1 pb-2">
-                            <a href="index.jsp">
+                            <a href="listproduct">
                                 <img class="logo" src="assets/images/logo.jpg" alt="">
                             </a> 
                          </div>
@@ -75,15 +75,16 @@
                                   <form action="listproduct">
                                   
                                       <input type="text" name="find" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                      <input type="submit" value="Tìm Kiêm">
                                   </form>
-                                      <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+<!--                                      <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>-->
                                   
                             </div>
                          </div>
                              
                          <div class="col-md-3 col-3 pt-1 text-end">
                              <a href="cart.jsp">
-                                 <button type="button" class="btn btn-light shadow-md border position-relative">
+                                 <button type="button" class="btn btn-light shadow-md border position-relative" title="Giỏ Hàng">
                                   <i class="bi fs-4 bi-basket"></i>
                                   <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     2
@@ -92,7 +93,7 @@
                                 </button>
                              </a>
                             
-                            <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative">
+                             <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
                               <i class="bi fs-4 bi-heart"></i>
                               <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning">
                                 2
@@ -114,7 +115,7 @@
                             <div class="inner-div">
                                 <ul class="">
                                     <c:forEach items="${requestScope.cate}" var="ca">
-                                    <li><a href="">${ca.getcName()}</a></li>
+                                    <li><a href="listproduct?cat1=${ca.cid}">${ca.getcName()}</a></li>
                                     </c:forEach>
                                 </ul>
                             </div>
