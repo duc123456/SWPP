@@ -78,7 +78,7 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public void register(int roleID, String fname, String lname, String username, String pass, String address, String image, String dob, boolean gen, String phone, String email, String createDate, String modifyDate) {
+    public void register(int roleID, String name, String username, String pass, String phone, String createDate, String modifyDate) {
         //       SELECT [UserID]
         //   ,[FullName]
         // ,[Email]
@@ -90,34 +90,24 @@ public class DAO extends DBContext {
         //,[Update_Date]
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([Role]\n"
-                + "           ,[LName]\n"
                 + "           ,[FName]\n"
                 + "           ,[UserName]\n"
                 + "           ,[PassWord]\n"
-                + "           ,[Address]\n"
-                + "           ,[image]\n"
-                + "           ,[DOB]\n"
-                + "           ,[Gender]\n"
                 + "           ,[Phone]\n"
-                + "           ,[Email]\n"
                 + "           ,[CreatedDate]\n"
                 + "           ,[ModifiedDate])\n"
-                + "     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                + "     VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, roleID);
-            st.setString(2, lname);
-            st.setString(3, fname);
-            st.setString(4, username);
-            st.setString(5, pass);
-            st.setString(6, address);
-            st.setString(7, image);
-            st.setString(8, dob);
-            st.setBoolean(9, gen);
-            st.setString(10, phone);
-            st.setString(11, email);
-            st.setString(12, createDate);
-            st.setString(13, modifyDate);
+            st.setString(2, name);
+            st.setString(3, username);
+            st.setString(4, pass);
+
+            st.setString(5, phone);
+
+            st.setString(6, createDate);
+            st.setString(7, modifyDate);
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -237,10 +227,10 @@ public class DAO extends DBContext {
     //phan trang dua tren so san pham sau do chia ra
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 9 row only";
+        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 12 row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, (index - 1) * 9);
+            st.setInt(1, (index - 1) * 12);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -729,17 +719,115 @@ public class DAO extends DBContext {
         return null;
     }
 
+    public List<Product> get4Product() 
+        {
+            List<Product> list = new ArrayList<>();
+        String sql = "SELECT TOP 4 * FROM Product  \n"
+                + "ORDER BY NEWID()  ";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                list.add(p);
+                
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<User> getAllUser() {
+        List<User> list = new ArrayList<>();
+        String sql = "select * from [User]";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14));
+                list.add(u);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+
+    public int countUser() {
+        String sql = "select count(*) from [User]";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public String getFirstLetter(String s) {
+        return s.substring(0, 1);
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM [dbo].[User]\n"
+                + "      WHERE ID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    public int getStar(){
+        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getInt(2) / rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        return 0;
+    }
+
     public static void main(String[] args) {
 
-//        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
-//        System.out.println(d.checkUsername("levanduc").getEmail());
-//        System.out.println("dd");
-        DAO d = new DAO();
-        int[] cat = new int[]{1};
-        int[] pri = new int[]{3000000,10000000};
-        int[] size = new int[]{32,42,42,56};
-        List<Product> li = d.searchCheckBox(cat, pri);
-        System.out.println(""+ li.get(0).getName());
     }
 
 }

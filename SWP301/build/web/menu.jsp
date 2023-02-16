@@ -7,6 +7,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<style>
+    .logo{
+        height: 60px;
+        width: 120px;
+        padding-bottom: 0;
+            
+        
+    }
+</style>
 
     
     <html>
@@ -45,8 +54,12 @@
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
+
                                 <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
                                 <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
+
+                               
+
                             </ul>
                         </div>
                     </div>
@@ -66,7 +79,12 @@
                      <div class="row">
                          <div class="col-md-3 col-9 pt-1 pb-2">
                             <a href="listproduct">
+<<<<<<< HEAD
                                 <img class="logo" src="assets/images/logo.jpg" alt="">
+=======
+                                <img class="logo" src="Image/logo2.png" alt="">
+
+>>>>>>> main
                             </a> 
                          </div>
                          
