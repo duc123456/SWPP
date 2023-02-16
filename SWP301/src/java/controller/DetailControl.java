@@ -67,7 +67,11 @@ public class DetailControl extends HttpServlet {
         String type = d.getTypebyPID(id);
         // truyen feedback sang detail jsp
         List<Size> sizes =d.getAllSizeById(id);
+        List<Product> list4 =d.get4Product();
+        int star = d.getStar();
+        request.setAttribute("star", star);
         request.setAttribute("sizes", sizes);
+        request.setAttribute("list4", list4);
         List<FeedBack> feedbacks =d.getFBbyPID(id);
         request.setAttribute("feedbacks", feedbacks);
         request.setAttribute("type", type);

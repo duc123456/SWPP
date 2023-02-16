@@ -588,6 +588,41 @@ public class DAO extends DBContext {
         return null;
     }
 
+    public List<Product> get4Product() 
+        {
+            List<Product> list = new ArrayList<>();
+        String sql = "SELECT TOP 4 * FROM Product  \n"
+                + "ORDER BY NEWID()  ";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                list.add(p);
+                
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public List<User> getAllUser() {
         List<User> list = new ArrayList<>();
         String sql = "select * from [User]";
@@ -643,6 +678,22 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
     }
+    public int getStar(){
+        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getInt(2) / rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        return 0;
+    }
 
     public static void main(String[] args) {
 
@@ -653,10 +704,11 @@ public class DAO extends DBContext {
         System.out.println(d.getTypebyPID(1));
         List<FeedBack> list = d.getFBbyPID(1);
 
-        List<User> lists = d.getAllUser();
-        System.out.println(lists.get(0).getRoleId());
+        List<Product> lists = d.get4Product();
+        System.out.println(lists.get(0).getImageDf());
         System.out.println(d.getFirstLetter("sssss"));
-        
+        System.out.println(d.getStar());
+
     }
 
 }
