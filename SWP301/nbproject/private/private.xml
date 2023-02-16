@@ -3,6 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/src/java/controller/RegisterControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/src/java/controller/SearchCheckBox.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SWPP/SWP301/src/java/controller/ListProduct.java</file>
+=======
             <file>file:/C:/SWPP/SWP301/src/java/controller/DeleteController.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/LoginGoogle/Constants.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/LoginGoogle/UserGoogleDTO.java</file>
@@ -22,6 +30,7 @@
             <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
             <file>file:/C:/SWPP/SWP301/web/Profile.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/detail.jsp</file>
+>>>>>>> main
         </group>
     </open-files>
 </project-private>

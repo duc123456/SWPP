@@ -23,39 +23,70 @@
 
         <jsp:include page="menu.jsp"></jsp:include>
             <div class="slider">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="assets/images/slider/s1.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="assets/images/slider/s2.jpg" class="d-block w-100" alt="...">
-                        </div>
-
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+                <!--                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="assets/images/slider/s1.jpg" class="d-block w-100" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="assets/images/slider/s2.jpg" class="d-block w-100" alt="...">
+                                        </div>
+                
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Pre</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>-->
             </div>
 
 
             <div class="latest-products pt-5 pb-0">
                 <div class="container-xl">
                     <div class="section-tile row">
-                        <div class="col-md-10 text-center mx-auto">
-                            <h2>Featured Products</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet est sit amet sem malesuada bibendum. Nulla eget mauris at dolor fermentum blandit. Maecenas</p>
-                        </div>
+                        <!--                        <div class="col-md-10 text-center mx-auto">
+                                                    <h2>Featured Products</h2>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet est sit amet sem malesuada bibendum. Nulla eget mauris at dolor fermentum blandit. Maecenas</p>
+                                                </div>-->
                     </div>
 
                     <div class="row mt-5">
 
+<<<<<<< HEAD
+                        <div class="col md-2">
+                            <form action="searchproduct" method="get">
+                                <h3> <strong>Tivi</strong></h3>
+                            <c:forEach items="${requestScope.cate}" var="ca">
+                                <input name="cat" type="checkbox" value="${ca.cid}"> ${ca.cName} <br/>
+
+                            </c:forEach>
+
+                            <p> <strong>Khoảng giá</strong><p> 
+                            <input name="pri" type="checkbox" value="3000000,10000000"> 3 triệu - 10 triệu <br/>
+                            <input name="pri" type="checkbox" value="10000000,25000000"> 10 triệu - 25 triệu <br/>
+                            <input name="pri" type="checkbox" value="80000000,250000000"> 80 triệu - 250 triệu <br/>
+
+                            <p style="font-size: 20px"><strong>Kích thước màn hình</strong></p>
+                            <input  name="size" type="checkbox" value="32,43"/>32 inch -  43 inch<br/>
+                            <input   name="size" type="checkbox" value="45,50"  />45 inch -  50 inch<br/>
+                            <input   name="size" type="checkbox" value="55,60" />55 inch -  60 inch <br/>
+                            <input   name="size" type="checkbox" value="70,90"/> 70 inch - 90 inch<br/>
+                            <h2></h2>
+                            <input type="submit" value="Tim Kiem">     
+                        </form>
+
+
+
+
+
+
+
+
+=======
                         <div class="col md-2"">
                             <div style="background-color: white">
                                 <h2>Tivi</h2>
@@ -79,20 +110,21 @@
                             <input  href="#" name="" type="checkbox" /> 70<br/>
                             <input  href="#" name="" type="checkbox"  />Khác<br/>
                         </div>
+>>>>>>> main
                     </div>
 
 
                     <div class="col-md-10">
                         <div class="row">
-                            <nav aria-label="breadcrumb">
-                                <ul class="pagination">
+                            <!--                            <nav aria-label="breadcrumb">
+                                                            <ul class="pagination">
+                            
+                            <c:forEach begin="1" end="${endP}" var="pa">
+                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
+                            </c:forEach>
 
-                                    <c:forEach begin="1" end="${endP}" var="pa">
-                                        <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
-                                        </c:forEach>
-
-                                </ul>    
-                            </nav>    
+                    </ul>    
+                </nav>    -->
                             <c:forEach items="${product}" var="p">
 
                                 <div class="col-lg-3 col-md-3 mb-4">
@@ -133,6 +165,58 @@
                                 </div>
 
                             </c:forEach>
+                            <nav aria-label="breadcrumb">
+                                <ul class="pagination">
+
+                                    <c:forEach begin="1" end="${endP}" var="pa">
+                                        <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
+                                        </c:forEach>
+
+                                </ul>    
+                            </nav>    
+<<<<<<< HEAD
+=======
+                            <c:forEach items="${product}" var="p">
+
+                                <div class="col-lg-3 col-md-3 mb-4">
+                                    <a href="detail?pid=${p.pId}">
+                                        <div class="bg-white p-2 shadow-md">
+                                            <div class="text-center">
+
+                                                <img  src="Image/${p.imageDf}" alt="">
+                                            </div>
+                                            <div class="detail p-2">
+                                                <h4 class="mb-1 fs-5 fw-bold">${p.name}</h4>
+                                                <b class="fs-4 text-danger">${p.price}</b>
+                                                <s class="fs-5 ps-3">60.00</s>
+
+                                                <ul class="mt-0 vgth">
+                                                    <li class="fs-8">
+                                                        <i class="bi text-warning bi-star-fill"></i>
+                                                        <i class="bi text-warning bi-star-fill"></i>
+                                                        <i class="bi text-warning bi-star-fill"></i>
+                                                        <i class="bi text-warning bi-star-fill"></i>
+                                                        <i class="bi bi-star-fill"></i>
+                                                    </li>
+                                                    <li class="float-end gvi">
+                                                        <i class="bi text-danger bi-heart-fill"></i>
+                                                    </li>
+                                                </ul>
+                                                <div class="row pt-2">
+                                                    <div class="col-md-6">
+                                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <button class="btn fw-bold w-100 btn-outline-danger">Thêm vào giỏ hàng</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>      
+                                </div>
+
+                            </c:forEach>
+>>>>>>> main
                         </div>
                     </div>
                 </div>

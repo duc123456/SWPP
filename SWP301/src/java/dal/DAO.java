@@ -587,6 +587,137 @@ public class DAO extends DBContext {
         }
         return null;
     }
+    public List<Product> searchCheckBox(int[] cat, int[] pri ){
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product where (1=1)";
+        if(cat != null){
+            if(cat.length == 1)
+                sql += "And CATID = ?";
+            else if (cat.length == 2)
+                sql += "And (CATID = ? or CATID = ?)";
+            else{
+            sql += "And ( CATID = ?";
+            for (int i = 1; i < cat.length -1; i++) {
+                  sql += " or CATID = ?";
+                
+            }
+                 sql += " or CATID = ?)";}
+                 
+        }
+        if(pri != null){
+            if(pri.length == 2)
+                sql += " AND (Price >= ? and Price <?) ";
+            else if(pri.length == 4)
+                sql += " And ((Price >= ? and Price <?) or (price >= ? and  price < ?)) ";
+            else{
+                sql += " And ((Price >= ? and Price <?)";
+            for (int i = 1; i < pri.length/2 - 1; i++) {
+                sql += " or (price >= ? and price < ?)";
+                
+            }
+            sql += " or (price >= ? and  price < ?))";
+            }
+            
+        }
+//        if(size != null){
+//            for (int i = 0; i < size.length; i++) {
+//                sql += "And size >= ? and < ?";
+//                
+//            }
+//        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int n = 0;
+            if(cat != null){
+                for (int i = 0; i < cat.length; i++) {
+                    n++;
+                    st.setInt(i + 1, cat[i]);
+                    
+                }
+            }
+            if(pri != null){
+                if(n == 0){
+                    for (int i = 0; i < pri.length; i++) {
+                         n++;
+                        st.setInt(i + 1, pri[i]);
+                       
+                    }
+                }
+                else{
+                    for (int i = 0; i < pri.length; i++) {
+                        n++;
+                        st.setInt(n, pri[i]);
+                        
+                    }
+                }
+            }
+//            if(size != null){
+//                if(n == -1){
+//                    for (int i = 0; i < size.length; i++) {
+//                         n++;
+//                        st.setInt(i, size[i]);
+//                       
+//                    }
+//                }
+//                else{
+//                    for (int i = 0; i < size.length; i++) {
+//                        n++;
+//                        st.setInt(n, size[i]);
+//                        
+//                    }
+//                }
+//            }
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice((int) rs.getFloat(4));
+                p.setName(rs.getString(5));
+                p.setImageDf(rs.getString("ImageDefault"));
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    
+    public List<Product> getAllProductByCat(int cid){
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product\n"
+                + "where CATID = ?";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, cid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                list.add(p);
+                return  list;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 
     public List<Product> get4Product() 
         {
@@ -696,18 +827,6 @@ public class DAO extends DBContext {
     }
 
     public static void main(String[] args) {
-
-//        d.changeprofile("Le", "dep trai", "HP", null, null, true, "0919988340", null, "2002-1-1", 6);
-//        System.out.println(d.checkUsername("levanduc").getEmail());
-//        System.out.println("dd");
-        DAO d = new DAO();
-        System.out.println(d.getTypebyPID(1));
-        List<FeedBack> list = d.getFBbyPID(1);
-
-        List<Product> lists = d.get4Product();
-        System.out.println(lists.get(0).getImageDf());
-        System.out.println(d.getFirstLetter("sssss"));
-        System.out.println(d.getStar());
 
     }
 
