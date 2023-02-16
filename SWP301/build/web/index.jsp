@@ -23,7 +23,7 @@
 
         <jsp:include page="menu.jsp"></jsp:include>
             <div class="slider">
-                <!--                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
                                             <img src="assets/images/slider/s1.jpg" class="d-block w-100" alt="...">
@@ -41,7 +41,7 @@
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
-                                </div>-->
+                                </div>
             </div>
 
 
@@ -56,7 +56,7 @@
 
                     <div class="row mt-5">
 
-<<<<<<< HEAD
+
                         <div class="col md-2">
                             <form action="searchproduct" method="get">
                                 <h3> <strong>Tivi</strong></h3>
@@ -86,31 +86,7 @@
 
 
 
-=======
-                        <div class="col md-2"">
-                            <div style="background-color: white">
-                                <h2>Tivi</h2>
-                            <c:forEach items="${requestScope.cate}" var="ca">
-                                <p><a href="">${ca.getcName()}</a></p>  
-                                </c:forEach>
-                        </div>
-                        <div style="background-color: white">
-                            <h2> KHOẢNG GIÁ(VNĐ)</h2> 
-                            <li>3 triệu - 5 triệu</li>
-                            <li>5 triệu - 8 triệu</li>
-                            <li>8 triệu - 10 triệu</li>
-                            <li>15 triệu - 20 triệu </li>
-                            <li>20 triệu - 25 triệu </li>
-                        </div>
-                        <div style="background-color: white">
-                            <h2>Inch</h2>
-                            <input href="#" name="" type="checkbox"/>32 inch -  43 inch<br/>
-                            <input  href="#" name="" type="checkbox"  />45 inch -  50 inch<br/>
-                            <input  href="#" name="" type="checkbox"  />55 inch -  60 inch <br/>
-                            <input  href="#" name="" type="checkbox" /> 70<br/>
-                            <input  href="#" name="" type="checkbox"  />Khác<br/>
-                        </div>
->>>>>>> main
+
                     </div>
 
 
@@ -174,49 +150,8 @@
 
                                 </ul>    
                             </nav>    
-<<<<<<< HEAD
-=======
-                            <c:forEach items="${product}" var="p">
 
-                                <div class="col-lg-3 col-md-3 mb-4">
-                                    <a href="detail?pid=${p.pId}">
-                                        <div class="bg-white p-2 shadow-md">
-                                            <div class="text-center">
 
-                                                <img  src="Image/${p.imageDf}" alt="">
-                                            </div>
-                                            <div class="detail p-2">
-                                                <h4 class="mb-1 fs-5 fw-bold">${p.name}</h4>
-                                                <b class="fs-4 text-danger">${p.price}</b>
-                                                <s class="fs-5 ps-3">60.00</s>
-
-                                                <ul class="mt-0 vgth">
-                                                    <li class="fs-8">
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                    </li>
-                                                    <li class="float-end gvi">
-                                                        <i class="bi text-danger bi-heart-fill"></i>
-                                                    </li>
-                                                </ul>
-                                                <div class="row pt-2">
-                                                    <div class="col-md-6">
-                                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <button class="btn fw-bold w-100 btn-outline-danger">Thêm vào giỏ hàng</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>      
-                                </div>
-
-                            </c:forEach>
->>>>>>> main
                         </div>
                     </div>
                 </div>
