@@ -79,12 +79,11 @@
                      <div class="row">
                          <div class="col-md-3 col-9 pt-1 pb-2">
                             <a href="listproduct">
-<<<<<<< HEAD
-                                <img class="logo" src="assets/images/logo.jpg" alt="">
-=======
+
+
                                 <img class="logo" src="Image/logo2.png" alt="">
 
->>>>>>> main
+
                             </a> 
                          </div>
                          
