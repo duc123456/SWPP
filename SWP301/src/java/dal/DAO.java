@@ -588,7 +588,61 @@ public class DAO extends DBContext {
         return null;
     }
 
-  
+    public List<User> getAllUser() {
+        List<User> list = new ArrayList<>();
+        String sql = "select * from [User]";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14));
+                list.add(u);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+
+    public int countUser() {
+        String sql = "select count(*) from [User]";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public String getFirstLetter(String s) {
+        return s.substring(0, 1);
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM [dbo].[User]\n"
+                + "      WHERE ID=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -598,9 +652,11 @@ public class DAO extends DBContext {
         DAO d = new DAO();
         System.out.println(d.getTypebyPID(1));
         List<FeedBack> list = d.getFBbyPID(1);
-     
-        List<Size> lists= d.getAllSizeById(1);
-        System.out.println(lists.get(0).getSize());
+
+        List<User> lists = d.getAllUser();
+        System.out.println(lists.get(0).getRoleId());
+        System.out.println(d.getFirstLetter("sssss"));
+        
     }
 
 }
