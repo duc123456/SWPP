@@ -20,11 +20,12 @@ public class Product {
    private String cDate;
    private Type type;
    private String imageDf;
+   private int size, quantity;
 
     public Product() {
     }
 
-    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf) {
+    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf,int size, int quantity) {
         this.pId = pId;
         this.addedBy = addedBy;
         this.cat = cat;
@@ -37,6 +38,8 @@ public class Product {
         this.cDate = cDate;
         this.type = type;
         this.imageDf = imageDf;
+        this.size = size;
+        this.quantity = quantity;
     }
 
     public int getpId() {
@@ -133,6 +136,22 @@ public class Product {
 
     public void setImageDf(String imageDf) {
         this.imageDf = imageDf;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     
    

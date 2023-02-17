@@ -128,7 +128,8 @@
                   <a class="text-white" data-bs-target="#menu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="menu"><i class="bi cp bi-list float-end fs-1 dmji"></i></a> 
                    </h6>
                     <ul id="menu" class=" navcol fw-bold d-none d-md-inline-flex">
-                        <li class="p-21 px-4"><a class="text-white" href="">Categories <i class="bi pt-2 bi-chevron-down"></i></a> 
+                        <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chu</a></li>
+                        <li class="p-21 px-4"><a class="text-white" href="">Thuong Hieu <i class="bi pt-2 bi-chevron-down"></i></a> 
                             <div class="inner-div">
                                 <ul class="">
                                     <c:forEach items="${requestScope.cate}" var="ca">
@@ -137,8 +138,18 @@
                                 </ul>
                             </div>
                         </li>
-                          <li class="p-21 px-4"><a class="text-white" href="">Pages <i class="bi pt-2 bi-chevron-down"></i></a> 
+                        
+                        <li class="p-21 px-4"><a class="text-white" href="">Loai Tivi<i class="bi pt-2 bi-chevron-down"></i></a> 
                             <div class="inner-div">
+                                <ul class="">
+                                    <c:forEach items="${requestScope.type}" var="ty">
+                                    <li><a href="listproduct?type=${ty.tId}">${ty.gettName()}</a></li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </li>
+                          <li class="p-21 px-4"><a class="text-white" href="">San Pham Ban Chay</a> 
+<!--                            <div class="inner-div">
                                 <ul class="">
                                     <li><a href="index.jsp">Home</a></li>
                                     <li><a href="about.jsp">About US</a></li>
@@ -149,13 +160,13 @@
                                     <li><a href="signup.jsp">Sing Up</a></li>
                                     <li><a href="cart.jsp">Cart</a></li>
                                 </ul>
-                            </div>
+                            </div>-->
                         </li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Anniversary <i class="bi pt-2 bi-chevron-down"></i></a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Birthday <i class="bi pt-2 bi-chevron-down"></i></a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Personal <i class="bi pt-2 bi-chevron-down"></i></a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Reception <i class="bi pt-2 bi-chevron-down"></i></a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Occasions </a></li>
+<!--                        <li class="p-21 px-4"><a class="text-white" href=""> <i class="bi pt-2 bi-chevron-down"></i></a></li>-->
+                        <li class="p-21 px-4"><a class="text-white" href="">Giam Gia Sau </a></li>
+                        <li class="p-21 px-4"><a class="text-white" href="">Qua Tang </a></li>
+                        <li class="p-21 px-4"><a class="text-white" href="">Lien He </a></li>
+                        <li class="p-21 px-4"><a class="text-white" href=""> </a></li>
                         
                         <li class="p-21 px-4"><a class="text-white" href="">Surprise </a></li>
                     </ul>

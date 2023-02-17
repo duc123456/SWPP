@@ -117,7 +117,7 @@ public class SearchCheckBox extends HttpServlet {
             List<Category> list2 = d.getAllCat();
             request.setAttribute("cate", list2);
 
-            List<Product> list1 = d.searchCheckBox(cat, pri);
+            List<Product> list1 = d.searchCheckBox(cat, pri,size);
             request.setAttribute("product", list1);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }

@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
 import model.Product;
+import model.Type;
 
 /**
  *
@@ -80,12 +81,23 @@ public class ListProduct extends HttpServlet {
             }
 
         }
+         String type = request.getParameter("type");
+        if (type != null) {
+            try {
+                int tid = Integer.parseInt(type);
+                list1 = d.getAllProductByType(tid);
+                request.setAttribute("product", list1);
+            } catch (NumberFormatException e) {
+            }
+
+        }
 
         ///search
         String find = request.getParameter("find");
 
         //gui ve front end
         List<Category> list2 = d.getAllCat();
+         List<Type> list3 = d.getAllType();
         //gui ve front end
 
         if (find == null) {
@@ -106,6 +118,7 @@ public class ListProduct extends HttpServlet {
 
         request.setAttribute("cate", list2);
         request.setAttribute("product", list1);
+        request.setAttribute("type", list3);
         // request.getRequestDispatcher("menu.jsp").forward(request, response);
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
