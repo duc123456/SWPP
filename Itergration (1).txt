@@ -1,0 +1,34 @@
+role: 
+1 nhân viên duyệt đơn chôt đơn, cập nhật tình trạng vận chuyển, kiểm tra tình trạng trả tiền ,
+ thu au thì  quản ly, trả online thì xac nhận đơn đo là đơn giao hàng đồng ( trạng thai đã thanh toan hoặc chưa thanh toan .
+
+1 nhân viên chuyên nhập hàng export đơn nhập hàng ra excel ( quản ly gia nhập và gia ban, và giảm gia 
+
+1 admin xem thông kê + tracking + view lịch ử nhập xuât hàng , lịch ử mua ban đơn hàng ( theo tuần thang quy năm  + 
+thông kê doanh thu, thông kê về ản phẩm cai nào ban chạy ( biểu đồ , cai nào đc review tôt nhât , co bao nhiêu khach hàng , doanh thu theo tuần thang, quy , năm 
+
+TV mơi đầy đủ cac hãng đủ cỡ , gia , cac loại. 
+Trang chủ co menu liệt kê cac thể loại . 
+Hàng trưng bày đc đanh gia là hàng trưng bàng ( gia co thể khac cac mặt hàng đồng loại 
+co filter cho khach hàng tìm theo hãng , theo gia , theo kich cỡ màn hình. 
+co giảm gia 
+bảo hành cac TV là khac nhau 
+Co tinh năng review , voting 
+uername pa word
+cần đăng nhập vẫn mua đc hàng trc khi mua thì popup nhập name + phone 
+uer thường loggin = fb , google , uername pa work ( quên uer name thì nhập phone + pa word 
+Import history page của payment chứa cập nhật status vận chuyển. User purchased order Page chứa xác nhận hoặc hủy đơn
+
+phase 1 : loggin Authorize 
+Home page code fix cưng 
+
+phase 2 : crud của cac role  + hoành thành DB  + 
+Home Page  + function của nhân viên nhập hàng + export đơn nhập hàng ra excel
+
+phase 3 : function của buyer giỏ hàng + function của buyer mua hàng, đặt hàng . 
+ + function của nhân viên duyệt đơn , cập nhật tình trạng vận chuyển, kiểm tra tình trạng trả tiền 
+
+phase 4 : function admin view lịch ử nhập xuât hàng , lịch ử mua ban đơn hàng ( theo tuần thang quy năm  + 
+thông kê doanh thu, thông kê về ản phẩm cai nào ban chạy ( biểu đồ , cai nào đc review tôt nhât , co bao nhiêu khach hàng , doanh thu theo tuần thang, quy , năm 
+
+phase 5 : Hoàn thiện doc và project 

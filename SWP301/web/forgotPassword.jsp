@@ -13,10 +13,10 @@
 <style>
 body {
 	background-position: center;
-	background-color: #eee;
+	background-color: #dc3545;
 	background-repeat: no-repeat;
 	background-size: cover;
-	color: #505050;
+	color: #dc3545;
 	font-family: "Rubik", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	font-weight: normal;

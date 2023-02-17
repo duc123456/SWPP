@@ -72,7 +72,7 @@ public class DetailControl extends HttpServlet {
 
         List<Size> sizes =d.getAllSizeById(id);
         List<Product> list4 =d.get4Product();
-        int star = d.getStar();
+        int star = d.getStar(id);
         request.setAttribute("star", star);
         request.setAttribute("sizes", sizes);
         request.setAttribute("list4", list4);

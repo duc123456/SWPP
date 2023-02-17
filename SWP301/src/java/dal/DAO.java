@@ -809,16 +809,21 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
     }
-    public int getStar(){
-        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack";
+    public int getStar(int id){
+        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack where PID = ?";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
-
+            st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
-                return rs.getInt(2) / rs.getInt(1);
+                if(rs.getInt(1) == 0){
+                    return 0;
+                    
+                }
+                
             }
+            return rs.getInt(2) / rs.getInt(1);
         }catch(SQLException e){
             System.out.println(e);
         }

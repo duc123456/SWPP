@@ -18,7 +18,7 @@
 }
 
 .custom-control-label::before {
-	background-color: #dee2e6;
+	background-color: #dc3545;
 	border: #dee2e6
 }
 </style>

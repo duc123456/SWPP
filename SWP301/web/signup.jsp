@@ -103,7 +103,7 @@
                               
                             </div>
                             <div class="col-md-8">
-                               <button class="btn btn-danger">Register</button>
+                               <button class="btn btn-danger regis-btn">Register</button>
                               <a href=""><span class="float-end pt-2">forget Password ?</span></a> 
                             </div>
                         </div>
@@ -290,7 +290,7 @@
 </script>
 <script>
     $(document).ready(function(){
-$('button.btn-danger').click(function(e){
+$('regis-btn').click(function(e){
 var password = $('input[name="pass"]').val();
 var repassword = $('input[name="repass"]').val();
 

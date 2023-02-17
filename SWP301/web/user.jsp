@@ -313,7 +313,7 @@
                                             <span class="indicator indicator-lg indicator-bordered-reverse indicator-top-left indicator-success rounded-circle"></span>
                                             <!--img class="avatar rounded-circle" src="#" alt="John Doe"-->
                                             
-                                            <span class="avatar-placeholder mr-md-2 ten">A</span>
+                                            <span class="avatar-placeholder mr-md-2 ten">${u.getlName().charAt(0)}</span>
                                         </div>
                                         ${u.getfName()} ${u.getlName()}
                                     </div>
@@ -321,7 +321,12 @@
                                 <td class="py-3">${u.phone}</td>
                                 <td class="py-3">${u.createDate}</td>
                                 <td class="py-3">
-                                    <span class="badge badge-pill badge-success">${u.roleId}</span>
+                                    <c:if test="${u.roleId==1}">
+                                    <span class="badge badge-pill badge-success">Customer</span>
+                                    </c:if>
+                                    <c:if test="${u.roleId ==2}">
+                                    <span class="badge badge-pill badge-warning">Staff</span>
+                                    </c:if>
                                 </td>
                                 <td class="py-3">
                                     <div class="position-relative">
