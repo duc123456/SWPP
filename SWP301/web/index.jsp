@@ -17,12 +17,55 @@
         <link rel="shortcut icon" href="assets/images/fav.jpg">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        
+        <style>
+            
+            * {
+  box-sizing: border-box;
+}
+            form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+}
+
+
+        </style>
     </head>
     <body>
-
+        <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
         <jsp:include page="menu.jsp"></jsp:include>
-            <div class="slider">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="slider col-md-10">
                               <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -43,7 +86,8 @@
                                     </button>
                                 </div>
             </div>
-
+            <div class="col-md-1"></div>
+        </div>
 
             <div class="latest-products pt-5 pb-0">
                 <div class="container-xl">
@@ -59,24 +103,40 @@
 
                         <div class="col md-2">
                             <form action="searchproduct" method="get">
-                                <h3> <strong>Tivi</strong></h3>
+                                <h4 class="fs-5">Lọc Theo Thương Hiệu</h4>
+                                <ul class="filt">
                             <c:forEach items="${requestScope.cate}" var="ca">
-                                <input name="cat" type="checkbox" value="${ca.cid}"> ${ca.cName} <br/>
-
+                                
+                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
                             </c:forEach>
+                                </ul>
+                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                            
+                            
+                            <ul class="filt">
+                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="3000000,10000000"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
+                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="10000000,25000000"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
+                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="80000000,250000000"  id="flexCheckDefault"> 80 triệu - 250 triệu  </li>
+                            
+                            
+                             
+                            </ul>
+                            
 
-                            <p> <strong>Khoảng giá</strong><p> 
-                            <input name="pri" type="checkbox" value="3000000,10000000"> 3 triệu - 10 triệu <br/>
-                            <input name="pri" type="checkbox" value="10000000,25000000"> 10 triệu - 25 triệu <br/>
-                            <input name="pri" type="checkbox" value="80000000,250000000"> 80 triệu - 250 triệu <br/>
+                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+                           
+                            
+                            <ul class="filt">
+                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="exampleRadios" id="exampleRadios1" value="32,43">   32 inch -  43 inch</li>
+                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="exampleRadios" id="exampleRadios1" value="45,50">   45 inch -  50 inch </li>
+                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="exampleRadios" id="exampleRadios1" value="55,60" >   55 inch -  60 inch</li>
+                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="exampleRadios" id="exampleRadios1" value="70,90" >   70 inch - 90 inch</li>
 
-                            <p style="font-size: 20px"><strong>Kích thước màn hình</strong></p>
-                            <input  name="size" type="checkbox" value="32,43"/>32 inch -  43 inch<br/>
-                            <input   name="size" type="checkbox" value="45,50"  />45 inch -  50 inch<br/>
-                            <input   name="size" type="checkbox" value="55,60" />55 inch -  60 inch <br/>
-                            <input   name="size" type="checkbox" value="70,90"/> 70 inch - 90 inch<br/>
-                            <h2></h2>
-                            <input type="submit" value="Tim Kiem">     
+                             
+                        </ul>
+                            
+                            
+                            
                         </form>
 
 
@@ -103,25 +163,29 @@
                 </nav>    -->
                             <c:forEach items="${product}" var="p">
 
-                                <div class="col-lg-3 col-md-3 mb-4">
+                                <div class="col-lg-3 col-md-3 mb-4" >
+                                    
                                     <a href="detail?pid=${p.pId}">
                                         <div class="bg-white p-2 shadow-md">
-                                            <div class="text-center">
+                                            <div class="text-center" style="min-height: 176px !important;">
 
                                                 <img  src="Image/${p.imageDf}" alt="">
                                             </div>
                                             <div class="detail p-2">
-                                                <h4 class="mb-1 fs-5 fw-bold">${p.name}</h4>
+                                                <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
                                                 <b class="fs-4 text-danger">${p.price}</b>
-                                                <s class="fs-5 ps-3">60.00</s>
+                                                <s class="fs-5 ps-3"></s>
 
                                                 <ul class="mt-0 vgth">
                                                     <li class="fs-8">
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi text-warning bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
+                                                        
+                                                        <c:forEach begin="1" end="${d.getStar(p.pId)}" var="pa">
+                                                                <i class="bi text-warning bi-star-fill"></i>
+                                                        </c:forEach>
+                                                        <c:forEach begin="1" end="${5-d.getStar(p.pId)}" var="pa">
+                                                                <i class="bi bi-star-fill"></i>
+                                                        </c:forEach>        
+                                                        
                                                     </li>
                                                     <li class="float-end gvi">
                                                         <i class="bi text-danger bi-heart-fill"></i>
@@ -132,12 +196,13 @@
                                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button class="btn fw-bold w-100 btn-outline-danger">Thêm vào giỏ hàng</button>
+                                                        <button class="btn fw-bold w-100 btn-outline-danger">Giỏ hàng</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>      
+                                    </a>
+                                              
                                 </div>
 
                             </c:forEach>
@@ -262,4 +327,16 @@
         </div>
 
         <jsp:include page="footer.jsp"></jsp:include>
+        <script>
+            const productTitles = document.querySelectorAll('.name-Product');
+
+productTitles.forEach(title => {
+  const titleText = title.textContent;
+
+  if (titleText.length > 24) {
+    const shortenedText = titleText.slice(0, 21) + '...';
+    title.textContent = shortenedText;
+  }
+});
+        </script>
 </html>

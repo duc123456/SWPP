@@ -3,9 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/SWPP/SWP301/web/newPassword.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/product.html</file>
             <file>file:/C:/SWPP/SWP301/web/signup.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Product.java</file>
+            <file>file:/C:/SWPP/SWP301/web/EditProfile.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DetailControl.java</file>
             <file>file:/C:/SWPP/SWP301/web/user.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ForgotPass/ForgotPassword.java</file>
+            <file>file:/C:/SWPP/SWP301/web/forgotPassword.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/menudash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ChangePass.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/User.java</file>
+            <file>file:/C:/SWPP/SWP301/web/ChangePassword.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/Profile.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
         </group>
     </open-files>
 </project-private>
