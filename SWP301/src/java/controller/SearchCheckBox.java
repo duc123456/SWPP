@@ -133,8 +133,9 @@ public class SearchCheckBox extends HttpServlet {
             }
             List<Category> list2 = d.getAllCat();
             request.setAttribute("cate", list2);
-            
-            List<Product> list1 = d.searchCheckBox(cat, pri);
+
+            List<Product> list1 = d.searchCheckBox(cat, pri,size);
+
             int sizes = list1.size();
             int num = (sizes%12==0?(sizes/12):((sizes/12)+1));
             int page, numberpage= 1;
@@ -153,6 +154,7 @@ public class SearchCheckBox extends HttpServlet {
             request.setAttribute("num", num);
             int xd = 1;
             request.setAttribute("xd", xd);
+
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
        

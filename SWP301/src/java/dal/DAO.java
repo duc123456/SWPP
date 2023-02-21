@@ -13,7 +13,6 @@ import model.Category;
 import model.FeedBack;
 import model.Image;
 import model.Product;
-import model.Size;
 import model.Type;
 import model.User;
 
@@ -285,6 +284,7 @@ public class DAO extends DBContext {
                 p.setCat(getCategoryById(rs.getInt(3)));
                 p.setPrice(rs.getInt(4));
                 p.setName(rs.getString(5));
+
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
                 p.setResolution(rs.getString(8));
@@ -296,6 +296,7 @@ public class DAO extends DBContext {
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
 
+
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -304,25 +305,7 @@ public class DAO extends DBContext {
         return list;
     }
 
-    public List<Size> getAllSizeById(int id) {
-        List<Size> list = new ArrayList<>();
-        String sql = "select * from Size where PID = ? ";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Size s = new Size();
-                s.setsId(rs.getInt(1));
-                s.setQuantity(rs.getInt(2));
-                s.setSize(rs.getInt(4));
-                list.add(s);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+   
 
     public List<Image> getAllImageById(int id) {
         List<Image> list = new ArrayList<>();
@@ -611,7 +594,7 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    public List<Product> searchCheckBox(int[] cat, int[] pri ){
+    public List<Product> searchCheckBox(int[] cat, int[] pri, int[] size ){
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product where (1=1)";
         if(cat != null){
@@ -640,6 +623,21 @@ public class DAO extends DBContext {
                 
             }
             sql += " or (price >= ? and  price < ?))";
+            }
+            
+        }
+        if(size != null){
+            if(size.length == 2)
+                sql += " AND (Size >= ? and Size <?) ";
+            else if(pri.length == 4)
+                sql += " And ((Size >= ? and Size <?) or (Size >= ? and  Size < ?)) ";
+            else{
+                sql += " And ((Size >= ? and Size <?)";
+            for (int i = 1; i < pri.length/2 - 1; i++) {
+                sql += " or (Size >= ? and Size < ?)";
+                
+            }
+            sql += " or (Size >= ? and  Size < ?))";
             }
             
         }
@@ -675,22 +673,22 @@ public class DAO extends DBContext {
                     }
                 }
             }
-//            if(size != null){
-//                if(n == -1){
-//                    for (int i = 0; i < size.length; i++) {
-//                         n++;
-//                        st.setInt(i, size[i]);
-//                       
-//                    }
-//                }
-//                else{
-//                    for (int i = 0; i < size.length; i++) {
-//                        n++;
-//                        st.setInt(n, size[i]);
-//                        
-//                    }
-//                }
-//            }
+            if(size != null){
+                if(n == 0){
+                    for (int i = 0; i < size.length; i++) {
+                         n++;
+                        st.setInt(i + 1, size[i]);
+                       
+                    }
+                }
+                else{
+                    for (int i = 0; i < size.length; i++) {
+                        n++;
+                        st.setInt(n, size[i]);
+                        
+                    }
+                }
+            }
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -745,6 +743,39 @@ public class DAO extends DBContext {
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
                 
+                list.add(p);
+                return  list;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    public List<Product> getAllProductByType(int tid){
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product\n"
+                + "where TID = ?";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, tid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
                 list.add(p);
                 return  list;
 

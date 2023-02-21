@@ -20,13 +20,17 @@ public class Product {
    private String cDate;
    private Type type;
    private String imageDf;
+
    private int size,quantity;
    private float discount;
+
 
     public Product() {
     }
 
+
     public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf, int size, int quantity, float discount) {
+
         this.pId = pId;
         this.addedBy = addedBy;
         this.cat = cat;
@@ -41,7 +45,9 @@ public class Product {
         this.imageDf = imageDf;
         this.size = size;
         this.quantity = quantity;
+
         this.discount = discount;
+
     }
 
     public int getSize() {
@@ -165,6 +171,8 @@ public class Product {
     public void setImageDf(String imageDf) {
         this.imageDf = imageDf;
     }
+
+   
     
    
 }
