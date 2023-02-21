@@ -629,11 +629,11 @@ public class DAO extends DBContext {
         if(size != null){
             if(size.length == 2)
                 sql += " AND (Size >= ? and Size <?) ";
-            else if(pri.length == 4)
+            else if(size.length == 4)
                 sql += " And ((Size >= ? and Size <?) or (Size >= ? and  Size < ?)) ";
             else{
                 sql += " And ((Size >= ? and Size <?)";
-            for (int i = 1; i < pri.length/2 - 1; i++) {
+            for (int i = 1; i < size.length/2 - 1; i++) {
                 sql += " or (Size >= ? and Size < ?)";
                 
             }
@@ -903,7 +903,10 @@ public class DAO extends DBContext {
     }
 
     public static void main(String[] args) {
-
+        DAO d = new DAO();
+        int [] pri  = new int []{3000000,10000000}; 
+            List<Product> list =d.searchCheckBox(null,pri , null);
+           System.out.println(list.get(0).getName());
     }
 
 }

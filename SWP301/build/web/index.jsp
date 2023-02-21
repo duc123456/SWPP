@@ -105,47 +105,111 @@ form.example::after {
                             <form action="searchproduct" method="get">
                                 <h4 class="fs-5">Lọc Theo Thương Hiệu</h4>
                                 <ul class="filt">
-                                <c:if test="${requestScope.xd == 1}"> 
-                            <c:forEach items="${requestScope.cate}" var="ca">
-                                <c:forEach items="${requestScope.cat}" var="i">
-                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" ${(i==ca.cid)?'checked':''} type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
-                                </c:forEach>
+                                <c:if test="${requestScope.xd == 1}">
+                                    
+                                    <c:if test="${requestScope.cat != null}">
+                                        <c:forEach items="${requestScope.cate}" var="ca">
+                                        <c:forEach items="${requestScope.cat}" var="i">
+                                        <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" ${(i==ca.cid)?'checked':''} type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                        </c:forEach>
+                                        </c:forEach>    
+                                            
+                                    </c:if> 
+                                        <c:if test="${requestScope.cat == null}">
+                                            <c:forEach items="${d.allCat}" var="i">
+                                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${i.cid}" id="flexCheckDefault">${i.cName} </a></li>   
+                                            </c:forEach>
+                                        </c:if>    
+                                    
+                                        <c:if test="${requestScope.pri != null }">
+                                        <c:forEach items="${requestScope.pri}" var="i">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                                            <ul class="filt">
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri" ${(i=="3000000,10000000")?'checked':''} type="checkbox" value="3000000,10000000"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri" ${(i=="10000000,25000000")?'checked':''}  type="checkbox" value="10000000,25000000"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri" ${(i=="80000000,250000000")?'checked':''}   type="checkbox" value="80000000,250000000"  id="flexCheckDefault"> 80 triệu - 250 triệu  </li>
+                                            </ul>
+                                        </c:forEach>
+                                        </c:if>
+                                        <c:if test="${requestScope.pri == null }">
+                                                <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                                            <ul class="filt">
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri" type="checkbox" value="3000000,10000000"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="10000000,25000000"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"    type="checkbox" value="80000000,250000000"  id="flexCheckDefault"> 80 triệu - 250 triệu  </li>
+                                            </ul>
+                                        </c:if>
+                                                
+                                                
+                                                
+                                         <c:if test="${requestScope.size != null }">
+                                        <c:forEach items="${requestScope.size}" var="i">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+                           
+                            
+                                            <ul class="filt">
+                                            <li>  <input class="form-check-input border-danger bg-danger" ${(i=="32,43")?'checked':''} type="checkbox" name="size" id="exampleRadios1" value="32,43">   32 inch -  43 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger" ${(i=="45,50")?'checked':''} type="checkbox" name="size" id="exampleRadios1" value="45,50">   45 inch -  50 inch </li>
+                                            <li>  <input class="form-check-input border-danger bg-danger" ${(i=="55,60")?'checked':''} type="checkbox" name="size" id="exampleRadios1" value="55,60" >   55 inch -  60 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger" ${(i=="70,90")?'checked':''} type="checkbox" name="size" id="exampleRadios1" value="70,90" >   70 inch - 90 inch</li>
+                                            </ul>
+                                        </c:forEach>
+                                        </c:if>
+                                        <c:if test="${requestScope.size == null }">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+                           
+                            
+                                            <ul class="filt">
+                                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="32,43">   32 inch -  43 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="45,50">   45 inch -  50 inch </li>
+                                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="55,60" >   55 inch -  60 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="70,90" >   70 inch - 90 inch</li>
+                                            </ul>
+                                        </c:if>         
+                                            
+                                </c:if>
+                                        
+                                       
+                                        
+                                        
                                 
-                            </c:forEach>
-                                </c:if> 
+                                        
+                                        
+                                        
                                     <c:if test="${requestScope.xd != 1}">
                                         <c:forEach items="${requestScope.cate}" var="ca">
                                 
-                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                            <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
                                 
-                            </c:forEach>
-                                    </c:if>
-                                
-                                </ul>
-                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
-                            
-                            
-                            <ul class="filt">
-                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="3000000,10000000"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
-                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="10000000,25000000"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
-                            <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="80000000,250000000"  id="flexCheckDefault"> 80 triệu - 250 triệu  </li>
-                            
-                            
-                             
-                            </ul>
-                            
-
-                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+                                        </c:forEach>
+                                            
+                                        
+                                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                                            <ul class="filt">
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="3000000,10000000"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="10000000,25000000"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="80000000,250000000"  id="flexCheckDefault"> 80 triệu - 250 triệu  </li>
+                                            </ul>
+                                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
                            
                             
-                            <ul class="filt">
-                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="exampleRadios" id="exampleRadios1" value="32,43">   32 inch -  43 inch</li>
-                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="exampleRadios" id="exampleRadios1" value="45,50">   45 inch -  50 inch </li>
-                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="exampleRadios" id="exampleRadios1" value="55,60" >   55 inch -  60 inch</li>
-                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="exampleRadios" id="exampleRadios1" value="70,90" >   70 inch - 90 inch</li>
+                                            <ul class="filt">
+                                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="32,43">   32 inch -  43 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="45,50">   45 inch -  50 inch </li>
+                                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="55,60" >   55 inch -  60 inch</li>
+                                            <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="70,90" >   70 inch - 90 inch</li>
+                                            </ul>
+                                        
+                                            
+                                    </c:if>
+                                          
+                                            
+                                
+                                
+                            
+                            
 
-                             
-                        </ul>
+                            
                             
                             <div class="col-md-6">
                                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Tìm kiếm</button>
