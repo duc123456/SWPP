@@ -39,10 +39,13 @@ public class SearchCheckBox extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SearchCheckBox</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchCheckBox at " + request.getContextPath () + "</h1>");
+            String[] cat_raw = request.getParameterValues("cat");
+        String cats= "";
+        for(String cat : cat_raw){
+            cats+="&cat="+cat;
+        }
+        
+        out.print(cats);
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,14 +62,28 @@ public class SearchCheckBox extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
        DAO d = new DAO();
        
         String[] cat_raw = request.getParameterValues("cat");
+        
         String[] pri_raw = request.getParameterValues("pri");
+        
         String[] size_raw = request.getParameterValues("size");
-        if (cat_raw == null && pri_raw == null && size_raw == null) {
+        String xpage  = request.getParameter("page");
+        if (cat_raw == null && pri_raw == null && size_raw == null  ) {
              response.sendRedirect("listproduct");
         } else {
+            String cats= "";
+        
+            
+        
+        for(String cat : cat_raw){
+            cats+="&cat="+cat;
+        }
+        
+        request.setAttribute("cats", cats);
+        request.setAttribute("cat", cat_raw);
             int[] pri = null;
             int[] size = null;
             int[] cat = null;
@@ -116,9 +133,26 @@ public class SearchCheckBox extends HttpServlet {
             }
             List<Category> list2 = d.getAllCat();
             request.setAttribute("cate", list2);
-
+            
             List<Product> list1 = d.searchCheckBox(cat, pri);
-            request.setAttribute("product", list1);
+            int sizes = list1.size();
+            int num = (sizes%12==0?(sizes/12):((sizes/12)+1));
+            int page, numberpage= 1;
+            xpage  = request.getParameter("page");
+            if(xpage == null){
+                page =1;
+            }else {
+                page = Integer.parseInt(xpage);
+            }
+            int start ,end;
+            start = (page -1)*numberpage;
+            end = Math.min(page*numberpage, sizes);
+            List<Product> list = d.getLisbyPage(list1, start, end);
+            request.setAttribute("product", list);
+            request.setAttribute("page", page);
+            request.setAttribute("num", num);
+            int xd = 1;
+            request.setAttribute("xd", xd);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
        
