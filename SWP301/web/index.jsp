@@ -105,10 +105,22 @@ form.example::after {
                             <form action="searchproduct" method="get">
                                 <h4 class="fs-5">Lọc Theo Thương Hiệu</h4>
                                 <ul class="filt">
+                                <c:if test="${requestScope.xd == 1}"> 
                             <c:forEach items="${requestScope.cate}" var="ca">
+                                <c:forEach items="${requestScope.cat}" var="i">
+                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" ${(i==ca.cid)?'checked':''} type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                </c:forEach>
+                                
+                            </c:forEach>
+                                </c:if> 
+                                    <c:if test="${requestScope.xd != 1}">
+                                        <c:forEach items="${requestScope.cate}" var="ca">
                                 
                                 <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                
                             </c:forEach>
+                                    </c:if>
+                                
                                 </ul>
                             <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
                             
@@ -135,7 +147,9 @@ form.example::after {
                              
                         </ul>
                             
-                            
+                            <div class="col-md-6">
+                                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Tìm kiếm</button>
+                                                    </div>
                             
                         </form>
 
@@ -154,10 +168,8 @@ form.example::after {
                         <div class="row">
                             <!--                            <nav aria-label="breadcrumb">
                                                             <ul class="pagination">
+                           
                             
-                            <c:forEach begin="1" end="${endP}" var="pa">
-                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
-                            </c:forEach>
 
                     </ul>    
                 </nav>    -->
@@ -209,10 +221,23 @@ form.example::after {
                             <nav aria-label="breadcrumb">
                                 <ul class="pagination">
 
-                                    <c:forEach begin="1" end="${endP}" var="pa">
-                                        <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
-                                        </c:forEach>
-
+                                    
+                        <c:if test="${requestScope.xd == 1}">
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                   
+                                <li class="page-item ${tagw == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}" class="page-link">${i}</a></li> 
+                                
+                            </c:forEach>
+                            
+                        </c:if>
+                            
+                        <c:if test="${requestScope.xd != 1}">
+                            <c:forEach begin="1" end="${endP}" var="pa">
+                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
+                            </c:forEach>
+                            
+                        </c:if>    
                                 </ul>    
                             </nav>    
 

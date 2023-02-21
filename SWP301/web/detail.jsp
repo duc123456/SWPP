@@ -81,10 +81,10 @@
                     <img src="assets/images/product/1.jpg" alt="">
                 </div>
                 <div class="col-md-7">
-                    <h2>${product.name}</h2>
-                    <p>${type}</p>
+                    <h2>${product.name}-${type}</h2>
+                    
                     <ul class="mt-0 mt-2 mb-3 vgth">
-                        <h4>Inch</h4>
+                        
                         <c:forEach items="${sizes}" var="s">
                             <i class="chooseSize" >${s.size} </i>
                             <input type="radio" name="size" id="size-radio">
@@ -109,6 +109,14 @@
                         </li>
                         
                     </ul>
+                            <div class="row pt-2">
+                                                    <div class="col-md-2">
+                                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button class="btn fw-bold w-100 btn-outline-danger">Giỏ hàng</button>
+                                                    </div>
+                                                </div>
                     
                 </div>
             </div>
@@ -184,14 +192,15 @@
                                 <h4 class="mb-1 fs-5 fw-bold">${l.imageDf}</h4>
                                 <b class="fs-4 text-danger">${l.price}</b>
                                 
-                                
+                                <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
                                 <ul class="mt-0 vgth">
                                     <li class="fs-8">
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi text-warning bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
+                                        <c:forEach begin="1" end="${d.getStar(l.pId)}" var="pa">
+                                                                <i class="bi text-warning bi-star-fill"></i>
+                                                        </c:forEach>
+                                                        <c:forEach begin="1" end="${5-d.getStar(l.pId)}" var="pa">
+                                                                <i class="bi bi-star-fill"></i>
+                                                        </c:forEach> 
                                     </li>
                                     <li class="float-end gvi">
                                         <i class="bi text-danger bi-heart-fill"></i>
