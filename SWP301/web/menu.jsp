@@ -56,7 +56,7 @@
                             <ul class="ms-auto d-inline-flex">
 
                                 <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
-                                <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.fName}</button></a></li>
+                                <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.lName}</button></a></li>
 
                                
 
@@ -81,23 +81,21 @@
                             <a href="listproduct">
 
 
-                                <img class="logo" src="Image/logo2.png" alt="">
+                                <img style="border-radius:  100%"class="logo" src="Image/logo2.png" alt="">
 
 
                             </a> 
                          </div>
+                         <!-- thanh tim kiem -->       
+                         
                          
                          <div class="col-md-6 d-none d-md-block pt-2">
-                              <div class="input-group pt-1 mb-0">
-                                  <form action="listproduct">
-                                  
-                                      <input type="text" name="find" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                      <input type="submit" value="Tìm Kiêm">
-                                  </form>
-<!--                                      <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>-->
-                                  
-                            </div>
+                             <form action="listproduct" class="input-group pt-1 mb-0">
+                                 <input type="text"  name="find" class="form-control border-end-0 mb-0" placeholder="Search Apps" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  <span class="input-group-text sit border-start-0" id="basic-addon2"><i class="bi bi-search"></i></span>
+                            </form>
                          </div>
+                         
                              
                          <div class="col-md-3 col-3 pt-1 text-end">
                              <a href="cart.jsp">

@@ -79,13 +79,14 @@ public class ChangePass extends HttpServlet {
         String u = request.getParameter("u");
         String op = request.getParameter("opass");
         String newp = request.getParameter("newpass");
+        String cofmp = request.getParameter("confirmpass");
         //check
         DAO d = new DAO();
         HttpSession session = request.getSession();
         
         User a = (User)session.getAttribute("acc");
         
-        if (a.getPass().equals(op) || op.equals(newp)) {
+        if (a.getPass().equals(op) || newp.equals(cofmp)) {
             d.changePass(newp, u);
             response.sendRedirect("Profile.jsp");
         } else {

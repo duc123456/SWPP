@@ -246,6 +246,15 @@ public class DAO extends DBContext {
         }
         return list;
     }
+    
+    public List<Product> getLisbyPage(List<Product> list, int start ,int end){
+        
+        ArrayList<Product> arr = new ArrayList<>();
+        for(int i = start ;i <end; i++){
+            arr.add(list.get(i));
+        }
+        return arr;
+}
 
     //dem xem co tat ca bao nhieu san pham
     public int getTotalProduct() {
@@ -273,11 +282,20 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice((int) rs.getFloat(4));
+                p.setPrice(rs.getInt(4));
                 p.setName(rs.getString(5));
-                p.setImageDf(rs.getString("ImageDefault"));
-                p.setSize(rs.getInt("Size"));
-                p.setQuantity(rs.getInt("Quantity"));
+
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+
 
                 list.add(p);
             }
@@ -457,6 +475,9 @@ public class DAO extends DBContext {
                 p.setInsurance(rs.getInt(9));
                 p.setcDate(rs.getString(10));
                 p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
                 list.add(p);
             }
 
@@ -490,6 +511,9 @@ public class DAO extends DBContext {
                 p.setcDate(rs.getString(10));
                 p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
                 return p;
 
             }
@@ -671,9 +695,18 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice((int) rs.getFloat(4));
+                p.setPrice(rs.getInt(4));
                 p.setName(rs.getString(5));
-                p.setImageDf(rs.getString("ImageDefault"));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
 
                 list.add(p);
             }
@@ -706,6 +739,10 @@ public class DAO extends DBContext {
                 p.setcDate(rs.getString(10));
                 p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                
                 list.add(p);
                 return  list;
 
@@ -774,6 +811,9 @@ public class DAO extends DBContext {
                 p.setcDate(rs.getString(10));
                 p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
                 list.add(p);
                 
 
@@ -840,16 +880,21 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
     }
-    public int getStar(){
-        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack";
+    public int getStar(int id){
+        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack where PID = ?";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
-
+            st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
-                return rs.getInt(2) / rs.getInt(1);
+                if(rs.getInt(1) == 0){
+                    return 5;
+                    
+                }
+                
             }
+            return rs.getInt(2) / rs.getInt(1);
         }catch(SQLException e){
             System.out.println(e);
         }
