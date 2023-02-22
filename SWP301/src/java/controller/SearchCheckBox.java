@@ -40,17 +40,17 @@ public class SearchCheckBox extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            String[] cat_raw = request.getParameterValues("cat");
-            String cats = "";
-            for (String cat : cat_raw) {
-                cats += "&cat=" + cat;
+            String[] pri_raw = request.getParameterValues("pri");
+            
+            
+                for(int i = 0 ; i <  pri_raw.length; i++){
+                    out.print(pri_raw[i]);
+                }
             }
 
-            out.print(cats);
-            out.println("</body>");
-            out.println("</html>");
+            
         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -64,13 +64,13 @@ public class SearchCheckBox extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         //processRequest(request, response);
 
         DAO d = new DAO();
 
         String[] cat_raw = request.getParameterValues("cat");
 
         String[] pri_raw = request.getParameterValues("pri");
-
         String[] size_raw = request.getParameterValues("size");
         String xpage = request.getParameter("page");
         if (cat_raw == null && pri_raw == null && size_raw == null) {
@@ -84,29 +84,65 @@ public class SearchCheckBox extends HttpServlet {
                 for (String cat : cat_raw) {
                     cats += "&cat=" + cat;
                 }
-            request.setAttribute("cats", cats);    
+            request.setAttribute("cats", cats);
+            
             }
             
             request.setAttribute("cat", cat_raw);
             // price ====================================
             String pris = "";
+            
             if (pri_raw != null) {
                 for (String pri : pri_raw) {
                     pris += "&pri=" + pri;
                 }
+                // phan trang
                 request.setAttribute("pris", pris);
+                request.setAttribute("pri", pri_raw);
+                
+                for(int i = 0 ; i <  pri_raw.length; i++){
+                    if(pri_raw[i].equalsIgnoreCase("0")){
+                        pri_raw[i] = "3000000,10000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("1")){
+                        pri_raw[i] = "10000000,25000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("2")){
+                        pri_raw[i] = "25000000,80000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("3")){
+                        pri_raw[i] = "80000000,120000000";
+                    }
+                    
+                }
             }
-            request.setAttribute("pri", pri_raw);
+            String [] spri = {"3 triệu - 10 triệu","10 triệu - 25 triệu","25 triệu - 80 triệu","80 triệu - 120 triệu"};
+            request.setAttribute("spri", spri);
+            
             
             // inch =====================================
             String sizes = "";
             if (size_raw != null) {
                 for (String size : size_raw) {
-                    sizes += "&size" + size;
+                    sizes += "&size=" + size;
                 }
-                request.setAttribute("size", sizes);
+                request.setAttribute("sizes", sizes);
+                
+                request.setAttribute("size", size_raw);
+                for(int i = 0 ; i <  size_raw.length; i++){
+                    if(size_raw[i].equalsIgnoreCase("0")){
+                        size_raw[i] = "30,45";
+                    }else if(size_raw[i].equalsIgnoreCase("1")){
+                        size_raw[i] = "45,60";
+                    }else if(size_raw[i].equalsIgnoreCase("2")){
+                        size_raw[i] = "60,75";
+                    }else if(size_raw[i].equalsIgnoreCase("3")){
+                        size_raw[i] = "75,90";
+                    }
+                    
+                }
+                String [] ssize = {"30 inch - 45 inch","45 inch - 60 inch","60 inch - 75 inch","75 inch - 90 inch"};
+            request.setAttribute("ssize", ssize);
+                
             }
-            request.setAttribute("size", size_raw);
+            
             
             
             int[] pri = null;
