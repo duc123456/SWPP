@@ -49,7 +49,7 @@
                           
                              <div class="col-md-4 pt-2">
                                 <label for="">Your Name</label>
-                                <span  class="fw-bolder float-end" >:</span>
+                                
                             </div>
                              <div class="col-md-8">
                                 <input  name="lname" type="text" placeholder="Enter Last Name" class="form-control">
@@ -58,7 +58,7 @@
                         <div class="form-row row">
                             <div class="col-md-4 pt-2">
                                 <label for="">Username</label>
-                                <span class="fw-bolder float-end">:</span>
+                                
                             </div>
                             <div class="col-md-8">
                                 <input name="username" type="text" placeholder="Enter Username" class="form-control">
@@ -70,7 +70,7 @@
                         <div class="form-row row">
                             <div class="col-md-4 pt-2">
                                 <label for="">Mobile number</label>
-                                <span class="fw-bolder float-end">:</span>
+                                
                             </div>
                             <div class="col-md-8">
                                 <input name="phone" type="text" placeholder="Enter Mobile Number" class="form-control">
@@ -83,7 +83,7 @@
                          <div class="form-row row">
                             <div class="col-md-4 pt-2">
                                 <label for="">Password</label>
-                                <span class="fw-bolder float-end">:</span>
+                                
                             </div>
                             <div class="col-md-8">
                                 <input name="pass" type="text" placeholder="Enter Password" class="form-control">
@@ -92,7 +92,7 @@
                          <div class="form-row row">
                             <div class="col-md-4 pt-2">
                                 <label for="">Confirm Password</label>
-                                <span class="fw-bolder float-end">:</span>
+                                
                             </div>
                             <div class="col-md-8">
                                 <input name="repass" type="text" placeholder="Enter Password" class="form-control">
