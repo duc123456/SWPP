@@ -420,8 +420,22 @@ public class DAO extends DBContext {
     }
 
     public Product getProductByID(int id) {
-        String sql = "select * from Product\n"
-                + "where PID = ?";
+        String sql = "SELECT [PID]\n"
+                + "      ,[AddedBy]\n"
+                + "      ,[CATID]\n"
+                + "      ,[Price]\n"
+                + "      ,[Name]\n"
+                + "      ,[Color]\n"
+                + "      ,[Description]\n"
+                + "      ,[Resolution]\n"
+                + "      ,[Insurance]\n"
+                + "      ,[CreateDate]\n"
+                + "      ,[TID]\n"
+                + "      ,[ImageDefault]\n"
+                + "      ,[Size]\n"
+                + "      ,[Quantity]\n"
+                + "      ,[Discount]\n"
+                + "  FROM [SWP].[dbo].[Product] Where PID = 2";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
@@ -907,7 +921,6 @@ public class DAO extends DBContext {
             st.setString(12, psize);
             st.setString(13, pquantity);
             st.setString(14, pdiscount);
-        
 
             st.executeUpdate();
 
@@ -915,9 +928,10 @@ public class DAO extends DBContext {
         }
 
     }
-    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount , String pid) {
-   
-          String query = "UPDATE [dbo].[Product]\n"
+
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, String pid) {
+
+        String query = "UPDATE [dbo].[Product]\n"
                 + "  SET      [AddedBy] = ?\n"
                 + "           ,[CATID] = ?\n"
                 + "           ,[Price] = ?\n"
@@ -932,7 +946,7 @@ public class DAO extends DBContext {
                 + "           ,[Size] = ?\n"
                 + "           ,[Quantity] = ?\n"
                 + "           ,[Discount] = ?"
-                + "    Where PID = ?";
+                + "    Where [PID] = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
             st.setInt(1, paddby);
@@ -949,7 +963,7 @@ public class DAO extends DBContext {
             st.setString(12, psize);
             st.setString(13, pquantity);
             st.setString(14, pdiscount);
-          st.setString(15, pid);
+            st.setString(15, pid);
 
             st.executeUpdate();
 

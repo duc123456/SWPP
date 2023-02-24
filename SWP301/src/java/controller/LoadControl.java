@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Category;
 import model.Product;
+import model.Type;
 
 /**
  *
@@ -36,13 +37,15 @@ public class LoadControl extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         //lay thong tin san pham ra dua tren id de sua
-        String id = request.getParameter("PID");
+        String id = request.getParameter("pId");
         DAO dao = new DAO();
         Product p = dao.getProductByid(id);
         List<Category> listC = dao.getAllCat();
+        List<Type> typec = dao.getAllType();
 
         request.setAttribute("detail", p);
         request.setAttribute("listCC", listC);
+        request.setAttribute("typec", typec);
         request.getRequestDispatcher("EditProduct.jsp").forward(request, response);
     }
 

@@ -13,7 +13,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Dreamchat - Dashboard</title>
+        <title>Quản lý sản phẩm</title>
 
         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
 
@@ -45,12 +45,7 @@
                 <a href="javascript:void(0);" id="toggle_btn">
                     <i class="fe fe-text-align-left"></i>
                 </a>
-                <div class="top-nav-search">
-                    <form>
-                        <input type="text" class="form-control" placeholder="Search here">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+
 
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fa fa-bars"></i>
@@ -145,9 +140,9 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="general.html">My Profile</a>
-                            <a class="dropdown-item" href="general.html">Account Settings</a>
-                            <a class="dropdown-item" href="login.html">Logout</a>
+                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
+
+                            <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
                     </li>
 
@@ -228,11 +223,11 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Edit Product</h4>
                                 </div>
+                                <form action="edit" >
+                                    <div class="card-body">
 
-                                <div class="card-body">
-                                    <form action="edit" >
                                         <label>ID</label>
-                                        <input value="${detail.pId}" name="id" type="text" class="form-control" readonly required>
+                                        <input value="${detail.pId}" name="pId" type="text" class="form-control" readonly required>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Name</label>
                                             <div class="col-md-10">
@@ -243,41 +238,51 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Price</label>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="name" value="${detail.price}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Color</label>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="color" value="${detail.color}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Insurance</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                           <div class="col-md-10">
+                                                <input type="text" name="insurance" value="${detail.isnurance}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Size</label>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="size" value="${detail.size}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Quantity</label>
-                                            <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                             <div class="col-md-10">
+                                                <input type="text" name="quantity" value="${detail.quantity}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Discount</label>
                                             <div class="col-md-10">
-                                                <input type="text" class="form-control">
+                                                <input type="text" name="discount" value="${detail.discount}" class="form-control">
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">TID</label>
+                                            <div class="col-md-10">
+                                                <select class="form-control form-select">
+                                                    <c:forEach items="${typec}" var="ty">
+                                                        <option  value="${ty.tId}">${ty.tName}</option>
+                                                    </c:forEach>
 
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">File Input</label>
                                             <div class="col-md-10">
@@ -319,31 +324,31 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Description</label>
                                             <div class="col-md-10">
-                                                <textarea rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                                                <textarea rows="5" cols="5" value="${detail.description}"  name="description"  class="form-control" placeholder="Enter text here"></textarea>
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-primary" type="button">Button</button>
-                                    </form>
-                                </div>
+
+                                        <button class="btn btn-primary" type="submit">Button</button>
+                                    </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
             </div>
+        </form>
+    </div>
 
-        </div>
 
+    <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
 
-        <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
+    <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
 
-        <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
+    <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-        <script src="assetsEM/js/script.js"></script>
-    </body>
+    <script src="assetsEM/js/script.js"></script>
+</body>
 </html>
 
 

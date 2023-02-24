@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Dreamchat - Dashboard</title>
+        <title>Quản lý sản phẩm</title>
 
         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
 
@@ -44,12 +44,7 @@
                 <a href="javascript:void(0);" id="toggle_btn">
                     <i class="fe fe-text-align-left"></i>
                 </a>
-                <div class="top-nav-search">
-                    <form>
-                        <input type="text" class="form-control" placeholder="Search here">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+              
 
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fa fa-bars"></i>
@@ -144,9 +139,9 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="general.html">My Profile</a>
+                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
                             <a class="dropdown-item" href="general.html">Account Settings</a>
-                            <a class="dropdown-item" href="login.html">Logout</a>
+                            <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
                     </li>
 
@@ -165,38 +160,14 @@
                                 <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
                             <li class="submenu">
-                                <a href="#"><i class="fe fe-users"></i> <span> Users</span> <span class="menu-arrow"></span></a>
+                                <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="users.html" class="active">Users</a></li>
-                                    <li><a href="blocked-users.html">Blocked User</a></li>
-                                    <li><a href="report-users.html">Report User</a></li>
+                                    <li><a href="oooo" class="active">Sản phẩm</a></li>
+                                    <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
+                                  
                                 </ul>
                             </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-sync"></i> <span> History </span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="call-history.html"> Call History </a></li>
-                                    <li><a href="group-history.html"> Group History </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-gear"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="general.html">General</a></li>
-                                    <li><a href="admob.html">Admob </a></li>
-                                    <li><a href="sinch-settings.html">Sinch Settings </a></li>
-                                    <li><a href="firebase-settings.html">Firebase Settings </a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="blank-page.html"><i class="fe fe-file"></i> <span>Blank Page</span></a>
-                            </li>
-                            <li>
-                                <a href="vector-maps.html"><i class="fe fe-map"></i> <span>Vector Maps</span></a>
-                            </li>
-                            <li>
-                                <a href="components.html"><i class="fe fe-vector"></i> <span>Components</span></a>
-                            </li>
+                          
                             <li class="submenu">
                                 <a href="#"><i class="fe fe-layout"></i> <span> Forms <span class="menu-arrow"></span></span></a>
                                 <ul style="display: none;">
@@ -227,10 +198,10 @@
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h3 class="page-title">Product</h3>
+                                <h3 class="page-title">Sản phẩm</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Menu</a></li>
-                                    <li class="breadcrumb-item active">Manager Product</li>
+                                    <li class="breadcrumb-item"><a href="index.jsp">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Quản lý Sản phẩm</li>
                                 </ul>
                             </div>
                         </div>
@@ -244,21 +215,21 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
+                                                    <th>Tên</th>
 
-                                                    <th>Price</th>
-                                                    <th>Color</th>
+                                                    <th>Giá</th>
+                                                    <th>Màu sắc</th>
                                                     <th>Resolution</th>
                                                     <th>Insurance</th>
-                                                    <th>Create Date</th>
-                                                  
+                                                    <th>Ngày tạo sản phẩm</th>
+
                                                     <th>TID</th>
 
-                                                    <th>Size</th>
-                                                    <th>Quantity</th>
-                                                    <th>Discount</th>
+                                                    <th>Kích thước</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Giảm giá</th>
 
-                                                    <th class="text-end">Action</th>
+                                                    <th class="text-end">Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -278,21 +249,21 @@
                                                         <td>${o.cDate}</td>
                                                         <td>${o.getType().tName}</td>
                                                         <td>${o.size}</td>
-                                                      
+
                                                         <td>${o.quantity}</td>
                                                         <td>${o.discount}</td>
-                                                 
-                                                    <td class="text-end">
-                                                        <div class="actions">
-                                                             <a href="loadProduct?PID=${o.pId}"  class="btn btn-sm bg-success-light me-2">
-                                                                <i class="fe fe-pencil"></i>
-                                                            </a>
-                                                            <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
-                                                                <i class="fe fe-trash"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                       </c:forEach>
+
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a href="loadProduct?pId=${o.pId}"  class="btn btn-sm bg-success-light me-2">
+                                                                    <i class="fe fe-pencil"></i>
+                                                                </a>
+                                                                <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
+                                                                    <i class="fe fe-trash"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </c:forEach>
                                                 </tr>
 
 

@@ -43,12 +43,7 @@
                 <a href="javascript:void(0);" id="toggle_btn">
                     <i class="fe fe-text-align-left"></i>
                 </a>
-                <div class="top-nav-search">
-                    <form>
-                        <input type="text" class="form-control" placeholder="Search here">
-                        <button class="btn" type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+
 
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fa fa-bars"></i>
@@ -143,9 +138,9 @@
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="general.html">My Profile</a>
-                            <a class="dropdown-item" href="general.html">Account Settings</a>
-                            <a class="dropdown-item" href="login.html">Logout</a>
+                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
+
+                            <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
                     </li>
 
@@ -164,33 +159,15 @@
                                 <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
                             </li>
                             <li class="submenu">
-                                <a href="#"><i class="fe fe-users"></i> <span> Users</span> <span class="menu-arrow"></span></a>
+                                <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="users.html">Users</a></li>
-                                    <li><a href="blocked-users.html">Blocked User</a></li>
-                                    <li><a href="report-users.html">Report User</a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-sync"></i> <span> History </span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="call-history.html"> Call History </a></li>
-                                    <li><a href="group-history.html"> Group History </a></li>
+                                    <li><a href="oooo" class="active">Sản phẩm</a></li>
+                                    <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
+
                                 </ul>
                             </li>
 
 
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-layout"></i> <span> Forms <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="form-basic-inputs.html" class="active">Basic Inputs</a></li>
-                                    <li><a href="form-input-groups.html">Input Groups</a></li>
-                                    <li><a href="form-horizontal.html">Horizontal Form</a></li>
-                                    <li><a href="form-vertical.html">Vertical Form </a></li>
-                                    <li><a href="form-mask.html">Form Mask</a></li>
-                                    <li><a href="form-validation.html">Form Validation </a></li>
-                                </ul>
-                            </li>
                             <li class="submenu">
                                 <a href="#"><i class="fe fe-table"></i> <span> Tables <span class="menu-arrow"></span></span></a>
                                 <ul style="display: none;">
@@ -211,7 +188,7 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3 class="page-title">Edit Product</h3>
+
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Basic Inputs</li>
@@ -224,27 +201,27 @@
                         <div class="col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Them san pham</h4>
+                                    <h4 class="card-title">Thêm sản phẩm</h4>
                                 </div>
 
                                 <div class="card-body">
                                     <form action="addproduct">
-                                    
+
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Ten</label>
+                                            <label class="col-form-label col-md-2">Tên</label>
                                             <div class="col-md-10">
                                                 <input name="name" type="text" class="form-control" required="">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Gia</label>
+                                            <label class="col-form-label col-md-2">Giá</label>
                                             <div class="col-md-10">
                                                 <input name="price" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Color</label>
+                                            <label class="col-form-label col-md-2">Màu sắc</label>
                                             <div class="col-md-10">
                                                 <select name="color" class="form-control form-select">
                                                     <option  value="Ðen">Màu đen</option>
@@ -254,30 +231,46 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Insurance</label>
+                                            <label class="col-form-label col-md-2">Năm bảo hành</label>
                                             <div class="col-md-10">
                                                 <input name="insurance" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Size</label>
+                                            <label class="col-form-label col-md-2">Kích thước</label>
                                             <div class="col-md-10">
                                                 <input name="size" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Quantity</label>
+                                            <label class="col-form-label col-md-2">Số lượng</label>
                                             <div class="col-md-10">
                                                 <input name="quantity" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Discount</label>
+                                            <label class="col-form-label col-md-2">Giảm giá</label>
                                             <div class="col-md-10">
                                                 <input name="discount"  type="text" class="form-control">
                                             </div>
                                         </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Loại Tivi</label>
+                                            <div class="col-md-10">
+                                                <select name="tid" class="form-control form-select">
+                                                    <option  value="1">Smart TV</option>
+                                                    <option  value="2">LED</option>
+                                                    <option  value="3">QLED</option>
+                                                    <option  value="4">QLED</option>
+                                                    <option  value="5">Android TV</option>
+                                                    <option  value="6">Nano Cell</option>
+                                                    <option  value="7">TV man hinh cong</option>
+                                                    <option  value="8">Tivi Khung Tranh</option>
+                                                    <option  value="9">QNED</option>
 
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">File Input</label>
@@ -286,14 +279,20 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">TID</label>
+                                            <label class="col-form-label col-md-2">Hang Tivi</label>
                                             <div class="col-md-10">
                                                 <select name="catid" class="form-control form-select">
 
-                                                    <option name="catid" value="1">Samsung</option>
-                                                    <option name="catid" value="2">Sharp</option>
-                                                    <option name="catid" value="3">Casper</option>
-
+                                                    <option  value="1">Samsung</option>
+                                                    <option  value="2">Sharp</option>
+                                                    <option  value="3">Casper</option>
+                                                    <option  value="4">TCL</option>
+                                                    <option  value="5">LG</option>
+                                                    <option  value="6">Xiaomi</option>
+                                                    <option  value="7">Sony</option>
+                                                    <option  value="8">Coocaa</option>
+                                                    <option  value="9">FFalcon</option>
+                                                    <option  value="10">Coex</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -319,13 +318,13 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Description</label>
+                                            <label class="col-form-label col-md-2">Mô tả</label>
                                             <div class="col-md-10">
                                                 <textarea name="description" rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
                                             </div>
                                         </div>
 
-                                        <button class="btn btn-primary" type="submit">Button</button>
+                                        <button class="btn btn-primary" type="submit">Xác nhận</button>
                                     </form>
                                 </div>
                             </div>
