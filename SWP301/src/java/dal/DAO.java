@@ -983,7 +983,7 @@ public class DAO extends DBContext {
     
        public static void main(String[] args) {
         DAO d = new DAO();
-       Product p=d.getProductByID(1);
+       Product p= d.editProduct(1, "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", 10);
            System.out.println(p.getDescription());
     }
 }
