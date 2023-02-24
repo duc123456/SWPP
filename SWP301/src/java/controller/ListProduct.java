@@ -94,7 +94,7 @@ public class ListProduct extends HttpServlet {
 
         ///search
         String find = request.getParameter("find");
-
+        request.setAttribute("find", find);
         //gui ve front end
         List<Category> list2 = d.getAllCat();
          List<Type> list3 = d.getAllType();
@@ -104,7 +104,9 @@ public class ListProduct extends HttpServlet {
 
         } else {
             list1 = d.search(find);
+            request.setAttribute("find",find);
             request.setAttribute("product", list1);
+            
         }
         //moi trang web chia san pham ra la 12
         int count = d.getTotalProduct();

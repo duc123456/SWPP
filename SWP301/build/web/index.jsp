@@ -117,17 +117,11 @@ form.example::after {
                                                     <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" checked="checked" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
                                                     <c:set var="c" value="${ca.cid}"/>
                                                 </c:if>
-                                                
-
                                             </c:forEach>
                                                     <c:if test="${ca.cid != c}">
                                                         <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat"  type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>  
-                                                    </c:if>    
-                                                    
+                                                    </c:if>                                               
                                         </c:forEach>  
-                                        
-                                            
-                                            
                                     </c:if> 
                                         <c:if test="${requestScope.cat == null}">
                                             <c:forEach items="${d.allCat}" var="i">
@@ -138,16 +132,23 @@ form.example::after {
                                         <c:if test="${requestScope.pri != null }">
                                             <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
                                             <c:set value="${requestScope.spri}" var="spri"/>
-                                            <c:set value="${requestScope.pri}" var="pri"/>
-                                            
+                                                  
                                                 <ul class="filt">
-                                                    
                                                     <c:forEach begin="0" end="${3}" var="i">
-                                                        <li> <input class="form-check-input me-1 bg-danger border-danger"  name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li>
+                                                        <c:set var="c" value="-1"/>
+                                                        <c:forEach items="${requestScope.pri}" var="pri">
+                                                            <c:if test="${pri==i}" >
+                                                                
+                                                                <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
+                                                                <c:set var="c" value="${i}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                                    <c:if test="${i != c}">
+                                                                    <li> <input class="form-check-input me-1 bg-danger border-danger"   name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
+                                                                    </c:if>
+                                                        
                                                     </c:forEach> 
-                                                </ul>          
-                                            
-                                            
+                                                </ul>            
                                         </c:if>
                                         <c:if test="${requestScope.pri == null }">
                                              <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
@@ -166,14 +167,23 @@ form.example::after {
                                             <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
                                             
                                             <c:set value="${requestScope.ssize}" var="ssize"/>
-                                            <c:set value="${requestScope.size}" var="size"/>
-                                            
+                                                  
                                                 <ul class="filt">
                                                     <c:forEach begin="0" end="${3}" var="i">
-                                                        <li> <input class="form-check-input me-1 bg-danger border-danger"  name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li>
+                                                        <c:set var="c" value="-1"/>
+                                                        <c:forEach items="${requestScope.size}" var="size">
+                                                            <c:if test="${size==i}" >
+                                                                
+                                                                <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
+                                                                <c:set var="c" value="${i}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                                    <c:if test="${i != c}">
+                                                                    <li> <input class="form-check-input me-1 bg-danger border-danger"   name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
+                                                                    </c:if>
                                                         
                                                     </c:forEach> 
-                                                </ul>
+                                                </ul> 
                                         </c:if>
                                         <c:if test="${requestScope.size == null }">
                                             <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
@@ -319,7 +329,7 @@ form.example::after {
                             
                         <c:if test="${requestScope.xd != 1}">
                             <c:forEach begin="1" end="${endP}" var="pa">
-                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
+                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
                             </c:forEach>
                             
                         </c:if>    
