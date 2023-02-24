@@ -209,7 +209,7 @@
                                             <span class="indicator indicator-lg indicator-bordered-reverse indicator-top-left indicator-success rounded-circle"></span>
                                             <!--img class="avatar rounded-circle" src="#" alt="John Doe"-->
                                             
-                                            <span class="avatar-placeholder mr-md-2 ten">${u.getlName().charAt(0)}</span>
+                                            <span class="avatar-placeholder mr-md-2 ten"></span>
                                         </div>
                                         ${u.getfName()} ${u.getlName()}
                                     </div>

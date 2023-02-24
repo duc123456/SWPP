@@ -86,34 +86,30 @@ public class ChangeProfile extends HttpServlet {
         String image = request.getParameter("image");
         String dob = request.getParameter("dob");
         String gender = request.getParameter("gender");
-        boolean gen ;
-        if(gender == "male"){
+        boolean gen;
+        if (gender == "male") {
             gen = true;
-        }else {
+        } else {
             gen = false;
         }
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
-        
-        //to get a priimitive boolean
-        
 
+        //to get a priimitive boolean
         //check
         DAO d = new DAO();
         Date date = new Date();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-            simpleDateFormat.applyPattern("yyyy-MM-dd");
-            String format = simpleDateFormat.format(date);
-        d.changeprofile( lname, fname,  address,  image,  dob,  gen,  phone, email, format, uid );
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+        d.changeprofile(lname, fname, address, image, dob, gen, phone, email, format, uid);
         User u = d.checkUsUid(uid);
         HttpSession session = request.getSession();
-            session.setAttribute("acc", u);
-            response.sendRedirect("Profile.jsp");
-        
-           // User ac = new User(a.getuId(), a.getRoleId(), fname, lname, username, password, address, image, dob, gender, phonenumber, email);
-           // d.changeprofile(ac);
-            
-        
+        session.setAttribute("acc", u);
+        response.sendRedirect("Profile.jsp");
+
+        // User ac = new User(a.getuId(), a.getRoleId(), fname, lname, username, password, address, image, dob, gender, phonenumber, email);
+        // d.changeprofile(ac);
     }
 
     /**
