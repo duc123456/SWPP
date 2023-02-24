@@ -246,15 +246,15 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
-    public List<Product> getLisbyPage(List<Product> list, int start ,int end){
-        
+
+    public List<Product> getLisbyPage(List<Product> list, int start, int end) {
+
         ArrayList<Product> arr = new ArrayList<>();
-        for(int i = start ;i <end; i++){
+        for (int i = start; i < end; i++) {
             arr.add(list.get(i));
         }
         return arr;
-}
+    }
 
     //dem xem co tat ca bao nhieu san pham
     public int getTotalProduct() {
@@ -296,7 +296,6 @@ public class DAO extends DBContext {
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
 
-
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -304,8 +303,6 @@ public class DAO extends DBContext {
         }
         return list;
     }
-
-   
 
     public List<Image> getAllImageById(int id) {
         List<Image> list = new ArrayList<>();
@@ -382,73 +379,6 @@ public class DAO extends DBContext {
 
     }
 
-    //check
-//    public User check(String username, String password) {
-//
-//        String sql = "Select * from [User] where  [username]  =?\n"
-//                + "  and [password] =?";
-//        try {
-//            PreparedStatement st = connection.prepareStatement(sql);
-//            st.setString(1, username);
-//            st.setString(2, password);
-//            ResultSet rs = st.executeQuery();
-//            if (rs.next()) {
-//                User u = new User();
-//                u.setUsername(username);
-//                u.setPass(password);
-//                return u;
-//                
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
-//
-//        return null;
-//    }
-    //check user co ton tai khong
-//    public User checkUserExist(String user) {
-//        String query = "Select * from [User] where  [user] = ?";
-//
-//        try {
-//            PreparedStatement st = connection.prepareStatement(query);
-//            st.setString(1, user);
-//            ResultSet rs = st.executeQuery();
-//            while (rs.next()) {
-//                return new User(rs.getInt(1),
-//                        rs.getString(2),
-//                        rs.getString(3),
-//                        rs.getInt(4),
-//                        rs.getString(5),
-//                        rs.getString(6),
-//                        rs.getString(7),
-//                        rs.getString(8));
-//
-//            }
-//        } catch (SQLException e) {
-//
-//        }
-//        return null;
-//    }
-//
-//    //dang ki tai khoan
-//    public void signup(String user, String pass, String fullname, String email, String phonenumber, String address) {
-//        String query = "insert into [User]\n"
-//                + "values(?,?,0,?,?,?,?)";
-//        try {
-//            PreparedStatement st = connection.prepareStatement(query);
-//            st.setString(1, user);
-//            st.setString(2, pass);
-//            st.setString(3, fullname);
-//            st.setString(4, email);
-//            st.setString(5, phonenumber);
-//            st.setString(6, address);
-//            st.executeUpdate();
-//        } catch (SQLException e) {
-//
-//        }
-//    }
-    //check
-    ///////////////////////////////////////////////////////////////////////////////
 //tim san pham tren thanh search
     public List<Product> search(String key) {
         List<Product> list = new ArrayList<>();
@@ -490,8 +420,22 @@ public class DAO extends DBContext {
     }
 
     public Product getProductByID(int id) {
-        String sql = "select * from Product\n"
-                + "where PID = ?";
+        String sql = "SELECT [PID]\n"
+                + "      ,[AddedBy]\n"
+                + "      ,[CATID]\n"
+                + "      ,[Price]\n"
+                + "      ,[Name]\n"
+                + "      ,[Color]\n"
+                + "      ,[Description]\n"
+                + "      ,[Resolution]\n"
+                + "      ,[Insurance]\n"
+                + "      ,[CreateDate]\n"
+                + "      ,[TID]\n"
+                + "      ,[ImageDefault]\n"
+                + "      ,[Size]\n"
+                + "      ,[Quantity]\n"
+                + "      ,[Discount]\n"
+                + "  FROM [SWP].[dbo].[Product] Where PID = ?";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
@@ -594,52 +538,54 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    public List<Product> searchCheckBox(int[] cat, int[] pri, int[] size ){
+
+    public List<Product> searchCheckBox(int[] cat, int[] pri, int[] size) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product where (1=1)";
-        if(cat != null){
-            if(cat.length == 1)
+        if (cat != null) {
+            if (cat.length == 1) {
                 sql += "And CATID = ?";
-            else if (cat.length == 2)
+            } else if (cat.length == 2) {
                 sql += "And (CATID = ? or CATID = ?)";
-            else{
-            sql += "And ( CATID = ?";
-            for (int i = 1; i < cat.length -1; i++) {
-                  sql += " or CATID = ?";
-                
+            } else {
+                sql += "And ( CATID = ?";
+                for (int i = 1; i < cat.length - 1; i++) {
+                    sql += " or CATID = ?";
+
+                }
+                sql += " or CATID = ?)";
             }
-                 sql += " or CATID = ?)";}
-                 
+
         }
-        if(pri != null){
-            if(pri.length == 2)
+        if (pri != null) {
+            if (pri.length == 2) {
                 sql += " AND (Price >= ? and Price <?) ";
-            else if(pri.length == 4)
+            } else if (pri.length == 4) {
                 sql += " And ((Price >= ? and Price <?) or (price >= ? and  price < ?)) ";
-            else{
+            } else {
                 sql += " And ((Price >= ? and Price <?)";
-            for (int i = 1; i < pri.length/2 - 1; i++) {
-                sql += " or (price >= ? and price < ?)";
-                
+                for (int i = 1; i < pri.length / 2 - 1; i++) {
+                    sql += " or (price >= ? and price < ?)";
+
+                }
+                sql += " or (price >= ? and  price < ?))";
             }
-            sql += " or (price >= ? and  price < ?))";
-            }
-            
+
         }
-        if(size != null){
-            if(size.length == 2)
+        if (size != null) {
+            if (size.length == 2) {
                 sql += " AND (Size >= ? and Size <?) ";
-            else if(size.length == 4)
+            } else if (size.length == 4) {
                 sql += " And ((Size >= ? and Size <?) or (Size >= ? and  Size < ?)) ";
-            else{
+            } else {
                 sql += " And ((Size >= ? and Size <?)";
-            for (int i = 1; i < size.length/2 - 1; i++) {
-                sql += " or (Size >= ? and Size < ?)";
-                
+                for (int i = 1; i < size.length / 2 - 1; i++) {
+                    sql += " or (Size >= ? and Size < ?)";
+
+                }
+                sql += " or (Size >= ? and  Size < ?))";
             }
-            sql += " or (Size >= ? and  Size < ?))";
-            }
-            
+
         }
 //        if(size != null){
 //            for (int i = 0; i < size.length; i++) {
@@ -650,42 +596,40 @@ public class DAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             int n = 0;
-            if(cat != null){
+            if (cat != null) {
                 for (int i = 0; i < cat.length; i++) {
                     n++;
                     st.setInt(i + 1, cat[i]);
-                    
+
                 }
             }
-            if(pri != null){
-                if(n == 0){
+            if (pri != null) {
+                if (n == 0) {
                     for (int i = 0; i < pri.length; i++) {
-                         n++;
+                        n++;
                         st.setInt(i + 1, pri[i]);
-                       
+
                     }
-                }
-                else{
+                } else {
                     for (int i = 0; i < pri.length; i++) {
                         n++;
                         st.setInt(n, pri[i]);
-                        
+
                     }
                 }
             }
-            if(size != null){
-                if(n == 0){
+            if (size != null) {
+                if (n == 0) {
                     for (int i = 0; i < size.length; i++) {
-                         n++;
+                        n++;
                         st.setInt(i + 1, size[i]);
-                       
+
                     }
-                }
-                else{
+                } else {
                     for (int i = 0; i < size.length; i++) {
                         n++;
                         st.setInt(n, size[i]);
-                        
+
                     }
                 }
             }
@@ -715,8 +659,8 @@ public class DAO extends DBContext {
         }
         return list;
     }
-    
-    public List<Product> getAllProductByCat(int cid){
+
+    public List<Product> getAllProductByCat(int cid) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
                 + "where CATID = ?";
@@ -742,9 +686,9 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
-                
+
                 list.add(p);
-                return  list;
+                return list;
 
             }
 
@@ -753,7 +697,8 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    public List<Product> getAllProductByType(int tid){
+
+    public List<Product> getAllProductByType(int tid) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
                 + "where TID = ?";
@@ -777,7 +722,7 @@ public class DAO extends DBContext {
                 p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
                 list.add(p);
-                return  list;
+                return list;
 
             }
 
@@ -787,17 +732,16 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public List<Product> get4Product() 
-        {
-            List<Product> list = new ArrayList<>();
+    public List<Product> get4Product() {
+        List<Product> list = new ArrayList<>();
         String sql = "SELECT TOP 4 * FROM Product  \n"
                 + "ORDER BY NEWID()  ";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
-            
+
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Product p = new Product();
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
@@ -815,7 +759,6 @@ public class DAO extends DBContext {
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
                 list.add(p);
-                
 
             }
 
@@ -880,33 +823,167 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
     }
-    public int getStar(int id){
-        String sql ="SELECT  COUNT(*), sum(Vote) FROM FeedBack where PID = ?";
+
+    public int getStar(int id) {
+        String sql = "SELECT  COUNT(*), sum(Vote) FROM FeedBack where PID = ?";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
-                if(rs.getInt(1) == 0){
+            if (rs.next()) {
+                if (rs.getInt(1) == 0) {
                     return 5;
-                    
+
                 }
-                
+
             }
             return rs.getInt(2) / rs.getInt(1);
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return 0;
     }
 
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        int [] pri  = new int []{3000000,10000000}; 
-            List<Product> list =d.searchCheckBox(null,pri , null);
-           System.out.println(list.get(0).getName());
+ 
+
+    public Product getProductByid(String id) {
+        //lay ra id de hien thi chi tiet san pham
+        String sql = "Select * FROM Product Where PID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPrice(rs.getInt(4));
+                p.setName(rs.getString(5));
+
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    
+
+    public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
+            String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
+        String query = "INSERT INTO [dbo].[Product]\n"
+                + "           ([AddedBy]\n"
+                + "           ,[CATID]\n"
+                + "           ,[Price]\n"
+                + "           ,[Name]\n"
+                + "           ,[Color]\n"
+                + "           ,[Description]\n"
+                + "           ,[Resolution]\n"
+                + "           ,[Insurance]\n"
+                + "           ,[CreateDate]\n"
+                + "           ,[TID]\n"
+                + "           ,[ImageDefault]\n"
+                + "           ,[Size]\n"
+                + "           ,[Quantity]\n"
+                + "           ,[Discount])"
+                + "     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1, paddby);
+            st.setString(2, pcatid);
+            st.setString(3, pprice);
+            st.setString(4, pname);
+            st.setString(5, pcolor);
+            st.setString(6, pdescription);
+            st.setString(7, presolution);
+            st.setString(8, pinsurance);
+            st.setString(9, format);
+            st.setString(10, ptid);
+            st.setString(11, pimage);
+            st.setString(12, psize);
+            st.setString(13, pquantity);
+            st.setString(14, pdiscount);
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+
     }
 
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int pid) {
+
+        String query = "UPDATE [dbo].[Product]\n"
+                + "  SET      [AddedBy] = ?\n"
+                + "           ,[CATID] = ?\n"
+                + "           ,[Price] = ?\n"
+                + "           ,[Name] = ?\n"
+                + "           ,[Color] = ?\n"
+                + "           ,[Description] = ?\n"
+                + "           ,[Resolution] = ?\n"
+                + "           ,[Insurance] = ?\n"
+                + "           ,[CreateDate] = ?\n"
+                + "           ,[TID] = ?\n"
+                + "           ,[ImageDefault] = ?\n"
+                + "           ,[Size] = ?\n"
+                + "           ,[Quantity] = ?\n"
+                + "           ,[Discount] = ?"
+                + "    Where [PID] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1, paddby);
+            st.setString(2, pcatid);
+            st.setString(3, pprice);
+            st.setString(4, pname);
+            st.setString(5, pcolor);
+            st.setString(6, pdescription);
+            st.setString(7, presolution);
+            st.setString(8, pinsurance);
+            st.setString(9, format);
+            st.setString(10, ptid);
+            st.setString(11, pimage);
+            st.setString(12, psize);
+            st.setString(13, pquantity);
+            st.setString(14, pdiscount);
+            st.setInt(15, pid);
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+    //delete san pham dua tren id 
+    public void deletProduct(String pid) {
+        String query = "delete from Product\n"
+                + "where PID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, pid);
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+
+    }
+    
+       public static void main(String[] args) {
+        DAO d = new DAO();
+       Product p=d.getProductByID(1);
+           System.out.println(p.getDescription());
+    }
 }

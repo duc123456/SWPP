@@ -25,10 +25,10 @@
             <div class="page-nav no-margin row">
                 <div class="container">
                     <div class="row">
-                        <h2 class="text-start">Login Page</h2>
+                        <h2 class="text-start">ĐĂNG NHẬP</h2>
                         <ul>
-                            <li> <a href="#"><i class="bi bi-house-door"></i> Home</a></li>
-                            <li><i class="bi bi-chevron-double-right pe-2"></i> User Login</li>
+                            <li> <a href="#"><i class="bi bi-house-door"></i>Trang chủ</a></li>
+                            <li><i class="bi bi-chevron-double-right pe-2"></i>ĐĂNG NHẬP</li>
                         </ul>
                     </div>
                 </div>
@@ -42,11 +42,11 @@
                         <div class="col-xl-6 col-lg-7 col-md-10 py-5 mx-auto">
                             <form class="login-card bg-white shadow-md p-5" action="login" method="post">
 
-                                <h4 class="text-center mb-5">Enter your detail to Login</h4>
+                                <h4 class="text-center mb-5">Nhập thông tin đăng nhập</h4>
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
-                                        <label for="">Email Address</label>
-                                        
+                                        <label class="float-end" for="">Email</label>
+                                                                         
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" name="user" placeholder="Enter Email Address" class="form-control" required="">
@@ -54,8 +54,7 @@
                                 </div>
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
-                                        <label for="">Password</label>
-                                        
+                                        <a  class="float-end" for="">Mật khẩu</a>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="password" name="pass" placeholder="Enter Password" class="form-control" required="">
@@ -66,10 +65,10 @@
 
                                     </div>
                                     <div class="col-md-8">
-                                        <button type="submit" value="Login" class="btn btn-danger">Click to Login</button>
+                                        <button type="submit" value="Login" class="btn btn-danger">Đăng Nhập</button>
                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/SWP391/logingg&response_type=code&client_id=55055519665-ah0bae7b1vdvc36fdd0c78tl3c6v0cpf.apps.googleusercontent.com&approval_prompt=force">Login GG</a>
 
-                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">forget Password ?</span></a> 
+                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">Quên mật khẩu</span></a> 
                                     </div>
                                 </div>
                             </form>
