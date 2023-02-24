@@ -138,7 +138,10 @@
                         </li>
                         
                         <li class="p-21 px-4"><a class="text-white" href="">Loai Tivi<i class="bi pt-2 bi-chevron-down"></i></a> 
-                            
+
+                            <div class="inner-div">
+                                
+                            </div>
                         </li>
                           <li class="p-21 px-4"><a class="text-white" href="">San Pham Ban Chay</a> 
 <!--                            <div class="inner-div">

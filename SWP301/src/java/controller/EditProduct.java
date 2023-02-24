@@ -38,7 +38,8 @@ public class EditProduct extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //edit sang pham gom cac thuoc tinh name image price title description category quantity
         request.setCharacterEncoding("UTF-8");
-        String pid = request.getParameter("pId");
+         String pid = request.getParameter("pid");
+        int id = Integer.parseInt(pid);
         String paddby = request.getParameter("addby");
         String pcatid = request.getParameter("catid");
         String pprice = request.getParameter("price");
@@ -62,7 +63,7 @@ public class EditProduct extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        dao.editProduct(a.getRoleId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, pid);
+        dao.editProduct(a.getRoleId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, id);
         response.sendRedirect("oooo");
     }
 

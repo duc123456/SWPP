@@ -435,7 +435,7 @@ public class DAO extends DBContext {
                 + "      ,[Size]\n"
                 + "      ,[Quantity]\n"
                 + "      ,[Discount]\n"
-                + "  FROM [SWP].[dbo].[Product] Where PID = 2";
+                + "  FROM [SWP].[dbo].[Product] Where PID = ?";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
@@ -846,12 +846,7 @@ public class DAO extends DBContext {
         return 0;
     }
 
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        int[] pri = new int[]{3000000, 10000000};
-        List<Product> list = d.searchCheckBox(null, pri, null);
-        System.out.println(list.get(0).getName());
-    }
+ 
 
     public Product getProductByid(String id) {
         //lay ra id de hien thi chi tiet san pham
@@ -886,6 +881,7 @@ public class DAO extends DBContext {
         }
         return null;
     }
+    
 
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
@@ -929,7 +925,7 @@ public class DAO extends DBContext {
 
     }
 
-    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, String pid) {
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int pid) {
 
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET      [AddedBy] = ?\n"
@@ -963,7 +959,7 @@ public class DAO extends DBContext {
             st.setString(12, psize);
             st.setString(13, pquantity);
             st.setString(14, pdiscount);
-            st.setString(15, pid);
+            st.setInt(15, pid);
 
             st.executeUpdate();
 
@@ -983,5 +979,11 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
 
+    }
+    
+       public static void main(String[] args) {
+        DAO d = new DAO();
+       Product p=d.getProductByID(1);
+           System.out.println(p.getDescription());
     }
 }

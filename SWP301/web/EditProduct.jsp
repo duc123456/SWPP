@@ -225,50 +225,54 @@
                                 </div>
                                 <form action="edit" >
                                     <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="pid" value="${details.pId}" class="form-control" readonly="">
+                                            </div>
+                                        </div>
 
-                                        <label>ID</label>
-                                        <input value="${detail.pId}" name="pId" type="text" class="form-control" readonly required>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Name</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="name" value="${detail.name}" class="form-control">
+                                                <input type="text" name="name" value="${details.name}" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Price</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="name" value="${detail.price}" class="form-control">
+                                                <input type="text" name="name" value="${details.price}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Color</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="color" value="${detail.color}" class="form-control">
+                                                <input type="text" name="color" value="${details.color}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Insurance</label>
-                                           <div class="col-md-10">
-                                                <input type="text" name="insurance" value="${detail.isnurance}" class="form-control">
+                                            <div class="col-md-10">
+                                                <input type="text" name="insurance" value="${details.insurance}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Size</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="size" value="${detail.size}" class="form-control">
+                                                <input type="text" name="size" value="${details.size}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Quantity</label>
-                                             <div class="col-md-10">
-                                                <input type="text" name="quantity" value="${detail.quantity}" class="form-control">
+                                            <div class="col-md-10">
+                                                <input type="text" name="quantity" value="${details.quantity}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Discount</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="discount" value="${detail.discount}" class="form-control">
+                                                <input type="text" name="discount" value="${details.discount}" class="form-control">
                                             </div>
                                         </div>
 
@@ -277,7 +281,7 @@
                                             <div class="col-md-10">
                                                 <select class="form-control form-select">
                                                     <c:forEach items="${typec}" var="ty">
-                                                        <option  value="${ty.tId}">${ty.tName}</option>
+                                                        <option ${(details.getType().gettId()==ty.tId)?'choose':''} value="${ty.tId}">${ty.tName}</option>
                                                     </c:forEach>
 
                                                 </select>
@@ -324,7 +328,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Description</label>
                                             <div class="col-md-10">
-                                                <textarea rows="5" cols="5" value="${detail.description}"  name="description"  class="form-control" placeholder="Enter text here"></textarea>
+                                                <textarea rows="5" cols="5" value="${details.description}"  name="description"  class="form-control"></textarea>
                                             </div>
                                         </div>
 

@@ -17,7 +17,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+        <style>
+            .text-danger{
+             margin-top: -20px;
+             padding-bottom: 10px;
+            }
+</style>
     </head>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
@@ -31,10 +36,6 @@
                             <li> <a href="#"><i class="bi bi-house-door"></i> Home</a></li>
                             <li><i class="bi bi-chevron-double-right pe-2"></i>Đăng Kí</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-
 
             <!--####################### About US Starts Here ###################-->
             <div class="container-fluid big-padding">

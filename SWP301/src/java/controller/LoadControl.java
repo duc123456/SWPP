@@ -38,12 +38,13 @@ public class LoadControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //lay thong tin san pham ra dua tren id de sua
         String id = request.getParameter("pId");
+        int id_raw = Integer.parseInt(id);
         DAO dao = new DAO();
-        Product p = dao.getProductByid(id);
+        Product p = dao.getProductByID(id_raw);
         List<Category> listC = dao.getAllCat();
         List<Type> typec = dao.getAllType();
 
-        request.setAttribute("detail", p);
+        request.setAttribute("details", p);
         request.setAttribute("listCC", listC);
         request.setAttribute("typec", typec);
         request.getRequestDispatcher("EditProduct.jsp").forward(request, response);

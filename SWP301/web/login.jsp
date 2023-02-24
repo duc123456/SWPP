@@ -46,7 +46,7 @@
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
                                         <label class="float-end" for="">Email</label>
-                                       
+                                                                         
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" name="user" placeholder="Enter Email Address" class="form-control" required="">
@@ -55,7 +55,6 @@
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
                                         <a  class="float-end" for="">Mật khẩu</a>
-                                     
                                     </div>
                                     <div class="col-md-8">
                                         <input type="password" name="pass" placeholder="Enter Password" class="form-control" required="">
