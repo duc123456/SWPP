@@ -846,39 +846,39 @@ public class DAO extends DBContext {
         return 0;
     }
 
-    public Product getProductByid(String id) {
-        //lay ra id de hien thi chi tiet san pham
-        String sql = "Select * FROM Product Where PID = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-
-                Product p = new Product();
-                p.setpId(rs.getInt(1));
-                p.setAddedBy(rs.getInt(2));
-                p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
-                p.setName(rs.getString(5));
-
-                p.setColor(rs.getString(6));
-                p.setDescription(rs.getString(7));
-                p.setResolution(rs.getString(8));
-                p.setInsurance(rs.getInt(9));
-                p.setcDate(rs.getString(10));
-                p.setType(getTypeById(rs.getInt(11)));
-                p.setImageDf(rs.getString(12));
-                p.setSize(rs.getInt(13));
-                p.setQuantity(rs.getInt(14));
-                p.setDiscount(rs.getFloat(15));
-
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
+//    public Product getProductByid(String id) {
+//        //lay ra id de hien thi chi tiet san pham
+//        String sql = "Select * FROM Product Where PID = ?";
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setString(1, id);
+//            ResultSet rs = st.executeQuery();
+//            while (rs.next()) {
+//
+//                Product p = new Product();
+//                p.setpId(rs.getInt(1));
+//                p.setAddedBy(rs.getInt(2));
+//                p.setCat(getCategoryById(rs.getInt(3)));
+//                p.setPrice(rs.getInt(4));
+//                p.setName(rs.getString(5));
+//
+//                p.setColor(rs.getString(6));
+//                p.setDescription(rs.getString(7));
+//                p.setResolution(rs.getString(8));
+//                p.setInsurance(rs.getInt(9));
+//                p.setcDate(rs.getString(10));
+//                p.setType(getTypeById(rs.getInt(11)));
+//                p.setImageDf(rs.getString(12));
+//                p.setSize(rs.getInt(13));
+//                p.setQuantity(rs.getInt(14));
+//                p.setDiscount(rs.getFloat(15));
+//
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
 
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
@@ -993,6 +993,29 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
 
+    }
+    public List<Product> sellMost(){
+        List<Product> list = new ArrayList<>();
+        String sql = "UPDATE [dbo].[User]\n"
+                + "   SET [Role] = ?\n"
+                + "   \n"
+                + " WHERE ID = ?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Product p = getProductByID(rs.getInt(1));
+                
+                list.add(p);
+                
+            }
+            
+        }catch(Exception e){
+            
+        }
+        return list;
+        
     }
 
     public static void main(String[] args) {
