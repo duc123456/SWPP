@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
     <html lang="en">
     <head>
@@ -40,46 +42,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto">
-                    <table class="table bg-white shadow-md">
-                        <tr>
-                            <th>#</th>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Qty</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>1</td>
-                            <td>
-                                <img class="max-100" src="assets/images/product/3.jpg" alt="">
-                            </td>
-                            <td>Personalised Birthday Easel</td>
-                            <td>2</td>
-                            <td>44</td>
-                            <td>88</td>
-                            <td>
-                                <button class="btn btn-xs pt-2 btn-danger"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr class="align-middle">
-                            <td>2</td>
-                            <td>
-                                <img class="max-100" src="assets/images/product/4.jpg" alt="">
-                            </td>
-                            <td>Personalised Wedding Easel</td>
-                            <td>1</td>
-                            <td>64</td>
-                            <td>64</td>
-                            <td>
-                                <button class="btn btn-xs pt-2 btn-danger"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr>
-                        
-                    </table>
-                    
-                    <button class="btn btn-danger float-end fw-bolder px-4">Make Payment</button>
+                    <table class="table bg-white shadow-md" >
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th style="width: 20%">Qty</th>
+                                    <th>Price</th>
+
+                                    <th>Action</th>
+                                </tr>
+                            <c:set var="i" value="1"></c:set>
+                            <c:forEach items="${sessionScope.cart.getItems()}" var="c">
+                                <tr class="align-middle">
+                                <td>${i}</td>
+                                <c:set var="i" value="${i+1}"></c:set>
+                                <td><img src="Image/${c.getProduct().getImageDf()}" class="max-100"></td><!-- comment -->
+                                <td>${c.getProduct().getName()}</td>
+                                <td ><button><a href="process?num=-1&id=${c.getProduct().getpId()}">-</a></button>
+                                   
+                                    <input type="text" value=" ${c.getQuantity()}" readonly style="width: 17%">
+                                    <button><a href="process?num=1&id=${c.getProduct().getpId()}">+</a></button>
+                                </td>
+                                     
+                                <td><fmt:formatNumber value="${c.getPrice() * c.getQuantity()}" pattern="#,##0 'VND'" /></td>
+
+                                <td>
+                                    <a href="deleteitem?id=${c.getProduct().getpId()}">
+                                    <button class="btn btn-xs pt-2 btn-danger"><i class="bi bi-trash"></i></button>
+                                </td>
+                                </tr>
+                            </c:forEach>
+
+                           
+
+                        </table>
+
+                                <p  class="btn btn-danger float-end fw-bolder px-4"><fmt:formatNumber value="${sessionScope.cart.totalPrice()}" pattern="#,##0 'VND'" /></p>
+                                <br/>
+                                <br/>
+                                <button class="btn btn-danger float-end fw-bolder px-4"  ><a href="information.jsp">Make Payment</a></button>
                 </div>
             </div>
         </div>

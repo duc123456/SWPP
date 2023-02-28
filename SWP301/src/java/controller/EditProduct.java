@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.Product;
 import model.User;
 
 /**
@@ -78,7 +79,7 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
-        int id = Integer.parseInt(pid);
+       
         String paddby = request.getParameter("addby");
         String pcatid = request.getParameter("catid");
         String pprice = request.getParameter("price");
@@ -102,8 +103,8 @@ public class EditProduct extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        dao.editProduct(id, pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, id);
-        response.sendRedirect("oooo");
+        dao.editProduct(2, pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, Integer.parseInt(pid));
+        response.sendRedirect("managerProduct");
     }
 
     /**

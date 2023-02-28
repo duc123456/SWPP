@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -280,7 +281,8 @@
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
-                                                <b class="fs-4 text-danger">${p.price}</b>
+                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 1.2}" pattern="#,##0 'VND'" /></b>
+
                                                 <s class="fs-5 ps-3"></s>
 
                                                 <ul class="mt-0 vgth">
@@ -303,7 +305,14 @@
                                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button class="btn fw-bold w-100 btn-outline-danger">Giỏ hàng</button>
+                                                        <form action="addcart" method="">
+                                                            <input type="hidden" name="product" value="${p.pId}">
+                                                            <input type="hidden" name="quantity" value="1">
+                                                            <input type="hidden" name="price" value="${p.price * 2}">
+                                                            <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
+                                                        </form>
+
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

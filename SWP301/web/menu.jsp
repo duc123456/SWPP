@@ -102,7 +102,13 @@
                                  <button type="button" class="btn btn-light shadow-md border position-relative" title="Giỏ Hàng">
                                   <i class="bi fs-4 bi-basket"></i>
                                   <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    2
+                                      <c:if test="${sessionScope.cart != null}">
+                                          ${sessionScope.size}
+                                      </c:if>
+                                      <c:if test="${sessionScope.cart == null}">
+                                          0
+                                      </c:if>
+                                      
 
                                   </span>
                                 </button>
@@ -140,7 +146,11 @@
                         <li class="p-21 px-4"><a class="text-white" href="">Loai Tivi<i class="bi pt-2 bi-chevron-down"></i></a> 
 
                             <div class="inner-div">
-                                
+                                <ul class="">
+                                    <c:forEach items="${requestScope.type}" var="ty">
+                                    <li><a href="listproduct?type=${ty.tId}">${ty.gettName()}</a></li>
+                                    </c:forEach>
+                                </ul>
                             </div>
                         </li>
                           <li class="p-21 px-4"><a class="text-white" href="">San Pham Ban Chay</a> 

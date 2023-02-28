@@ -980,10 +980,26 @@ public class DAO extends DBContext {
 
     }
 
+    public void updateRole(int id, int role) {
+        String query = "UPDATE [dbo].[User]\n"
+                + "   SET [Role] = ?\n"
+                + "   \n"
+                + " WHERE ID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+
+            st.setInt(1, role);
+            st.setInt(2, id);
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+
+    }
+    
     public static void main(String[] args) {
         DAO d = new DAO();
-        d.editProduct(2, "1", "1", "1232", "42", "3", "4", "3", "2025-1-1", "1", "2", "34", "3", "200", 5);
-
+       d.editProduct(2, "1", "100000", "NHAN", "1", "1", "1", "1", "2022-2-1", "1", "1", "1", "1", "10000", 9);
     }
 
 }

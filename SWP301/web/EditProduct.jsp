@@ -170,10 +170,12 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
+                                  <form action="editproduct" method = "post">
+                                        <c:set var="details" value="${requestScope.details}"/>
                                 <div class="card-header">
                                     <h4 class="card-title">Edit Product</h4>
                                 </div>
-                                <<form action="editproduct" method = "post">
+                              
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">ID</label>
@@ -202,7 +204,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Insurance</label>
+                                            <label class="col-form-label col-md-2">Bảo hành</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="insurance" value="${details.insurance}" class="form-control">
                                             </div>
@@ -227,11 +229,11 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">TID</label>
+                                            <label class="col-form-label col-md-2">Loai Tivi</label>
                                             <div class="col-md-10">
-                                                <select class="form-control form-select">
+                                                <select  class="form-control form-select">
                                                     <c:forEach items="${typec}" var="ty">
-                                                        <option value="${ty.tId}">${ty.tName}</option>
+                                                        <option  name="catid" value="${ty.tId}" checked="">${ty.tName}</option>
                                                     </c:forEach>
 
                                                 </select>
@@ -264,14 +266,10 @@
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="$K"> 4K
+                                                        <input type="radio" name="4K"> 4K
                                                     </label>
                                                 </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="radio"> Option 3
-                                                    </label>
-                                                </div>
+                                                
                                             </div>
                                         </div>
 
