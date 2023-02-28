@@ -4,14 +4,19 @@
  */
 package dal;
 
+import com.sun.scenario.effect.impl.prism.PrCropPeer;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Cart;
 import model.Category;
 import model.FeedBack;
+import model.Guest;
 import model.Image;
+import model.Item;
 import model.Product;
 import model.Type;
 import model.User;
@@ -985,7 +990,7 @@ public class DAO extends DBContext {
                 + " WHERE ID = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            
+
             st.setInt(1, role);
             st.setInt(2, id);
             st.executeUpdate();
@@ -995,9 +1000,90 @@ public class DAO extends DBContext {
 
     }
 
+    public int insertGuest(Guest g) {
+        String sql = "insert into Guest values(?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, g.getAddress());
+            st.setString(2, g.getPhone());
+            st.setString(3, g.getlName());
+            st.setString(4, g.getfName());
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+        String sql2 = "select top 1 guest from Guest order by Guest desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql2);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+            
+
+        } catch (SQLException e) {
+        }
+        return 0;
+    }
+
+    public Guest getGuestById(int id) {
+        String sql = "Select * from Guest where guest = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Guest(id, rs.getString("LName"), rs.getString("FName"), rs.getString("Address"), rs.getString("Phone"));
+            }
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    public void insertOrder(Guest g, Cart c, String note) {
+        String sql = "insert into [Order](Address, Date, Note, TotalPrice, GID) values (?,?,?,?,?)";
+        long millis1 = System.currentTimeMillis();
+        Date d = new Date(millis1);
+        String s = d.toString();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, g.getAddress());
+            st.setString(2, s);
+            st.setString(3, note);
+            st.setLong(4, c.totalPrice());
+            st.setInt(5, g.getgId());
+            st.executeUpdate();
+          
+        } catch (SQLException e) {
+        }
+        String sql2= "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
+        String sql3= "Select top 1 OID from [Order] order by OID desc";
+        int n=1;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql3);
+            ResultSet rs = st.executeQuery();
+            rs.next();
+            n = rs.getInt(1);
+        } catch (SQLException e) {
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql2);
+            for (Item i : c.getItems()) {
+                st.setInt(1, n);
+                st.setInt(2,i.getProduct().getpId());
+                st.setInt(3,i.getPrice() );
+                st.setInt(4,i.getQuantity() );
+                st.executeUpdate();
+            }
+            
+        } catch (SQLException e) {
+        }
+
+    }
+
     public static void main(String[] args) {
         DAO d = new DAO();
-        Product p = d.getProductByID(1);
-        System.out.println(p.getDescription());
+        Guest g1 = new Guest(0, "Chien", "Vu", "Ha Noi", "1234");
+       Guest g = d.getGuestById(1);
+        System.out.println(""+d.insertGuest(g1));
     }
 }

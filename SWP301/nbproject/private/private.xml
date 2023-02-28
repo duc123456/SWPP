@@ -3,17 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/SWPP/SWP301/web/EditProduct.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/controller/UserController.java</file>
-            <file>file:/C:/SWPP/SWP301/web/menudash.jsp</file>
-            <file>file:/C:/SWPP/SWP301/web/cart.jsp</file>
-            <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/Product.java</file>
-            <file>file:/C:/SWPP/SWP301/web/index.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/User.java</file>
-            <file>file:/C:/SWPP/SWP301/web/user.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
-            <file>file:/C:/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/information.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/cart.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/FeedBack.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Item.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Cart.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Category.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/EditProfile.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/PayServlet.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/detail.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ListProduct.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DeleteController.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Guest.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/contact.html</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Product.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DBContext.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/user.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Order.java</file>
         </group>
     </open-files>
 </project-private>

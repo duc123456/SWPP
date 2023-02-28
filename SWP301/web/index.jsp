@@ -281,7 +281,7 @@ form.example::after {
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
-                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 1.2}" pattern="#,##0 'VND'" /></b>
+                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 2}" pattern="#,##0 'VND'" /></b>
 
                                                 <s class="fs-5 ps-3"></s>
 

@@ -9,35 +9,45 @@ package model;
  * @author ADMIN
  */
 public class Guest {
-    private int gid;
-    private String name;
+    private int gId;
+    private String lName;
+    private String fName;
     private String address;
     private String phone;
 
     public Guest() {
     }
 
-    public Guest(int gid, String name, String address, String phone) {
-        this.gid = gid;
-        this.name = name;
+    public Guest(int gId, String lName, String fName, String address, String phone) {
+        this.gId = gId;
+        this.lName = lName;
+        this.fName = fName;
         this.address = address;
         this.phone = phone;
     }
 
-    public int getGid() {
-        return gid;
+    public int getgId() {
+        return gId;
     }
 
-    public void setGid(int gid) {
-        this.gid = gid;
+    public void setgId(int gId) {
+        this.gId = gId;
     }
 
-    public String getName() {
-        return name;
+    public String getlName() {
+        return lName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setlName(String lName) {
+        this.lName = lName;
+    }
+
+    public String getfName() {
+        return fName;
+    }
+
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
     public String getAddress() {
@@ -55,7 +65,8 @@ public class Guest {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-            
+
+    
        
     
 }
