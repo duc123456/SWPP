@@ -102,7 +102,13 @@
                                  <button type="button" class="btn btn-light shadow-md border position-relative" title="Giỏ Hàng">
                                   <i class="bi fs-4 bi-basket"></i>
                                   <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                      ${sessionScope.size}
+                                      <c:if test="${sessionScope.cart != null}">
+                                          ${sessionScope.size}
+                                      </c:if>
+                                      <c:if test="${sessionScope.cart == null}">
+                                          0
+                                      </c:if>
+                                      
 
                                   </span>
                                 </button>

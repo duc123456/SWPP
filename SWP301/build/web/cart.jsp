@@ -68,7 +68,7 @@
                                 <td><fmt:formatNumber value="${c.getPrice() * c.getQuantity()}" pattern="#,##0 'VND'" /></td>
 
                                 <td>
-                                    <a href="">
+                                    <a href="deleteitem?id=${c.getProduct().getpId()}">
                                     <button class="btn btn-xs pt-2 btn-danger"><i class="bi bi-trash"></i></button>
                                 </td>
                                 </tr>
@@ -78,8 +78,10 @@
 
                         </table>
 
-                    
-                    <button class="btn btn-danger float-end fw-bolder px-4">Make Payment</button>
+                                <p  class="btn btn-danger float-end fw-bolder px-4"><fmt:formatNumber value="${sessionScope.cart.totalPrice()}" pattern="#,##0 'VND'" /></p>
+                                <br/>
+                                <br/>
+                                <button class="btn btn-danger float-end fw-bolder px-4"  ><a href="information.jsp">Make Payment</a></button>
                 </div>
             </div>
         </div>
