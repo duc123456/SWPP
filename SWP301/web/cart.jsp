@@ -81,7 +81,7 @@
                                 <p  class="btn btn-danger float-end fw-bolder px-4"><fmt:formatNumber value="${sessionScope.cart.totalPrice()}" pattern="#,##0 'VND'" /></p>
                                 <br/>
                                 <br/>
-                                <button class="btn btn-danger float-end fw-bolder px-4"  ><a href="information.jsp">Make Payment</a></button>
+                                <button class="btn btn-danger float-end fw-bolder px-4" id="show-form-btn" ><a href="information.jsp">Make Payment</a></button>
                 </div>
             </div>
         </div>
@@ -169,6 +169,7 @@
                 </div>
             </div>
         </div>
+    
     </footer>
     <div class="copy">
         <div class="container">

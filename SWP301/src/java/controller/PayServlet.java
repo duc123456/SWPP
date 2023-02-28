@@ -84,6 +84,8 @@ public class PayServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Cart c = (Cart)session.getAttribute("cart");
         d.insertOrder(g, c, note);
+        session.removeAttribute("cart");
+        session.removeAttribute("size");
         response.sendRedirect("thankyou.jsp");
        
     }
