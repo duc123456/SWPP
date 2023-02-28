@@ -21,7 +21,7 @@ import model.User;
  *
  * @author nhant
  */
-@WebServlet(name = "EditProduct", urlPatterns = {"/edit"})
+@WebServlet(name = "EditProduct2", urlPatterns = {"/editproduct"})
 public class EditProduct extends HttpServlet {
 
     /**
@@ -36,35 +36,18 @@ public class EditProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //edit sang pham gom cac thuoc tinh name image price title description category quantity
-        request.setCharacterEncoding("UTF-8");
-         String pid = request.getParameter("pid");
-        int id = Integer.parseInt(pid);
-        String paddby = request.getParameter("addby");
-        String pcatid = request.getParameter("catid");
-        String pprice = request.getParameter("price");
-        String pname = request.getParameter("name");
-        String pcolor = request.getParameter("color");
-        String pdescription = request.getParameter("description");
-        String presolution = request.getParameter("resolution");
-        String pinsurance = request.getParameter("insurance");
-
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String format = simpleDateFormat.format(date);
-
-        String ptid = request.getParameter("tid");
-        String pimage = request.getParameter("image");
-        String psize = request.getParameter("size");
-        String pquantity = request.getParameter("quantity");
-        String pdiscount = request.getParameter("discount");
-
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("acc");
-        DAO dao = new DAO();
-        dao.editProduct(a.getRoleId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, id);
-        response.sendRedirect("oooo");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet EditProduct2</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet EditProduct2 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,7 +76,34 @@ public class EditProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        String pid = request.getParameter("pid");
+        int id = Integer.parseInt(pid);
+        String paddby = request.getParameter("addby");
+        String pcatid = request.getParameter("catid");
+        String pprice = request.getParameter("price");
+        String pname = request.getParameter("pname");
+        String pcolor = request.getParameter("color");
+        String pdescription = request.getParameter("description");
+        String presolution = request.getParameter("resolution");
+        String pinsurance = request.getParameter("insurance");
+
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+
+        String ptid = request.getParameter("tid");
+        String pimage = request.getParameter("image");
+        String psize = request.getParameter("size");
+        String pquantity = request.getParameter("quantity");
+        String pdiscount = request.getParameter("discount");
+
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("acc");
+        DAO dao = new DAO();
+        dao.editProduct(id, pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, id);
+        response.sendRedirect("oooo");
     }
 
     /**

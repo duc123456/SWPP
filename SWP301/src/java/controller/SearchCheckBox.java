@@ -41,11 +41,31 @@ public class SearchCheckBox extends HttpServlet {
             out.println("<html>");
             out.println("<head>");
             String[] pri_raw = request.getParameterValues("pri");
-            
-            
+            String [] p = null;
+            p = pri_raw;
+            if (pri_raw != null) {
+                
+                // phan trang
+                
+                request.setAttribute("pri", pri_raw);
+                
                 for(int i = 0 ; i <  pri_raw.length; i++){
-                    out.print(pri_raw[i]);
+                    if(pri_raw[i].equalsIgnoreCase("0")){
+                        pri_raw[i] = "3000000,10000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("1")){
+                        pri_raw[i] = "10000000,25000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("2")){
+                        pri_raw[i] = "25000000,80000000";
+                    }else if(pri_raw[i].equalsIgnoreCase("3")){
+                        pri_raw[i] = "80000000,120000000";
+                    }
+                    
                 }
+            }
+            
+            for(int i = 0; i < p.length; i++){
+                out.print(p[i]);
+            }
             }
 
             
@@ -91,7 +111,7 @@ public class SearchCheckBox extends HttpServlet {
             request.setAttribute("cat", cat_raw);
             // price ====================================
             String pris = "";
-            
+            String [] p = null;
             if (pri_raw != null) {
                 for (String pri : pri_raw) {
                     pris += "&pri=" + pri;
@@ -99,7 +119,7 @@ public class SearchCheckBox extends HttpServlet {
                 // phan trang
                 request.setAttribute("pris", pris);
                 request.setAttribute("pri", pri_raw);
-                
+                p = pri_raw;
                 for(int i = 0 ; i <  pri_raw.length; i++){
                     if(pri_raw[i].equalsIgnoreCase("0")){
                         pri_raw[i] = "3000000,10000000";
@@ -113,6 +133,8 @@ public class SearchCheckBox extends HttpServlet {
                     
                 }
             }
+           
+            
             String [] spri = {"3 triệu - 10 triệu","10 triệu - 25 triệu","25 triệu - 80 triệu","80 triệu - 120 triệu"};
             request.setAttribute("spri", spri);
             
@@ -163,7 +185,21 @@ public class SearchCheckBox extends HttpServlet {
                     }
 
                 }
+                for(int i = 0 ; i <  pri_raw.length; i++){
+                    if(pri_raw[i].equalsIgnoreCase("3000000,10000000")){
+                        pri_raw[i] = "0";
+                    }else if(pri_raw[i].equalsIgnoreCase("10000000,25000000")){
+                        pri_raw[i] = "1";
+                    }else if(pri_raw[i].equalsIgnoreCase("25000000,80000000")){
+                        pri_raw[i] = "2";
+                    }else if(pri_raw[i].equalsIgnoreCase("80000000,120000000")){
+                        pri_raw[i] = "3";
+                    } 
+                }
+            request.setAttribute("pri",pri_raw);
             }
+            
+ 
             if (size_raw != null) {
 
                 size = new int[size_raw.length * 2];
@@ -180,7 +216,21 @@ public class SearchCheckBox extends HttpServlet {
                     }
 
                 }
+                for(int i = 0 ; i <  size_raw.length; i++){
+                    if(size_raw[i].equalsIgnoreCase("30,45")){
+                        size_raw[i] = "0";
+                    }else if(size_raw[i].equalsIgnoreCase("45,60")){
+                        size_raw[i] = "1";
+                    }else if(size_raw[i].equalsIgnoreCase("60,75")){
+                        size_raw[i] = "2";
+                    }else if(size_raw[i].equalsIgnoreCase("75,90")){
+                        size_raw[i] = "3";
+                    }
+                    
+                }
+            request.setAttribute("size",size_raw );
             }
+            
             if (cat_raw != null) {
                 cat = new int[cat_raw.length];
                 for (int i = 0; i < cat_raw.length; i++) {
@@ -217,8 +267,8 @@ public class SearchCheckBox extends HttpServlet {
             request.setAttribute("xd", xd);
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
+          
         }
-
     }
 
     /**

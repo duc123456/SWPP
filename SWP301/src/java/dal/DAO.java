@@ -846,8 +846,6 @@ public class DAO extends DBContext {
         return 0;
     }
 
- 
-
     public Product getProductByid(String id) {
         //lay ra id de hien thi chi tiet san pham
         String sql = "Select * FROM Product Where PID = ?";
@@ -881,7 +879,6 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    
 
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
@@ -925,7 +922,9 @@ public class DAO extends DBContext {
 
     }
 
-    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int pid) {
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription,
+            String presolution, String pinsurance, String format, String ptid, String pimage,
+            String psize, String pquantity, String pdiscount, int pid) {
 
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET      [AddedBy] = ?\n"
@@ -937,7 +936,7 @@ public class DAO extends DBContext {
                 + "           ,[Resolution] = ?\n"
                 + "           ,[Insurance] = ?\n"
                 + "           ,[CreateDate] = ?\n"
-                + "           ,[TID] = ?\n"
+                + "           ,[TID] = ?   \n"
                 + "           ,[ImageDefault] = ?\n"
                 + "           ,[Size] = ?\n"
                 + "           ,[Quantity] = ?\n"
@@ -980,10 +979,11 @@ public class DAO extends DBContext {
         }
 
     }
-    
-       public static void main(String[] args) {
+
+    public static void main(String[] args) {
         DAO d = new DAO();
-       Product p= d.editProduct(1, "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", 10);
-           System.out.println(p.getDescription());
+        d.editProduct(2, "1", "1", "1232", "42", "3", "4", "3", "2025-1-1", "1", "2", "34", "3", "200", 5);
+
     }
+
 }

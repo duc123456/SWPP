@@ -238,8 +238,8 @@
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="general.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assetsEM/img/profiles/avatar-03.jpg" alt="User Image"></a>
-                                                                <a href="general.html">${o.name}<span>${o.pId}</span></a>
+                                                                <a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assetsEM/img/profiles/avatar-03.jpg" alt="User Image"></a>
+                                                                <a href="detail?pid=${o.pId}">${o.name}<span>${o.pId}</span></a>
                                                             </h2>
                                                         </td>
                                                         <td>${o.price}</td>

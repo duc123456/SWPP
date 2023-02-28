@@ -34,7 +34,7 @@
             <div class="header">
 
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="oooo" class="logo">
                         <img src="assetsEM/img/logo.png" alt="Logo">
                     </a>
                     <a href="index.html" class="logo logo-small">
@@ -151,56 +151,6 @@
             </div>
 
 
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar-inner slimscroll">
-                    <div id="sidebar-menu" class="sidebar-menu">
-                        <ul>
-                            <li class="menu-title">
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-users"></i> <span> Users</span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="users.html">Users</a></li>
-                                    <li><a href="blocked-users.html">Blocked User</a></li>
-                                    <li><a href="report-users.html">Report User</a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-sync"></i> <span> History </span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="call-history.html"> Call History </a></li>
-                                    <li><a href="group-history.html"> Group History </a></li>
-                                </ul>
-                            </li>
-
-
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-layout"></i> <span> Forms <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="form-basic-inputs.html" class="active">Basic Inputs</a></li>
-                                    <li><a href="form-input-groups.html">Input Groups</a></li>
-                                    <li><a href="form-horizontal.html">Horizontal Form</a></li>
-                                    <li><a href="form-vertical.html">Vertical Form </a></li>
-                                    <li><a href="form-mask.html">Form Mask</a></li>
-                                    <li><a href="form-validation.html">Form Validation </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-table"></i> <span> Tables <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="tables-basic.html">Basic Tables </a></li>
-                                    <li><a href="data-tables.html">Data Table </a></li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="page-wrapper">
                 <div class="content container-fluid">
@@ -223,7 +173,7 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Edit Product</h4>
                                 </div>
-                                <form action="edit" >
+                                <<form action="editproduct" method = "post">
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">ID</label>
@@ -233,20 +183,20 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Name</label>
+                                            <label class="col-form-label col-md-2">Tên</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="name" value="${details.name}" class="form-control">
+                                                <input type="text" name="pname" value="${details.name}" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Price</label>
+                                            <label class="col-form-label col-md-2">Giá</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="name" value="${details.price}" class="form-control">
+                                                <input type="text" name="price" value="${details.price}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Color</label>
+                                            <label class="col-form-label col-md-2">Màu sắc</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="color" value="${details.color}" class="form-control">
                                             </div>
@@ -258,19 +208,19 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Size</label>
+                                            <label class="col-form-label col-md-2">Kích thước</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="size" value="${details.size}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Quantity</label>
+                                            <label class="col-form-label col-md-2">Số lượng</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="quantity" value="${details.quantity}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Discount</label>
+                                            <label class="col-form-label col-md-2">Giảm giá</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="discount" value="${details.discount}" class="form-control">
                                             </div>
@@ -281,7 +231,7 @@
                                             <div class="col-md-10">
                                                 <select class="form-control form-select">
                                                     <c:forEach items="${typec}" var="ty">
-                                                        <option ${(details.getType().gettId()==ty.tId)?'choose':''} value="${ty.tId}">${ty.tName}</option>
+                                                        <option value="${ty.tId}">${ty.tName}</option>
                                                     </c:forEach>
 
                                                 </select>
@@ -309,12 +259,12 @@
                                             <div class="col-md-10">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="radio"> Option 1
+                                                        <input type="radio" name="HD"> HD
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="radio"> Option 2
+                                                        <input type="radio" name="$K"> 4K
                                                     </label>
                                                 </div>
                                                 <div class="radio">
@@ -328,31 +278,32 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Description</label>
                                             <div class="col-md-10">
-                                                <textarea rows="5" cols="5" value="${details.description}"  name="description"  class="form-control"></textarea>
+                                                <textarea rows="5" cols="5" value=""  name="description"  class="form-control">${details.description}</textarea>
                                             </div>
                                         </div>
-
-
                                         <button class="btn btn-primary" type="submit">Button</button>
                                     </div>
+
+                                </form>
                             </div>
 
                         </div>
                     </div>
+
                 </div>
             </div>
-        </form>
-    </div>
+
+        </div>
 
 
-    <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
+        <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
 
-    <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
+        <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <script src="assetsEM/js/script.js"></script>
-</body>
+        <script src="assetsEM/js/script.js"></script>
+    </body>
 </html>
 
 
