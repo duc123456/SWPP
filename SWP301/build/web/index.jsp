@@ -308,7 +308,7 @@ form.example::after {
                                                         <form action="addcart" method="">
                                                             <input type="hidden" name="product" value="${p.pId}">
                                                             <input type="hidden" name="quantity" value="1">
-                                                            <input type="hidden" name="price" value="${p.price}">
+                                                            <input type="hidden" name="price" value="${p.price * 2}">
                                                             <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
                                                         </form>
 
