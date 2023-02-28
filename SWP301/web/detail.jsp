@@ -81,7 +81,7 @@
                     <img src="assets/images/product/1.jpg" alt="">
                 </div>
                 <div class="col-md-7">
-                    <h2>${product.name}-${type}</h2>
+                    <h2>${product.name}-${type1}</h2>
                     
                     <ul class="mt-0 mt-2 mb-3 vgth">
                         
