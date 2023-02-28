@@ -846,8 +846,6 @@ public class DAO extends DBContext {
         return 0;
     }
 
- 
-
     public Product getProductByid(String id) {
         //lay ra id de hien thi chi tiet san pham
         String sql = "Select * FROM Product Where PID = ?";
@@ -881,7 +879,6 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    
 
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
@@ -980,10 +977,27 @@ public class DAO extends DBContext {
         }
 
     }
-    
-       public static void main(String[] args) {
+
+    public void updateRole(int id, int role) {
+        String query = "UPDATE [dbo].[User]\n"
+                + "   SET [Role] = ?\n"
+                + "   \n"
+                + " WHERE ID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            
+            st.setInt(1, role);
+            st.setInt(2, id);
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+
+    }
+
+    public static void main(String[] args) {
         DAO d = new DAO();
-       Product p=d.getProductByID(1);
-           System.out.println(p.getDescription());
+        Product p = d.getProductByID(1);
+        System.out.println(p.getDescription());
     }
 }
