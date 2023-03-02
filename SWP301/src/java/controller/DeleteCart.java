@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -65,6 +66,20 @@ public class DeleteCart extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             Item t = c.getItemById(id);
             c.remove(t);
+            if (session.getAttribute("acc") != null) {
+                Cookie[] cookie = request.getCookies();
+                for (Cookie cookie1 : cookie) {
+                    if (cookie1.getName().equals("cart")) {
+                        cookie1.setMaxAge(0);
+                         response.addCookie(cookie1);
+                        String txt = c.cartToTxt(c);
+                        
+                        Cookie c1 = new Cookie("cart", txt);
+                        c1.setMaxAge(2 * 24 * 60 * 60);
+                        response.addCookie(c1);
+                    }
+                }
+            }
             session.setAttribute("cart", c);
         } catch (Exception e) {
         }

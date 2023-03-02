@@ -14,16 +14,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Cart;
-import model.Item;
-import model.Product;
+import model.Guest;
+import model.User;
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name = "Process", urlPatterns = {"/process"})
-public class Process extends HttpServlet {
+@WebServlet(name = "PayServlet", urlPatterns = {"/pay"})
+public class PayServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +45,10 @@ public class Process extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Process</title>");
+            out.println("<title>Servlet PayServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Process at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PayServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,39 +66,7 @@ public class Process extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id_raw = request.getParameter("id");
-        String num_raw = request.getParameter("num");
-        HttpSession session = request.getSession();
-
-        try {
-            int id = Integer.parseInt(id_raw);
-            int num = Integer.parseInt(num_raw);
-            Cart c = (Cart) session.getAttribute("cart");
-            DAO d = new DAO();
-            Product p = d.getProductByID(id);
-            Item t = c.getItemById(id);
-            int t1 = t.getQuantity() + num;
-            if (t1 > 0 && t1 <= p.getQuantity()) {
-                t.setQuantity(t.getQuantity() + num);
-            }
-            if (session.getAttribute("acc") != null) {
-                Cookie[] cookie = request.getCookies();
-                for (Cookie cookie1 : cookie) {
-                    if (cookie1.getName().equals("cart")) {
-                        cookie1.setMaxAge(0);
-                        response.addCookie(cookie1);
-                        String txt = c.cartToTxt(c);
-                        Cookie c1 = new Cookie("cart", txt);
-                        c1.setMaxAge(2 * 24 * 60 * 60);
-                        response.addCookie(c1);
-                    }
-                }
-            }
-            session.setAttribute("cart", c);
-            response.sendRedirect("cart.jsp");
-
-        } catch (Exception e) {
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -109,7 +80,49 @@ public class Process extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String ho = request.getParameter("ho");
+        String ten = request.getParameter("ten");
+        String dia = request.getParameter("dia");
+        String so = request.getParameter("so");
+        String note = request.getParameter("note");
+        Guest g = new Guest(0, ho, ten, dia, so);
+        DAO d = new DAO();
+        HttpSession session = request.getSession();
+        Cart c = (Cart) session.getAttribute("cart");
+        
+        if (session.getAttribute("acc") != null) {
+            User u = (User) session.getAttribute("acc");
+            int uid = u.getuId();
+            try {
+                String s = d.insertOrderUser(uid, dia, c, note);
+                 request.setAttribute("mess", s);
+               Cookie[] cookie = request.getCookies();
+                for (Cookie cookie1 : cookie) {
+                    if(cookie1.getName().equals("cart")){
+                        cookie1.setMaxAge(0);
+                         response.addCookie(cookie1);
+                    }
+                }
+              
+            } catch (SQLException ex) {
+                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+
+            try {
+                String s = d.insertOrder(g, c, note);
+                request.setAttribute("mess", s);
+            } catch (SQLException ex) {
+                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        session.removeAttribute("cart");
+        session.removeAttribute("size");
+        request.getRequestDispatcher("thankyou.jsp").forward(request, response);
+
     }
 
     /**
