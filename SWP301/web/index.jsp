@@ -330,7 +330,7 @@ form.example::after {
                             <c:set var="page" value="${requestScope.page}"/>
                             <c:forEach begin="1" end="${requestScope.num}" var="i">
                                    
-                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}" class="page-link">${i}</a></li> 
+                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
                                 
                             </c:forEach>
                             

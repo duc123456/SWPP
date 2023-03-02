@@ -660,6 +660,121 @@ public class DAO extends DBContext {
         return list;
     }
 
+    public List<Product> searchCheckBox1(int[] cat, int[] pri, int[] size) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select od.PID  from [Order Detail] od\n"
+                + " \n"
+                + " Inner Join Product p\n"
+                + " On p.PID = od.PID\n"
+                + "\n"
+                + "  Where (1=1)";
+        if (cat != null) {
+            if (cat.length == 1) {
+                sql += "And p.CATID = ?";
+            } else if (cat.length == 2) {
+                sql += "And (p.CATID = ? or p.CATID = ?)";
+            } else {
+                sql += "And ( p.CATID = ?";
+                for (int i = 1; i < cat.length - 1; i++) {
+                    sql += " or p.CATID = ?";
+
+                }
+                sql += " or p.CATID = ?)";
+            }
+
+        }
+        if (pri != null) {
+            if (pri.length == 2) {
+                sql += " AND (p.Price >= ? and p.Price <?) ";
+            } else if (pri.length == 4) {
+                sql += " And ((p.Price >= ? and p.Price <?) or (p.price >= ? and  p.price < ?)) ";
+            } else {
+                sql += " And ((p.Price >= ? and p.Price <?)";
+                for (int i = 1; i < pri.length / 2 - 1; i++) {
+                    sql += " or (p.price >= ? and p.price < ?)";
+
+                }
+                sql += " or (p.price >= ? and  p.price < ?))";
+            }
+
+        }
+        if (size != null) {
+            if (size.length == 2) {
+                sql += " AND (p.Size >= ? and p.Size <?) ";
+            } else if (size.length == 4) {
+                sql += " And ((p.Size >= ? and p.Size <?) or (p.Size >= ? and  p.Size < ?)) ";
+            } else {
+                sql += " And ((p.Size >= ? and p.Size <?)";
+                for (int i = 1; i < size.length / 2 - 1; i++) {
+                    sql += " or (p.Size >= ? and p.Size < ?)";
+
+                }
+                sql += " or (p.Size >= ? and  p.Size < ?))";
+            }
+
+        }
+        sql += "group by od.PID,p.CATID, p.Size,p.Price\n"
+                + "\n"
+                + " ORDER BY Sum(Amount) Desc";
+//        if(size != null){
+//            for (int i = 0; i < size.length; i++) {
+//                sql += "And size >= ? and < ?";
+//                
+//            }
+//        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int n = 0;
+            if (cat != null) {
+                for (int i = 0; i < cat.length; i++) {
+                    n++;
+                    st.setInt(i + 1, cat[i]);
+
+                }
+            }
+            if (pri != null) {
+                if (n == 0) {
+                    for (int i = 0; i < pri.length; i++) {
+                        n++;
+                        st.setInt(i + 1, pri[i]);
+
+                    }
+                } else {
+                    for (int i = 0; i < pri.length; i++) {
+                        n++;
+                        st.setInt(n, pri[i]);
+
+                    }
+                }
+            }
+            if (size != null) {
+                if (n == 0) {
+                    for (int i = 0; i < size.length; i++) {
+                        n++;
+                        st.setInt(i + 1, size[i]);
+
+                    }
+                } else {
+                    for (int i = 0; i < size.length; i++) {
+                        n++;
+                        st.setInt(n, size[i]);
+
+                    }
+                }
+            }
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = getProductByID(rs.getInt(1));
+                
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public List<Product> getAllProductByCat(int cid) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
@@ -879,7 +994,6 @@ public class DAO extends DBContext {
 //        }
 //        return null;
 //    }
-
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
         String query = "INSERT INTO [dbo].[Product]\n"
@@ -985,7 +1099,7 @@ public class DAO extends DBContext {
                 + " WHERE ID = ?";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            
+
             st.setInt(1, role);
             st.setInt(2, id);
             st.executeUpdate();
@@ -994,33 +1108,36 @@ public class DAO extends DBContext {
         }
 
     }
-    public List<Product> sellMost(){
+
+    public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
-        String sql = "UPDATE [dbo].[User]\n"
-                + "   SET [Role] = ?\n"
-                + "   \n"
-                + " WHERE ID = ?";
-        try{
+        String sql = "select PID,Sum(Amount) from [Order Detail]\n"
+                + " group by PID\n"
+                + " ORDER BY Sum(Amount) Desc";
+        try {
             PreparedStatement st = connection.prepareStatement(sql);
-            
+
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Product p = getProductByID(rs.getInt(1));
-                
+
                 list.add(p);
-                
+
             }
-            
-        }catch(Exception e){
-            
+
+        } catch (SQLException e) {
+            System.out.println(e);
+
         }
         return list;
-        
+
     }
 
     public static void main(String[] args) {
         DAO d = new DAO();
-        Product p = d.getProductByID(1);
-        System.out.println(p.getDescription());
+        int[] cat = new int[]{1,7};
+        List<Product> list = d.searchCheckBox1(cat, null, null);
+        System.out.println(list.size());
+        
     }
 }

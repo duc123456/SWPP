@@ -153,7 +153,7 @@
                                 </ul>
                             </div>
                         </li>
-                          <li class="p-21 px-4"><a class="text-white" href="">San Pham Ban Chay</a> 
+                          <li class="p-21 px-4"><a class="text-white" href="searchproduct?most=1">San Pham Ban Chay</a> 
 <!--                            <div class="inner-div">
                                 <ul class="">
                                     <li><a href="index.jsp">Home</a></li>
