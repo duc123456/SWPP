@@ -189,20 +189,20 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Họ   </p>
-                                                    <input type="text"  name="ho"  class="form-control">
+                                                    <input type="text"  name="ho" value="${sessionScope.acc.getlName()}"  class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Tên</p>
-                                                    <input type="text"  name="ten" class="form-control">
+                                                    <input type="text"  name="ten" value="${sessionScope.acc.getfName()}" class="form-control">
                                                 </div>
 
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Địa Chỉ</p>
-                                                    <input type="text"  name="dia" value="${sessionScope.acc.email}" class="form-control">
+                                                    <input type="text"  name="dia" value="${sessionScope.acc.getAddress()}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Số Điện Thoại</p>
-                                                    <input type="text"  name="so" class="form-control">
+                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone()}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Chú Ý</p>

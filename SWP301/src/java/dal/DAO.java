@@ -5,6 +5,7 @@
 package dal;
 
 import com.sun.scenario.effect.impl.prism.PrCropPeer;
+import controller.ListProduct;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -231,7 +232,7 @@ public class DAO extends DBContext {
     //phan trang dua tren so san pham sau do chia ra
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 12 row only";
+        String sql = "select * from Product where quantity > 0 order by [PID] OFFSET ? rows  fetch next 12 row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, (index - 1) * 12);
@@ -884,7 +885,6 @@ public class DAO extends DBContext {
 //        }
 //        return null;
 //    }
-
     public void insertProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution,
             String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount) {
         String query = "INSERT INTO [dbo].[Product]\n"
@@ -999,28 +999,29 @@ public class DAO extends DBContext {
         }
 
     }
-    public List<Product> sellMost(){
+
+    public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
         String sql = "UPDATE [dbo].[User]\n"
                 + "   SET [Role] = ?\n"
                 + "   \n"
                 + " WHERE ID = ?";
-        try{
+        try {
             PreparedStatement st = connection.prepareStatement(sql);
-            
+
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Product p = getProductByID(rs.getInt(1));
-                
+
                 list.add(p);
-                
+
             }
-            
-        }catch(Exception e){
-            
+
+        } catch (Exception e) {
+
         }
         return list;
-        
+
     }
 
     public int insertGuest(Guest g) {
@@ -1038,10 +1039,9 @@ public class DAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql2);
             ResultSet rs = st.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 return rs.getInt(1);
             }
-            
 
         } catch (SQLException e) {
         }
@@ -1049,9 +1049,10 @@ public class DAO extends DBContext {
     }
 
     public Guest getGuestById(int id) {
-        String sql = "Select * from Guest where guest = ?";
+
+        String sql1 = "Select * from Guest where guest = ?";
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
+            PreparedStatement st = connection.prepareStatement(sql1);
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
@@ -1062,51 +1063,153 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public void insertOrder(Guest g, Cart c, String note) {
-        String sql = "insert into [Order](Address, Date, Note, TotalPrice, GID) values (?,?,?,?,?)";
+    public String insertOrder(Guest g, Cart c, String note) throws SQLException {
+        String sql1 = "insert into Guest values(?,?,?,?)";
+        String sql2 = "select top 1 guest from Guest order by Guest desc";
+        String sql3 = "insert into [Order](Address, Date, Note, TotalPrice, GID) values (?,?,?,?,?)";
+        String sql4 = "Select top 1 OID from [Order] order by OID desc";
+        String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
+        String sql6 = "update product set quantity=quantity-? where PID=?";
         long millis1 = System.currentTimeMillis();
         Date d = new Date(millis1);
         String s = d.toString();
+        connection.setAutoCommit(false);
         try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, g.getAddress());
-            st.setString(2, s);
-            st.setString(3, note);
-            st.setLong(4, c.totalPrice());
-            st.setInt(5, g.getgId());
-            st.executeUpdate();
-          
-        } catch (SQLException e) {
-        }
-        String sql2= "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
-        String sql3= "Select top 1 OID from [Order] order by OID desc";
-        int n=1;
-        try {
-            PreparedStatement st = connection.prepareStatement(sql3);
-            ResultSet rs = st.executeQuery();
-            rs.next();
-            n = rs.getInt(1);
-        } catch (SQLException e) {
-        }
-        try {
-            PreparedStatement st = connection.prepareStatement(sql2);
-            for (Item i : c.getItems()) {
-                st.setInt(1, n);
-                st.setInt(2,i.getProduct().getpId());
-                st.setInt(3,i.getPrice() );
-                st.setInt(4,i.getQuantity() );
-                st.executeUpdate();
+            PreparedStatement st1 = connection.prepareStatement(sql1);
+            st1.setString(1, g.getAddress());
+            st1.setString(2, g.getPhone());
+            st1.setString(3, g.getlName());
+            st1.setString(4, g.getfName());
+            st1.executeUpdate();
+            PreparedStatement st2 = connection.prepareStatement(sql2);
+            ResultSet rs = st2.executeQuery();
+            int gid = 0;
+            if (rs.next()) {
+                gid = rs.getInt(1);
             }
-            
+            PreparedStatement st3 = connection.prepareStatement(sql3);
+            st3.setString(1, g.getAddress());
+            st3.setString(2, s);
+            st3.setString(3, note);
+            st3.setLong(4, c.totalPrice());
+            st3.setInt(5, gid);
+            st3.executeUpdate();
+            int oid = 1;
+            PreparedStatement st4 = connection.prepareStatement(sql4);
+            rs = st4.executeQuery();
+            rs.next();
+            oid = rs.getInt(1);
+            PreparedStatement st5 = connection.prepareStatement(sql5);
+            for (Item i : c.getItems()) {
+                st5.setInt(1, oid);
+                st5.setInt(2, i.getProduct().getpId());
+                st5.setInt(3, i.getPrice());
+                st5.setInt(4, i.getQuantity());
+                st5.executeUpdate();
+            }
+            PreparedStatement st6 = connection.prepareStatement(sql6);
+            for (Item i : c.getItems()) {
+                st6.setInt(1, i.getQuantity());
+                st6.setInt(2, i.getProduct().getpId());
+                
+                if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
+                    connection.rollback();
+                    return "Don hang khong duoc dat thanh cong";
+                }
+                st6.executeUpdate();
+            }
+
+            connection.commit();
         } catch (SQLException e) {
+            connection.rollback();
+            return "Don hang khong duoc dat thanh cong";
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
         }
+
+        return "Cam On";
+
+    }
+    public String insertOrderUser(int uid,String diaChi ,Cart c, String note) throws SQLException {
+        
+       
+        String sql3 = "insert into [Order](UID ,Address, Date, Note, TotalPrice) values (?,?,?,?,?)";
+        String sql4 = "Select top 1 OID from [Order] order by OID desc";
+        String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
+        String sql6 = "update product set quantity=quantity-? where PID=?";
+        long millis1 = System.currentTimeMillis();
+        Date d = new Date(millis1);
+        String s = d.toString();
+        connection.setAutoCommit(false);
+        try {
+           
+            
+            PreparedStatement st3 = connection.prepareStatement(sql3);
+            st3.setInt(1, uid);
+            st3.setString(2, diaChi);
+            st3.setString(3, s);
+            st3.setString(4, note);
+            st3.setLong(5, c.totalPrice());
+            
+            st3.executeUpdate();
+            int oid = 1;
+            PreparedStatement st4 = connection.prepareStatement(sql4);
+            ResultSet rs = st4.executeQuery();
+            rs.next();
+            oid = rs.getInt(1);
+            PreparedStatement st5 = connection.prepareStatement(sql5);
+            for (Item i : c.getItems()) {
+                st5.setInt(1, oid);
+                st5.setInt(2, i.getProduct().getpId());
+                st5.setInt(3, i.getPrice());
+                st5.setInt(4, i.getQuantity());
+                st5.executeUpdate();
+            }
+            PreparedStatement st6 = connection.prepareStatement(sql6);
+            for (Item i : c.getItems()) {
+                st6.setInt(1, i.getQuantity());
+                st6.setInt(2, i.getProduct().getpId());
+                
+                if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
+                    connection.rollback();
+                    return "Don hang khong duoc dat thanh cong";
+                }
+                st6.executeUpdate();
+            }
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            return "Don hang khong duoc dat thanh cong";
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+        }
+
+        return "Cam On";
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
         Guest g1 = new Guest(0, "Chien", "Vu", "Ha Noi", "1234");
-       Guest g = d.getGuestById(1);
-        System.out.println(""+d.insertGuest(g1));
+
+        List<Item> li2 = new ArrayList<>();
+
+        Product p = d.getProductByID(1);
+        int quantity = 2;
+        int price = p.getPrice() * 2;
+        Item t = new Item(p, quantity, price);
+        li2.add(t);
+
+        Cart c = new Cart(li2);
+
+        d.insertOrder(g1, c, "Heloo");
+
     }
 }

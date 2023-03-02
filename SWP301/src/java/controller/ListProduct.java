@@ -9,11 +9,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Cart;
 import model.Category;
+import model.Item;
 import model.Product;
 import model.Type;
 
@@ -114,6 +117,27 @@ public class ListProduct extends HttpServlet {
         if (count % 12 != 0) {
             endPage++;
         }
+     
+        List<Product> list=d.getAllProd();
+        Cookie[] arr=request.getCookies();
+        String txt="";
+        if(arr!=null){
+            for(Cookie o:arr){
+                if(o.getName().equals("cart")){
+                    txt+=o.getValue();
+                }
+            }
+        }
+        Cart cart=new Cart(txt, list);
+        List<Item> listItem=cart.getItems();
+        int n;
+        if(listItem!=null){
+            n=listItem.size();
+        }else{
+            n=0;
+            }
+        request.setAttribute("size", n);
+       
 
         request.setAttribute("endP", endPage);
         request.setAttribute("tagw", index);
