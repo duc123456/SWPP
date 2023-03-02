@@ -4,14 +4,20 @@
  */
 package dal;
 
+import com.sun.scenario.effect.impl.prism.PrCropPeer;
+import controller.ListProduct;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Cart;
 import model.Category;
 import model.FeedBack;
+import model.Guest;
 import model.Image;
+import model.Item;
 import model.Product;
 import model.Type;
 import model.User;
@@ -226,7 +232,7 @@ public class DAO extends DBContext {
     //phan trang dua tren so san pham sau do chia ra
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product order by [PID] OFFSET ? rows  fetch next 12 row only";
+        String sql = "select * from Product where quantity > 0 order by [PID] OFFSET ? rows  fetch next 12 row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, (index - 1) * 12);
@@ -1111,9 +1117,11 @@ public class DAO extends DBContext {
 
     public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
+
         String sql = "select PID,Sum(Amount) from [Order Detail]\n"
                 + " group by PID\n"
                 + " ORDER BY Sum(Amount) Desc";
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
 
@@ -1125,19 +1133,188 @@ public class DAO extends DBContext {
 
             }
 
+
         } catch (SQLException e) {
             System.out.println(e);
+
 
         }
         return list;
 
     }
 
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        int[] cat = new int[]{1,7};
-        List<Product> list = d.searchCheckBox1(cat, null, null);
-        System.out.println(list.size());
+    public int insertGuest(Guest g) {
+        String sql = "insert into Guest values(?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, g.getAddress());
+            st.setString(2, g.getPhone());
+            st.setString(3, g.getlName());
+            st.setString(4, g.getfName());
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+        String sql2 = "select top 1 guest from Guest order by Guest desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql2);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+        }
+        return 0;
+    }
+
+    public Guest getGuestById(int id) {
+
+        String sql1 = "Select * from Guest where guest = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql1);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Guest(id, rs.getString("LName"), rs.getString("FName"), rs.getString("Address"), rs.getString("Phone"));
+            }
+        } catch (SQLException e) {
+        }
+        return null;
+    }
+
+    public String insertOrder(Guest g, Cart c, String note) throws SQLException {
+        String sql1 = "insert into Guest values(?,?,?,?)";
+        String sql2 = "select top 1 guest from Guest order by Guest desc";
+        String sql3 = "insert into [Order](Address, Date, Note, TotalPrice, GID) values (?,?,?,?,?)";
+        String sql4 = "Select top 1 OID from [Order] order by OID desc";
+        String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
+        String sql6 = "update product set quantity=quantity-? where PID=?";
+        long millis1 = System.currentTimeMillis();
+        Date d = new Date(millis1);
+        String s = d.toString();
+        connection.setAutoCommit(false);
+        try {
+            PreparedStatement st1 = connection.prepareStatement(sql1);
+            st1.setString(1, g.getAddress());
+            st1.setString(2, g.getPhone());
+            st1.setString(3, g.getlName());
+            st1.setString(4, g.getfName());
+            st1.executeUpdate();
+            PreparedStatement st2 = connection.prepareStatement(sql2);
+            ResultSet rs = st2.executeQuery();
+            int gid = 0;
+            if (rs.next()) {
+                gid = rs.getInt(1);
+            }
+            PreparedStatement st3 = connection.prepareStatement(sql3);
+            st3.setString(1, g.getAddress());
+            st3.setString(2, s);
+            st3.setString(3, note);
+            st3.setLong(4, c.totalPrice());
+            st3.setInt(5, gid);
+            st3.executeUpdate();
+            int oid = 1;
+            PreparedStatement st4 = connection.prepareStatement(sql4);
+            rs = st4.executeQuery();
+            rs.next();
+            oid = rs.getInt(1);
+            PreparedStatement st5 = connection.prepareStatement(sql5);
+            for (Item i : c.getItems()) {
+                st5.setInt(1, oid);
+                st5.setInt(2, i.getProduct().getpId());
+                st5.setInt(3, i.getPrice());
+                st5.setInt(4, i.getQuantity());
+                st5.executeUpdate();
+            }
+            PreparedStatement st6 = connection.prepareStatement(sql6);
+            for (Item i : c.getItems()) {
+                st6.setInt(1, i.getQuantity());
+                st6.setInt(2, i.getProduct().getpId());
+                
+                if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
+                    connection.rollback();
+                    return "Don hang khong duoc dat thanh cong";
+                }
+                st6.executeUpdate();
+            }
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            return "Don hang khong duoc dat thanh cong";
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+        }
+
+        return "Cam On";
+
+    }
+    public String insertOrderUser(int uid,String diaChi ,Cart c, String note) throws SQLException {
         
+       
+        String sql3 = "insert into [Order](UID ,Address, Date, Note, TotalPrice) values (?,?,?,?,?)";
+        String sql4 = "Select top 1 OID from [Order] order by OID desc";
+        String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
+        String sql6 = "update product set quantity=quantity-? where PID=?";
+        long millis1 = System.currentTimeMillis();
+        Date d = new Date(millis1);
+        String s = d.toString();
+        connection.setAutoCommit(false);
+        try {
+           
+            
+            PreparedStatement st3 = connection.prepareStatement(sql3);
+            st3.setInt(1, uid);
+            st3.setString(2, diaChi);
+            st3.setString(3, s);
+            st3.setString(4, note);
+            st3.setLong(5, c.totalPrice());
+            
+            st3.executeUpdate();
+            int oid = 1;
+            PreparedStatement st4 = connection.prepareStatement(sql4);
+            ResultSet rs = st4.executeQuery();
+            rs.next();
+            oid = rs.getInt(1);
+            PreparedStatement st5 = connection.prepareStatement(sql5);
+            for (Item i : c.getItems()) {
+                st5.setInt(1, oid);
+                st5.setInt(2, i.getProduct().getpId());
+                st5.setInt(3, i.getPrice());
+                st5.setInt(4, i.getQuantity());
+                st5.executeUpdate();
+            }
+            PreparedStatement st6 = connection.prepareStatement(sql6);
+            for (Item i : c.getItems()) {
+                st6.setInt(1, i.getQuantity());
+                st6.setInt(2, i.getProduct().getpId());
+                
+                if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
+                    connection.rollback();
+                    return "Don hang khong duoc dat thanh cong";
+                }
+                st6.executeUpdate();
+            }
+
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            return "Don hang khong duoc dat thanh cong";
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+            }
+        }
+
+        return "Cam On";
+
+    }
+
+    public static void main(String[] args) throws SQLException {
+
     }
 }
