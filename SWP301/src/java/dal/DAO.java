@@ -927,7 +927,9 @@ public class DAO extends DBContext {
 
     }
 
-    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int pid) {
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription,
+            String presolution, String pinsurance, String format, String ptid, String pimage,
+            String psize, String pquantity, String pdiscount, int pid) {
 
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET      [AddedBy] = ?\n"
@@ -939,7 +941,7 @@ public class DAO extends DBContext {
                 + "           ,[Resolution] = ?\n"
                 + "           ,[Insurance] = ?\n"
                 + "           ,[CreateDate] = ?\n"
-                + "           ,[TID] = ?\n"
+                + "           ,[TID] = ?   \n"
                 + "           ,[ImageDefault] = ?\n"
                 + "           ,[Size] = ?\n"
                 + "           ,[Quantity] = ?\n"
@@ -999,7 +1001,6 @@ public class DAO extends DBContext {
         }
 
     }
-
     public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
         String sql = "UPDATE [dbo].[User]\n"
@@ -1210,6 +1211,6 @@ public class DAO extends DBContext {
         Cart c = new Cart(li2);
 
         d.insertOrder(g1, c, "Heloo");
-
     }
+
 }

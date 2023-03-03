@@ -177,21 +177,21 @@
                                             <div class="m-b-25">
                                                 <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
                                             </div>
-                                            <h6 class="f-w-600">${sessionScope.acc.lName}</h6>
+                                            <h6 class="f-w-600" style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
                                             <a href="">Change</a>
                                             <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="card-block">
-                                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Thông tin</h6>
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">First Name</p>
+                                                    <p class="m-b-10 f-w-600">Họ</p>
                                                     <input type="text"  name="fname" value="${sessionScope.acc.fName}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Last Name</p>
+                                                    <p class="m-b-10 f-w-600">Tên</p>
                                                     <input type="text"  name="lname" value="${sessionScope.acc.lName}" class="form-control">
                                                 </div>
 
@@ -200,32 +200,23 @@
                                                     <input type="text"  name="email" value="${sessionScope.acc.email}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Phone</p>
+                                                    <p class="m-b-10 f-w-600">Số điện thoại</p>
                                                     <input type="text"  name="phone"value="${sessionScope.acc.phone}" class="form-control">
                                                 </div>
                                             </div>
-                                            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
+                                            <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
                                             <div class="row">
+                                               
                                                 <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Gender</p>
-                                                    <h1 class="text-muted f-w-400"> 
-                                                        <c:if test="${sessionScope.acc.gender == true}">
-                                                            Nam
-                                                        </c:if>
-                                                        <c:if test="${sessionScope.acc.gender == false}">
-                                                            Nu
-                                                        </c:if></h1>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Address</p>
+                                                    <p class="m-b-10 f-w-600">Địa chỉ</p>
                                                     <input type="text"  name="address" value="${sessionScope.acc.address}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <p class="m-b-10 f-w-600">Date of birth</p>
+                                                    <p class="m-b-10 f-w-600">Ngày sinh</p>
                                                     <input type="date"  name="dob" value="${sessionScope.acc.dob.substring(0,10)}" class="form-control">
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <button type="submit" class="btn btn-danger change-btn">Confirm Edit</button>
+                                                    <button type="submit" class="btn btn-danger change-btn">Xác nhận</button>
                                                 </div>
                                                 </form>
                                             </div>

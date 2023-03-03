@@ -34,17 +34,17 @@
 
                 <div class="header-left">
                     <a href="index.html" class="logo">
-                        <img src="assetsEM/img/logo.png" alt="Logo">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo  ">
                     </a>
                     <a href="index.html" class="logo logo-small">
-                        <img src="assetsEM/img/logo-small.png" alt="Logo" width="30" height="30">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo" width="30" height="30">
                     </a>
                 </div>
 
                 <a href="javascript:void(0);" id="toggle_btn">
                     <i class="fe fe-text-align-left"></i>
                 </a>
-              
+
 
                 <a class="mobile_btn" id="mobile_btn">
                     <i class="fa fa-bars"></i>
@@ -146,9 +146,7 @@
                     </li>
 
                 </ul>
-
             </div>
-
 
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
@@ -157,33 +155,14 @@
                             <li class="menu-title">
                             </li>
                             <li>
-                                <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a href="listproduct"><i class="fe fe-home"></i> <span>Trang Home</span></a>
                             </li>
                             <li class="submenu">
-                                <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
+                                <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="oooo" class="active">Sản phẩm</a></li>
+                                    <li><a href="managerProduct" class="active">Sản phẩm</a></li>
                                     <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
-                                  
-                                </ul>
-                            </li>
-                          
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-layout"></i> <span> Forms <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="form-basic-inputs.html">Basic Inputs</a></li>
-                                    <li><a href="form-input-groups.html">Input Groups</a></li>
-                                    <li><a href="form-horizontal.html">Horizontal Form</a></li>
-                                    <li><a href="form-vertical.html">Vertical Form </a></li>
-                                    <li><a href="form-mask.html">Form Mask</a></li>
-                                    <li><a href="form-validation.html">Form Validation </a></li>
-                                </ul>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-table"></i> <span> Tables <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="tables-basic.html">Basic Tables </a></li>
-                                    <li><a href="data-tables.html">Data Table </a></li>
+
                                 </ul>
                             </li>
 
@@ -219,12 +198,12 @@
 
                                                     <th>Giá</th>
                                                     <th>Màu sắc</th>
-                                                    <th>Resolution</th>
-                                                    <th>Insurance</th>
+                                                    <th>Màn hình</th>
+                                                    <th>Bảo hành</th>
                                                     <th>Ngày tạo sản phẩm</th>
 
-                                                    <th>TID</th>
-
+                                                    <th>Loại tivi</th>
+                                                    <th>Hang tivi</th>
                                                     <th>Kích thước</th>
                                                     <th>Số lượng</th>
                                                     <th>Giảm giá</th>
@@ -238,16 +217,17 @@
                                                     <tr>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="general.html" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assetsEM/img/profiles/avatar-03.jpg" alt="User Image"></a>
-                                                                <a href="general.html">${o.name}<span>${o.pId}</span></a>
+                                                                <a  class="avatar avatar-sm me-2"></a>
+                                                                <a href="detail?pid=${o.pId}"><span>${o.pId}</span></a>
                                                             </h2>
                                                         </td>
                                                         <td>${o.price}</td>
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>
-                                                        <td>${o.cDate}</td>
+                                                        <td>${o.cDate.substring(0,10)}</td>
                                                         <td>${o.getType().tName}</td>
+                                                        <td>${o.getCat().cName}</td>
                                                         <td>${o.size}</td>
 
                                                         <td>${o.quantity}</td>

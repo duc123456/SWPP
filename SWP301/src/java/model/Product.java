@@ -50,6 +50,10 @@ public class Product {
 
     }
 
+    public Product(int roleId, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public int getSize() {
         return size;
     }
