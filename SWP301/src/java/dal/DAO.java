@@ -999,7 +999,7 @@ public class DAO extends DBContext {
     
     public static void main(String[] args) {
         DAO d = new DAO();
-       d.editProduct(2, "1", "100000", "NHAN", "1", "1", "1", "1", "2022-2-1", "1", "1", "1", "1", "10000", 9);
+       d.editProduct(2, "1", "100000", "NHAN", "1", "1", "1", "1", "2022-2-1", "1", "1", "1", "1", "10000", 10);
     }
 
 }

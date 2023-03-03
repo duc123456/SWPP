@@ -4,27 +4,36 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/EditUserController.java</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/ManagerProduct.jsp</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/AddProduct.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/Image/logo2.png</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/assetsEM/img/favicon.png</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/AddProduct.jsp</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/user.jsp</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/AddCart.java</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/model/Product.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/DeleteProduct.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/DeleteCart.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/detail.jsp</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/model/Category.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/EditProfile.jsp</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/EditProduct.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/ChangePass.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/EditProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/assetsEM/img/logotivi.png</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/Profile.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/ManagerProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/LoginControl.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/AddProduct.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/user.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/model/Product.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/ChangeProfile.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/forgotPassword.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/DeleteController.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/ListProduct.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/LoadControl.java</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/assetsEM/img/log-bg.png</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/dal/DAO.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/ManagerProduct.java</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/DetailControl.java</file>
             <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/src/java/controller/Process.java</file>
-            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/Profile.jsp</file>
+            <file>file:/D:/Desktop/GitSWP/SWPP/SWP301/web/Image/logo.png</file>
         </group>
     </open-files>
 </project-private>

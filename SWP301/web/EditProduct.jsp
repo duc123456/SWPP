@@ -34,8 +34,8 @@
             <div class="header">
 
                 <div class="header-left">
-                    <a href="oooo" class="logo">
-                        <img src="assetsEM/img/logo.png" alt="Logo">
+                    <a href="listproduct" class="logo">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo">
                     </a>
                     <a href="index.html" class="logo logo-small">
                         <img src="assetsEM/img/logo-small.png" alt="Logo" width="30" height="30">
@@ -158,7 +158,7 @@
                     <div class="page-header">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3 class="page-title">Edit Product</h3>
+                                <h3 class="page-title">Sửa sản phẩm</h3>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Basic Inputs</li>
@@ -170,12 +170,12 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                  <form action="editproduct" method = "post">
-                                        <c:set var="details" value="${requestScope.details}"/>
-                                <div class="card-header">
-                                    <h4 class="card-title">Edit Product</h4>
-                                </div>
-                              
+                                <form action="editproduct" method = "post">
+                                    <c:set var="details" value="${requestScope.details}"/>
+                                    <div class="card-header">
+                                        <h4 class="card-title">Sửa sản phẩm</h4>
+                                    </div>
+
                                     <div class="card-body">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">ID</label>
@@ -224,16 +224,16 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giảm giá</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="discount" value="${details.discount}" class="form-control">
+                                                <input type="text" name="pdiscount" value="${details.discount}" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Loai Tivi</label>
                                             <div class="col-md-10">
-                                                <select  class="form-control form-select">
+                                                <select  name="catid" class="form-control form-select">
                                                     <c:forEach items="${typec}" var="ty">
-                                                        <option  name="catid" value="${ty.tId}" checked="">${ty.tName}</option>
+                                                        <option  value="${ty.tId}" checked="">${ty.tName}</option>
                                                     </c:forEach>
 
                                                 </select>
@@ -248,7 +248,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">TID</label>
                                             <div class="col-md-10">
-                                                <select class="form-control form-select">
+                                                <select  name="tid" class="form-control form-select">
                                                     <c:forEach items="${listCC}" var="o">
                                                         <option  value="${o.cid}">${o.cName}</option>
                                                     </c:forEach>
@@ -256,22 +256,23 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Resolution</label>
+                                       <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Man Hinh</label>
                                             <div class="col-md-10">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="HD"> HD
+                                                        <input name="resolution" value="HD"  type="radio" checked> HD
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="4K"> 4K
+                                                        <input type="radio" name="resolution" value="4K" > 4K
                                                     </label>
                                                 </div>
-                                                
+                                              
                                             </div>
                                         </div>
+
 
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Description</label>
@@ -279,7 +280,7 @@
                                                 <textarea rows="5" cols="5" value=""  name="description"  class="form-control">${details.description}</textarea>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Button</button>
+                                        <button class="btn btn-primary" type="submit">Xác nhận</button>
                                     </div>
 
                                 </form>
