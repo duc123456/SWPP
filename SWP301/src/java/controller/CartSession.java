@@ -70,9 +70,11 @@ public class CartSession extends HttpServlet {
         List<Product> list=d.getAllProd();
         Cookie[] arr=request.getCookies();
         String txt="";
+       
+        String cart1 = "cart" + u.getuId();
         if(arr!=null){
             for(Cookie o:arr){
-                if(o.getName().equals("cart")){
+                if(o.getName().equals(cart1)){
                     txt+=o.getValue();
                 }
             }

@@ -14,12 +14,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
 import model.Guest;
 import model.Item;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -80,9 +82,12 @@ public class AddCartCookie extends HttpServlet {
         List<Product> list=d.getAllProd();
         Cookie[] arr=request.getCookies();
         String txt="";
+        HttpSession session = request.getSession();
+        User u = (User)session.getAttribute("acc");
+        String cart = "cart" + u.getuId();
         if(arr!=null){
             for(Cookie o:arr){
-                if(o.getName().equals("cart")){
+                if(o.getName().equals(cart)){
                     txt+=o.getValue();
                     o.setMaxAge(0);
                     response.addCookie(o);
@@ -101,7 +106,7 @@ public class AddCartCookie extends HttpServlet {
             txt += "/" + id+":"+num +":" +price;
            
         }
-        Cookie c=new Cookie("cart", txt);
+        Cookie c=new Cookie(cart, txt);
         c.setMaxAge(2*24*60*60);
         response.addCookie(c);
         response.sendRedirect("listproduct");//thay cai duoi

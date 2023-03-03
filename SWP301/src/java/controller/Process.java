@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import model.Cart;
 import model.Item;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -79,13 +80,16 @@ public class Process extends HttpServlet {
                 t.setQuantity(t.getQuantity() + num);
             }
             if (session.getAttribute("acc") != null) {
+               
+        User u = (User)session.getAttribute("acc");
+        String cart = "cart" + u.getuId();
                 Cookie[] cookie = request.getCookies();
                 for (Cookie cookie1 : cookie) {
-                    if (cookie1.getName().equals("cart")) {
+                    if (cookie1.getName().equals(cart)) {
                         cookie1.setMaxAge(0);
                         response.addCookie(cookie1);
                         String txt = c.cartToTxt(c);
-                        Cookie c1 = new Cookie("cart", txt);
+                        Cookie c1 = new Cookie(cart, txt);
                         c1.setMaxAge(2 * 24 * 60 * 60);
                         response.addCookie(c1);
                     }
