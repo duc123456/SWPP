@@ -56,7 +56,7 @@
                             <ul class="ms-auto d-inline-flex">
 
                                 <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
-                                <li class="p-2"><a  href="Profile.jsp"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.lName}</button></a></li>
+                                <li class="p-2"><a  href="orderofuser"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.lName}</button></a></li>
 
 
 
@@ -158,6 +158,8 @@
                                 <c:forEach items="${requestScope.type}" var="ty">
                                     <li><a href="listproduct?type=${ty.tId}">${ty.gettName()}</a></li>
                                     </c:forEach>
+
+
                             </ul>
                         </div>
                     </li>
@@ -183,6 +185,7 @@
 
                     <li class="p-21 px-4"><a class="text-white" href="">Surprise </a></li>
                 </ul>
+
             </div>
         </div>
     </header>

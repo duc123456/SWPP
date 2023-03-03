@@ -89,11 +89,11 @@ public class SearchCheckBox extends HttpServlet {
         DAO d = new DAO();
 
         String[] cat_raw = request.getParameterValues("cat");
-
+        String most = request.getParameter("most");
         String[] pri_raw = request.getParameterValues("pri");
         String[] size_raw = request.getParameterValues("size");
         String xpage = request.getParameter("page");
-        if (cat_raw == null && pri_raw == null && size_raw == null) {
+        if (cat_raw == null && pri_raw == null && size_raw == null && most== null) {
             response.sendRedirect("listproduct");
         } else {
 
@@ -244,8 +244,15 @@ public class SearchCheckBox extends HttpServlet {
             }
             List<Category> list2 = d.getAllCat();
             request.setAttribute("cate", list2);
-
-            List<Product> list1 = d.searchCheckBox(cat, pri, size);
+            List<Product> list1 = null ;
+            if(most == "1"){
+                list1 = d.searchCheckBox1(cat, pri, size);
+                request.setAttribute("most", "&most=1");
+            }else {
+                list1 =d.searchCheckBox1(cat, pri, size);
+                
+            }
+            
 
             int sizep = list1.size();
             int num = (sizep % 12 == 0 ? (sizep / 12) : ((sizep / 12) + 1));

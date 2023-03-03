@@ -61,7 +61,7 @@ public class AddProduct extends HttpServlet {
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
         dao.insertProduct(a.getRoleId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount);
-        response.sendRedirect("oooo");
+        response.sendRedirect("managerProduct");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

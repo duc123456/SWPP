@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Dreamchat - Dashboard</title>
+        <title>Thêm sản phẩm</title>
 
         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
 
@@ -32,12 +32,10 @@
             <div class="header">
 
                 <div class="header-left">
-                    <a href="index.html" class="logo">
-                        <img src="assetsEM/img/logo.png" alt="Logo">
+                    <a href="listproduct" class="logo">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo">
                     </a>
-                    <a href="index.html" class="logo logo-small">
-                        <img src="assetsEM/img/logo-small.png" alt="Logo" width="30" height="30">
-                    </a>
+                  
                 </div>
 
                 <a href="javascript:void(0);" id="toggle_btn">
@@ -156,7 +154,7 @@
                             <li class="menu-title">
                             </li>
                             <li>
-                                <a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                <a href="index.html"><i class="fe fe-home"></i> <span>Trang chủ</span></a>
                             </li>
                             <li class="submenu">
                                 <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
@@ -168,13 +166,7 @@
                             </li>
 
 
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-table"></i> <span> Tables <span class="menu-arrow"></span></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="tables-basic.html">Basic Tables </a></li>
-                                    <li><a href="data-tables.html">Data Table </a></li>
-                                </ul>
-                            </li>
+                           
 
                         </ul>
                     </div>
@@ -190,8 +182,8 @@
                             <div class="col-sm-12">
 
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Basic Inputs</li>
+                                    <li class="breadcrumb-item"><a href="listProduct">Home</a></li>
+                                    <li class="breadcrumb-item active">Thêm sản phẩm</li>
                                 </ul>
                             </div>
                         </div>

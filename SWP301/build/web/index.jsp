@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Gift Shoping Website Template  | Smarteyeapps.com</title>
+        <title>Trang chủ</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -321,6 +321,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                         </a>
 
                                     </div>
@@ -330,22 +332,24 @@
                                 <ul class="pagination">
 
 
-                                    <c:if test="${requestScope.xd == 1}">
-                                        <c:set var="page" value="${requestScope.page}"/>
-                                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                    
+                        <c:if test="${requestScope.xd == 1}">
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                   
+                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
+                                
+                            </c:forEach>
+                            
+                        </c:if>
+                            
+                        <c:if test="${requestScope.xd != 1}">
+                            <c:forEach begin="1" end="${endP}" var="pa">
+                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                            </c:forEach>
+                            
+                        </c:if>    
 
-                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}" class="page-link">${i}</a></li> 
-
-                                        </c:forEach>
-
-                                    </c:if>
-
-                                    <c:if test="${requestScope.xd != 1}">
-                                        <c:forEach begin="1" end="${endP}" var="pa">
-                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
-                                            </c:forEach>
-
-                                    </c:if>    
                                 </ul>    
                             </nav>    
 
