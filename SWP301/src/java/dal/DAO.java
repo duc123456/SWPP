@@ -1043,7 +1043,9 @@ public class DAO extends DBContext {
 
     }
 
-    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int pid) {
+    public void editProduct(int paddby, String pcatid, String pprice, String pname, String pcolor, String pdescription,
+            String presolution, String pinsurance, String format, String ptid, String pimage,
+            String psize, String pquantity, String pdiscount, int pid) {
 
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET      [AddedBy] = ?\n"
@@ -1055,7 +1057,7 @@ public class DAO extends DBContext {
                 + "           ,[Resolution] = ?\n"
                 + "           ,[Insurance] = ?\n"
                 + "           ,[CreateDate] = ?\n"
-                + "           ,[TID] = ?\n"
+                + "           ,[TID] = ?   \n"
                 + "           ,[ImageDefault] = ?\n"
                 + "           ,[Size] = ?\n"
                 + "           ,[Quantity] = ?\n"
@@ -1115,7 +1117,6 @@ public class DAO extends DBContext {
         }
 
     }
-
     public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
 
@@ -1406,7 +1407,11 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
+
         List<OrderDetail> list = d.getODDTbyUID(1);
         System.out.println(list.get(0).getOrder().getAddress());
+
+
     }
+
 }

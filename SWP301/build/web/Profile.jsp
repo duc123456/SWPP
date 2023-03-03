@@ -185,9 +185,10 @@ th {
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25">
-                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                               
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" >
                                         </div>
-                                        <h6 class="f-w-600">${sessionScope.acc.lName}</h6>
+                                        <h6 class="f-w-600"  style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
                                         <a href="">Change</a>
                                         <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
                                         
@@ -202,48 +203,39 @@ th {
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="card-block">
-                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Thông tin</h6>
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">First Name</p>
+                                                <p class="m-b-10 f-w-600">Họ</p>
                                                 <h1 class="text-muted f-w-400">${sessionScope.acc.fName}</h1    >
                                             </div>
                                             <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Last Name</p>
+                                                <p class="m-b-10 f-w-600">Tên</p>
                                                 <h1 class="text-muted f-w-400">${sessionScope.acc.lName}</h1>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <p class="m-b-10 f-w-600">Email</p>
-                                                <h1 class="text-muted f-w-400">   ${sessionScope.acc.email}</h1>
+                                                <h1 class="text-muted f-w-400" style="font-size:20px">${sessionScope.acc.email}</h1>
                                             </div>
                                             <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Phone</p>
+                                                <p class="m-b-10 f-w-600">Số điện thoại</p>
                                                 <h1 class="text-muted f-w-400">  ${sessionScope.acc.phone}</h1>
                                             </div>
                                         </div>
-                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Projects</h6>
+                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
                                         <div class="row">
+                                           
                                             <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Gender</p>
-                                                <h1 class="text-muted f-w-400"> 
-                                                    <c:if test="${sessionScope.acc.gender == true}">
-                                                        Nam
-                                                    </c:if>
-                                                    <c:if test="${sessionScope.acc.gender == false}">
-                                                        Nu
-                                                    </c:if></h1>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Address</p>
+                                                <p class="m-b-10 f-w-600">Địa chỉ</p>
                                                 <h1 class="text-muted f-w-400">${sessionScope.acc.address}</h1>
                                             </div>
                                             <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Date of birth</p>
+                                                <p class="m-b-10 f-w-600">Ngày sinh</p>
                                                 <h1 class="text-muted f-w-400">${sessionScope.acc.dob.substring(0,10)}</h1>
                                             </div>
-                                            <a href="EditProfile.jsp"><span class="float-end pt-2">Change Profile</span></a><br/>
-                                            <a href="ChangePassword.jsp"><span class="float-end pt-2">Change Password</span></a> 
+                                            <a href="EditProfile.jsp"><span class="float-end pt-2">Thay đổi thông tin</span></a><br/>
+                                            <a href="ChangePassword.jsp"><span class="float-end pt-2">Đổi mật khẩu</span></a> 
                                         </div>
                                     </div>
                                 </div>

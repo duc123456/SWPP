@@ -36,7 +36,7 @@ public class DeleteProduct extends HttpServlet {
         String pid = request.getParameter("PID");
         DAO dao = new DAO();
         dao.deletProduct(pid);
-        response.sendRedirect("oooo");
+        response.sendRedirect("managerProducr");
 
     }
 
