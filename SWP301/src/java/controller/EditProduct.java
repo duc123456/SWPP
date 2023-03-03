@@ -58,13 +58,13 @@ public class EditProduct extends HttpServlet {
         String pimage = request.getParameter("image");
         String psize = request.getParameter("size");
         String pquantity = request.getParameter("quantity");
-        String pdiscount = request.getParameter("discount");
+        String pdiscount = request.getParameter("discount");    
 
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        dao.editProduct(a.getRoleId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, id);
-        response.sendRedirect("oooo");
+        dao.editProduct(2, "2", "2", "2", "2", "2", "2", "2", format, "2", "2", "2", "2", "2", 1);
+        response.sendRedirect("managerProduct");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
