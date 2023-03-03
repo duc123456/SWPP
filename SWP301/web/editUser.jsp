@@ -83,11 +83,11 @@
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
                                     <label for="password">Email</label>
-                                    <input type="password" class="form-control" readonly value="${user.getEmail()}" id="password" name="password" placeholder="User Email">
+                                    <input type="text" class="form-control" readonly value="${user.getEmail()}" id="password" name="password" placeholder="User Email">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
                                     <label for="password_confirm">Phone</label>
-                                    <input type="password" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="" placeholder="User Phone">
+                                    <input type="text" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="" placeholder="User Phone">
                                 </div>
                             </div>
                             

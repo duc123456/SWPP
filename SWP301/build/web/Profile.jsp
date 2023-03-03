@@ -177,8 +177,10 @@ th {
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
         <div class="page-content page-container" id="page-content">
-            <div class="padding">
-                <div class="row container d-flex justify-content-center">
+            <div class="padding row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 container d-flex justify-content-center">
+                    <div></div>
                     <div class="col-xl-12 col-md-12">
                         <div class="card user-card-full">
                             <div class="row m-l-0 m-r-0">
@@ -243,6 +245,7 @@ th {
                         </div>
                     </div>
                 </div>
+                                            <div class="col-md-1"></div>
             </div>
                                             <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
                                             <div class="row" >
@@ -250,17 +253,22 @@ th {
                                                 <div class="col-md-8">
                                                         <table id="myTable" style="display: none; margin-bottom: 50px">
                                                             <tr>
-                                                              <th>Tên sản phẩm</th>
-                                                              <th>Column 2</th>
-                                                              <th>Column 3</th>
-                                                              <th>Column 3</th>
-                                                              <th>Column 3</th>
+                                                              <th>Sản phẩm bạn đã đặt</th>
+                                                              <th></th>
+                                                              <th>Đến nơi</th>
+                                                              <th>Tiền</th>
+                                                              <th>Số lượng</th>
+                                                              <th></th>
+                                                              
                                                             </tr>
                                                         <c:forEach items="${requestScope.order}" var="o">
                                                             <tr>
-                                                              <td>Row 1, Column 1</td>
-                                                              <td>${o.price}</td>
+                                                              <td>${d.getProductByID(o.getProduct().pId).name}</td>
+                                                              <td><img  src="Image/${d.getProductByID(o.getProduct().pId).imageDf}"  style="max-height: 60px;max-width: 60px"></td>
+                                                              <td>${o.getOrder().address}</td>
+                                                              <td>${o.price} vnđ</td>
                                                               <td>${o.amount}</td>
+                                                              <td><a href="detail?xd=1&&pid=${d.getProductByID(o.getProduct().pId).pId}"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: white; color: #dc3545">Đánh giá</button></a></td>
                                                             </tr>
                                                             </c:forEach>
                                                             
