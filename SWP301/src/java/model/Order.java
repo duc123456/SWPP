@@ -17,12 +17,11 @@ public class Order {
     private long totalPrice;
     private Guest guest;
     private String phone;
-    private String name;
 
     public Order() {
     }
 
-    public Order(int oId, User user, String address, String date, String note, long totalPrice, Guest guest, String phone, String name) {
+    public Order(int oId, User user, String address, String date, String note, long totalPrice, Guest guest, String phone) {
         this.oId = oId;
         this.user = user;
         this.address = address;
@@ -31,7 +30,6 @@ public class Order {
         this.totalPrice = totalPrice;
         this.guest = guest;
         this.phone = phone;
-        this.name = name;
     }
 
     public int getoId() {
@@ -97,14 +95,9 @@ public class Order {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+   
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    
 
    
     

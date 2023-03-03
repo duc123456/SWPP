@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Gift Shoping Website Template  | Smarteyeapps.com</title>
+        <title>Trang chủ</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -281,7 +281,7 @@
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
-                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 1.2}" pattern="#,##0 'VND'" /></b>
+                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 2}" pattern="#,##0 'VND'" /></b>
 
                                                 <s class="fs-5 ps-3"></s>
 
@@ -305,21 +305,27 @@
                                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <form action="addcart" method="">
-                                                            <input type="hidden" name="product" value="${p.pId}">
-                                                            <input type="hidden" name="quantity" value="1">
-                                                            <input type="hidden" name="price" value="${p.price * 2}">
-                                                            <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
-                                                        </form>
+                                                        <c:set var="c" value="addcart"/>
+                                                            <c:if test="${sessionScope.acc != null}">
+                                                                <c:set var="c" value="addcartcookie"/>
+                                                            </c:if>
+                                                            <form action="${c}" method="post">
+                                                                <input type="hidden" name="product" value="${p.pId}">
+                                                                <input type="hidden" name="quantity" value="1">
+                                                                <input type="hidden" name="price" value="${p.price * 2}">
+                                                                <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
+                                                            </form>
 
-                                                        
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
 
-                                </div>
+
+                                        </a>
+
+                                    </div>
 
                             </c:forEach>
                             <nav aria-label="breadcrumb">
