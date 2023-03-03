@@ -15,18 +15,17 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import model.Category;
-import model.Product;
+import model.OrderDetail;
 import model.User;
 
 /**
  *
- * @author nhant
+ * @author ADMIN
  */
-@WebServlet(name="ManagerProduct", urlPatterns={"/managerProduct"})
-public class ManagerProduct extends HttpServlet {
+@WebServlet(name="OrderOfUserController", urlPatterns={"/orderofuser"})
+public class OrderOfUserController extends HttpServlet {
    
-    /**     
+    /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -36,29 +35,19 @@ public class ManagerProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-             HttpSession session = request.getSession();
-        //ep string acc sang user
-        User a = (User) session.getAttribute("acc");
-        //bat buoc phai dang nhap 
-        if (session.getAttribute("acc") == null) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() != 0) {
-            DAO dao = new DAO();
-            List<Product> list = dao.getAllProd();
-           // List<Category> listC = dao.getAllCategory();
-
-            request.setAttribute("listP", list);
-         //   request.setAttribute("listCC", listC);
-            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-            //neu khong tro ve trang home
-        } else {
-            response.sendRedirect("listproduct");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet OrderOfUserController</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet OrderOfUserController at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        }
-   
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -71,7 +60,12 @@ public class ManagerProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        DAO d = new DAO();
+        User u = (User)session.getAttribute("acc");
+        List<OrderDetail> list = d.getODDTbyUID(u.getuId());
+        request.setAttribute("order", list);
+        request.getRequestDispatcher("Profile.jsp").forward(request, response);
     } 
 
     /** 

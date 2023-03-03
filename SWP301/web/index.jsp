@@ -332,22 +332,24 @@
                                 <ul class="pagination">
 
 
-                                    <c:if test="${requestScope.xd == 1}">
-                                        <c:set var="page" value="${requestScope.page}"/>
-                                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                    
+                        <c:if test="${requestScope.xd == 1}">
+                            <c:set var="page" value="${requestScope.page}"/>
+                            <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                   
+                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
+                                
+                            </c:forEach>
+                            
+                        </c:if>
+                            
+                        <c:if test="${requestScope.xd != 1}">
+                            <c:forEach begin="1" end="${endP}" var="pa">
+                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                            </c:forEach>
+                            
+                        </c:if>    
 
-                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}" class="page-link">${i}</a></li> 
-
-                                        </c:forEach>
-
-                                    </c:if>
-
-                                    <c:if test="${requestScope.xd != 1}">
-                                        <c:forEach begin="1" end="${endP}" var="pa">
-                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
-                                            </c:forEach>
-
-                                    </c:if>    
                                 </ul>    
                             </nav>    
 

@@ -18,6 +18,8 @@ import model.FeedBack;
 import model.Guest;
 import model.Image;
 import model.Item;
+import model.Order;
+import model.OrderDetail;
 import model.Product;
 import model.Type;
 import model.User;
@@ -666,6 +668,120 @@ public class DAO extends DBContext {
         return list;
     }
 
+    public List<Product> searchCheckBox1(int[] cat, int[] pri, int[] size) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select od.PID  from [Order Detail] od\n"
+                + " \n"
+                + " Inner Join Product p\n"
+                + " On p.PID = od.PID\n"
+                + "\n"
+                + "  Where (1=1)";
+        if (cat != null) {
+            if (cat.length == 1) {
+                sql += "And p.CATID = ?";
+            } else if (cat.length == 2) {
+                sql += "And (p.CATID = ? or p.CATID = ?)";
+            } else {
+                sql += "And ( p.CATID = ?";
+                for (int i = 1; i < cat.length - 1; i++) {
+                    sql += " or p.CATID = ?";
+
+                }
+                sql += " or p.CATID = ?)";
+            }
+
+        }
+        if (pri != null) {
+            if (pri.length == 2) {
+                sql += " AND (p.Price >= ? and p.Price <?) ";
+            } else if (pri.length == 4) {
+                sql += " And ((p.Price >= ? and p.Price <?) or (p.price >= ? and  p.price < ?)) ";
+            } else {
+                sql += " And ((p.Price >= ? and p.Price <?)";
+                for (int i = 1; i < pri.length / 2 - 1; i++) {
+                    sql += " or (p.price >= ? and p.price < ?)";
+
+                }
+                sql += " or (p.price >= ? and  p.price < ?))";
+            }
+
+        }
+        if (size != null) {
+            if (size.length == 2) {
+                sql += " AND (p.Size >= ? and p.Size <?) ";
+            } else if (size.length == 4) {
+                sql += " And ((p.Size >= ? and p.Size <?) or (p.Size >= ? and  p.Size < ?)) ";
+            } else {
+                sql += " And ((p.Size >= ? and p.Size <?)";
+                for (int i = 1; i < size.length / 2 - 1; i++) {
+                    sql += " or (p.Size >= ? and p.Size < ?)";
+
+                }
+                sql += " or (p.Size >= ? and  p.Size < ?))";
+            }
+
+        }
+        sql += "group by od.PID,p.CATID, p.Size,p.Price\n"
+                + "\n"
+                + " ORDER BY Sum(Amount) Desc";
+//        if(size != null){
+//            for (int i = 0; i < size.length; i++) {
+//                sql += "And size >= ? and < ?";
+//                
+//            }
+//        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            int n = 0;
+            if (cat != null) {
+                for (int i = 0; i < cat.length; i++) {
+                    n++;
+                    st.setInt(i + 1, cat[i]);
+
+                }
+            }
+            if (pri != null) {
+                if (n == 0) {
+                    for (int i = 0; i < pri.length; i++) {
+                        n++;
+                        st.setInt(i + 1, pri[i]);
+
+                    }
+                } else {
+                    for (int i = 0; i < pri.length; i++) {
+                        n++;
+                        st.setInt(n, pri[i]);
+
+                    }
+                }
+            }
+            if (size != null) {
+                if (n == 0) {
+                    for (int i = 0; i < size.length; i++) {
+                        n++;
+                        st.setInt(i + 1, size[i]);
+
+                    }
+                } else {
+                    for (int i = 0; i < size.length; i++) {
+                        n++;
+                        st.setInt(n, size[i]);
+
+                    }
+                }
+            }
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = getProductByID(rs.getInt(1));
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public List<Product> getAllProductByCat(int cid) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
@@ -1003,10 +1119,11 @@ public class DAO extends DBContext {
     }
     public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
-        String sql = "UPDATE [dbo].[User]\n"
-                + "   SET [Role] = ?\n"
-                + "   \n"
-                + " WHERE ID = ?";
+
+        String sql = "select PID,Sum(Amount) from [Order Detail]\n"
+                + " group by PID\n"
+                + " ORDER BY Sum(Amount) Desc";
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
 
@@ -1018,7 +1135,8 @@ public class DAO extends DBContext {
 
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
 
         }
         return list;
@@ -1112,7 +1230,7 @@ public class DAO extends DBContext {
             for (Item i : c.getItems()) {
                 st6.setInt(1, i.getQuantity());
                 st6.setInt(2, i.getProduct().getpId());
-                
+
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
                     return "Don hang khong duoc dat thanh cong";
@@ -1134,9 +1252,9 @@ public class DAO extends DBContext {
         return "Cam On";
 
     }
-    public String insertOrderUser(int uid,String diaChi ,Cart c, String note) throws SQLException {
-        
-       
+
+    public String insertOrderUser(int uid, String diaChi, Cart c, String note) throws SQLException {
+
         String sql3 = "insert into [Order](UID ,Address, Date, Note, TotalPrice) values (?,?,?,?,?)";
         String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
@@ -1146,15 +1264,14 @@ public class DAO extends DBContext {
         String s = d.toString();
         connection.setAutoCommit(false);
         try {
-           
-            
+
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setInt(1, uid);
             st3.setString(2, diaChi);
             st3.setString(3, s);
             st3.setString(4, note);
             st3.setLong(5, c.totalPrice());
-            
+
             st3.executeUpdate();
             int oid = 1;
             PreparedStatement st4 = connection.prepareStatement(sql4);
@@ -1173,7 +1290,7 @@ public class DAO extends DBContext {
             for (Item i : c.getItems()) {
                 st6.setInt(1, i.getQuantity());
                 st6.setInt(2, i.getProduct().getpId());
-                
+
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
                     return "Don hang khong duoc dat thanh cong";
@@ -1193,24 +1310,108 @@ public class DAO extends DBContext {
         }
 
         return "Cam On";
+    }
+
+    public List<Order> getListOrderbyID(int uid) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from [Order]\n"
+                + "where UID = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order u = new Order();//rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getLong(6),rs.getInt(7),rs.getString(8));
+                u.setoId(rs.getInt(1));
+                u.setUser(checkUsUid(rs.getInt(2)));
+                u.setAddress(rs.getString(3));
+                u.setDate(rs.getString(4));
+                u.setNote(rs.getString(5));
+                u.setTotalPrice(rs.getLong(6));
+                u.setGuest(getGuestById(rs.getInt(7)));
+                u.setPhone(rs.getString(8));
+                u.setStatus(rs.getInt("Status"));
+
+                list.add(u);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+    
+    public Order getOrderbyID(int oid) {
+        
+        String sql = "select * from [Order]\n"
+                + "where UID = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, oid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Order u = new Order();//rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getLong(6),rs.getInt(7),rs.getString(8));
+                u.setoId(rs.getInt(1));
+                u.setUser(checkUsUid(rs.getInt(2)));
+                u.setAddress(rs.getString(3));
+                u.setDate(rs.getString(4));
+                u.setNote(rs.getString(5));
+                u.setTotalPrice(rs.getLong(6));
+                u.setGuest(getGuestById(rs.getInt(7)));
+                u.setPhone(rs.getString(8));
+                u.setStatus(rs.getInt("Status"));
+
+                return u;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+
+    }
+
+    public List<OrderDetail> getODDTbyUID(int uid) {
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "select * from [Order] o\n"
+                + "Inner join [Order Detail] od\n"
+                + "on od.OID = o.OID\n"
+                + "where UID = ?\n"
+                + "Order by o.Date Desc";
+          try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setOrder(getOrderbyID(rs.getInt("OID")));
+                od.setProduct(getProductByID(rs.getInt("PID")));
+                od.setPrice(rs.getInt("Price"));
+                od.setAmount(rs.getInt("Amount"));
+
+                list.add(od);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
 
     }
 
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
-        Guest g1 = new Guest(0, "Chien", "Vu", "Ha Noi", "1234");
 
-        List<Item> li2 = new ArrayList<>();
+        List<OrderDetail> list = d.getODDTbyUID(1);
+        System.out.println(list.get(0).getOrder().getAddress());
 
-        Product p = d.getProductByID(1);
-        int quantity = 2;
-        int price = p.getPrice() * 2;
-        Item t = new Item(p, quantity, price);
-        li2.add(t);
 
-        Cart c = new Cart(li2);
-
-        d.insertOrder(g1, c, "Heloo");
     }
 
 }

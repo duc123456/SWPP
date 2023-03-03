@@ -145,7 +145,22 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #dc3545;
+  color: white;
+  font-weight: bold;
+}
 
     </style>
     <head>
@@ -176,7 +191,15 @@ p {
                                         <h6 class="f-w-600"  style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
                                         <a href="">Change</a>
                                         <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
+                                        
                                     </div>
+                                        <div class="row">
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-4"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: white; color: #dc3545">Đơn hàng</button></div>
+                                            <div class="col-md-4"></div>
+                                            
+                                        </div>
+                                        
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="card-block">
@@ -221,6 +244,30 @@ p {
                     </div>
                 </div>
             </div>
+                                            <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+                                            <div class="row" >
+                                                <div class="col-md-2"></div>
+                                                <div class="col-md-8">
+                                                        <table id="myTable" style="display: none; margin-bottom: 50px">
+                                                            <tr>
+                                                              <th>Tên sản phẩm</th>
+                                                              <th>Column 2</th>
+                                                              <th>Column 3</th>
+                                                              <th>Column 3</th>
+                                                              <th>Column 3</th>
+                                                            </tr>
+                                                        <c:forEach items="${requestScope.order}" var="o">
+                                                            <tr>
+                                                              <td>Row 1, Column 1</td>
+                                                              <td>${o.price}</td>
+                                                              <td>${o.amount}</td>
+                                                            </tr>
+                                                            </c:forEach>
+                                                            
+                                                      </table>
+                                                    </div>
+                                                <div class="col-md-2"></div>
+            </div>
         </div>
 
     </bod>
@@ -230,6 +277,14 @@ p {
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        const myButton = document.getElementById('myButton');
+const myTable = document.getElementById('myTable');
+
+myButton.addEventListener('click', () => {
+  myTable.style.display = 'table';
+});
+    </script>
     
 
 </html>
