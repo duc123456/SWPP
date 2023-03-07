@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/EditProduct.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderOfUserController.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Role.java</file>
@@ -30,6 +31,45 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DBContext.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoadControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
+=======
+            <file>file:/C:/SWPP/SWP301/src/java/controller/UserController.java</file>
+            <file>file:/C:/SWPP/SWP301/build/web/uploadDir/avatar20.jpg</file>
+            <file>file:/C:/SWPP/SWP301/web/login.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ChangeProfile.java</file>
+            <file>file:/C:/SWPP/SWP301/web/EditProfile.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/SWPP/SWP301/web/user.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ManagerProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ListProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/web/AddProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/public/graindashboard/css/graindashboard.css</file>
+            <file>file:/C:/SWPP/SWP301/web/user-edit.html</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Cart.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ChangePass.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/User.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/RegisterControl.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/C:/SWPP/SWP301/web/Profile.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Product.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/UpdateRoleController.java</file>
+            <file>file:/C:/SWPP/SWP301/web/sidebarDash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Order.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/LoginGoogle/LoginGoogleHandler.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/AddCart.java</file>
+            <file>file:/C:/SWPP/SWP301/web/ManagerProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Guest.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/AddProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/web/editUser.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/EditProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ForgotPass/ForgotPassword.java</file>
+            <file>file:/C:/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/SWPP/SWP301/build/web/Profile.jsp</file>
+            <file>file:/C:/SWPP/SWP301/build/web/uploadDir/avatar10.jpg</file>
+            <file>file:/C:/SWPP/SWP301/web/detail.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ChangeAvarta.java</file>
+>>>>>>> main
         </group>
     </open-files>
 </project-private>

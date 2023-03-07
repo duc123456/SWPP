@@ -109,7 +109,9 @@ public class ChangeAvarta extends HttpServlet {
  
            // Danh mục các phần đã upload lên (Có thể là nhiều file).
            for (Part part : request.getParts()) {
+
                String fileName = "avatar" + u.getuId() +(int)(Math.random()*100000000)+ ".jpg";
+
                if (fileName != null && fileName.length() > 0) {
                    String filePath = fullSavePath + File.separator + fileName;
                    System.out.println("Write attachment to file: " + filePath);

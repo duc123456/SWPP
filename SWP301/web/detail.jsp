@@ -78,7 +78,7 @@
         <div class="container">
             <div class="row about-row">
                 <div class="col-md-5 text-center">
-                    <img src="assets/images/product/1.jpg" alt="">
+                    <img src="Image/${product.imageDf}" alt="">
                 </div>
                 <div class="col-md-7">
                     <h2>${product.name}-${type1}</h2>
