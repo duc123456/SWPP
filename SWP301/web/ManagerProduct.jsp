@@ -33,7 +33,7 @@
             <div class="header">
 
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="listproduct" class="logo">
                         <img src="assetsEM/img/logotivi.png" alt="Logo  ">
                     </a>
                     <a href="index.html" class="logo logo-small">
@@ -127,16 +127,17 @@
 
                     <li class="nav-item dropdown has-arrow">
                         <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="user-img"><img class="rounded-circle" src="assetsEM/img/profiles/avatar-01.jpg" width="31" alt="Seema Sisty"></span>
+                            <span class="user-img"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
                         </a>
                         <div class="dropdown-menu">
                             <div class="user-header">
                                 <div class="avatar avatar-sm">
-                                    <img src="assetsEM/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                                    <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
                                 </div>
                                 <div class="user-text">
-                                    <h6>Seema Sisty</h6>
-                                    <p class="text-muted mb-0">Administrator</p>
+                                    <h6>${sessionScope.acc.fName} ${sessionScope.acc.lName}</h6>
+                                    <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
+                                    <p class="text-muted mb-0">${sessionScope.acc.username}</p>
                                 </div>
                             </div>
                             <a class="dropdown-item" href="Profile.jsp">My Profile</a>
@@ -196,7 +197,8 @@
                                                 <tr>
                                                     <th>Tên</th>
 
-                                                    <th>Giá</th>
+                                                    <th>Giá Nhập</th>
+                                                    <th>Giá Bán</th>
                                                     <th>Màu sắc</th>
                                                     <th>Màn hình</th>
                                                     <th>Bảo hành</th>
@@ -212,12 +214,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+                                                
                                                 <c:forEach items="${listP}" var="o">
                                                     <tr>
                                                         <td>${o.name}</td>
-                                                        
+
                                                         <td>${o.priceIn}</td>
+                                                        <td>${o.priceOut}</td>
+
+
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>
@@ -281,4 +286,3 @@
         });
     </script>
 </html>
-
