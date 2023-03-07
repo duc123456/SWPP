@@ -11,7 +11,7 @@ package model;
 public class Product {
     private int pId, addedBy;
    private Category cat;
-   private int price;
+   private int priceIn;
    private String name;
    private String color;
    private String description;
@@ -23,18 +23,17 @@ public class Product {
 
    private int size,quantity;
    private float discount;
+   private int priceOut;
 
 
     public Product() {
     }
 
-
-    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf, int size, int quantity, float discount) {
-
+    public Product(int pId, int addedBy, Category cat, int priceIn, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf, int size, int quantity, float discount, int priceOut) {
         this.pId = pId;
         this.addedBy = addedBy;
         this.cat = cat;
-        this.price = price;
+        this.priceIn = priceIn;
         this.name = name;
         this.color = color;
         this.description = description;
@@ -45,40 +44,9 @@ public class Product {
         this.imageDf = imageDf;
         this.size = size;
         this.quantity = quantity;
-
         this.discount = discount;
-
+        this.priceOut = priceOut;
     }
-
-    public Product(int roleId, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    
 
     public int getpId() {
         return pId;
@@ -104,12 +72,12 @@ public class Product {
         this.cat = cat;
     }
 
-    public int getPrice() {
-        return price;
+    public int getPriceIn() {
+        return priceIn;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPriceIn(int priceIn) {
+        this.priceIn = priceIn;
     }
 
     public String getName() {
@@ -175,6 +143,43 @@ public class Product {
     public void setImageDf(String imageDf) {
         this.imageDf = imageDf;
     }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
+    }
+
+    public int getPriceOut() {
+        return priceOut;
+    }
+
+    public void setPriceOut(int priceOut) {
+        this.priceOut = priceOut;
+    }
+
+
+    
+
+    
 
    
     
