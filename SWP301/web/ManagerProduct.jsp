@@ -218,8 +218,11 @@
                                                 <c:forEach items="${listP}" var="o">
                                                     <tr>
                                                         <td>${o.name}</td>
+
                                                         <td>${o.priceIn}</td>
                                                         <td>${o.priceOut}</td>
+
+
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>
