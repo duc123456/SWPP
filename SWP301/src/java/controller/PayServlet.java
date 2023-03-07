@@ -97,8 +97,10 @@ public class PayServlet extends HttpServlet {
                 String s = d.insertOrderUser(uid, dia, c, note);
                  request.setAttribute("mess", s);
                Cookie[] cookie = request.getCookies();
+              
+        String cart = "cart" + u.getuId();
                 for (Cookie cookie1 : cookie) {
-                    if(cookie1.getName().equals("cart")){
+                    if(cookie1.getName().equals(cart)){
                         cookie1.setMaxAge(0);
                          response.addCookie(cookie1);
                     }

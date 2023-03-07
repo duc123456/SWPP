@@ -21,6 +21,7 @@ import model.Item;
 import model.Order;
 import model.OrderDetail;
 import model.Product;
+import model.Role;
 import model.Type;
 import model.User;
 
@@ -85,7 +86,7 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public void register(int roleID, String name, String username, String pass, String phone, String createDate, String modifyDate) {
+    public void register(User u) {
         //       SELECT [UserID]
         //   ,[FullName]
         // ,[Email]
@@ -101,20 +102,22 @@ public class DAO extends DBContext {
                 + "           ,[UserName]\n"
                 + "           ,[PassWord]\n"
                 + "           ,[Phone]\n"
+                + "           ,[Email]\n"
                 + "           ,[CreatedDate]\n"
                 + "           ,[ModifiedDate])\n"
-                + "     VALUES (?,?,?,?,?,?,?)";
+                + "     VALUES (?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, roleID);
-            st.setString(2, name);
-            st.setString(3, username);
-            st.setString(4, pass);
+            st.setInt(1, u.getRoleId());
+            st.setString(2, u.getfName());
+            st.setString(3, u.getUsername());
+            st.setString(4, u.getPass());
 
-            st.setString(5, phone);
+            st.setString(5, u.getPhone());
 
-            st.setString(6, createDate);
-            st.setString(7, modifyDate);
+            st.setString(6, u.getEmail());
+            st.setString(7, u.getCreateDate());
+            st.setString(8, u.getModifyDate());
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -1117,6 +1120,7 @@ public class DAO extends DBContext {
         }
 
     }
+
     public List<Product> sellMost() {
         List<Product> list = new ArrayList<>();
 
@@ -1343,9 +1347,9 @@ public class DAO extends DBContext {
         return list;
 
     }
-    
+
     public Order getOrderbyID(int oid) {
-        
+
         String sql = "select * from [Order]\n"
                 + "where UID = ?";
 
@@ -1383,7 +1387,7 @@ public class DAO extends DBContext {
                 + "on od.OID = o.OID\n"
                 + "where UID = ?\n"
                 + "Order by o.Date Desc";
-          try {
+        try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uid);
             ResultSet rs = st.executeQuery();
@@ -1405,12 +1409,75 @@ public class DAO extends DBContext {
 
     }
 
+    public List<Role> getAllRole() {
+        List<Role> list = new ArrayList<>();
+        String sql = "select * from Role";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Role r = new Role();
+                r.setrId(rs.getInt(1));
+                r.setrName(rs.getString(2));
+
+                list.add(r);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+
+    public List<User> getUserbyRole(int role) {
+        List<User> list = new ArrayList<>();
+        String sql = "select * from [User] where Role = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, role);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14));
+
+                list.add(u);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+
+    public User getUserbyEmail(String email) {
+        String query = "select * from [User] \n"
+                + "where Email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, email);
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return new User(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
 
-        List<OrderDetail> list = d.getODDTbyUID(1);
-        System.out.println(list.get(0).getOrder().getAddress());
+        User u = new User();
+        u.setUsername("duceptrai");
+        u.setRoleId(1);
+        d.register(u);
+            
 
+        System.out.println();
 
     }
 

@@ -13,12 +13,14 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Cart;
 import model.Category;
 import model.Item;
 import model.Product;
 import model.Type;
+import model.User;
 
 /**
  *
@@ -73,10 +75,10 @@ public class ListProduct extends HttpServlet {
         int index = Integer.parseInt(indexPage);
 
         List<Product> list1 = d.pagingProduct(index);
-        String most = request.getParameter("most");
+
         
         
-        
+
         String cat1 = request.getParameter("cat1");
         if (cat1 != null) {
             try {
@@ -87,7 +89,7 @@ public class ListProduct extends HttpServlet {
             }
 
         }
-         String type = request.getParameter("type");
+        String type = request.getParameter("type");
         if (type != null) {
             try {
                 int tid = Integer.parseInt(type);
@@ -103,16 +105,16 @@ public class ListProduct extends HttpServlet {
         request.setAttribute("find", find);
         //gui ve front end
         List<Category> list2 = d.getAllCat();
-         List<Type> list3 = d.getAllType();
+        List<Type> list3 = d.getAllType();
         //gui ve front end
 
         if (find == null) {
 
         } else {
             list1 = d.search(find);
-            request.setAttribute("find",find);
+            request.setAttribute("find", find);
             request.setAttribute("product", list1);
-            
+
         }
         //moi trang web chia san pham ra la 12
         int count = d.getTotalProduct();
@@ -120,27 +122,31 @@ public class ListProduct extends HttpServlet {
         if (count % 12 != 0) {
             endPage++;
         }
-     
-        List<Product> list=d.getAllProd();
-        Cookie[] arr=request.getCookies();
-        String txt="";
-        if(arr!=null){
-            for(Cookie o:arr){
-                if(o.getName().equals("cart")){
-                    txt+=o.getValue();
+
+        List<Product> list = d.getAllProd();
+        Cookie[] arr = request.getCookies();
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("acc");
+        if (u != null) {
+            String cart1 = "cart" + u.getuId();
+            String txt = "";
+            if (arr != null) {
+                for (Cookie o : arr) {
+                    if (o.getName().equals(cart1)) {
+                        txt += o.getValue();
+                    }
                 }
             }
-        }
-        Cart cart=new Cart(txt, list);
-        List<Item> listItem=cart.getItems();
-        int n;
-        if(listItem!=null){
-            n=listItem.size();
-        }else{
-            n=0;
+            Cart cart = new Cart(txt, list);
+            List<Item> listItem = cart.getItems();
+            int n;
+            if (listItem != null) {
+                n = listItem.size();
+            } else {
+                n = 0;
             }
-        request.setAttribute("size", n);
-       
+            request.setAttribute("size", n);
+        }
 
         request.setAttribute("endP", endPage);
         request.setAttribute("tagw", index);

@@ -56,7 +56,14 @@ public class LoginGoogleHandler extends HttpServlet {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             simpleDateFormat.applyPattern("yyyy-MM-dd");
             String format = simpleDateFormat.format(date);
-           d.register(1,  user.getFamily_name(), user.getId(), null, null, format, format);
+            u = new User();
+            u.setlName(user.getFamily_name());
+            u.setfName(user.getGiven_name());
+            u.setUsername(user.getId());
+            u.setRoleId(1);
+            u.setCreateDate(format);
+            u.setModifyDate(format);
+           d.register(u);
             HttpSession session = request.getSession();
             User a = d.checkUsername(user.getId());
             session.setAttribute("acc", a);

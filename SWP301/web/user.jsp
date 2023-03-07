@@ -28,6 +28,67 @@
   text-overflow: hidden;
   white-space: unset;
 }
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 10px; /* demo only */
+}
+
+.custom-dropdown select {
+  background-color: #377dff;
+  color: #fff;
+  font-size: inherit;
+  padding: .5em;
+  padding-right: 2.5em; 
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  text-indent: 0.01px;
+  text-overflow: '';
+  -webkit-appearance: button; /* hide default arrow in chrome OSX */
+}
+
+.custom-dropdown::before,
+.custom-dropdown::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.custom-dropdown::after { /*  Custom dropdown arrow */
+  content: "\25BC";
+  height: 1em;
+  font-size: .625em;
+  line-height: 1;
+  right: 1.2em;
+  top: 50%;
+  margin-top: -.5em;
+}
+
+.custom-dropdown::before { /*  Custom dropdown arrow cover */
+  width: 2em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.custom-dropdown select[disabled] {
+  color: rgba(0,0,0,.3);
+}
+
+.custom-dropdown select[disabled]::after {
+  color: rgba(0,0,0,.1);
+}
+
+.custom-dropdown::before {
+  background-color: rgba(0,0,0,.15);
+}
+
+.custom-dropdown::after {
+  color: rgba(0,0,0,.4);
+}
     </style>
 </head>
 
@@ -50,19 +111,31 @@
                     <nav class="d-none d-md-block" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="#">Users</a>
+                                <a href="user">Tài khoản</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">All Users</li>
+                            <li class="breadcrumb-item active" aria-current="page">Tất cả tài khoản</li>
                         </ol>
                     </nav>
                     <!-- End Breadcrumb -->
 
                     <div class="mb-3 mb-md-4 d-flex justify-content-between">
-                        <div class="h3 mb-0">Users</div>
+                        <div class="h3 mb-0">Tài khoản</div>
                     </div>
 
 
                     <!-- Users -->
+                    <form action="user" id="role">
+                        <span class="custom-dropdown big" style="background-color: #377dff; margin: 0px">
+                        <select name="role" onchange="this.form.submit()" style="min-height: 30px">
+                            <option  value="0">--lựa chọn--</option>
+                            <option ${(requestScope.role==0)?'selected':''} value="0">Tất cả</option>
+                            <option ${(requestScope.role==1)?'selected':''} value="1">Khách hàng</option>
+                            <option ${(requestScope.role==2)?'selected':''} value="2">Nhân viên nhập hàng</option>
+                            <option ${(requestScope.role==3)?'selected':''} value="3">Nhân viên bán hàng</option>
+                            <option ${(requestScope.role==5)?'selected':''} value="5">Đã bị chặn</option>
+                            <option></option>
+                    </select></span>
+                    </form>
                     <div class="table-responsive-xl">
                         <table class="table text-nowrap mb-0">
                             <thead>
@@ -71,8 +144,8 @@
                                 <th class="font-weight-semi-bold border-top-0 py-2">Tên</th>
                                 <th class="font-weight-semi-bold border-top-0 py-2">Sdt</th>
                                 <th class="font-weight-semi-bold border-top-0 py-2">Đăng kí ngày</th>
-                                <th class="font-weight-semi-bold border-top-0 py-2">Role</th>
-                                <th class="font-weight-semi-bold border-top-0 py-2">Actions</th>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Vai trò</th>
+                                <th class="font-weight-semi-bold border-top-0 py-2">Tác động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -100,20 +173,28 @@
                                 <td class="py-3">${u.createDate}</td>
                                 <td class="py-3">
                                     <c:if test="${u.roleId==1}">
-                                    <span class="badge badge-pill badge-success">Customer</span>
+                                    <span class="badge badge-pill badge-primary">Khách hàng</span>
                                     </c:if>
                                     <c:if test="${u.roleId ==2}">
-                                    <span class="badge badge-pill badge-warning">Staff</span>
+                                    <span class="badge badge-pill badge-warning">Nhân viên nhập hàng</span>
+                                    </c:if>
+                                    <c:if test="${u.roleId ==3}">
+                                    <span class="badge badge-pill badge-success">Nhân viên duyệt đơn</span>
+                                    </c:if>
+                                    <c:if test="${u.roleId ==5}">
+                                    <span class="badge badge-pill badge-danger">Người dùng bị chặn</span>
                                     </c:if>
                                 </td>
                                 <td class="py-3">
                                     <div class="position-relative">
                                         <a class="link-dark d-inline-block" href="detailUser?id=${u.uId}">
                                             <i class="gd-pencil icon-text"></i>
-                                        </a>
-                                        <a class="link-dark d-inline-block" href="delete?id=${u.getuId()}">
-                                            <i class="gd-trash icon-text"></i>
-                                        </a>
+                                        </a>                                     
+                                        
+                                            <a class="link-dark d-inline-block" href="#" onclick="confirmDelete(${u.uId})"><i class="gd-trash icon-text"></i></a>
+                                           
+                                        
+                                        
                                     </div>
                                 </td>
                             </tr>
@@ -121,13 +202,10 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <div class="card-footer d-block d-md-flex align-items-center d-print-none">
-                            <div class="d-flex mb-2 mb-md-0">Showing 1 to 8 of 24 Entries</div>
-
-                            <nav class="d-flex ml-md-auto d-print-none" aria-label="Pagination"><ul class="pagination justify-content-end font-weight-semi-bold mb-0">				<li class="page-item">				<a id="datatablePaginationPrev" class="page-link" href="#!" aria-label="Previous"><i class="gd-angle-left icon-text icon-text-xs d-inline-block"></i></a>				</li><li class="page-item d-none d-md-block"><a id="datatablePaginationPage0" class="page-link active" href="#!" data-dt-page-to="0">1</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination1" class="page-link" href="#!" data-dt-page-to="1">2</a></li><li class="page-item d-none d-md-block"><a id="datatablePagination2" class="page-link" href="#!" data-dt-page-to="2">3</a></li><li class="page-item">				<a id="datatablePaginationNext" class="page-link" href="#!" aria-label="Next"><i class="gd-angle-right icon-text icon-text-xs d-inline-block"></i></a>				</li>				</ul></nav>
-                        </div>
+                        
                     </div>
                     <!-- End Users -->
+                   
                 </div>
             </div>
 
@@ -165,6 +243,20 @@
 
 <script src="public/graindashboard/js/graindashboard.js"></script>
 <script src="public/graindashboard/js/graindashboard.vendor.js"></script>
+  <script type="text/javascript">
+            function change() {
+                document.getElementById("role").submit();
+
+            }
+        </script>
+<script>
+function confirmDelete(userId) {
+  if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+    window.location.href = `delete?id=`+userId;
+  }
+}
+</script>
+<link href="css/manager.css" rel="stylesheet" type="text/css"/>
 
 </body>
 </html>
