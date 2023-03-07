@@ -93,7 +93,7 @@ public class SearchCheckBox extends HttpServlet {
         String[] pri_raw = request.getParameterValues("pri");
         String[] size_raw = request.getParameterValues("size");
         String xpage = request.getParameter("page");
-        if (cat_raw == null && pri_raw == null && size_raw == null && most== null) {
+        if (cat_raw == null && pri_raw == null && size_raw == null && most== null && most == null) {
             response.sendRedirect("listproduct");
         } else {
 
@@ -249,7 +249,7 @@ public class SearchCheckBox extends HttpServlet {
                 list1 = d.searchCheckBox1(cat, pri, size);
                 request.setAttribute("most", "&most=1");
             }else {
-                list1 =d.searchCheckBox1(cat, pri, size);
+                list1 =d.searchCheckBox(cat, pri, size);
                 
             }
             

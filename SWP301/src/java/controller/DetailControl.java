@@ -65,6 +65,12 @@ public class DetailControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pid = request.getParameter("pid");
+        String xd = request.getParameter("xd");
+        if(xd == null){
+            
+        }else{
+            request.setAttribute("xd", xd);
+        }
         int id = Integer.parseInt(pid);
         DAO d = new DAO();
         Product p = d.getProductByID(id);

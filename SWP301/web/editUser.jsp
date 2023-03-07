@@ -50,85 +50,149 @@
                     <!-- End Breadcrumb -->
 
                     <div class="mb-3 mb-md-4 d-flex justify-content-between">
-                        <div class="h3 mb-0">Infomation  User</div>
+                        <div class="h3 mb-0">Thông tin người dùng</div>
                     </div>
 
 
                     <!-- Form -->
+                    <c:if test="${ user.getRoleId() == 5 || user.getRoleId() == 1}">
                     <div>
-                        <form action="editrole">
+                        <form action="editrole" id="myForm">
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">User Name</label>
-                                    <input type="text" class="form-control" readonly value="${user.getUsername()}" id="password" name="password" placeholder="User Name">
-                                <input type="text" class="form-control" hidden value="${user.getuId()}" id="id" name="id" placeholder="User Name">
+                                    <label for="password">Tài khoản</label>
+                                    <input type="text" class="form-control" readonly value="${user.getUsername()}" id="password" name="username" placeholder="Tài khoản">
+                                <input type="text" class="form-control" hidden value="${user.getuId()}" id="id" name="id" placeholder="Tài khoản">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Password</label>
-                                    <input type="password" class="form-control" readonly value="${user.getPass()}" id="password_confirm" name="password_confirm" placeholder="Password">
+                                    <label for="password_confirm">Mật khẩu</label>
+                                    <input type="password" class="form-control" readonly value="${user.getPass()}" id="password_confirm" name="password" placeholder="Mật khẩu">
                                 </div>
                             </div>
-                            <div class="form-row">
-                                
-                                
+                            <div class="form-row">   
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="email">First Name</label>
-                                    <input type="email" class="form-control" readonly value="${user.getfName()}" id="email" name="email" placeholder="User First Name">
+                                    <label for="email">Tên</label>
+                                    <input type="email" class="form-control" readonly value="${user.getfName()}" id="email" name="fname" placeholder="Tên">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="email">Last Name</label>
-                                    <input type="email" class="form-control" readonly value="${user.getlName()}" id="email" name="email" placeholder="User Last Name">
+                                    <label for="email">Họ</label>
+                                    <input type="email" class="form-control" readonly value="${user.getlName()}" id="email" name="lname" placeholder="Họ">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
                                     <label for="password">Email</label>
-                                    <input type="password" class="form-control" readonly value="${user.getEmail()}" id="password" name="password" placeholder="User Email">
+                                    <input type="text" class="form-control" readonly value="${user.getEmail()}" id="password" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Phone</label>
-                                    <input type="password" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="" placeholder="User Phone">
+                                    <label for="password_confirm">Số điện thoại</label>
+                                    <input type="text" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="phone" placeholder="Số điện thoại">
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">Date of Birth</label>
-                                    <input type="text" class="form-control" readonly value="${user.getDob().substring(0,10)}" id="password" name="password" placeholder="User Date of Birth">
+                                    <label for="password">Ngày sinh</label>
+                                    <input type="text" class="form-control" readonly value="${user.getDob().substring(0,10)}" id="password" name="dob" placeholder="Ngày sinh">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Gender</label>
-                                    <input type="text" class="form-control" readonly value="${user.isGender()}" id="password_confirm" name="password_confirm" placeholder="User Gender">
+                                    <label for="password_confirm">Giới tính</label>
+                                    <input type="text" class="form-control" readonly value="${user.isGender()}" id="password" name="gender" placeholder="Giới tính">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">Address</label>
-                                    <input type="text" class="form-control" readonly value="${user.getAddress()}" id="password" name="password" placeholder="User Address">
+                                    <label for="password">Địa chỉ</label>
+                                    <input type="text" class="form-control" readonly value="${user.getAddress()}" id="password" name="address" placeholder="Địa chỉ">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Date of Create</label>
-                                    <input type="text" class="form-control" readonly value="${user.getCreateDate().substring(0,10)}" id="password_confirm" name="password_confirm" placeholder="User Date of Create">
+                                    <label for="password_confirm">Ngày tạo tài khoản</label>
+                                    <input type="text" class="form-control" readonly value="${user.getCreateDate().substring(0,10)}" id="password_confirm" name="createDate" placeholder="Ngày tạo tài khoản">
                                 </div>
                             </div>    
                              <div class="form-row">
-                                <div class="form-group col-12 col-md-5">
-                                    <label for="role">Role</label>
-                                    <select name="role" class="col-md-4">
-                                        <option ${(user.getRoleId()==4)?'selected':''} value="4">Block</option>
-                                        <option ${(user.getRoleId()==1)?'selected':''} value="1">Customer</option>
-                                        <option ${(user.getRoleId()==2)?'selected':''} value="2">Staff</option>
-                                        
-                                    </select>
-                                </div>
-                                
+                                    
+                                            
+                                        <div class="custom-control custom-switch mb-2" style="padding-left: 0px">
+                                            
+                                            <input type="text"  name="role" value="${(user.getRoleId() == 5)?'1':'5'}"class="custom-control-input" >
+                                            <div class="col-md-4" style="padding-left: 5px"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: #FFF; color: #377dff;border-color: #377dff;border-radius: 5px;min-width:90px">${(user.getRoleId()==5)?'Bỏ chặn':'Chặn'}</button></div>
+                                        </div>
+                                                
                             </div>    
-                                
-                            
-
-                            <button type="submit" class="btn btn-primary float-right">Create</button>
-                        </form>
+                            </form>                    
                     </div>
+                                        </c:if>
+                    <!-- End Form -->
+                    <!-- Form -->
+                    <c:if test="${ user.getRoleId() == 2 || user.getRoleId() == 3}">
+                    <div>
+                        <form action="editrole" id="myForm">
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password">Tài khoản</label>
+                                    <input type="text" class="form-control"  value="${user.getUsername()}" id="password" name="username" placeholder="Tài khoản">
+                                <input type="text" class="form-control" hidden value="${user.getuId()}" id="id" name="id" placeholder="Tài khoản">
+                                </div>
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password_confirm">Mật khẩu</label>
+                                    <input type="password" class="form-control"  value="${user.getPass()}" id="password_confirm" name="password" placeholder="Mật khẩu">
+                                </div>
+                            </div>
+                            <div class="form-row">   
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="email">Tên</label>
+                                    <input type="text" class="form-control"  value="${user.getfName()}" id="name" name="fname" placeholder="Tên">
+                                </div>
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="email">Họ</label>
+                                    <input type="text" class="form-control"  value="${user.getlName()}"  name="lname" placeholder="Họ">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password">Email</label>
+                                    <input type="email" class="form-control"  value="${user.getEmail()}" id="password" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password_confirm">Số điện thoại</label>
+                                    <input type="text" class="form-control" value="${user.getPhone()}" id="password_confirm" name="phone" placeholder="Số điện thoại">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password">Ngày sinh</label>
+                                    <input type="text" class="form-control"  value="${user.getDob().substring(0,10)}" id="password" name="dob" placeholder="Ngày sinh">
+                                </div>
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password_confirm">Giới tính</label>
+                                    <input type="text" class="form-control"  value="${user.isGender()}" id="password" name="gender" placeholder="Giới tính">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password">Địa chỉ</label>
+                                    <input type="text" class="form-control"  value="${user.getAddress()}" id="password" name="address" placeholder="Địa chỉ">
+                                </div>
+                                <div class="form-group col-12 col-md-5">
+                                    <label for="password_confirm">Ngày tạo tài khoản</label>
+                                    <input type="text" class="form-control"  value="${user.getCreateDate().substring(0,10)}" id="password_confirm" name="createDate" placeholder="Ngày tạo tài khoản">
+                                </div>
+                            </div>    
+                             <div class="form-row">
+                                    
+                                            
+                                 <div class="custom-control custom-switch mb-2" style="padding-left: 0px">
+                                            
+                                            <input type="text"  name="role" value="${(user.getRoleId() == 2)?'3':'2'}"class="custom-control-input" >
+                                            <div class="col-md-4" style="padding-left: 5px"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: #FFF; color: #377dff;border-color: #377dff;border-radius: 5px;min-width:180px">${(user.getRoleId()==2)?'Chuyển nhân viên nhập hàng':' Chuyển nhân viên thanh toán'}</button></div>
+                                        </div>
+                                                
+                            </div>    
+                            </form>                    
+                    </div>
+                                        </c:if>
                     <!-- End Form -->
                 </div>
             </div>
@@ -167,6 +231,14 @@
 
 <script src="public/graindashboard/js/graindashboard.js"></script>
 <script src="public/graindashboard/js/graindashboard.vendor.js"></script>
+<script>
+  var checkbox = document.getElementById('randomPassword');
+  checkbox.addEventListener('change', function() {
+    document.getElementById('myForm').submit();
+  });
+</script>
+
+    
 
 </body>
 </html>

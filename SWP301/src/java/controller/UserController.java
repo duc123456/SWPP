@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Role;
 import model.User;
 
 /**
@@ -59,8 +60,19 @@ public class UserController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d = new DAO();
-        List<User> list = d.getAllUser();
-        int numberOfUser = d.countUser();
+        String role = request.getParameter("role");
+        List<User> list = null;
+        if(role == null || role.equalsIgnoreCase("0")){
+            role = "0";
+            list = d.getAllUser();
+        }else {
+            int role_ = Integer.parseInt(role);
+            list = d.getUserbyRole(role_);
+        }
+        request.setAttribute("role", role);
+        int numberOfUser = list.size();
+        request.setAttribute(role, d);
+        
         request.setAttribute("users", list);
         request.setAttribute("total", numberOfUser);
         request.getRequestDispatcher("user.jsp").forward(request, response);
