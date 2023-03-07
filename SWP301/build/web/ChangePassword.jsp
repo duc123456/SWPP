@@ -43,7 +43,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-7 col-md-10 py-5 mx-auto">
                             <div class="login-card bg-white shadow-md p-5">
-                                <h4 class="text-center mb-5">CHANGE PASS</h4>
+                                <h4 class="text-center mb-5">Đổi mật khẩu</h4>
                                 <h3 style="color: red">${requestScope.ms}</h3>
 
                             <form action="changepass" method="post">

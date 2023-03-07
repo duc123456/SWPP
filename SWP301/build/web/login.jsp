@@ -68,7 +68,7 @@
                                         <button type="submit" value="Login" class="btn btn-danger">Đăng Nhập</button>
                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/SWP391/logingg&response_type=code&client_id=55055519665-ah0bae7b1vdvc36fdd0c78tl3c6v0cpf.apps.googleusercontent.com&approval_prompt=force">Login GG</a>
 
-                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">Quên mật khẩu</span></a> 
+                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">Quên mật khẩu?</span></a> 
                                     </div>
                                 </div>
                             </form>

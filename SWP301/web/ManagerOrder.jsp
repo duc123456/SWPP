@@ -1,11 +1,10 @@
 <%-- 
-    Document   : EditProduct
-    Created on : Feb 21, 2023, 4:01:42 PM
+    Document   : ManagerProduct
+    Created on : Feb 21, 2023, 3:22:59 PM
     Author     : nhant
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 
 
 <!DOCTYPE html>
@@ -34,11 +33,11 @@
             <div class="header">
 
                 <div class="header-left">
-                    <a href="listproduct" class="logo">
-                        <img src="assetsEM/img/logotivi.png" alt="Logo">
+                    <a href="index.html" class="logo">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo  ">
                     </a>
                     <a href="index.html" class="logo logo-small">
-                        <img src="assetsEM/img/logo-small.png" alt="Logo" width="30" height="30">
+                        <img src="assetsEM/img/logotivi.png" alt="Logo" width="30" height="30">
                     </a>
                 </div>
 
@@ -141,158 +140,118 @@
                                 </div>
                             </div>
                             <a class="dropdown-item" href="Profile.jsp">My Profile</a>
-
+                            <a class="dropdown-item" href="general.html">Account Settings</a>
                             <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
                     </li>
 
                 </ul>
-
             </div>
 
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+                    <div id="sidebar-menu" class="sidebar-menu">
+                        <ul>
+                            <li class="menu-title">
+                            </li>
+                            <li>
+                                <a href="listproduct"><i class="fe fe-home"></i> <span>Trang Home</span></a>
+                            </li>
+                            <li class="submenu">
+                                <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="managerProduct" class="active">Sản phẩm</a></li>
+                                    <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
+
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="page-wrapper">
                 <div class="content container-fluid">
-
                     <div class="page-header">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3 class="page-title">Sửa sản phẩm</h3>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="page-title">Sản phẩm</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Basic Inputs</li>
+                                    <li class="breadcrumb-item"><a href="index.jsp">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active">Quản lý Sản phẩm</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <form action="editproduct" method = "post">
-                                    <c:set var="details" value="${requestScope.details}"/>
-                                    <div class="card-header">
-                                        <h4 class="card-title">Sửa sản phẩm</h4>
-                                    </div>
+                        <div class="col-md-12 d-flex">
 
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">ID</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="pid" value="${details.pId}" class="form-control" readonly="">
-                                            </div>
-                                        </div>
+                            <div class="card card-table flex-fill">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tên</th>
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Tên</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="pname" value="${details.name}" class="form-control">
-                                            </div>
-                                        </div>
+                                                    <th>Giá</th>
+                                                    <th>Màu sắc</th>
+                                                    <th>Màn hình</th>
+                                                    <th>Bảo hành</th>
+                                                    <th>Ngày tạo sản phẩm</th>
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá Nhap</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="price" value="${details.price}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá Ban</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="priceout" value="${details.priceout}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Màu sắc</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="color" value="${details.color}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Bảo hành</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="insurance" value="${details.insurance}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Kích thước</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="size" value="${details.size}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Số lượng</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="quantity" value="${details.quantity}" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giảm giá</label>
-                                            <div class="col-md-10">
-                                                <input type="text" name="discount" value="${details.discount}" class="form-control">
-                                            </div>
-                                        </div>
+                                                    <th>Loại tivi</th>
+                                                    <th>Hang tivi</th>
+                                                    <th>Kích thước</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Giảm giá</th>
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Loai Tivi</label>
-                                            <div class="col-md-10">
-                                                <select  name="tid" class="form-control form-select">
-                                                    <option value="${details.type.tId}" checked>${details.type.tName}</option>
-                                                    <c:forEach items="${typec}" var="ty">
+                                                    <th class="text-end">Hành động</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+                                                <c:forEach items="${listP}" var="o">
+                                                    <tr>
+                                                        <td>${o.name}</td>
+                                                        <td>${o.price}</td>
+                                                        <td>${o.color}</td>
+                                                        <td>${o.resolution}</td>
+                                                        <td>${o.insurance}</td>
+                                                        <td>${o.cDate.substring(0,10)}</td>
+                                                        <td>${o.getType().tName}</td>
+                                                        <td>${o.getCat().cName}</td>
+                                                        <td>${o.size}</td>
 
-                                                        <option  value="${ty.tId}">${ty.tName}</option>
+                                                        <td>${o.quantity}</td>
+                                                        <td>${o.discount}</td>
+
+                                                        <td class="text-end">
+                                                            <div class="actions">
+                                                                <a href="loadProduct?pId=${o.pId}"  class="btn btn-sm bg-success-light me-2">
+                                                                    <i class="fe fe-pencil"></i>
+                                                                </a>
+                                                                <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
+                                                                    <i class="fe fe-trash"></i>
+                                                                </a>
+                                                            </div>
+                                                        </td>
                                                     </c:forEach>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Hang Tivi</label>
-                                            <div class="col-md-10">
-                                                <select  name="catid" class="form-control form-select">
-                                                    <option value="${details.cat.cid}" checked>${details.cat.cName}</option>
-                                                    <c:forEach items="${listCC}" var="o">
-                                                        <option  value="${o.cid}">${o.cName}</option>
-                                                    </c:forEach>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Man Hinh</label>
-                                            <div class="col-md-10">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="resolution" value="HD"  type="radio" checked> HD
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="resolution" value="4K" > 4K
-                                                    </label>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                                </tr>
 
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Description</label>
-                                            <div class="col-md-10">
-                                                <textarea rows="5" cols="5" value=""  name="description"  class="form-control">${details.description}</textarea>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary" type="submit">Xác nhận</button>
+
+
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                </form>
+                                </div>
                             </div>
 
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -307,6 +266,18 @@
 
         <script src="assetsEM/js/script.js"></script>
     </body>
-</html>
 
+    <script>
+        const productTitles = document.querySelectorAll('.name-Product');
+
+        productTitles.forEach(title => {
+            const titleText = title.textContent;
+
+            if (titleText.length > 24) {
+                const shortenedText = titleText.slice(0, 21) + '...';
+                title.textContent = shortenedText;
+            }
+        });
+    </script>
+</html>
 

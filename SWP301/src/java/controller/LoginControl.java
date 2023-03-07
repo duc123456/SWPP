@@ -87,7 +87,12 @@ public class LoginControl extends HttpServlet {
             String ms = "username or password is incorrect!!!";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
+        }else if(a.getRoleId()==2) {
+             HttpSession session = request.getSession();
+            session.setAttribute("acc", a);
+            
+            response.sendRedirect("managerProduct");
+        }else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
             // request.getRequestDispatcher("home").forward(request, response);

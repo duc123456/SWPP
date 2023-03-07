@@ -196,7 +196,8 @@
                                                 <tr>
                                                     <th>Tên</th>
 
-                                                    <th>Giá</th>
+                                                    <th>Giá Nhap</th>
+                                                    <th>Giá Ban</th>
                                                     <th>Màu sắc</th>
                                                     <th>Màn hình</th>
                                                     <th>Bảo hành</th>
@@ -215,13 +216,9 @@
                                                 <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
                                                 <c:forEach items="${listP}" var="o">
                                                     <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a  class="avatar avatar-sm me-2"></a>
-                                                                <a href="detail?pid=${o.pId}"><span>${o.pId}</span></a>
-                                                            </h2>
-                                                        </td>
+                                                        <td>${o.name}</td>
                                                         <td>${o.price}</td>
+                                                        <td>${o.priceout}</td>
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>

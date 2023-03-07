@@ -159,7 +159,7 @@
                             <li class="submenu">
                                 <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
-                                    <li><a href="oooo" class="active">Sản phẩm</a></li>
+                                    <li><a href="loadProduct" class="active">Sản phẩm</a></li>
                                     <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
 
                                 </ul>
@@ -207,9 +207,15 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá</label>
+                                            <label class="col-form-label col-md-2">Giá Nhap</label>
                                             <div class="col-md-10">
                                                 <input name="price" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Giá Ban</label>
+                                            <div class="col-md-10">
+                                                <input name="priceout" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -264,12 +270,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">File Input</label>
-                                            <div class="col-md-10">
-                                                <input class="form-control" type="file">
-                                            </div>
-                                        </div>
+                                       
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Hang Tivi</label>
                                             <div class="col-md-10">

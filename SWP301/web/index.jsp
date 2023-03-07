@@ -306,26 +306,26 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <c:set var="c" value="addcart"/>
-                                                            <c:if test="${sessionScope.acc != null}">
-                                                                <c:set var="c" value="addcartcookie"/>
-                                                            </c:if>
-                                                            <form action="${c}" method="post">
-                                                                <input type="hidden" name="product" value="${p.pId}">
-                                                                <input type="hidden" name="quantity" value="1">
-                                                                <input type="hidden" name="price" value="${p.price * 2}">
-                                                                <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
-                                                            </form>
+                                                        <c:if test="${sessionScope.acc != null}">
+                                                            <c:set var="c" value="addcartcookie"/>
+                                                        </c:if>
+                                                        <form action="${c}" method="post">
+                                                            <input type="hidden" name="product" value="${p.pId}">
+                                                            <input type="hidden" name="quantity" value="1">
+                                                            <input type="hidden" name="price" value="${p.price * 2}">
+                                                            <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
+                                                        </form>
 
 
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
 
 
-                                        </a>
+                                    </a>
 
-                                    </div>
+                                </div>
 
                             </c:forEach>
                             <nav aria-label="breadcrumb">
@@ -334,20 +334,31 @@
 
                                     <c:if test="${requestScope.xd == 1}">
                                         <c:set var="page" value="${requestScope.page}"/>
+
                                         <c:forEach begin="1" end="${requestScope.num}" var="i">
-
-                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}" class="page-link">${i}</a></li> 
-
-                                        </c:forEach>
-
-                                    </c:if>
-
-                                    <c:if test="${requestScope.xd != 1}">
-                                        <c:forEach begin="1" end="${endP}" var="pa">
-                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                                            <c:if test="${tawgw > 1}">
+                                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}" class="page-link">${i}</a></li> 
+                                                </c:if>
                                             </c:forEach>
 
-                                    </c:if>    
+                                    </c:if>
+                                    <c:if test="${endP > 1}">
+                                        <c:if test="${requestScope.xd != 1}">
+                                            <c:if test= "${tagw >1 }">
+                                                <a href="listproduct?index=${tagw -1}&find=${requestScope.find}">Previous</a>
+                                            </c:if>
+
+                                            <c:forEach begin="1" end="${endP}" var="pa">
+
+                                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+
+                                            </c:forEach>
+
+                                            <c:if test= "${tagw < endP }">
+                                                <a href="listproduct?index=${tagw +1}&find=${requestScope.find}">NExt</a>
+                                            </c:if>
+                                        </c:if>   
+                                    </c:if>
                                 </ul>    
                             </nav>    
 

@@ -23,14 +23,13 @@ public class Product {
 
    private int size,quantity;
    private float discount;
+     private int priceout;
 
 
     public Product() {
     }
 
-
-    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf, int size, int quantity, float discount) {
-
+    public Product(int pId, int addedBy, Category cat, int price, String name, String color, String description, String resolution, int insurance, String cDate, Type type, String imageDf, int size, int quantity, float discount, int priceout) {
         this.pId = pId;
         this.addedBy = addedBy;
         this.cat = cat;
@@ -45,13 +44,16 @@ public class Product {
         this.imageDf = imageDf;
         this.size = size;
         this.quantity = quantity;
-
         this.discount = discount;
-
+        this.priceout = priceout;
     }
 
-    public Product(int roleId, String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String pimage, String psize, String pquantity, String pdiscount, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int getPriceout() {
+        return priceout;
+    }
+
+    public void setPriceout(int priceout) {
+        this.priceout = priceout;
     }
 
     public int getSize() {

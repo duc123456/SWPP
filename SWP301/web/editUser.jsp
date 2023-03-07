@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>Create User | Graindashboard UI Kit</title>
+    <title>Sua nguoi dung</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -64,8 +64,8 @@
                                 <input type="text" class="form-control" hidden value="${user.getuId()}" id="id" name="id" placeholder="User Name">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Password</label>
-                                    <input type="password" class="form-control" readonly value="${user.getPass()}" id="password_confirm" name="password_confirm" placeholder="Password">
+                                    <label for="text">Password</label>
+                                    <input type="text" class="form-control" readonly value="${user.getPass()}" id="password_confirm" name="password_confirm" placeholder="Password">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -82,32 +82,32 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">Email</label>
-                                    <input type="password" class="form-control" readonly value="${user.getEmail()}" id="password" name="password" placeholder="User Email">
+                                    <label for="text">Email</label>
+                                    <input type="text" class="form-control" readonly value="${user.getEmail()}" id="password" name="password" placeholder="User Email">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Phone</label>
-                                    <input type="password" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="" placeholder="User Phone">
+                                    <label for="text">Phone</label>
+                                    <input type="text" class="form-control" readonly value="${user.getPhone()}" id="password_confirm" name="" placeholder="User Phone">
                                 </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">Date of Birth</label>
+                                    <label for="text">Date of Birth</label>
                                     <input type="text" class="form-control" readonly value="${user.getDob().substring(0,10)}" id="password" name="password" placeholder="User Date of Birth">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Gender</label>
+                                    <label for="text">Gender</label>
                                     <input type="text" class="form-control" readonly value="${user.isGender()}" id="password_confirm" name="password_confirm" placeholder="User Gender">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password">Address</label>
+                                    <label for="text">Address</label>
                                     <input type="text" class="form-control" readonly value="${user.getAddress()}" id="password" name="password" placeholder="User Address">
                                 </div>
                                 <div class="form-group col-12 col-md-5">
-                                    <label for="password_confirm">Date of Create</label>
+                                    <label for="text">Date of Create</label>
                                     <input type="text" class="form-control" readonly value="${user.getCreateDate().substring(0,10)}" id="password_confirm" name="password_confirm" placeholder="User Date of Create">
                                 </div>
                             </div>    
