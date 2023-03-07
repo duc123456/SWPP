@@ -247,9 +247,20 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice((int) rs.getFloat(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
-                p.setImageDf(rs.getString("ImageDefault"));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+ 
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -275,7 +286,6 @@ public class DAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
-
             }
         } catch (Exception e) {
         }
@@ -293,9 +303,8 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
-
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
                 p.setResolution(rs.getString(8));
@@ -306,7 +315,9 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
-
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -408,17 +419,21 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
                 p.setResolution(rs.getString(8));
                 p.setInsurance(rs.getInt(9));
                 p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
             }
 
@@ -431,21 +446,8 @@ public class DAO extends DBContext {
     }
 
     public Product getProductByID(int id) {
-        String sql = "SELECT [PID]\n"
-                + "      ,[AddedBy]\n"
-                + "      ,[CATID]\n"
-                + "      ,[Price]\n"
-                + "      ,[Name]\n"
-                + "      ,[Color]\n"
-                + "      ,[Description]\n"
-                + "      ,[Resolution]\n"
-                + "      ,[Insurance]\n"
-                + "      ,[CreateDate]\n"
-                + "      ,[TID]\n"
-                + "      ,[ImageDefault]\n"
-                + "      ,[Size]\n"
-                + "      ,[Quantity]\n"
-                + "      ,[Discount]\n"
+        String sql = "SELECT * \n"
+                
                 + "  FROM [SWP].[dbo].[Product] Where PID = ?";
         try {
 
@@ -457,7 +459,7 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
@@ -469,6 +471,10 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+                
+                
+                
                 return p;
 
             }
@@ -650,7 +656,7 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
@@ -662,7 +668,9 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
-
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
             }
         } catch (SQLException e) {
@@ -799,7 +807,7 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
@@ -811,16 +819,18 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
-
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
-                return list;
+                
 
             }
 
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return null;
+        return list;
     }
 
     public List<Product> getAllProductByType(int tid) {
@@ -837,7 +847,7 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
@@ -846,6 +856,12 @@ public class DAO extends DBContext {
                 p.setcDate(rs.getString(10));
                 p.setType(getTypeById(rs.getInt(11)));
                 p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
                 return list;
 
@@ -871,7 +887,7 @@ public class DAO extends DBContext {
                 p.setpId(rs.getInt(1));
                 p.setAddedBy(rs.getInt(2));
                 p.setCat(getCategoryById(rs.getInt(3)));
-                p.setPrice(rs.getInt(4));
+                p.setPriceIn(rs.getInt(4));
                 p.setName(rs.getString(5));
                 p.setColor(rs.getString(6));
                 p.setDescription(rs.getString(7));
@@ -883,6 +899,9 @@ public class DAO extends DBContext {
                 p.setSize(rs.getInt(13));
                 p.setQuantity(rs.getInt(14));
                 p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+                
+                
                 list.add(p);
 
             }
@@ -1470,14 +1489,8 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
-
-        User u = new User();
-        u.setUsername("duceptrai");
-        u.setRoleId(1);
-        d.register(u);
-            
-
-        System.out.println();
+        List<Product> list = d.pagingProduct(1);
+        System.out.println(list.get(0).getName());
 
     }
 

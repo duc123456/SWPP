@@ -281,7 +281,7 @@
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
-                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.price * 2}" pattern="#,##0 'VND'" /></b>
+                                                <b class="fs-4 text-danger"><fmt:formatNumber value="${p.priceOut}" pattern="#,##0 'VND'" /></b>
 
                                                 <s class="fs-5 ps-3"></s>
 
@@ -312,7 +312,7 @@
                                                             <form action="${c}" method="post">
                                                                 <input type="hidden" name="product" value="${p.pId}">
                                                                 <input type="hidden" name="quantity" value="1">
-                                                                <input type="hidden" name="price" value="${p.price * 2}">
+                                                                <input type="hidden" name="price" value="${p.priceOut}">
                                                                 <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
                                                             </form>
 
