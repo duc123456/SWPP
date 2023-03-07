@@ -81,6 +81,7 @@ public class AddCart extends HttpServlet {
         String id_raw = request.getParameter("product");
         String quantity_raw = request.getParameter("quantity");
         String price_raw = request.getParameter("price");
+        String xd = request.getParameter("det");
         HttpSession session = request.getSession();
 
         if (id_raw != null && quantity_raw != null && price_raw != null
@@ -106,7 +107,13 @@ public class AddCart extends HttpServlet {
                 session.setAttribute("size", c.getItems().size());
             } catch (NumberFormatException e) {
             }
-            response.sendRedirect("listproduct");
+            if(xd != null && !xd.equals("")){
+                response.sendRedirect("detail?pid="+id_raw);
+            }else{
+                response.sendRedirect("listproduct");
+            }
+                
+            
         }
     }
 

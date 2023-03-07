@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-        <style>
+    <style>
         body {
             background-color: #f9f9fa
         }
@@ -159,7 +159,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
-    
+
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
 
@@ -175,10 +175,12 @@
                                     <div class="col-sm-4 bg-c-lite-green user-profile">
                                         <div class="card-block text-center text-white">
                                             <div class="m-b-25">
-                                                <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                                <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
+                                            <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" alt="User-Profile-Image" >
                                             </div>
                                             <h6 class="f-w-600" style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
-                                            <a href="">Change</a>
+                                            
+
                                             <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
                                         </div>
                                     </div>
@@ -206,7 +208,7 @@
                                             </div>
                                             <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600"></h6>
                                             <div class="row">
-                                               
+
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Địa chỉ</p>
                                                     <input type="text"  name="address" value="${sessionScope.acc.address}" class="form-control">
@@ -243,57 +245,57 @@
     <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-  $(document).ready(function() {
-    var phone = $("input[name='phone']");
-    var error = $("<p class='text-danger'>Please enter a valid mobile number</p>");
-    
-    phone.after(error);
-    error.hide();
-    
-    phone.on("keyup", function() {
-      if (!/^\d{10}$/.test(phone.val())) {
-        error.show();
-      } else {
-        error.hide();
-      }
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    var email = $("input[name='email']");
-    var error = $("<p class='text-danger'>Please enter a valid email address</p>");
-    
-    email.after(error);
-    error.hide();
-    
-    email.on("keyup", function() {
-      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
-        error.show();
-      } else {
-        error.hide();
-      }
-    });
-  });
-</script>
+        $(document).ready(function () {
+            var phone = $("input[name='phone']");
+            var error = $("<p class='text-danger'>Please enter a valid mobile number</p>");
+
+            phone.after(error);
+            error.hide();
+
+            phone.on("keyup", function () {
+                if (!/^\d{10}$/.test(phone.val())) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var email = $("input[name='email']");
+            var error = $("<p class='text-danger'>Please enter a valid email address</p>");
+
+            email.after(error);
+            error.hide();
+
+            email.on("keyup", function () {
+                if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
+        });
+    </script>
 
 
-<script>
-    $(document).ready(function(){
-$('change-btn').click(function(e){
+    <script>
+        $(document).ready(function () {
+            $('change-btn').click(function (e) {
 
-var email = $('input[name="email"]').val();
-var phone = $('input[name="phone"]').val();
-if(!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
-alert('Email address is invalid.');
-e.preventDefault();
-} else if(!(/^\d{10}$/.test(phone))) {
-alert('Phone number must be 10 digits long.');
-e.preventDefault();
-}
-});
-});
-</script>
+                var email = $('input[name="email"]').val();
+                var phone = $('input[name="phone"]').val();
+                if (!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
+                    alert('Email address is invalid.');
+                    e.preventDefault();
+                } else if (!(/^\d{10}$/.test(phone))) {
+                    alert('Phone number must be 10 digits long.');
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
 
 
 </html>
