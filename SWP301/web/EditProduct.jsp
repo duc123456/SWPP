@@ -136,7 +136,7 @@
                                     <img src="assetsEM/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
                                 </div>
                                 <div class="user-text">
-                                    <h6>Seema Sisty</h6>
+                                    <h6>${sessionScope.acc.fName}</h6>
                                     <p class="text-muted mb-0">Administrator</p>
                                 </div>
                             </div>
@@ -192,9 +192,15 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá</label>
+                                            <label class="col-form-label col-md-2">Giá Nhập</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="price" value="${details.price}" class="form-control">
+                                                <input type="text" name="price" value="${details.priceIn}" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Giá Bán</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="priceout" value="${details.priceOut}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -224,31 +230,29 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giảm giá</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="pdiscount" value="${details.discount}" class="form-control">
+                                                <input type="text" name="discount" value="${details.discount}" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Loai Tivi</label>
                                             <div class="col-md-10">
-                                                <select  name="catid" class="form-control form-select">
+                                                <select  name="tid" class="form-control form-select">
+                                                    <option value="${details.type.tId}" checked>${details.type.tName}</option>
                                                     <c:forEach items="${typec}" var="ty">
-                                                        <option  value="${ty.tId}" checked="">${ty.tName}</option>
+
+                                                        <option  value="${ty.tId}">${ty.tName}</option>
                                                     </c:forEach>
 
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">File Input</label>
+                                            <label class="col-form-label col-md-2">Hang Tivi</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="file">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">TID</label>
-                                            <div class="col-md-10">
-                                                <select  name="tid" class="form-control form-select">
+                                                <select  name="catid" class="form-control form-select">
+                                                    <option value="${details.cat.cid}" checked>${details.cat.cName}</option>
                                                     <c:forEach items="${listCC}" var="o">
                                                         <option  value="${o.cid}">${o.cName}</option>
                                                     </c:forEach>
@@ -256,7 +260,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                       <div class="form-group row">
+                                        <div class="form-group row">
                                             <label class="col-form-label col-md-2">Man Hinh</label>
                                             <div class="col-md-10">
                                                 <div class="radio">
@@ -269,7 +273,7 @@
                                                         <input type="radio" name="resolution" value="4K" > 4K
                                                     </label>
                                                 </div>
-                                              
+
                                             </div>
                                         </div>
 
@@ -304,5 +308,3 @@
         <script src="assetsEM/js/script.js"></script>
     </body>
 </html>
-
-

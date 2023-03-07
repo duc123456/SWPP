@@ -38,8 +38,6 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        
-
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -103,11 +101,11 @@ public class EditProduct extends HttpServlet {
         String psize = request.getParameter("size");
         String pquantity = request.getParameter("quantity");
         String pdiscount = request.getParameter("pdiscount");
-
+        String ppriceout = request.getParameter("priceout");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        dao.editProduct(2, ptid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format,pcatid , pdiscount, psize, pquantity, "12", Integer.parseInt(pid));
+      dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount,ppriceout, Integer.parseInt(pid));
         response.sendRedirect("managerProduct");
     }
 

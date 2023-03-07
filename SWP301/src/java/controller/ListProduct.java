@@ -79,6 +79,7 @@ public class ListProduct extends HttpServlet {
         
         
 
+
         String cat1 = request.getParameter("cat1");
         if (cat1 != null) {
             try {

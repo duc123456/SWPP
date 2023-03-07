@@ -54,11 +54,10 @@
                         </div>
                         <div class="col-md-4 d-flex align-items-end">
                             <ul class="ms-auto d-inline-flex">
-
-                                <li class="p-2"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
-                                <li class="p-2"><a  href="orderofuser"><button class="btn px-4 btn-outline-danger">${sessionScope.acc.lName}</button></a></li>
-
-
+                                <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
+                                <li class="p-2"><a  href="orderofuser"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius"  style="max-width: 50px;max-height: 50px; border-radius: 100%" title="${sessionScope.acc.fName}"></a></li>
+                                <li class="p-2" style="margin-top: 6px"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
+                                
 
                             </ul>
                         </div>

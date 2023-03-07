@@ -187,20 +187,22 @@ th {
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25">
-                                               
-                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" >
+                                        <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
+                                        <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
                                         </div>
                                         <h6 class="f-w-600"  style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
-                                        <a href="">Change</a>
-                                        <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
-                                        
+                                        <form action="changeavarta" method="post" enctype="multipart/form-data" class="row">
+                                            <input type="file" name="file" class="col-md-12" />
+                                                    <div class="row">
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: white; color: #dc3545">Lưu</button></div>
+                                                <div class="col-md-4"></div>
+
+                                            </div>
+                                            </form>
+      
                                     </div>
-                                        <div class="row">
-                                            <div class="col-md-4"></div>
-                                            <div class="col-md-4"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: white; color: #dc3545">Đơn hàng</button></div>
-                                            <div class="col-md-4"></div>
-                                            
-                                        </div>
+                                        
                                         
                                 </div>
                                 <div class="col-sm-8">
@@ -245,36 +247,10 @@ th {
                         </div>
                     </div>
                 </div>
-                                            <div class="col-md-1"></div>
+                                          
             </div>
-                                            <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
-                                            <div class="row" >
-                                                <div class="col-md-2"></div>
-                                                <div class="col-md-8">
-                                                        <table id="myTable" style="display: none; margin-bottom: 50px">
-                                                            <tr>
-                                                              <th>Sản phẩm bạn đã đặt</th>
-                                                              <th></th>
-                                                              <th>Đến nơi</th>
-                                                              <th>Tiền</th>
-                                                              <th>Số lượng</th>
-                                                              <th></th>
-                                                              
-                                                            </tr>
-                                                        <c:forEach items="${requestScope.order}" var="o">
-                                                            <tr>
-                                                              <td>${d.getProductByID(o.getProduct().pId).name}</td>
-                                                              <td><img  src="Image/${d.getProductByID(o.getProduct().pId).imageDf}"  style="max-height: 60px;max-width: 60px"></td>
-                                                              <td>${o.getOrder().address}</td>
-                                                              <td>${o.price} vnđ</td>
-                                                              <td>${o.amount}</td>
-                                                              <td><a href="detail?xd=1&&pid=${d.getProductByID(o.getProduct().pId).pId}"><button type="submit" id="myButton" class="btn btn-danger" style="background-color: white; color: #dc3545">Đánh giá</button></a></td>
-                                                            </tr>
-                                                            </c:forEach>
-                                                            
-                                                      </table>
-                                                    </div>
-                                                <div class="col-md-2"></div>
+                                          
+                                           
             </div>
         </div>
 

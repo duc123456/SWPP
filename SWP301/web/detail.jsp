@@ -78,7 +78,7 @@
         <div class="container">
             <div class="row about-row">
                 <div class="col-md-5 text-center">
-                    <img src="assets/images/product/1.jpg" alt="">
+                    <img src="Image/${product.imageDf}" alt="">
                 </div>
                 <div class="col-md-7">
                     <h2>${product.name}-${type1}</h2>
@@ -93,7 +93,7 @@
                             
                         </c:forEach>
                     </ul>
-                    <b class="fs-3 py-4 text-danger vietnamese-currency">${product.price}</b>
+                    <b class="fs-3 py-4 text-danger vietnamese-currency">${product.priceOut}</b>
                      
                      <ul class="mt-0 mt-2 mb-3 vgth">
                         <li class="fs-8">
@@ -114,7 +114,17 @@
                                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <button class="btn fw-bold w-100 btn-outline-danger">Giỏ hàng</button>
+                                                          <c:set var="c" value="addcart"/>
+                                                            <c:if test="${sessionScope.acc != null}">
+                                                                <c:set var="c" value="addcartcookie"/>
+                                                            </c:if>
+                                                            <form action="${c}" method="post">
+                                                                <input type="hidden" name="product" value="${product.pId}">
+                                                                <input type="hidden" name="quantity" value="1">
+                                                                <input type="hidden" name="price" value="${product.priceOut}">
+                                                                <input type="hidden" name="det" value="1">
+                                                                <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
+                                                            </form>
                                                     </div>
                                                 </div>
                     
@@ -190,7 +200,7 @@
                             </div>
                             <div class="detail p-2">
                                 <h4 class="mb-1 fs-5 fw-bold">${l.imageDf}</h4>
-                                <b class="fs-4 text-danger">${l.price}</b>
+                                <b class="fs-4 text-danger">${l.priceOut}</b>
                                 
                                 <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
                                 <ul class="mt-0 vgth">
@@ -211,7 +221,17 @@
                                         <button class="btn mb-2 fw-bold w-100 btn-danger">Buy Now</button>
                                     </div>
                                     <div class="col-md-6">
-                                        <button class="btn fw-bold w-100 btn-outline-danger">Add to Cart</button>
+                                       <c:set var="c" value="addcart"/>
+                                                            <c:if test="${sessionScope.acc != null}">
+                                                                <c:set var="c" value="addcartcookie"/>
+                                                            </c:if>
+                                                            <form action="${c}" method="post">
+                                                                <input type="hidden" name="product" value="${l.pId}">
+                                                                <input type="hidden" name="quantity" value="1">
+                                                                <input type="hidden" name="price" value="${l.priceOut}">
+                                                                <input type="hidden" name="det" value="1">
+                                                                <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
+                                                            </form>
                                     </div>
                                 </div>
                             </div>
