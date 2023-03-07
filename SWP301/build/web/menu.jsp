@@ -140,8 +140,8 @@
                         <a class="text-white" data-bs-target="#menu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="menu"><i class="bi cp bi-list float-end fs-1 dmji"></i></a> 
                     </h6>
                     <ul id="menu" class=" navcol fw-bold d-none d-md-inline-flex">
-                        <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chu</a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Thuong Hieu <i class="bi pt-2 bi-chevron-down"></i></a> 
+                        <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chủ</a></li>
+                        <li class="p-21 px-4"><a class="text-white" href="">Thương hiệu<i class="bi pt-2 bi-chevron-down"></i></a> 
                             <div class="inner-div">
                                 <ul class="">
                                 <c:forEach items="${requestScope.cate}" var="ca">
@@ -151,7 +151,7 @@
                         </div>
                     </li>
 
-                    <li class="p-21 px-4"><a class="text-white" href="">Loai Tivi<i class="bi pt-2 bi-chevron-down"></i></a> 
+                    <li class="p-21 px-4"><a class="text-white" href="">Loại TV<i class="bi pt-2 bi-chevron-down"></i></a> 
 
                         <div class="inner-div">
                             <ul class="">
@@ -163,7 +163,7 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="p-21 px-4"><a class="text-white" href="">San Pham Ban Chay</a> 
+                    <li class="p-21 px-4"><a class="text-white" href="searchproduct?most=1">Sản phẩm bán chạy</a> 
                         <!--                            <div class="inner-div">
                                                         <ul class="">
                                                             <li><a href="index.jsp">Home</a></li>
@@ -178,12 +178,12 @@
                                                     </div>-->
                     </li>
                     <!--                        <li class="p-21 px-4"><a class="text-white" href=""> <i class="bi pt-2 bi-chevron-down"></i></a></li>-->
-                    <li class="p-21 px-4"><a class="text-white" href="">Giam Gia Sau </a></li>
-                    <li class="p-21 px-4"><a class="text-white" href="">Qua Tang </a></li>
-                    <li class="p-21 px-4"><a class="text-white" href="">Lien He </a></li>
+                    <li class="p-21 px-4"><a class="text-white" href="">Giảm giá sâu</a></li>
+                    <li class="p-21 px-4"><a class="text-white" href="">Quà tặng</a></li>
+                    <li class="p-21 px-4"><a class="text-white" href="">Liên hệ</a></li>
                     <li class="p-21 px-4"><a class="text-white" href=""> </a></li>
 
-                    <li class="p-21 px-4"><a class="text-white" href="">Surprise </a></li>
+                    
                 </ul>
 
             </div>

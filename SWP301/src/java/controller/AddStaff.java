@@ -22,8 +22,8 @@ import model.User;
  *
  * @author ADMIN
  */
-@WebServlet(name="RegisterControl", urlPatterns={"/register"})
-public class RegisterControl extends HttpServlet {
+@WebServlet(name="AddStaff", urlPatterns={"/addstaff"})
+public class AddStaff extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,13 +38,17 @@ public class RegisterControl extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterControl</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterControl at " + request.getParameter("fname") + "</h1>");
-            out.println("</body>");
+            String role  = request.getParameter("role");
+            role.trim();
+            out.print(role);
+            int role_ = 0;
+            
+                    role_ =Integer.parseInt(role);
+                    
+                    User u = new User();
+                    u.setRoleId(role_);
+                    out.print(u.getRoleId());
+            out.println(role_);
             out.println("</html>");
         }
     } 
@@ -60,42 +64,51 @@ public class RegisterControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       // PrintWriter out = response.getWriter();
         
-        String lname = request.getParameter("lname");
-        String username = request.getParameter("username");
-        String phone = request.getParameter("phone");
+        
+        String username = request.getParameter("name");
+        String fname = request.getParameter("fname");
+        String email = request.getParameter("email");
        
-       
+        String role  = request.getParameter("role");
+        
         String pass = request.getParameter("pass");
         String repass = request.getParameter("repass");
         DAO d = new DAO();
-        User u = d.login(username, pass);
-        if ((u != null) || (d.existedUser(username)) || (!pass.equals(repass))) {
-            String ms = "username existed or Password is not match!!";
+        User u = d.checkUsername(username);
+        if ((u != null) || (d.existedUser(username)) ) {
+            String ms = "Tài khoản đã tồn tại";
             request.setAttribute("ms", ms);
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-        }else {
+            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+        
+        }else if (d.getUserbyEmail(email) != null){
+            
+        String ms = "Email đã được đăng kí với tài khoản khác";
+            request.setAttribute("ms", ms);
+            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+        }
+        
+        else {
             Date date = new Date();
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
             simpleDateFormat.applyPattern("yyyy-MM-dd");
             String format = simpleDateFormat.format(date);
+            int role_ = 1;
+            role_=    Integer.parseInt(role);
+//            PrintWriter out = response.getWriter();
+//            out.print(role_);
              u = new User();
-            u.setlName(lname);
+            u.setRoleId(role_);
+            u.setfName(fname);
             u.setUsername(username);
+            u.setEmail(email);
             u.setPass(pass);
-            u.setPhone(phone);
-            u.setRoleId(1);
             u.setCreateDate(format);
             u.setModifyDate(format);
             d.register(u);
-            User a = d.login(username, pass);
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
-            response.sendRedirect("listproduct");
-        }
-        
-        
+            
+            response.sendRedirect("user");
+     }
     } 
 
     /** 

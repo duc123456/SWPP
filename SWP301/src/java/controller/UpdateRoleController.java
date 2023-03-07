@@ -57,15 +57,26 @@ public class UpdateRoleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        DAO d = new DAO();
         String role = request.getParameter("role");
-        int role_raw = Integer.parseInt(role);
         String id =  request.getParameter("id");
         int id_raw = Integer.parseInt(id);
-        DAO d = new DAO();
+        if(role == null){
+            
+            
+        User u = d.checkUsUid(id_raw);
+        request.setAttribute("user", u);
+        request.getRequestDispatcher("editUser.jsp").forward(request, response);
+        }else{
+        
+        int role_raw = Integer.parseInt(role);
+        
+        
         d.updateRole(id_raw,role_raw);
         User u = d.checkUsUid(id_raw);
         request.setAttribute("user", u);
         request.getRequestDispatcher("editUser.jsp").forward(request, response);
+        }
     } 
 
     /** 

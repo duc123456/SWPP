@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Cart;
 import model.Item;
+import model.User;
 
 /**
  *
@@ -66,15 +67,18 @@ public class DeleteCart extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             Item t = c.getItemById(id);
             c.remove(t);
+           
+        User u = (User)session.getAttribute("acc");
+        String cart = "cart" + u.getuId();
             if (session.getAttribute("acc") != null) {
                 Cookie[] cookie = request.getCookies();
                 for (Cookie cookie1 : cookie) {
-                    if (cookie1.getName().equals("cart")) {
+                    if (cookie1.getName().equals(cart)) {
                         cookie1.setMaxAge(0);
                          response.addCookie(cookie1);
                         String txt = c.cartToTxt(c);
                         
-                        Cookie c1 = new Cookie("cart", txt);
+                        Cookie c1 = new Cookie(cart, txt);
                         c1.setMaxAge(2 * 24 * 60 * 60);
                         response.addCookie(c1);
                     }
