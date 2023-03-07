@@ -217,7 +217,7 @@
                                                     <tr>
                                                         <td>${o.name}</td>
                                                         
-                                                        <td>${o.price}</td>
+                                                        <td>${o.priceIn}</td>
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>
