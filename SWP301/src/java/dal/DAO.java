@@ -1512,16 +1512,18 @@ public class DAO extends DBContext {
     }
 
     public static void main(String[] args) throws SQLException {
-        DAO d = new DAO();
-<<<<<<< HEAD
+    DAO d = new DAO();
+        Guest g = new Guest(6, "duc", "le", "ha noi", "01999323");
+        List<Product> l = d.getAllProd();
+        List<Item> li = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            Item n = new Item(l.get(i), 2, 20000);
+            
+        }
+        Cart c = new Cart(li);
+        System.out.println("" +  d.insertOrder(g, c, "Hello" ));
 
-       String s  = "Anh1.l";
-       d.changAvarta(s, 1);
 
-=======
-        List<Product> list = d.pagingProduct(1);
-        System.out.println(list.get(0).getName());
->>>>>>> main
 
     }
    
