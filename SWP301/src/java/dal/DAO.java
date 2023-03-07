@@ -1223,22 +1223,17 @@ public class DAO extends DBContext {
             st1.setString(3, g.getlName());
             st1.setString(4, g.getfName());
             st1.executeUpdate();
-            PreparedStatement st2 = connection.prepareStatement(sql2);
-            ResultSet rs = st2.executeQuery();
-            int gid = 0;
-            if (rs.next()) {
-                gid = rs.getInt(1);
-            }
+           
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
             st3.setString(2, s);
             st3.setString(3, note);
             st3.setLong(4, c.totalPrice());
-            st3.setInt(5, gid);
+            st3.setInt(5, g.getgId());
             st3.executeUpdate();
             int oid = 1;
             PreparedStatement st4 = connection.prepareStatement(sql4);
-            rs = st4.executeQuery();
+           ResultSet rs = st4.executeQuery();
             rs.next();
             oid = rs.getInt(1);
             PreparedStatement st5 = connection.prepareStatement(sql5);
@@ -1489,8 +1484,16 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
-        List<Product> list = d.pagingProduct(1);
-        System.out.println(list.get(0).getName());
+        Guest g = new Guest(6, "duc", "le", "ha noi", "01999323");
+        List<Product> l = d.getAllProd();
+        List<Item> li = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            Item n = new Item(l.get(i), 2, 20000);
+            
+        }
+        Cart c = new Cart(li);
+        System.out.println("" +  d.insertOrder(g, c, "Hello" ));
+       
 
     }
 
