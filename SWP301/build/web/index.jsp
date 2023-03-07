@@ -301,23 +301,7 @@
                                                     </li>
                                                 </ul>
                                                 <div class="row pt-2">
-                                                    <div class="col-md-6">
-                                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Mua</button>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <c:set var="c" value="addcart"/>
-                                                            <c:if test="${sessionScope.acc != null}">
-                                                                <c:set var="c" value="addcartcookie"/>
-                                                            </c:if>
-                                                            <form action="${c}" method="post">
-                                                                <input type="hidden" name="product" value="${p.pId}">
-                                                                <input type="hidden" name="quantity" value="1">
-                                                                <input type="hidden" name="price" value="${p.priceOut}">
-                                                                <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
-                                                            </form>
-
-
-                                                        </div>
+                                                    
                                                     </div>
                                                 </div>
                                             </div>

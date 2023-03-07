@@ -194,7 +194,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giá</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="price" value="${details.price}" class="form-control">
+                                                <input type="text" name="price" value="${details.priceIn}" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">

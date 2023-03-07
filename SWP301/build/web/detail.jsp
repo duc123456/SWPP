@@ -93,7 +93,7 @@
                             
                         </c:forEach>
                     </ul>
-                    <b class="fs-3 py-4 text-danger vietnamese-currency">${product.price}</b>
+                    <b class="fs-3 py-4 text-danger vietnamese-currency">${product.priceOut}</b>
                      
                      <ul class="mt-0 mt-2 mb-3 vgth">
                         <li class="fs-8">
@@ -121,7 +121,7 @@
                                                             <form action="${c}" method="post">
                                                                 <input type="hidden" name="product" value="${product.pId}">
                                                                 <input type="hidden" name="quantity" value="1">
-                                                                <input type="hidden" name="price" value="${product.price * 2}">
+                                                                <input type="hidden" name="price" value="${product.priceOut}">
                                                                 <input type="hidden" name="det" value="1">
                                                                 <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
                                                             </form>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="detail p-2">
                                 <h4 class="mb-1 fs-5 fw-bold">${l.imageDf}</h4>
-                                <b class="fs-4 text-danger">${l.price}</b>
+                                <b class="fs-4 text-danger">${l.priceOut}</b>
                                 
                                 <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
                                 <ul class="mt-0 vgth">
@@ -228,7 +228,7 @@
                                                             <form action="${c}" method="post">
                                                                 <input type="hidden" name="product" value="${l.pId}">
                                                                 <input type="hidden" name="quantity" value="1">
-                                                                <input type="hidden" name="price" value="${l.price * 2}">
+                                                                <input type="hidden" name="price" value="${l.priceOut}">
                                                                 <input type="hidden" name="det" value="1">
                                                                 <button class="btn fw-bold w-100 btn-outline-danger" type="submit">Giỏ hàng</button>
                                                             </form>
