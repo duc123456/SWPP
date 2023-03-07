@@ -75,14 +75,12 @@ public class ListProduct extends HttpServlet {
         int index = Integer.parseInt(indexPage);
 
         List<Product> list1 = d.pagingProduct(index);
-<<<<<<< HEAD
 
-=======
         String most = request.getParameter("most");
         
         
         
->>>>>>> main
+
         String cat1 = request.getParameter("cat1");
         if (cat1 != null) {
             try {

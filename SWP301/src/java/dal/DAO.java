@@ -1404,14 +1404,39 @@ public class DAO extends DBContext {
         return list;
 
     }
+    public void changAvarta(String fileName, int uId){
+        String sql = "Update [User] set Image =? where ID =?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, fileName);
+            st.setInt(2, uId);
+            st.executeUpdate();
+        } catch (SQLException e)  {
+        }
+        
+    }
+    public String getUserImage(int uId){
+        String sql = "Select Image from [User] where ID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+        }
+        return null;
+    }
 
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
 
-        List<OrderDetail> list = d.getODDTbyUID(1);
-        System.out.println(list.get(0).getOrder().getAddress());
+       String s  = "Anh1.l";
+       d.changAvarta(s, 1);
 
 
     }
+   
 
 }

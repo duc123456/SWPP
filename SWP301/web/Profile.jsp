@@ -185,11 +185,14 @@ th {
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25">
-                                               
-                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" >
+                                        <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
+                                            <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" alt="User-Profile-Image" >
                                         </div>
                                         <h6 class="f-w-600"  style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
-                                        <a href="">Change</a>
+                                        <form action="changeavarta" method="post" enctype="multipart/form-data">
+                                                <input type="file" name="file"/>
+                                                <button type="submit">Change</button>
+                                            </form>
                                         <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
                                         
                                     </div>
@@ -244,7 +247,7 @@ th {
                     </div>
                 </div>
             </div>
-                                            <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+                                          
                                             <div class="row" >
                                                 <div class="col-md-2"></div>
                                                 <div class="col-md-8">
