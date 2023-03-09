@@ -14,8 +14,8 @@
             <!-- End Title -->
 
             <!-- Dashboard -->
-            <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="/">
+            <li class="side-nav-menu-item active">
+                <a class="side-nav-menu-link media align-items-center" href="Dash.jsp">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="gd-dashboard"></i>
               </span>
@@ -32,7 +32,7 @@
             <!-- End Title -->
 
             <!-- Users -->
-            <li class="side-nav-menu-item side-nav-has-menu active side-nav-opened">
+            <li class="side-nav-menu-item side-nav-has-menu  side-nav-opened">
                 <a class="side-nav-menu-link media align-items-center" href="#"
                    data-target="#subUsers">
                   <span class="side-nav-menu-icon d-flex mr-3">
