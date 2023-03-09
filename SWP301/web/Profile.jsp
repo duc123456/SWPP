@@ -252,7 +252,29 @@ th {
                         </div>
                     </div>
                         <div class="page2 col-md-12" style="display: none;">
-                            <div class="card user-card-full"></div>
+                            <div class="card user-card-full">
+                                <div style="background-color: #f5f8fc; min-height: 500px">
+                                    <div>
+                                        <h4>Giao hang thanh cong</h4>
+                                        <div class="card user-card-full row" style="margin: 0px 20px;">
+                                            <div class="row">
+                                                
+                                                <div class="col-md-2" style=""><img  style="max-height: 120px;max-width: 120px" src="Image/Anh1.jpg" alt="alt" /></div>
+                                            
+                                            <div class="col-md-5">
+                                                <h4>Tivi sanm sung</h4>
+                                                <h8>x1</h8>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h3 style="position: relative;bottom: -56px; left: 299px;" >10.000.000 đ</h3>
+                              
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                 </div>
                            
