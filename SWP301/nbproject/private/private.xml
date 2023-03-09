@@ -17,15 +17,11 @@
             <file>file:/C:/SWPP/SWP301/web/user-edit.html</file>
             <file>file:/C:/SWPP/SWP301/src/java/model/Cart.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/ChangePass.java</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/User.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/RegisterControl.java</file>
-            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
-            <file>file:/C:/SWPP/SWP301/web/Profile.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
             <file>file:/C:/SWPP/SWP301/src/java/model/Product.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/UpdateRoleController.java</file>
             <file>file:/C:/SWPP/SWP301/web/sidebarDash.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/Order.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/LoginGoogle/LoginGoogleHandler.java</file>
             <file>file:/C:/SWPP/SWP301/src/java/controller/AddCart.java</file>
             <file>file:/C:/SWPP/SWP301/web/ManagerProduct.jsp</file>
@@ -34,7 +30,6 @@
             <file>file:/C:/SWPP/SWP301/src/java/controller/AddProduct.java</file>
             <file>file:/C:/SWPP/SWP301/web/editUser.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/EditProduct.jsp</file>
-            <file>file:/C:/SWPP/SWP301/src/java/controller/ForgotPass/ForgotPassword.java</file>
             <file>file:/C:/SWPP/SWP301/web/index.jsp</file>
             <file>file:/C:/SWPP/SWP301/build/web/Profile.jsp</file>
             <file>file:/C:/SWPP/SWP301/build/web/uploadDir/avatar10.jpg</file>
