@@ -20,6 +20,7 @@ import model.Image;
 import model.Item;
 import model.Order;
 import model.OrderDetail;
+import model.OrderLog;
 import model.Product;
 import model.Role;
 import model.Type;
@@ -1056,7 +1057,7 @@ public class DAO extends DBContext {
 
     }
 
-public void editProduct(String pcatid,String pprice, String pname, String pcolor, String pdescription,
+    public void editProduct(String pcatid, String pprice, String pname, String pcolor, String pdescription,
             String presolution, String pinsurance, String format, String ptid, String pimage,
             String psize, String pquantity, String pdiscount, String ppriceout, int pid) {
 
@@ -1222,7 +1223,6 @@ public void editProduct(String pcatid,String pprice, String pname, String pcolor
 //            if (rs.next()) {
 //                gid = rs.getInt(1);
 //            }
-
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
             st3.setString(2, s);
@@ -1236,7 +1236,6 @@ public void editProduct(String pcatid,String pprice, String pname, String pcolor
 //            ResultSet rs = st4.executeQuery();
 //            rs.next();
 //            oid = rs.getInt(1);
-
             PreparedStatement st5 = connection.prepareStatement(sql5);
             for (Item i : c.getItems()) {
                 //st5.setInt(1, );
@@ -1509,9 +1508,67 @@ public void editProduct(String pcatid,String pprice, String pname, String pcolor
         return null;
     }
 
+    public List<Order> getAllOrder() {
+        List<Order> list = new ArrayList<>();
+        String sql = "select *   from [Order] ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setoId(rs.getInt(1));
+                o.setUser(checkUsUid(rs.getInt(2)));
+                o.setAddress(rs.getString(3));
+                o.setDate(rs.getString(4));
+                o.setNote(rs.getString(5));
+                o.setTotalPrice(rs.getLong(6));
+                o.setGuest(getGuestById(rs.getInt(7)));
+                o.setPhone(rs.getString(8));
+
+                list.add(o);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+
+    public OrderLog getODLogByOID(int oid) {
+
+        String sql = "select top 1 * from OrderLog\n"
+                + "where OID  =?\n"
+                + "Order by StatusID Desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, oid);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                OrderLog ol = new OrderLog();
+                ol.setLogID(rs.getInt(1));
+                ol.setOrder(getOrderbyID(rs.getInt(2)));
+                ol.setStatusId(rs.getInt(3));
+                ol.setDate(rs.getString(4));
+                ol.setConfirm(rs.getInt(5));
+                return ol;
+                
+               
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+
+    }
+
     public static void main(String[] args) throws SQLException {
-
-
+        DAO d = new DAO();
+        List<Order> list = d.getAllOrder();
+        System.out.println(list.get(0).getTotalPrice());
     }
 
 }

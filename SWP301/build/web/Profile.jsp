@@ -178,10 +178,15 @@ th {
         <jsp:include page="menu.jsp"></jsp:include>
         <div class="page-content page-container" id="page-content">
             <div class="padding row">
-                <div class="col-md-1"></div>
+                <div class="col-md-1">
+                    
+                </div>
                 <div class="col-md-10 container d-flex justify-content-center">
-                    <div></div>
-                    <div class="col-xl-12 col-md-12">
+                    <div class="">
+                        <button  id="myButton1" class="btn btn-danger active" style="background-color: white; color: #dc3545; min-width: 120px ; ">Trang cá nhân</button>
+                    <button  id="myButton2" class="btn btn-danger" style="background-color: white; color: #dc3545 ;min-width: 120px">Đơn mua</button>
+                    </div>
+                    <div class="col-xl-12 col-md-12 page1">
                         <div class="card user-card-full">
                             <div class="row m-l-0 m-r-0">
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
@@ -246,7 +251,34 @@ th {
                             </div>
                         </div>
                     </div>
+                        <div class="page2 col-md-12" style="display: none;">
+                            <div class="card user-card-full">
+                                <div style="background-color: #f5f8fc; min-height: 500px">
+                                    <div>
+                                        <h4>Giao hang thanh cong</h4>
+                                        <div class="card user-card-full row" style="margin: 0px 20px;">
+                                            <div class="row">
+                                                
+                                                <div class="col-md-2" style=""><img  style="max-height: 120px;max-width: 120px" src="Image/Anh1.jpg" alt="alt" /></div>
+                                            
+                                            <div class="col-md-5">
+                                                <h4>Tivi sanm sung</h4>
+                                                <h8>x1</h8>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h3 style="position: relative;bottom: -56px; left: 299px;" >10.000.000 đ</h3>
+                              
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>
+                           
+         <div class="col-md-1"></div>
                                           
             </div>
                                           
@@ -269,6 +301,22 @@ myButton.addEventListener('click', () => {
   myTable.style.display = 'table';
 });
     </script>
+    <script>
+  const button1 = document.getElementById("myButton1");
+  const button2 = document.getElementById("myButton2");
+  const page1 = document.querySelector(".page1");
+  const page2 = document.querySelector(".page2");
+
+  button1.addEventListener("click", () => {
+    page1.style.display = "block";
+    page2.style.display = "none";
+  });
+
+  button2.addEventListener("click", () => {
+    page1.style.display = "none";
+    page2.style.display = "block";
+  });
+</script>
     
 
 </html>
