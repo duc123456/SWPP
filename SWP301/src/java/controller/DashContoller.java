@@ -13,8 +13,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import model.Order;
+import model.ProductLog;
 
 /**
  *
@@ -59,8 +62,37 @@ public class DashContoller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d = new DAO();
+        String from = request.getParameter("from");
+        if(from != null){
+            request.setAttribute("from", from);
+        }
+        
+        String to  = request.getParameter("to");
+        
+        
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String now = simpleDateFormat.format(date);
+        
+        if(from != null && to == null){
+            request.setAttribute("from", from);
+            request.setAttribute("to", now);
+        }
+        if(from != null && to != null){
+            request.setAttribute("from", from);
+            request.setAttribute("to", to);
+        }
+        
         List<Order> list = d.getAllOrder();
+        List<Order> list3 = d.getOrderResived(from, now,to);
+        List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
+        
         request.setAttribute("orderList", list);
+        request.setAttribute("PlList", list2);
+        request.setAttribute("order", list3);
+        request.setAttribute("size", list2.size());
+        request.setAttribute("stock", d.totalgetPriceStock(from,now ,to));
         request.getRequestDispatcher("Dash.jsp").forward(request, response);
     } 
 

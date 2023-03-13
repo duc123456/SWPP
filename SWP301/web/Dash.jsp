@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,44 +47,44 @@
             <div class="mb-3 mb-md-4 d-flex justify-content-between">
                 <div class="h3 mb-0">Dashboard</div>
             </div>
+            <form action="dash">
+                <input type="date" name="from" value="${requestScope.from}"/>
+                <input type="date" name="to"value="${requestScope.to}" />
+                <input type="submit" value="Tìm">
+            </form>
 
             <div class="row">
                 <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
                     <!-- Card -->
                     <div class="card h-100">
                         <div class="card-header d-flex">
-                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Inventory Stock</h5>
+                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Tổng tiền hàng nhập</h5>
                         </div>
                         <div class="card-body p-0">
                             <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
                                 <div class="media-body">
-                                    <h4 class="h3 lh-1 mb-2">$25,312.24</h4>
-                                    <p class="small text-muted mb-0">
+                                    <h4 class="h3 lh-1 mb-2"><fmt:formatNumber value="${requestScope.stock}" pattern="#,##0 'VND'" /></h4>
+                                   <!--   <p class="small text-muted mb-0">
                                         +$5,213.38 <span class="text-success mx-1">+10.23%</span> This Month
-                                    </p>
+                                    </p>comment --> 
                                 </div>
                             </div>
 
                             <div class="js-area-chart chart--points-invisible chart--labels-hidden position-relative"
                                  data-series='[
+                                 
                              [
-                               {"meta":"Items","value":"700"},
-                               {"meta":"Items","value":"520"},
-                               {"meta":"Items","value":"470"},
-                               {"meta":"Items","value":"580"},
-                               {"meta":"Items","value":"380"},
-                               {"meta":"Items","value":"600"},
-                               {"meta":"Items","value":"707"},
-                               {"meta":"Items","value":"400"},
-                               {"meta":"Items","value":"301"},
-                               {"meta":"Items","value":"530"},
-                               {"meta":"Items","value":"600"},
-                               {"meta":"Items","value":"403"},
-                               {"meta":"Items","value":"550"},
-                               {"meta":"Items","value":"400"},
-                               {"meta":"Items","value":"300"},
-                               {"meta":"Items","value":"700"},
-                               {"meta":"Items","value":"630"}
+                             <c:set value="${requestScope.PlList}" var="s"></c:set>
+                                {"meta":"${s[0].product.name}","value":"${s[0].quantity}"},
+                             <c:forEach begin="0" end="${requestScope.size}" var="i">
+                                 {"meta":"${s[i].product.name}","value":"${s[i].quantity}"},
+                                 
+                                 <c:if test="${i == size }">
+                                    {"meta":"${s[i].product.name}","value":"${s[i].quantity}"} 
+                                 </c:if>
+                             </c:forEach>
+                               
+                               
                              ]
                            ]'
                                  data-height="115"
@@ -111,50 +112,33 @@
                     <!-- Card -->
                     <div class="card h-100">
                         <div class="card-header d-flex">
-                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Orders History</h5>
+                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Doanh thu bán hàng</h5>
                         </div>
                         <div class="card-body p-0">
                             <div class="media align-items-center px-3 px-md-4 mb-3 mb-md-4">
                                 <div class="media-body">
-                                    <h4 class="h3 lh-1 mb-2">$6,926.32</h4>
-                                    <p class="small text-muted mb-0">
+                                    <c:set value="${0}" var="i"></c:set>
+                                    <c:forEach items="${requestScope.order}" var="o">
+                                        <c:set value="${i+o.totalPrice}" var="i"></c:set>
+                                    </c:forEach>
+                                    <h4 class="h3 lh-1 mb-2"><fmt:formatNumber value="${i}" pattern="#,##0 'VND'" /></h4>
+                                    <!--<p class="small text-muted mb-0">
                                         +$570.5 <span class="text-success mx-1">+2.31%</span> This Month
-                                    </p>
+                                    </p> -->
                                 </div>
                             </div>
 
-                            <div class="js-area-chart chart chart--axis-x chart--points-invisible position-relative chart--labels-hidden"
+                            <div class="js-area-chart chart--points-invisible chart--labels-hidden position-relative"
                                  data-series='[
-                             [
-                               {"meta":"Orders","value":"40"},
-                               {"meta":"Orders","value":"42"},
-                               {"meta":"Orders","value":"45"},
-                               {"meta":"Orders","value":"80"},
-                               {"meta":"Orders","value":"70"},
-                               {"meta":"Orders","value":"70"},
-                               {"meta":"Orders","value":"40"},
-                               {"meta":"Orders","value":"20"},
-                               {"meta":"Orders","value":"20"},
-                               {"meta":"Orders","value":"35"},
-                               {"meta":"Orders","value":"35"},
-                               {"meta":"Orders","value":"32"},
-                               {"meta":"Orders","value":"32"},
-                               {"meta":"Orders","value":"35"},
-                               {"meta":"Orders","value":"40"},
-                               {"meta":"Orders","value":"50"},
-                               {"meta":"Orders","value":"50"},
-                               {"meta":"Orders","value":"80"},
-                               {"meta":"Orders","value":"80"},
-                               {"meta":"Orders","value":"90"},
-                               {"meta":"Orders","value":"90"},
-                               {"meta":"Orders","value":"100"},
-                               {"meta":"Orders","value":"100"},
-                               {"meta":"Orders","value":"80"},
-                               {"meta":"Orders","value":"80"}
+                             [ 
+                             
+                               {"meta":"Orders","value":"1000000"},
+                               {"meta":"Orders","value":"30000000"},
+                               {"meta":"Orders","value":"50000000"}
                              ]
                            ]'
                                  data-height="115"
-                                 data-high="115"
+                                 data-high="80000000"
                                  data-is-line-smooth='[false]'
                                  data-line-width='["1px"]'
                                  data-line-colors='["#8069f2"]'

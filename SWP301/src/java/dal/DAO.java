@@ -22,6 +22,7 @@ import model.Order;
 import model.OrderDetail;
 import model.OrderLog;
 import model.Product;
+import model.ProductLog;
 import model.Role;
 import model.Type;
 import model.User;
@@ -1513,7 +1514,6 @@ public class DAO extends DBContext {
         String sql = "select *   from [Order] ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Order o = new Order();
@@ -1534,6 +1534,7 @@ public class DAO extends DBContext {
         }
 
         return list;
+
     }
 
     public OrderLog getODLogByOID(int oid) {
@@ -1553,8 +1554,7 @@ public class DAO extends DBContext {
                 ol.setDate(rs.getString(4));
                 ol.setConfirm(rs.getInt(5));
                 return ol;
-                
-               
+
             }
 
         } catch (SQLException e) {
@@ -1565,10 +1565,100 @@ public class DAO extends DBContext {
 
     }
 
+    public long totalgetPriceStock(String from, String to, String now) {
+        String sql = "select Sum(PriceIn *Quatity) from ProductLog\n"
+                + " Where (1=1) ";
+        if (from != null && to == null) {
+            sql += " and Date between '" + from + "' and '" + now + "'";
+
+        } else if (from != null && to != null) {
+            sql += " and Date between '" + from + "' and '" + to + "'";
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                OrderLog ol = new OrderLog();
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public List<ProductLog> getProductLogByDate(String from, String to, String now) {
+        List<ProductLog> list = new ArrayList<>();
+
+        String sql = "select * from ProductLog \n"
+                + " Where  (1=1)  and Action = 1 ";
+        if (from != null && to == null) {
+            sql += " and Date between '" + from + "' and '" + now + "'";
+
+        } else if (from != null && to != null) {
+            sql += " and Date between '" + from + "' and '" + to + "'";
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ProductLog pl = new ProductLog();
+                pl.setProductLog(rs.getInt(1));
+                pl.setUser(checkUsUid(rs.getInt(2)));
+                pl.setProduct(getProductByID(rs.getInt(3)));
+                pl.setAction(rs.getInt(4));
+                pl.setPriceIn(rs.getInt(5));
+                pl.setPriceOut(rs.getInt(6));
+                pl.setQuantity(rs.getInt(7));
+                pl.setDate(rs.getString(8));
+
+                list.add(pl);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public List<Order> getOrderResived(String from, String to, String now) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select * from [Order] o\n"
+                + "inner join [OrderLog] ol\n"
+                + "on o.OID = ol.OID\n"
+                + "where ol.StatusID = 3 ";
+        if (from != null && to == null) {
+            sql += " and o.Date between '" + from + "' and '" + now + "'";
+
+        } else if (from != null && to != null) {
+            sql += " and o.Date between '" + from + "' and '" + to + "'";
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setoId(rs.getInt(1));
+                o.setUser(checkUsUid(rs.getInt(2)));
+                o.setAddress(rs.getString(3));
+                o.setDate(rs.getString(4));
+                o.setNote(rs.getString(5));
+                o.setTotalPrice(rs.getLong(6));
+                o.setGuest(getGuestById(rs.getInt(7)));
+                o.setPhone(rs.getString(8));
+                list.add(o);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
-        List<Order> list = d.getAllOrder();
-        System.out.println(list.get(0).getTotalPrice());
+        List<ProductLog> list = d.getProductLogByDate(null, null, null);
+        System.out.println(list.get(0).getPriceOut());
     }
 
 }
