@@ -122,7 +122,7 @@ public class ChangeAvarta extends HttpServlet {
            }
             
            // Upload thành công.
-           response.sendRedirect("orderofuser");
+           response.sendRedirect("profilee.jsp");
        } catch (Exception e) {
            e.printStackTrace();
            request.setAttribute("errorMessage", "Error: " + e.getMessage());

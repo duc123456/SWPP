@@ -969,7 +969,7 @@ public class DAO extends DBContext {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 if (rs.getInt(1) == 0) {
-                    return 5;
+                    return 0;
 
                 }
 
@@ -1655,10 +1655,92 @@ public class DAO extends DBContext {
         return list;
     }
 
+    public List<OrderDetail> listProductMost() {
+        List<OrderDetail> list = new ArrayList();
+        String sql = "select PID, sum(Amount) from [Order detail]\n"
+                + "Group by PID\n"
+                + "order by PID, sum(Amount)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setProduct(getProductByID(rs.getInt(1)));
+                od.setAmount(rs.getInt(2));
+                list.add(od);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public int SelProductFolowTime(String month, String year) {
+
+        String sql = "SELECT sum(o.TotalPrice) FROM [Order]  o\n"
+                + "Inner join [Order Detail] od\n"
+                + "On o.OID =od.OID\n"
+                + "WHERE (1=1) and MONTH(o.Date) = " + month + " ";
+        if (year != null && year != "") {
+            sql += " and YEAR(o.Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int ChiPhi(String year) {
+        String sql = "select sum(PriceIn*Quatity) from ProductLog\n"
+                + "where Action = 1 ";
+        if (year != null && year != "") {
+            sql += " and YEAR(Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int DoanhThu(String year) {
+        String sql = "select sum(TotalPrice) from [Order]\n"
+                + "where (1=1) ";
+        if (year != null && year != "") {
+            sql += " and YEAR(Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
     public static void main(String[] args) throws SQLException {
         DAO d = new DAO();
-        List<ProductLog> list = d.getProductLogByDate(null, null, null);
-        System.out.println(list.get(0).getPriceOut());
+        List<OrderDetail> list = d.listProductMost();
+        int a = d.SelProductFolowTime("1", "");
+        System.out.println(a);
     }
 
 }
