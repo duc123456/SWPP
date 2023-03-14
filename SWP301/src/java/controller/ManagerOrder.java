@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import model.Category;
+import model.OrderLog;
 import model.Product;
 import model.User;
 
@@ -22,8 +22,8 @@ import model.User;
  *
  * @author nhant
  */
-@WebServlet(name = "ManagerProduct", urlPatterns = {"/managerProduct"})
-public class ManagerProduct extends HttpServlet {
+@WebServlet(name = "ManagerOrder", urlPatterns = {"/managerorder"})
+public class ManagerOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,24 +47,12 @@ public class ManagerProduct extends HttpServlet {
             //neu role = 1 (Admin) thi moi duoc vao manager 
         } else if (a.getRoleId() == 1) {
             DAO dao = new DAO();
-            List<Product> list = dao.getAllProd();
-            // List<Category> listC = dao.getAllCategory();
+            List<OrderLog> list = dao.getAllOrderLog();
 
-            int productList = dao.getProductCount();
-            request.setAttribute("numberOfProducts", productList);
-            
-             int productListIn = dao.getProductCountInurance();
-            request.setAttribute("ProductInsurance", productListIn);
+            request.setAttribute("listOD", list);
 
-              int productListSum = dao.getProductCountQuantity();
-            request.setAttribute("ProductSum", productListSum);
+            request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
 
-            
-            
-            request.setAttribute("listP", list);
-            //   request.setAttribute("listCC", listC);
-            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-            //neu khong tro ve trang home
         } else {
             response.sendRedirect("listproduct");
         }

@@ -1655,10 +1655,214 @@ public class DAO extends DBContext {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException {
-        DAO d = new DAO();
-        List<ProductLog> list = d.getProductLogByDate(null, null, null);
-        System.out.println(list.get(0).getPriceOut());
+    public List<Product> searchByName(String txtSearch) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product\n"
+                + "             where [Name] like ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + txtSearch + "%");
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPriceIn(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public int getProductCount() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    public int getProductCountInurance() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM Product WHere Insurance >= 12 ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    public int getProductCountQuantity() {
+        int count = 0;
+        String sql = "SELECT Sum(Quantity) FROM Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    public List<OrderLog> getAllOrderLog() {
+        List<OrderLog> list = new ArrayList<>();
+        String sql = "SELECT TOP (1000) [OrderLogId]\n"
+                + "      ,[OID]\n"
+                + "      ,[StatusID]\n"
+                + "      ,[Date]\n"
+                + "      ,[Confirm]\n"
+                + "  FROM [SWP].[dbo].[OrderLog]";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderLog p = new OrderLog();
+                p.setLogID(rs.getInt(1));
+                p.setOrder(getOrderById(rs.getInt(2)));
+                p.setStatusId(rs.getInt(3));
+                p.setDate(rs.getString(4));
+                p.setConfirm(rs.getInt(5));
+
+                list.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+
+    }
+
+    public List<OrderLog> getStatusOrder(int statusid) {
+        List<OrderLog> list = new ArrayList<>();
+        String sql = "SELECT [OrderLogId]\n"
+                + "      ,[OID]\n"
+                + "      ,[StatusID]\n"
+                + "      ,[Date]\n"
+                + "      ,[Confirm]\n"
+                + "  FROM [SWP].[dbo].[OrderLog] Where [StatusID] = ?";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, statusid);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderLog p = new OrderLog();
+                p.setLogID(rs.getInt(1));
+                p.setOrder(getOrderById(rs.getInt(2)));
+                p.setStatusId(rs.getInt(3));
+                p.setDate(rs.getString(4));
+                p.setConfirm(rs.getInt(5));
+
+                list.add(p);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+
+    }
+
+    public Order getOrderById(int id) {
+        String sql = "select * from Order where [OID] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Order t = new Order();
+                t.setoId(rs.getInt(1));
+                t.setAddress(rs.getString(2));
+
+                return t;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void editOrder(int status, int oid) {
+        String query = "UPDATE [dbo].[OrderLog]\n"
+                + "   SET\n"
+                + "     [StatusID] = ?\n"
+                + " WHERE [OrderLogId] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setInt(1, status);
+            st.setInt(2, oid);
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+
+    public List<Product> getAllProdSellOut() {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product Where Quantity < 3";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPriceIn(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
     }
 
 }
