@@ -57,8 +57,8 @@
                                 <tr class="align-middle">
                                 <td>${i}</td>
                                 <c:set var="i" value="${i+1}"></c:set>
-                                <td><img src="Image/${c.getProduct().getImageDf()}" class="max-100"></td><!-- comment -->
-                                <td>${c.getProduct().getName()}</td>
+                                <td><a href="detail?pid=${c.getProduct().getpId()}"><img src="Image/${c.getProduct().getImageDf()}" class="max-100"></a></td><!-- comment -->
+                                <td><a href="detail?pid=${c.getProduct().getpId()}">${c.getProduct().getName()}</a></td>
                                 <td ><button><a href="process?num=-1&id=${c.getProduct().getpId()}">-</a></button>
                                    
                                     <input type="text" value=" ${c.getQuantity()}" readonly style="width: 17%">
@@ -77,11 +77,15 @@
                            
 
                         </table>
+                             <c:if test="${sessionScope.cart != null && sessionScope.cart.getItems().size() != 0 }">
 
                                 <p  class="btn btn-danger float-end fw-bolder px-4"><fmt:formatNumber value="${sessionScope.cart.totalPrice()}" pattern="#,##0 'VND'" /></p>
                                 <br/>
                                 <br/>
-                                <button class="btn btn-danger float-end fw-bolder px-4" id="show-form-btn" ><a href="information.jsp">Make Payment</a></button>
+                               
+                                     <button class="btn btn-danger float-end fw-bolder px-4" id="show-form-btn" ><a href="information.jsp">Make Payment</a></button>
+                                </c:if>
+                               
                 </div>
             </div>
         </div>

@@ -26,186 +26,108 @@
 
         <link rel="stylesheet" href="assetsEM/css/style.css">
     </head>
-    <body>
 
-        <div class="main-wrapper">
-
-            <div class="header">
-
-                <div class="header-left">
-                    <a href="listproduct" class="logo">
-                        <img src="assetsEM/img/logotivi.png" alt="Logo  ">
-                    </a>
-                    <a href="index.html" class="logo logo-small">
-                        <img src="assetsEM/img/logotivi.png" alt="Logo" width="30" height="30">
-                    </a>
-                </div>
-
-                <a href="javascript:void(0);" id="toggle_btn">
-                    <i class="fe fe-text-align-left"></i>
-                </a>
+    <jsp:include page="MenuManagerProduct.jsp"></jsp:include>
+        <body>
 
 
-                <a class="mobile_btn" id="mobile_btn">
-                    <i class="fa fa-bars"></i>
-                </a>
 
+            <div class="main-wrapper">
 
-                <ul class="nav user-menu">
-
-                    <li class="nav-item dropdown noti-dropdown">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell"></i> <span class="badge badge-pill">3</span>
-                        </a>
-                        <div class="dropdown-menu notifications">
-                            <div class="topnav-dropdown-header">
-                                <span class="notification-title">Notifications</span>
-                                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-                            </div>
-                            <div class="noti-content">
-                                <ul class="notification-list">
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-02.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Carlson Tech</span> has approved <span class="noti-title">your estimate</span></p>
-                                                    <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-11.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                                    <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-17.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
-                                                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-13.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                                    <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="topnav-dropdown-footer">
-                                <a href="#">View all Notifications</a>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="nav-item dropdown has-arrow">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="user-img"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="user-header">
-                                <div class="avatar avatar-sm">
-                                    <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
-                                </div>
-                                <div class="user-text">
-                                    <h6>${sessionScope.acc.fName} ${sessionScope.acc.lName}</h6>
-                                    <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
-                                    <p class="text-muted mb-0">${sessionScope.acc.username}</p>
+                <div class="page-wrapper">
+                    <div class="content container-fluid">
+                        <div class="row">
+                            <div class="col-xl-4 col-sm-4 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon bg-primary">
+                                                <i class="fas fa-tv"></i>
+                                            </span>
+                                            <div class="dash-count">
+                                                <a href="#" class="count-title">Số Lượng Sản Phẩm</a>
+                                                <a href="#" class="count">${numberOfProducts}</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
-                            <a class="dropdown-item" href="general.html">Account Settings</a>
-                            <a class="dropdown-item" href="login.jsp">Logout</a>
                         </div>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar-inner slimscroll">
-                    <div id="sidebar-menu" class="sidebar-menu">
-                        <ul>
-                            <li class="menu-title">
-                            </li>
-                            <li>
-                                <a href="listproduct"><i class="fe fe-home"></i> <span>Trang Home</span></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="managerProduct" class="active">Sản phẩm</a></li>
-                                    <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
-
-                                </ul>
-                            </li>
-
-                        </ul>
+                        <div class="col-xl-4 col-sm-4 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon bg-warning">
+                                            <i class="fe fe-phone"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <a href="#" class="count-title">
+                                                Sản phẩm bảo hành trên 12 tháng
+                                            </a>
+                                            <a href="#" class="count">${ProductInsurance}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon bg-danger">
+                                            <i class="fe fe-comments"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <a href="#" class="count-title">Tổng số sản phẩm</a>
+                                            <a href="#" class="count"> ${ProductSum}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-
-            <div class="page-wrapper">
-                <div class="content container-fluid">
                     <div class="page-header">
                         <div class="row align-items-center">
                             <div class="col">
                                 <h3 class="page-title">Sản phẩm</h3>
                                 <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.jsp">Trang chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="listproduct">Trang chủ</a></li>
                                     <li class="breadcrumb-item active">Quản lý Sản phẩm</li>
                                 </ul>
+
+
                             </div>
+
                         </div>
                     </div>
+
+
+
+
                     <div class="row">
                         <div class="col-md-12 d-flex">
 
                             <div class="card card-table flex-fill">
                                 <div class="card-body">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive" >
+
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Tên</th>
+                                                    <th >  Tên
+                                                      
+                                                    </th>
+
 
                                                     <th>Giá Nhập</th>
                                                     <th>Giá Bán</th>
                                                     <th>Màu sắc</th>
-                                                    <th>Màn hình</th>
-                                                    <th>Bảo hành</th>
+                                                    <th>Độ phân giải</th>
+                                                    <th>Bảo hành(Tháng)</th>
                                                     <th>Ngày tạo sản phẩm</th>
 
                                                     <th>Loại tivi</th>
-                                                    <th>Hang tivi</th>
+                                                    <th>Hãng tivi</th>
                                                     <th>Kích thước</th>
                                                     <th>Số lượng</th>
                                                     <th>Giảm giá</th>
@@ -213,11 +135,20 @@
                                                     <th class="text-end">Hành động</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                
+                                            <tbody id="data-container">
+
                                                 <c:forEach items="${listP}" var="o">
+                                                    <c:if test="${listP.size() == 0}">
+                                                        <tr><td colspan="3">HẾT SẢN PHẨM</td></tr>
+                                                    </c:if>
                                                     <tr>
-                                                        <td>${o.name}</td>
+                                                        <td>
+
+                                                            <h2 class="table-avatar">
+                                                                <a href="detail?pid=${o.pId}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="Image/${o.imageDf}"></a>
+                                                                <a href="detail?pid=${o.pId}">${o.name} <span>${o.pId}</span></a>
+                                                            </h2>
+                                                        </td>
 
                                                         <td>${o.priceIn}</td>
                                                         <td>${o.priceOut}</td>
@@ -247,7 +178,7 @@
                                                     </c:forEach>
                                                 </tr>
 
-
+                                            </tbody>
 
 
                                             </tbody>

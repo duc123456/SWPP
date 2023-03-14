@@ -79,12 +79,12 @@ public class DeleteCart extends HttpServlet {
                         String txt = c.cartToTxt(c);
                         
                         Cookie c1 = new Cookie(cart, txt);
-                        c1.setMaxAge(2 * 24 * 60 * 60);
+                        c1.setMaxAge(30 * 24 * 60 * 60);
                         response.addCookie(c1);
                     }
                 }
             }
-            session.setAttribute("cart", c);
+        //   session.setAttribute("cart", c);
         } catch (Exception e) {
         }
         session.setAttribute("size", c.getItems().size());

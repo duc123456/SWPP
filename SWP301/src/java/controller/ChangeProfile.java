@@ -102,7 +102,7 @@ public class ChangeProfile extends HttpServlet {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
         String format = simpleDateFormat.format(date);
-        d.changeprofile(lname, fname, address, image, dob, gen, phone, email, format, uid);
+    //    d.changeprofile(lname, fname, address, image, dob, gen, phone, email, format, uid);
         User u = d.checkUsUid(uid);
         HttpSession session = request.getSession();
         session.setAttribute("acc", u);

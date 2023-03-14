@@ -35,6 +35,7 @@ public class AddProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
         //add product  theo thu tu name, image, price, title ,,.. 
         String paddby = request.getParameter("addby");
@@ -61,8 +62,9 @@ public class AddProduct extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-       dao.insertProduct(2, pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
-        response.sendRedirect("managerProduct");
+        dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
+        request.getRequestDispatcher("managerProduct").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

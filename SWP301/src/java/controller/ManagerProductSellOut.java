@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,13 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Product;
+import model.User;
 
 /**
  *
- * @author ADMIN
+ * @author nhant
  */
-@WebServlet(name="LogoutControl", urlPatterns={"/logout"})
-public class LogoutControl extends HttpServlet {
+@WebServlet(name="ManagerProductSellOut", urlPatterns={"/managerproductsellout"})
+public class ManagerProductSellOut extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,17 +35,24 @@ public class LogoutControl extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LogoutControl</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LogoutControl at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             HttpSession session = request.getSession();
+        //ep string acc sang user
+        User a = (User) session.getAttribute("acc");
+        //bat buoc phai dang nhap 
+        if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //neu role = 1 (Admin) thi moi duoc vao manager 
+        } else if (a.getRoleId() == 1) {
+            DAO dao = new DAO();
+            List<Product> list = dao.getAllProdSellOut();
+           // List<Category> listC = dao.getAllCategory();
+
+            request.setAttribute("listPO", list);
+         //   request.setAttribute("listCC", listC);
+            request.getRequestDispatcher("ManagerProductSellOut.jsp").forward(request, response);
+            //neu khong tro ve trang home
+        } else {
+            response.sendRedirect("listproduct");
         }
     } 
 
@@ -56,10 +67,7 @@ public class LogoutControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("acc");
-        session.removeAttribute("cart");
-        response.sendRedirect("login.jsp");
+        processRequest(request, response);
     } 
 
     /** 

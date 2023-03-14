@@ -100,13 +100,14 @@ public class EditProduct extends HttpServlet {
         String pimage = request.getParameter("image");
         String psize = request.getParameter("size");
         String pquantity = request.getParameter("quantity");
-        String pdiscount = request.getParameter("pdiscount");
+        String pdiscount = request.getParameter("discount");
         String ppriceout = request.getParameter("priceout");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-      dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount,ppriceout, Integer.parseInt(pid));
+        dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
         response.sendRedirect("managerProduct");
+
     }
 
     /**
