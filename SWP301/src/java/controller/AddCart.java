@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import java.util.List;
 import model.Cart;
 import model.Item;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -63,7 +65,7 @@ public class AddCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -77,12 +79,13 @@ public class AddCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       DAO d = new DAO();
+        DAO d = new DAO();
         String id_raw = request.getParameter("product");
         String quantity_raw = request.getParameter("quantity");
         String price_raw = request.getParameter("price");
-        String xd = request.getParameter("det");
+
         HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("acc");
 
         if (id_raw != null && quantity_raw != null && price_raw != null
                 && id_raw != "" && quantity_raw != "" && price_raw != "") {
@@ -100,20 +103,31 @@ public class AddCart extends HttpServlet {
                 } else {
                     c = new Cart();
                     c.addItem(t);
-                    
+                    session.setAttribute("cart", c);
 
                 }
-                session.setAttribute("cart", c);
+                if (u != null) {
+                    String txt = c.cartToTxt(c);
+                    Cookie[] cookie = request.getCookies();
+                    String cart = "cart" + u.getuId();
+                    for (Cookie o : cookie) {
+                        if (o.getName().equals(cart)) {
+                            txt += o.getValue();
+                            o.setMaxAge(0);
+                            response.addCookie(o);
+                        }
+                    }
+                    Cookie cookie1 = new Cookie(cart, c.cartToTxt(c));
+                    cookie1.setMaxAge(60*60*24*30);
+                    response.addCookie(cookie1);
+                }
+
                 session.setAttribute("size", c.getItems().size());
             } catch (NumberFormatException e) {
             }
-            if(xd != null && !xd.equals("")){
-                response.sendRedirect("detail?pid="+id_raw);
-            }else{
-                response.sendRedirect("listproduct");
-            }
-                
-            
+
+            response.sendRedirect("detail?pid=" + id_raw);
+
         }
     }
 

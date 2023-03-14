@@ -160,11 +160,11 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     
-    <bod>
+    <body>
         <jsp:include page="menu.jsp"></jsp:include>
 
 
-            <form action="pay" method="post">
+            <form action="pay" method="post" onsubmit="return validateForm()" name="myForm">
                 <input type="hidden" name="id" value="${sessionScope.acc.uId}">
             <div class="page-content page-container" id="page-content">
                 <div class="padding">
@@ -229,65 +229,40 @@
             </div>
 
 
-    </bod>
+    </body>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
-    <script>
-  $(document).ready(function() {
-    var phone = $("input[name='phone']");
-    var error = $("<p class='text-danger'>Please enter a valid mobile number</p>");
     
-    phone.after(error);
-    error.hide();
-    
-    phone.on("keyup", function() {
-      if (!/^\d{10}$/.test(phone.val())) {
-        error.show();
-      } else {
-        error.hide();
-      }
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    var email = $("input[name='email']");
-    var error = $("<p class='text-danger'>Please enter a valid email address</p>");
-    
-    email.after(error);
-    error.hide();
-    
-    email.on("keyup", function() {
-      if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
-        error.show();
-      } else {
-        error.hide();
-      }
-    });
-  });
+  <script>
+    function validateForm() {
+        var ho = document.forms["myForm"]["ho"].value;
+        var ten = document.forms["myForm"]["ten"].value;
+        var dia = document.forms["myForm"]["dia"].value;
+        var so = document.forms["myForm"]["so"].value;
+        var note = document.forms["myForm"]["note"].value;
+      
+        var phonePattern = /^\d{10}$/; // Số điện thoại phải có đúng 10 chữ số
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Định dạng email hợp lệ
+        if (ho == "" || ten == "" || dia == "" || so == "") {
+            alert("Vui lòng điền đầy đủ thông tin.");
+            return false;
+        }
+        if (!phonePattern.test(so)) {
+            alert("Số điện thoại không hợp lệ. Vui lòng nhập lại.");
+            return false;
+        }
+        if (!emailPattern.test(email)) {
+            alert("Địa chỉ email không hợp lệ. Vui lòng nhập lại.");
+            return false;
+        }
+        return true;
+    }
 </script>
 
-
-<script>
-    $(document).ready(function(){
-$('change-btn').click(function(e){
-
-var email = $('input[name="email"]').val();
-var phone = $('input[name="phone"]').val();
-if(!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
-alert('Email address is invalid.');
-e.preventDefault();
-} else if(!(/^\d{10}$/.test(phone))) {
-alert('Phone number must be 10 digits long.');
-e.preventDefault();
-}
-});
-});
-</script>
 
 
 </html>

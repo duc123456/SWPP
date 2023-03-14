@@ -72,17 +72,19 @@ public class Process extends HttpServlet {
             int id = Integer.parseInt(id_raw);
             int num = Integer.parseInt(num_raw);
             Cart c = (Cart) session.getAttribute("cart");
-            DAO d = new DAO();
-            Product p = d.getProductByID(id);
+            
+            
+//            DAO d = new DAO();
+//            Product p = d.getProductByID(id);
             Item t = c.getItemById(id);
             int t1 = t.getQuantity() + num;
-            if (t1 > 0 && t1 <= p.getQuantity()) {
+            if (t1 > 0 && t1 <= t.getProduct().getQuantity()) {
                 t.setQuantity(t.getQuantity() + num);
             }
             if (session.getAttribute("acc") != null) {
-               
-        User u = (User)session.getAttribute("acc");
-        String cart = "cart" + u.getuId();
+
+                User u = (User) session.getAttribute("acc");
+                String cart = "cart" + u.getuId();
                 Cookie[] cookie = request.getCookies();
                 for (Cookie cookie1 : cookie) {
                     if (cookie1.getName().equals(cart)) {
@@ -90,12 +92,12 @@ public class Process extends HttpServlet {
                         response.addCookie(cookie1);
                         String txt = c.cartToTxt(c);
                         Cookie c1 = new Cookie(cart, txt);
-                        c1.setMaxAge(2 * 24 * 60 * 60);
+                        c1.setMaxAge(30 * 24 * 60 * 60);
                         response.addCookie(c1);
                     }
                 }
             }
-            session.setAttribute("cart", c);
+            //   session.setAttribute("cart", c);
             response.sendRedirect("cart.jsp");
 
         } catch (Exception e) {

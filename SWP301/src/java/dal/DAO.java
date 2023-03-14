@@ -367,12 +367,12 @@ public class DAO extends DBContext {
         return list.get(0).getImage();
     }
 
-    public void changeprofile(String fname, String lname, String address, String image, String dob, boolean gen, String phone, String email, String modify, int id) {
+    public void changeprofile(String fname, String lname, String address, String dob, boolean gen, String phone, String email, String modify, int id) {
         String sql = "UPDATE [dbo].[User]\n"
                 + "   SET [LName] =  ?"
                 + "      ,[FName] =  ?"
                 + "      ,[Address] = ?"
-                + "      ,[image] = ? "
+               
                 + "      ,[DOB] = ? "
                 + "      ,[Gender] = ? "
                 + "      ,[Phone] = ? "
@@ -386,13 +386,13 @@ public class DAO extends DBContext {
             st.setString(1, lname);
             st.setString(2, fname);
             st.setString(3, address);
-            st.setString(4, image);
-            st.setString(5, dob);
-            st.setBoolean(6, gen);
-            st.setString(7, phone);
-            st.setString(8, email);
-            st.setString(9, modify);
-            st.setInt(10, id);
+            
+            st.setString(4, dob);
+            st.setBoolean(5, gen);
+            st.setString(6, phone);
+            st.setString(7, email);
+            st.setString(8, modify);
+            st.setInt(9, id);
 
             st.executeUpdate();
 
@@ -1201,11 +1201,16 @@ public class DAO extends DBContext {
 
     public String insertOrder(Guest g, Cart c, String note) throws SQLException {
         String sql1 = "insert into Guest values(?,?,?,?)";
-//        String sql2 = "select top 1 guest from Guest order by Guest desc";
+        String sql2 = "select top 1 guest from Guest order by Guest desc";
         String sql3 = "insert into [Order](Address, Date, Note, TotalPrice, GID) values (?,?,?,?,?)";
-//        String sql4 = "Select top 1 OID from [Order] order by OID desc";
+        String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
         String sql6 = "update product set quantity=quantity-? where PID=?";
+        String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
+"           ([OID]\n" +
+"           ,[StatusName]\n" +
+"           ,[Date]\n" +
+"           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
         Date d = new Date(millis1);
         String s = d.toString();
@@ -1218,28 +1223,47 @@ public class DAO extends DBContext {
             st1.setString(4, g.getfName());
             st1.executeUpdate();
 
+<<<<<<< HEAD
+            PreparedStatement st2 = connection.prepareStatement(sql2);
+            ResultSet rs = st2.executeQuery();
+            int gid = 0;
+            if (rs.next()) {
+                gid = rs.getInt(1);
+            }
+
+=======
 //            PreparedStatement st2 = connection.prepareStatement(sql2);
 //            ResultSet rs = st2.executeQuery();
 //            int gid = 0;
 //            if (rs.next()) {
 //                gid = rs.getInt(1);
 //            }
+>>>>>>> main
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
             st3.setString(2, s);
             st3.setString(3, note);
             st3.setLong(4, c.totalPrice());
-            st3.setInt(5, g.getgId());
+            st3.setInt(5, gid);
             st3.executeUpdate();
 
+<<<<<<< HEAD
+            int oid = 1;
+            PreparedStatement st4 = connection.prepareStatement(sql4);
+            rs = st4.executeQuery();
+            rs.next();
+            oid = rs.getInt(1);
+
+=======
 //            int oid = 1;
 //            PreparedStatement st4 = connection.prepareStatement(sql4);
 //            ResultSet rs = st4.executeQuery();
 //            rs.next();
 //            oid = rs.getInt(1);
+>>>>>>> main
             PreparedStatement st5 = connection.prepareStatement(sql5);
             for (Item i : c.getItems()) {
-                //st5.setInt(1, );
+                st5.setInt(1,oid);
                 st5.setInt(2, i.getProduct().getpId());
                 st5.setInt(3, i.getPrice());
                 st5.setInt(4, i.getQuantity());
@@ -1249,16 +1273,23 @@ public class DAO extends DBContext {
             for (Item i : c.getItems()) {
                 st6.setInt(1, i.getQuantity());
                 st6.setInt(2, i.getProduct().getpId());
-
+                
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
                     return "Don hang khong duoc dat thanh cong";
                 }
                 st6.executeUpdate();
             }
+            PreparedStatement st7 = connection.prepareStatement(sql7);
+            st7.setInt(1, oid);
+            st7.setInt(2, 1);
+            st7.setString(3, s);
+            st7.setBoolean(4, false);
+            st7.executeUpdate();
 
             connection.commit();
         } catch (SQLException e) {
+        
             connection.rollback();
             return "Don hang khong duoc dat thanh cong";
         } finally {
@@ -1278,10 +1309,15 @@ public class DAO extends DBContext {
         String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
         String sql6 = "update product set quantity=quantity-? where PID=?";
+         String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
+"           ([OID]\n" +
+"           ,[StatusName]\n" +
+"           ,[Date]\n" +
+"           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
         Date d = new Date(millis1);
         String s = d.toString();
-        connection.setAutoCommit(false);
+       
         try {
 
             PreparedStatement st3 = connection.prepareStatement(sql3);
@@ -1316,6 +1352,12 @@ public class DAO extends DBContext {
                 }
                 st6.executeUpdate();
             }
+            PreparedStatement st7 = connection.prepareStatement(sql7);
+            st7.setInt(1, oid);
+            st7.setInt(2, 1);
+            st7.setString(3, s);
+            st7.setBoolean(4, false);
+            st7.executeUpdate();
 
             connection.commit();
         } catch (SQLException e) {
@@ -1362,6 +1404,7 @@ public class DAO extends DBContext {
         return list;
 
     }
+    
 
     public Order getOrderbyID(int oid) {
 
@@ -1509,6 +1552,20 @@ public class DAO extends DBContext {
         return null;
     }
 
+<<<<<<< HEAD
+    public static void main(String[] args) throws SQLException {
+       DAO d = new DAO();
+       List<Product> li = d.getAllProd();
+       List<Item> items = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+             Item t = new Item(li.get(i), 2, 2);
+             items.add(t);
+            
+        }
+        Cart c = new Cart(items);
+        Guest g = new Guest(12, "Vu", "Chien", "HN", "123");
+        d.insertOrder(g, c, "123");
+=======
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
         String sql = "select *   from [Order] ";
@@ -1534,6 +1591,7 @@ public class DAO extends DBContext {
         }
 
         return list;
+>>>>>>> main
 
     }
 

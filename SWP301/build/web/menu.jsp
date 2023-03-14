@@ -57,7 +57,7 @@
                                 <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
                                 <li class="p-2"><a  href="orderofuser"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius"  style="max-width: 50px;max-height: 50px; border-radius: 100%" title="${sessionScope.acc.fName}"></a></li>
                                 <li class="p-2" style="margin-top: 6px"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
-                                
+
 
                             </ul>
                         </div>
@@ -101,48 +101,58 @@
                             <button type="button" class="btn btn-light shadow-md border position-relative" title="Giỏ Hàng">
                                 <i class="bi fs-4 bi-basket"></i>
                                 <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-danger">
+
                                     <c:if test="${sessionScope.acc != null}">
-                                        ${requestScope.size}
+                                        <c:if test="${sessionScope.cart != null}">
+                                            ${sessionScope.size}
+                                        </c:if>
+                                        <c:if test="${sessionScope.cart == null}">
+                                            0
+                                        </c:if>
+
                                     </c:if>
                                     <c:if test="${sessionScope.acc == null}">
                                         <c:if test="${sessionScope.cart != null}">
-                                        ${sessionScope.size}
+                                            ${sessionScope.size}
+                                        </c:if>
+                                        <c:if test="${sessionScope.cart == null}">
+                                            0
+                                        </c:if>
+
                                     </c:if>
-                                    <c:if test="${sessionScope.cart == null}">
-                                        0
-                                    </c:if>
-                                    </c:if>
-                                    
-                                    
-                                    
 
 
-                                    </span>
-                                </button>
-                            </a>
 
-                            <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
-                                <i class="bi fs-4 bi-heart"></i>
-                                <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning">
-                                    2
+
+
+
 
                                 </span>
                             </button>
+                        </a>
 
-                        </div>
+                        <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
+                            <i class="bi fs-4 bi-heart"></i>
+                            <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                                2
+
+                            </span>
+                        </button>
+
                     </div>
-                </div>   
-            </div>
-            <div class="menu-bar bg-danger container-fluid border-top">
-                <div class="container">
-                    <h6 class="d-md-none text-white p-3 mb-0 fw-bold">Menu 
-                        <a class="text-white" data-bs-target="#menu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="menu"><i class="bi cp bi-list float-end fs-1 dmji"></i></a> 
-                    </h6>
-                    <ul id="menu" class=" navcol fw-bold d-none d-md-inline-flex">
-                        <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chủ</a></li>
-                        <li class="p-21 px-4"><a class="text-white" href="">Thương hiệu<i class="bi pt-2 bi-chevron-down"></i></a> 
-                            <div class="inner-div">
-                                <ul class="">
+                </div>
+            </div>   
+        </div>
+        <div class="menu-bar bg-danger container-fluid border-top">
+            <div class="container">
+                <h6 class="d-md-none text-white p-3 mb-0 fw-bold">Menu 
+                    <a class="text-white" data-bs-target="#menu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="menu"><i class="bi cp bi-list float-end fs-1 dmji"></i></a> 
+                </h6>
+                <ul id="menu" class=" navcol fw-bold d-none d-md-inline-flex">
+                    <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chủ</a></li>
+                    <li class="p-21 px-4"><a class="text-white" href="">Thương hiệu<i class="bi pt-2 bi-chevron-down"></i></a> 
+                        <div class="inner-div">
+                            <ul class="">
                                 <c:forEach items="${requestScope.cate}" var="ca">
                                     <li><a href="listproduct?cat1=${ca.cid}">${ca.getcName()}</a></li>
                                     </c:forEach>
@@ -182,7 +192,7 @@
                     <li class="p-21 px-4"><a class="text-white" href="">Liên hệ</a></li>
                     <li class="p-21 px-4"><a class="text-white" href=""> </a></li>
 
-                    
+
                 </ul>
 
             </div>

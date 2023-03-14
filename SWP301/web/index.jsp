@@ -306,6 +306,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                                 <div class="btn fw-bold w-100 btn-outline-danger" >Xem Sản Phẩm</div>
 
 
                                         </a>
