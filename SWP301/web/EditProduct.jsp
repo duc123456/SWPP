@@ -31,149 +31,21 @@
 
         <div class="main-wrapper">
 
-            <div class="header">
-
-                <div class="header-left">
-                    <a href="listproduct" class="logo">
-                        <img src="assetsEM/img/logotivi.png" alt="Logo">
-                    </a>
-                    <a href="index.html" class="logo logo-small">
-                        <img src="assetsEM/img/logo-small.png" alt="Logo" width="30" height="30">
-                    </a>
-                </div>
-
-                <a href="javascript:void(0);" id="toggle_btn">
-                    <i class="fe fe-text-align-left"></i>
-                </a>
-
-
-                <a class="mobile_btn" id="mobile_btn">
-                    <i class="fa fa-bars"></i>
-                </a>
-
-
-                <ul class="nav user-menu">
-
-                    <li class="nav-item dropdown noti-dropdown">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell"></i> <span class="badge badge-pill">3</span>
-                        </a>
-                        <div class="dropdown-menu notifications">
-                            <div class="topnav-dropdown-header">
-                                <span class="notification-title">Notifications</span>
-                                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-                            </div>
-                            <div class="noti-content">
-                                <ul class="notification-list">
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-02.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Carlson Tech</span> has approved <span class="noti-title">your estimate</span></p>
-                                                    <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-11.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                                    <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-17.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
-                                                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-13.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                                    <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="topnav-dropdown-footer">
-                                <a href="#">View all Notifications</a>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="nav-item dropdown has-arrow">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="user-img"><img class="rounded-circle" src="assetsEM/img/profiles/avatar-01.jpg" width="31" alt="Seema Sisty"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="user-header">
-                                <div class="avatar avatar-sm">
-                                    <img src="assetsEM/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
-                                </div>
-                                <div class="user-text">
-                                    <h6>${sessionScope.acc.fName}</h6>
-                                    <p class="text-muted mb-0">Administrator</p>
-                                </div>
-                            </div>
-                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
-
-                            <a class="dropdown-item" href="login.jsp">Logout</a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
+            <jsp:include page="MenuManagerProduct.jsp"></jsp:include>
 
 
 
-            <div class="page-wrapper">
-                <div class="content container-fluid">
+                <div class="page-wrapper">
+                    <div class="content container-fluid">
 
-                    <div class="page-header">
+
                         <div class="row">
                             <div class="col-sm-12">
-                                <h3 class="page-title">Sửa sản phẩm</h3>
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Basic Inputs</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <form action="editproduct" method = "post">
+                                <div class="card">
+                                    <form action="editproduct" method = "post">
                                     <c:set var="details" value="${requestScope.details}"/>
                                     <div class="card-header">
-                                        <h4 class="card-title">Sửa sản phẩm</h4>
+                                        <h4 class="card-title">Sửa Sản Phẩm</h4>
                                     </div>
 
                                     <div class="card-body">
@@ -192,47 +64,65 @@
                                         </div>
 
                                         <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Ảnh</label>
+                                            <div class="col-md-10">
+                                                <img id="image-preview" src="Image/${details.imageDf}"  alt="" width="300" height="auto">
+                                                <br>
+                                                <input id="image-input" type="file" name="image" class="form-control">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giá Nhập</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="price" value="${details.priceIn}" class="form-control">
-
+                                                <input type="text" name="price" value="${details.priceIn}" class="form-control" pattern="[1-9]\d*" required>
+                                                <p class="text-danger" id="price-error"></p>         
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giá Bán</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="priceout" value="${details.priceOut}" class="form-control">
+                                                <input type="text" name="priceout" value="${details.priceOut}" class="form-control"  pattern="[1-9]\d*" required>
 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Màu sắc</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="color" value="${details.color}" class="form-control">
+
+                                                <select name="color" class="form-control form-select">
+                                                    <option name="color" value="${details.color}">${details.color}</option>    
+                                                    <option  value="Ðen">Màu đen</option>
+                                                    <option  value="Ðỏ">Màu đỏ</option>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Bảo hành</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="insurance" value="${details.insurance}" class="form-control">
+                                                <input type="text" name="insurance" value="${details.insurance}" class="form-control"  pattern="[1-9]\d*">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Kích thước</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="size" value="${details.size}" class="form-control">
+                                                <input type="text" name="size" value="${details.size}" class="form-control"  pattern="[1-9]\d*"> 
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Số lượng</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="quantity" value="${details.quantity}" class="form-control">
+                                                <input type="number" name="quantity" value="${details.quantity}" class="form-control" min="0" step="1"  pattern="[1-9]\d*" required>
+
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giảm giá</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="discount" value="${details.discount}" class="form-control">
+                                                <input type="text" name="discount" value="${details.discount}" class="form-control"  pattern="^(0(\.\d+)?|1(\.0+)?)$" onblur="validateDiscount()">
+                                                <div id="discount-error" style="color: red;"></div>
                                             </div>
                                         </div>
 
@@ -251,7 +141,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Hang Tivi</label>
+                                            <label class="col-form-label col-md-2">Hãng Tivi</label>
                                             <div class="col-md-10">
                                                 <select  name="catid" class="form-control form-select">
                                                     <option value="${details.cat.cid}" checked>${details.cat.cName}</option>
@@ -263,7 +153,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Man Hinh</label>
+                                            <label class="col-form-label col-md-2">Độ phân giải</label>
                                             <div class="col-md-10">
                                                 <div class="radio">
                                                     <label>
@@ -275,13 +165,18 @@
                                                         <input type="radio" name="resolution" value="4K" > 4K
                                                     </label>
                                                 </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="resolution" value="Full HD" >Full HD
+                                                    </label>
+                                                </div>
 
                                             </div>
                                         </div>
 
 
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Description</label>
+                                            <label class="col-form-label col-md-2">Mô tả</label>
                                             <div class="col-md-10">
                                                 <textarea rows="5" cols="5" value=""  name="description"  class="form-control">${details.description}</textarea>
                                             </div>
@@ -299,6 +194,83 @@
             </div>
 
         </div>
+
+        <script>
+            // Lắng nghe sự kiện khi người dùng chọn file
+            document.getElementById('image-input').addEventListener('change', function () {
+                // Tạo đối tượng FileReader để đọc tệp ảnh được chọn
+                var reader = new FileReader();
+
+                // Lắng nghe sự kiện khi FileReader đã đọc xong tệp ảnh
+                reader.addEventListener('load', function () {
+                    // Đặt ảnh xem trước với dữ liệu được đọc từ FileReader
+                    document.getElementById('image-preview').src = reader.result;
+                });
+
+                // Đọc tệp ảnh được chọn
+                reader.readAsDataURL(this.files[0]);
+            });
+        </script>
+
+        <script>
+            function validateDiscount() {
+                var discountInput = document.getElementsByName("discount")[0];
+                var discountValue = parseFloat(discountInput.value);
+                var discountError = document.getElementById("discount-error");
+                if (discountValue < 0 || discountValue > 1 || isNaN(discountValue)) {
+                    discountError.innerHTML = "Giá trị giảm giá không hợp lệ. Vui lòng nhập giá trị từ 0 đến 1.";
+                } else {
+                    discountError.innerHTML = "";
+                }
+            }
+        </script>
+
+        <script>
+            var priceInput = document.getElementsByName("price")[0];
+            var priceError = document.getElementById("price-error");
+
+            priceInput.addEventListener("input", function () {
+                if (!priceInput.checkValidity()) {
+                    priceError.textContent = "Giá nhập phải là số và lớn hơn 0";
+                } else {
+                    priceError.textContent = "";
+                }
+            });
+        </script>
+
+        <script>
+            function validateForm() {
+                var price = document.getElementsByName("priceout")[0].value;
+                if (!/^[1-9]\d*$/.test(price)) {
+                    alert("Price must be a positive integer!");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
+
+        <script>
+            function validateForm() {
+                var price = document.getElementsByName("quantity")[0].value;
+                if (!/^[1-9]\d*$/.test(price)) {
+                    alert("Quantity must be a positive integer!");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <script>
+            function validateForm() {
+                var price = document.getElementsByName("size")[0].value;
+                if (!/^[1-9]\d*$/.test(price)) {
+                    alert("size must be a positive integer!");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+
 
 
         <script src="assetsEM/js/jquery-3.6.0.min.js"></script>

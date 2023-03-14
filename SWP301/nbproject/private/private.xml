@@ -13,14 +13,15 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/UserController.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/contact.html</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Product.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Order.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/addStaff.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/OrderDetail.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menu.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoginGoogle/Constants.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Item.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Cart.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/AddStaff.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/about.html</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/test.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/EnterOtp.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/newPassword.jsp</file>
@@ -33,6 +34,7 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Role.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DeleteCart.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LogoutControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/EditProfile.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/Dash.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menudash.jsp</file>
@@ -54,6 +56,7 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/Profile.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Guest.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/CartSession.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/AddProduct.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoginControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DBContext.java</file>
         </group>
