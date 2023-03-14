@@ -1223,7 +1223,7 @@ public class DAO extends DBContext {
             st1.setString(4, g.getfName());
             st1.executeUpdate();
 
-<<<<<<< HEAD
+
             PreparedStatement st2 = connection.prepareStatement(sql2);
             ResultSet rs = st2.executeQuery();
             int gid = 0;
@@ -1231,14 +1231,7 @@ public class DAO extends DBContext {
                 gid = rs.getInt(1);
             }
 
-=======
-//            PreparedStatement st2 = connection.prepareStatement(sql2);
-//            ResultSet rs = st2.executeQuery();
-//            int gid = 0;
-//            if (rs.next()) {
-//                gid = rs.getInt(1);
-//            }
->>>>>>> main
+
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
             st3.setString(2, s);
@@ -1247,20 +1240,14 @@ public class DAO extends DBContext {
             st3.setInt(5, gid);
             st3.executeUpdate();
 
-<<<<<<< HEAD
+
             int oid = 1;
             PreparedStatement st4 = connection.prepareStatement(sql4);
             rs = st4.executeQuery();
             rs.next();
             oid = rs.getInt(1);
 
-=======
-//            int oid = 1;
-//            PreparedStatement st4 = connection.prepareStatement(sql4);
-//            ResultSet rs = st4.executeQuery();
-//            rs.next();
-//            oid = rs.getInt(1);
->>>>>>> main
+
             PreparedStatement st5 = connection.prepareStatement(sql5);
             for (Item i : c.getItems()) {
                 st5.setInt(1,oid);
@@ -1552,20 +1539,7 @@ public class DAO extends DBContext {
         return null;
     }
 
-<<<<<<< HEAD
-    public static void main(String[] args) throws SQLException {
-       DAO d = new DAO();
-       List<Product> li = d.getAllProd();
-       List<Item> items = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-             Item t = new Item(li.get(i), 2, 2);
-             items.add(t);
-            
-        }
-        Cart c = new Cart(items);
-        Guest g = new Guest(12, "Vu", "Chien", "HN", "123");
-        d.insertOrder(g, c, "123");
-=======
+
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
         String sql = "select *   from [Order] ";
@@ -1591,7 +1565,7 @@ public class DAO extends DBContext {
         }
 
         return list;
->>>>>>> main
+
 
     }
 
