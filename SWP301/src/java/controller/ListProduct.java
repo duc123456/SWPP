@@ -138,7 +138,7 @@ public class ListProduct extends HttpServlet {
                     }
                 }
             }
-            Cart cart = new Cart(txt, list);
+            Cart cart = new Cart(txt);
             List<Item> listItem = cart.getItems();
             int n;
             if (listItem != null) {

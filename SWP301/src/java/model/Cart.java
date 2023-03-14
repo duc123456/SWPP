@@ -44,6 +44,7 @@ public class Cart {
     }
 
     public void addItem(Item t) {
+        DAO d = new DAO();
         if (getItemById(t.getProduct().getpId()) != null) {
             Item i = getItemById(t.getProduct().getpId());
             i.setQuantity(i.getQuantity() + t.getQuantity());
@@ -67,17 +68,10 @@ public class Cart {
         return l;
     }
 
-    private Product getProductById(int id, List<Product> list) {
-        for (Product i : list) {
-            if (i.getpId() == id) {
-                return i;
-            }
-        }
-        return null;
-    }
-
-    public Cart(String txt, List<Product> list) {
+   
+    public Cart(String txt) {
         items = new ArrayList<>();
+        DAO d = new DAO();
         try {
             if (txt != null && txt.length() != 0) {
                 String[] s = txt.split("/");
@@ -86,7 +80,7 @@ public class Cart {
                     int id = Integer.parseInt(n[0]);
                     int quantity = Integer.parseInt(n[1]);
                     int price = Integer.parseInt(n[2]);
-                    Product p = getProductById(id, list);
+                    Product p = d.getProductByID(id);
                     Item t = new Item(p, quantity, price);
                     addItem(t);
                 }
@@ -121,23 +115,9 @@ public class Cart {
     }
 
     public static void main(String[] args) {
-        DAO d = new DAO();
-
-        List<Item> li2 = new ArrayList<>();
-
-        List<Product> p = d.getAllProd();
-        for (int i = 0; i < 4; i++) {
-
-            int quantity = 2;
-            int price = 3;
-            Item t = new Item(p.get(i), quantity, price);
-            li2.add(t);
-        }
-
-        Cart c = new Cart(li2);
-
-        String s = c.cartToTxt(c);
-        System.out.println("" + s);
+        String s = "Hello";
+        String[] a = s.split("/");
+        System.out.println("" + a.length);
     }
 
 }

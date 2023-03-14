@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cart;
 import model.Guest;
+import model.Item;
 import model.User;
 
 /**
@@ -89,40 +90,58 @@ public class PayServlet extends HttpServlet {
         DAO d = new DAO();
         HttpSession session = request.getSession();
         Cart c = (Cart) session.getAttribute("cart");
-        
+
         if (session.getAttribute("acc") != null) {
             User u = (User) session.getAttribute("acc");
             int uid = u.getuId();
             try {
                 String s = d.insertOrderUser(uid, dia, c, note);
-                 request.setAttribute("mess", s);
-               Cookie[] cookie = request.getCookies();
-              
-        String cart = "cart" + u.getuId();
-                for (Cookie cookie1 : cookie) {
-                    if(cookie1.getName().equals(cart)){
-                        cookie1.setMaxAge(0);
-                         response.addCookie(cookie1);
+                request.setAttribute("mess", s);
+                if (s.equals("Cam On")) {
+                    Cookie[] cookie = request.getCookies();
+
+                    String cart = "cart" + u.getuId();
+                    for (Cookie cookie1 : cookie) {
+                        if (cookie1.getName().equals(cart)) {
+                            cookie1.setMaxAge(0);
+                            response.addCookie(cookie1);
+                        }
+                        session.removeAttribute("cart");
+                        session.removeAttribute("size");
                     }
                 }
-              
+
             } catch (SQLException ex) {
                 Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
+//            try {
+//                for (Item i : c.getItems()) {
+//                    if (i.getProduct().getQuantity() > d.getProductByID(i.getProduct().getpId()).getQuantity()) {
+//                        request.setAttribute("mess", "Loi");
+//                        response.sendRedirect("listproduct");
+//                    }
+//
+//                }
 
-            try {
-                String s = d.insertOrder(g, c, note);
-                request.setAttribute("mess", s);
-            } catch (SQLException ex) {
-                Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+            if (g != null && c != null) {
+                try {
+                    String s = d.insertOrder(g, c, note);
+                    request.setAttribute("mess", s);
+                    if (s.equals("Cam On")) {
+                        session.removeAttribute("cart");
+                        session.removeAttribute("size");
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
 
+//            }catch (SQLException ex) {
+//                
+//            }
         }
-
-        session.removeAttribute("cart");
-        session.removeAttribute("size");
         request.getRequestDispatcher("thankyou.jsp").forward(request, response);
 
     }
