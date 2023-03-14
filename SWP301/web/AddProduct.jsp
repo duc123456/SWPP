@@ -29,149 +29,8 @@
 
         <div class="main-wrapper">
 
-            <div class="header">
+            <jsp:include page="MenuManagerProduct.jsp"></jsp:include>
 
-                <div class="header-left">
-                    <a href="listproduct" class="logo">
-                        <img src="assetsEM/img/logotivi.png" alt="Logo">
-                    </a>
-                  
-                </div>
-
-                <a href="javascript:void(0);" id="toggle_btn">
-                    <i class="fe fe-text-align-left"></i>
-                </a>
-
-
-                <a class="mobile_btn" id="mobile_btn">
-                    <i class="fa fa-bars"></i>
-                </a>
-
-
-                <ul class="nav user-menu">
-
-                    <li class="nav-item dropdown noti-dropdown">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell"></i> <span class="badge badge-pill">3</span>
-                        </a>
-                        <div class="dropdown-menu notifications">
-                            <div class="topnav-dropdown-header">
-                                <span class="notification-title">Notifications</span>
-                                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-                            </div>
-                            <div class="noti-content">
-                                <ul class="notification-list">
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-02.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Carlson Tech</span> has approved <span class="noti-title">your estimate</span></p>
-                                                    <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-11.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">International Software Inc</span> has sent you a invoice in the amount of <span class="noti-title">$218</span></p>
-                                                    <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-17.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">John Hendry</span> sent a cancellation request <span class="noti-title">Apple iPhone XR</span></p>
-                                                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification-message">
-                                        <a href="#">
-                                            <div class="media d-flex">
-                                                <span class="avatar avatar-sm flex-shrink-0">
-                                                    <img class="avatar-img rounded-circle" alt="User Image" src="assetsEM/img/profiles/avatar-13.jpg">
-                                                </span>
-                                                <div class="media-body flex-grow-1">
-                                                    <p class="noti-details"><span class="noti-title">Mercury Software Inc</span> added a new product <span class="noti-title">Apple MacBook Pro</span></p>
-                                                    <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="topnav-dropdown-footer">
-                                <a href="#">View all Notifications</a>
-                            </div>
-                        </div>
-                    </li>
-
-
-                    <li class="nav-item dropdown has-arrow">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="user-img"><img class="rounded-circle" src="assetsEM/img/profiles/avatar-01.jpg" width="31" alt="Seema Sisty"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="user-header">
-                                <div class="avatar avatar-sm">
-                                    <img src="assetsEM/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
-                                </div>
-                                <div class="user-text">
-                                    <h6>Seema Sisty</h6>
-                                    <p class="text-muted mb-0">Administrator</p>
-                                </div>
-                            </div>
-                            <a class="dropdown-item" href="Profile.jsp">My Profile</a>
-
-                            <a class="dropdown-item" href="login.jsp">Logout</a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
-
-
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar-inner slimscroll">
-                    <div id="sidebar-menu" class="sidebar-menu">
-                        <ul>
-                            <li class="menu-title">
-                            </li>
-                            <li>
-                                <a href="index.html"><i class="fe fe-home"></i> <span>Trang chủ</span></a>
-                            </li>
-                            <li class="submenu">
-                                <a href="#"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
-                                <ul style="display: none;">
-                                    <li><a href="loadProduct" class="active">Sản phẩm</a></li>
-                                    <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
-
-                                </ul>
-                            </li>
-
-
-                           
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
 
             <div class="page-wrapper">
@@ -197,145 +56,240 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="addproduct">
-
+                                    <form action="addproduct" onsubmit="return validateForm()">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Tên</label>
                                             <div class="col-md-10">
                                                 <input name="name" type="text" class="form-control" required="">
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá Nhap</label>
-                                            <div class="col-md-10">
-                                                <input name="price" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giá Ban</label>
-                                            <div class="col-md-10">
-                                                <input name="priceout" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Màu sắc</label>
-                                            <div class="col-md-10">
-                                                <select name="color" class="form-control form-select">
-                                                    <option  value="Ðen">Màu đen</option>
-                                                    <option  value="Ðỏ">Màu đỏ</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Năm bảo hành</label>
-                                            <div class="col-md-10">
-                                                <input name="insurance" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Kích thước</label>
-                                            <div class="col-md-10">
-                                                <input name="size" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Số lượng</label>
-                                            <div class="col-md-10">
-                                                <input name="quantity" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Giảm giá</label>
-                                            <div class="col-md-10">
-                                                <input name="discount"  type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Loại Tivi</label>
-                                            <div class="col-md-10">
-                                                <select name="tid" class="form-control form-select">
-                                                    <option  value="1">Smart TV</option>
-                                                    <option  value="2">LED</option>
-                                                    <option  value="3">QLED</option>
-                                                    <option  value="4">QLED</option>
-                                                    <option  value="5">Android TV</option>
-                                                    <option  value="6">Nano Cell</option>
-                                                    <option  value="7">TV man hinh cong</option>
-                                                    <option  value="8">Tivi Khung Tranh</option>
-                                                    <option  value="9">QNED</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                       
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Hang Tivi</label>
-                                            <div class="col-md-10">
-                                                <select name="catid" class="form-control form-select">
-
-                                                    <option  value="1">Samsung</option>
-                                                    <option  value="2">Sharp</option>
-                                                    <option  value="3">Casper</option>
-                                                    <option  value="4">TCL</option>
-                                                    <option  value="5">LG</option>
-                                                    <option  value="6">Xiaomi</option>
-                                                    <option  value="7">Sony</option>
-                                                    <option  value="8">Coocaa</option>
-                                                    <option  value="9">FFalcon</option>
-                                                    <option  value="10">Coex</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Resolution</label>
-                                            <div class="col-md-10">
-                                                <div class="radio">
-                                                    <label>
-                                                        <input name="resolution" value="HD"  type="radio"> HD
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="resolution" value="4K" > 4K
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="radio"> Option 3
-                                                    </label>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Ảnh</label>
+                                                <div class="col-md-10">
+                                                    <img id="preview" src="#" alt="" width="300" height="auto">
+                                                    <input name="image" type="file" class="form-control" required="" onchange="previewImage(event)">
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label class="col-form-label col-md-2">Mô tả</label>
-                                            <div class="col-md-10">
-                                                <textarea name="description" rows="5" cols="5" class="form-control" placeholder="Enter text here"></textarea>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Giá Nhập</label>
+                                                <div class="col-md-10">
+                                                    <input name="price" type="text" class="form-control" pattern="[1-9]\d*" required>
+                                                </div>
+                                            </div>  
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Giá Bán</label>
+                                                <div class="col-md-10">
+                                                    <input name="priceout" type="text" class="form-control" pattern="[1-9]\d*" required>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Màu Sắc</label>
+                                                <div class="col-md-10">
+                                                    <select name="color" class="form-control form-select">
+                                                        <option  value="Ðen">Màu đen</option>
+                                                        <option  value="Ðỏ">Màu đỏ</option>
 
-                                        <button class="btn btn-primary" type="submit">Xác nhận</button>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Năm Bảo Hành</label>
+                                                <div class="col-md-10">
+                                                    <input name="insurance" type="text" class="form-control" pattern="[1-9]\d*" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Kích Thước</label>
+                                                <div class="col-md-10">
+                                                    <input name="size" type="text" class="form-control" pattern="[1-9]\d*" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Số Lượng</label>
+                                                <div class="col-md-10">
+                                                    <input name="quantity" type="text" class="form-control" pattern="[1-9]\d*" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Giảm Giá</label>
+                                                <div class="col-md-10">
+                                                    <input name="discount" type="text" class="form-control" pattern="^(0(\.\d+)?|1(\.0+)?)$" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Loại Tivi</label>
+                                                <div class="col-md-10">
+                                                    <select name="tid" class="form-control form-select">
+                                                        <option  value="1">Smart TV</option>
+                                                        <option  value="2">LED</option>
+                                                        <option  value="3">QLED</option>
+                                                        <option  value="4">QLED</option>
+                                                        <option  value="5">Android TV</option>
+                                                        <option  value="6">Nano Cell</option>
+                                                        <option  value="7">TV man hinh cong</option>
+                                                        <option  value="8">Tivi Khung Tranh</option>
+                                                        <option  value="9">QNED</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Hãng Tivi</label>
+                                                <div class="col-md-10">
+                                                    <select name="catid" class="form-control form-select">
+
+                                                        <option  value="1">Samsung</option>
+                                                        <option  value="2">Sharp</option>
+                                                        <option  value="3">Casper</option>
+                                                        <option  value="4">TCL</option>
+                                                        <option  value="5">LG</option>
+                                                        <option  value="6">Xiaomi</option>
+                                                        <option  value="7">Sony</option>
+                                                        <option  value="8">Coocaa</option>
+                                                        <option  value="9">FFalcon</option>
+                                                        <option  value="10">Coex</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Độ Phân Giải</label>
+                                                <div class="col-md-10">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input name="resolution" value="HD"  type="radio" checked=""> HD
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="resolution" value="4K" > 4K
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="resolution" value="Full HD">  Full HD
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-form-label col-md-2">Mô Tả</label>
+                                                <div class="col-md-10">
+                                                    <textarea name="description" rows="5" cols="5" class="form-control" placeholder="Nhập thông tin mô tả sản phẩm"></textarea>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary" type="submit">Xác Nhận</button>
+
+                                        </div>
                                     </form>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-        </div>
+            <script>
+                function validateForm() {
+                    var price = document.getElementsByName("price")[0].value;
+                    if (!/^[1-9]\d*$/.test(price)) {
+                        alert("Giá nhập phải là số và lớn hơn 0!");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script>
+                function validateForm() {
+                    var price = document.getElementsByName("priceout")[0].value;
+                    if (!/^[1-9]\d*$/.test(price)) {
+                        alert("Giá bán phải là số và lớn hơn 0!");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script>
+                function validateForm() {
+                    var price = document.getElementsByName("insurance")[0].value;
+                    if (!/^[1-9]\d*$/.test(price)) {
+                        alert("Năm bảo hành phải là số và lớn hơn 0!");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script>
+                function validateForm() {
+                    var price = document.getElementsByName("quantity")[0].value;
+                    if (!/^[1-9]\d*$/.test(price)) {
+                        alert("Số lượng phải là số nguyên và lớn hơn 0!");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script>
+                function validateForm() {
+                    var price = document.getElementsByName("size")[0].value;
+                    if (!/^[1-9]\d*$/.test(price)) {
+                        alert("Kích thước là số nguyên và lớn hơn 0!");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+            <script>
+
+                $(document).ready(function () {
+                    var discount = $("input[name='discount']");
+                    var error = $("<p class='text-danger'>Discount phải là số từ 0 đến 1</p>");
+
+                    discount.after(error);
+                    error.hide();
+
+                    discount.on("keyup", function () {
+                        var value = parseFloat(discount.val());
+                        if (isNaN(value) || value < 0 || value > 1) {
+                            error.show();
+                        } else {
+                            error.hide();
+                        }
+                    });
+                });
+
+            </script>
+
+            <script>
+                function previewImage(event) {
+                    var reader = new FileReader();
+                    reader.onload = function () {
+                        var output = document.getElementById('preview');
+                        output.src = reader.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                }
+            </script>
 
 
-        <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
 
-        <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
+            <script src="assetsEM/js/jquery-3.6.0.min.js"></script>
 
-        <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+            <script src="assetsEM/js/bootstrap.bundle.min.js"></script>
 
-        <script src="assetsEM/js/script.js"></script>
+            <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+            <script src="assetsEM/js/script.js"></script>
     </body>
 </html>

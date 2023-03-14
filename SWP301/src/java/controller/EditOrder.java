@@ -13,17 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Category;
-import model.Product;
 import model.User;
 
 /**
  *
  * @author nhant
  */
-@WebServlet(name = "ManagerProduct", urlPatterns = {"/managerProduct"})
-public class ManagerProduct extends HttpServlet {
+@WebServlet(name = "EditOrder", urlPatterns = {"/editorder"})
+public class EditOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,38 +34,18 @@ public class ManagerProduct extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        HttpSession session = request.getSession();
-        //ep string acc sang user
-        User a = (User) session.getAttribute("acc");
-        //bat buoc phai dang nhap 
-        if (session.getAttribute("acc") == null) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() == 1) {
-            DAO dao = new DAO();
-            List<Product> list = dao.getAllProd();
-            // List<Category> listC = dao.getAllCategory();
-
-            int productList = dao.getProductCount();
-            request.setAttribute("numberOfProducts", productList);
-            
-             int productListIn = dao.getProductCountInurance();
-            request.setAttribute("ProductInsurance", productListIn);
-
-              int productListSum = dao.getProductCountQuantity();
-            request.setAttribute("ProductSum", productListSum);
-
-            
-            
-            request.setAttribute("listP", list);
-            //   request.setAttribute("listCC", listC);
-            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-            //neu khong tro ve trang home
-        } else {
-            response.sendRedirect("listproduct");
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet EditOrder</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet EditOrder at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -97,7 +74,14 @@ public class ManagerProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        int oid = Integer.parseInt(request.getParameter("oid"));
+        int status = Integer.parseInt(request.getParameter("status"));
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("acc");
+        DAO dao = new DAO();
+        dao.editOrder(status, oid);
+        request.getRequestDispatcher("managerorder").forward(request, response);
     }
 
     /**
