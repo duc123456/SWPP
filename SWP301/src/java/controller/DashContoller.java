@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import model.Order;
+import model.OrderDetail;
 import model.ProductLog;
 
 /**
@@ -68,13 +69,18 @@ public class DashContoller extends HttpServlet {
         }
         
         String to  = request.getParameter("to");
+        request.setAttribute("year", request.getParameter("year"));
+        int chiphi =d.ChiPhi(request.getParameter("year"));
+        int doanhthu =d.DoanhThu(request.getParameter("year"));
+        request.setAttribute("doanhthu", doanhthu);
+        request.setAttribute("chiphi", chiphi);
         
         
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
         String now = simpleDateFormat.format(date);
-        
+        request.setAttribute("now", now);
         if(from != null && to == null){
             request.setAttribute("from", from);
             request.setAttribute("to", now);
@@ -83,7 +89,8 @@ public class DashContoller extends HttpServlet {
             request.setAttribute("from", from);
             request.setAttribute("to", to);
         }
-        
+        List<OrderDetail> listmost = d.listProductMost();
+        request.setAttribute("listmost", listmost);
         List<Order> list = d.getAllOrder();
         List<Order> list3 = d.getOrderResived(from, now,to);
         List<ProductLog> list2 = d.getProductLogByDate(from, now,to);

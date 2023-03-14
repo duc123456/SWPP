@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +28,11 @@
 
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <title>BOT STORE</title>
+    <style>
+        .body_right-history_child-number{
+            color: #dc3545;
+        }
+    </style>
 </head>
 <body>
     <!-- header -->
@@ -38,58 +45,7 @@
         <!-- container -->
         <div class="body_container">
             <!-- body left -->
-            <div class="body_left">
-                <!-- body left top (dashboard)-->
-                <div class="body_left-dashboard">
-                    <div class="body_left-dashboard_title">THÔNG TIN</div>
-                    <a href="./oder.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
-                            Đơn hàng
-                        </div>
-                        <span>69</span>
-                    </a>
-                    <a href="./favorite.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-heart  dashboard_icon"></i>
-                            Yêu thích
-                        </div>
-                        <span>420</span>
-                    </a>
-                    <a href="./support.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-headset  dashboard_icon"></i>
-                            Hỗ trợ
-                        </div>
-                        <span>1</span>
-                    </a>
-                </div>
-                <!-- body left bot (acc setting)-->
-                <div class="body_left-setting">
-                    <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                    <a href="../src/profile_info.html" class="body_left-dashboard_child" id="current_page">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-user dashboard_icon"></i>
-                            Trang cá nhân
-                        </div>
-                        <span>1</span>
-                    </a>
-                    <a href="../src/address.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-location-arrow dashboard_icon"></i>
-                            Địa chỉ
-                        </div>
-                        <span>2</span>
-                    </a>
-                    <a href="../src/thanh_toan.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-credit-card dashboard_icon"></i>
-                            Phương thức thanh toán
-                        </div>
-                        <span>3</span>
-                    </a>
-                </div>
-            </div>
+            <jsp:include page="sbProfile.jsp"></jsp:include>
             <!-- body right -->
             <div class="body_right">
                 <div>
@@ -99,7 +55,7 @@
                             <i class="fa-solid fa-user body_right-title_icon"></i>
                             <p id="body_right-title">Trang Cá Nhân</p>
                         </div>
-                        <a class="body_right-edit_button" href="#">
+                        <a class="body_right-edit_button" href="#" style="color: #FFF">
                             Sửa thông tin cá nhân
                         </a>
                     </div>
@@ -107,33 +63,28 @@
                     <div class="body_right-status">
                         <!-- avatar -->
                         <div class="body_right-status_avatar">
-                            <img src="../assets/img/frog (7).png" alt="con ech" id="body_right-status_avatar">
+                           
+                            <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 100px;min-height: 50px;max-width: 100px">
+                                   <form action="changeavarta" method="post" enctype="multipart/form-data" class="row">
+                                       <input type="file" name="file" class="col-md-12" style="margin-right: 5px" onchange="this.form.submit()" />
+                                                    
+                                                
+                  
+                                                
+
+                                            
+                                            </form>
                         </div>
                         <!-- name and crown -->
-                        <div class="body_right-status_right">
+                        <div class="body_right-status_right" style="min-height: 70px">
                             <!-- name -->
                             <div class="body_right-status_name">
-                                <div id="body_right-status_name">Đỗ Long</div>
-                                <div class="body_right-status_name-money">
-                                    Đã chi tiêu:
-                                    <span id="body_right-status_name-money">69420$</span>
-                                </div>
-                                <div class="body_right-status_name-level">
-                                    Thành viên Vàng
-                                </div>
+                                <div id="body_right-status_name">${sessionScope.acc.fName} ${sessionScope.acc.lName}</div>
+                                
+                               
                             </div>
                             <!-- crown -->
-                            <div class="body_right-status_crown">
-                                <div class="body_right-status_crown-child">
-                                    <p id="body_right-status_crown-child">
-                                        Hãy mua thêm 200$ để lên thành viên kim cương
-                                    </p>
-                                    <div id="progressBar">
-                                        <div id="barStatus"></div>
-                                    </div>
-                                </div>
-                                <i class="fa-solid fa-crown" id="body_right-status_crown"></i>
-                            </div>
+                            
                         </div>
                     </div>
                     <!-- lịch sử các đơn hàng -->
@@ -162,7 +113,7 @@
                                 Họ
                             </div>
                             <div class="body_right-info_child-text">
-                                Đỗ
+                                 ${sessionScope.acc.fName}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -170,7 +121,7 @@
                                 Tên
                             </div>
                             <div class="body_right-info_child-text">
-                                Long
+                                ${sessionScope.acc.lName}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -178,7 +129,7 @@
                                 Email
                             </div>
                             <div class="body_right-info_child-text">
-                                LongLinh@gmail.com
+                                ${sessionScope.acc.email}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -186,7 +137,7 @@
                                 Điện thoại
                             </div>
                             <div class="body_right-info_child-text">
-                                +84 912345678
+                                ${sessionScope.acc.phone}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -194,7 +145,7 @@
                                 Ngày sinh
                             </div>
                             <div class="body_right-info_child-text">
-                                29/12/2001
+                                ${(sessionScope.acc.dob).substring(0,10)}
                             </div>
                         </div>
                     </div>
