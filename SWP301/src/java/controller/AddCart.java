@@ -82,6 +82,7 @@ public class AddCart extends HttpServlet {
         DAO d = new DAO();
         String id_raw = request.getParameter("product");
         String quantity_raw = request.getParameter("quantity");
+        
         String price_raw = request.getParameter("price");
 
         HttpSession session = request.getSession();

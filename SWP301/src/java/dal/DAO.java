@@ -1208,7 +1208,7 @@ public class DAO extends DBContext {
         String sql6 = "update product set quantity=quantity-? where PID=?";
         String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
 "           ([OID]\n" +
-"           ,[StatusName]\n" +
+"           ,[StatusID]\n" +
 "           ,[Date]\n" +
 "           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
@@ -1298,7 +1298,7 @@ public class DAO extends DBContext {
         String sql6 = "update product set quantity=quantity-? where PID=?";
          String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
 "           ([OID]\n" +
-"           ,[StatusName]\n" +
+"           ,[StatusID]\n" +
 "           ,[Date]\n" +
 "           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
@@ -1466,19 +1466,7 @@ public class DAO extends DBContext {
 
     }
 
-    public String getUserImage(int uId) {
-        String sql = "Select Image from [User] where ID = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, uId);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return rs.getString(1);
-            }
-        } catch (SQLException e) {
-        }
-        return null;
-    }
+   
 
     public List<Role> getAllRole() {
         List<Role> list = new ArrayList<>();
@@ -1584,7 +1572,7 @@ public class DAO extends DBContext {
                 ol.setOrder(getOrderbyID(rs.getInt(2)));
                 ol.setStatusId(rs.getInt(3));
                 ol.setDate(rs.getString(4));
-                ol.setConfirm(rs.getInt(5));
+                ol.setConfirm(rs.getBoolean(5));
                 return ol;
 
             }
@@ -1786,7 +1774,7 @@ public class DAO extends DBContext {
                 p.setOrder(getOrderById(rs.getInt(2)));
                 p.setStatusId(rs.getInt(3));
                 p.setDate(rs.getString(4));
-                p.setConfirm(rs.getInt(5));
+                p.setConfirm(rs.getBoolean(5));
 
                 list.add(p);
             }
@@ -1817,7 +1805,7 @@ public class DAO extends DBContext {
                 p.setOrder(getOrderById(rs.getInt(2)));
                 p.setStatusId(rs.getInt(3));
                 p.setDate(rs.getString(4));
-                p.setConfirm(rs.getInt(5));
+                p.setConfirm(rs.getBoolean(5));
 
                 list.add(p);
             }
@@ -1830,7 +1818,7 @@ public class DAO extends DBContext {
     }
 
     public Order getOrderById(int id) {
-        String sql = "select * from Order where [OID] = ?";
+        String sql = "select * from [Order] where [OID] = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
@@ -1896,5 +1884,171 @@ public class DAO extends DBContext {
         }
         return list;
     }
+    public List<Order> getAllOrderByUID(int uId) {
+        List<Order> list = new ArrayList<>();
+        String sql = "select *   from [Order] where [UID] = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            int n = 1;
+            while (rs.next()) {
+                Order o = new Order();
+                o.setoId(rs.getInt(1));
+                o.setUser(checkUsUid(rs.getInt(2)));
+                o.setAddress(rs.getString(3));
+                o.setDate(rs.getString(4));
+                  
+                o.setNote(rs.getString(5));
+                o.setTotalPrice(rs.getLong(6));
+                o.setGuest(getGuestById(rs.getInt(7)));
+                o.setPhone(rs.getString(8));
+                if(getODLogByOID(rs.getInt(1)) != null){
+                   n = getODLogByOID(rs.getInt(1)).getStatusId();
+                }
+            
+                o.setStatus(n);
+
+                list.add(o);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+
+    }
+    public List<OrderDetail> getODDTbyOId(int oId) {
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "select * from [Order Detail] where OID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, oId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setODID(rs.getInt(1));
+                od.setOrder(getOrderbyID1(rs.getInt("OID")));
+                od.setProduct(getProductByID(rs.getInt("PID")));
+                od.setPrice(rs.getInt("Price"));
+                od.setAmount(rs.getInt("Amount"));
+
+                list.add(od);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+     public Order getOrderbyID1(int oid) {
+
+        String sql = "select * from [Order]\n"
+                + "where OID = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, oid);
+            ResultSet rs = st.executeQuery();
+            int n = 1;
+            if (rs.next()) {
+                Order u = new Order();//rs.getInt(1),rs.getInt(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getLong(6),rs.getInt(7),rs.getString(8));
+                u.setoId(rs.getInt(1));
+                u.setUser(checkUsUid(rs.getInt(2)));
+                u.setAddress(rs.getString(3));
+                u.setDate(rs.getString(4));
+                u.setNote(rs.getString(5));
+                u.setTotalPrice(rs.getLong(6));
+                u.setGuest(getGuestById(rs.getInt(7)));
+                u.setPhone(rs.getString(8));
+                if(getODLogByOID(rs.getInt(1)) != null){
+                   n = getODLogByOID(rs.getInt(1)).getStatusId();
+                }
+                u.setStatus(n);
+
+                return u;
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+
+    }
+     public void insertSanPhamDaXem(int uId, int pId){
+         String sql = "insert into ProductLog (Uid, PId, Action) values(?,?,?)";
+         try {
+             PreparedStatement st = connection.prepareStatement(sql);
+             st.setInt(1, uId);
+             st.setInt(2, pId);
+             st.setInt(3, 0);
+             st.executeUpdate();
+             
+         } catch (SQLException e) {
+         }
+         
+         
+     }
+     public List<Product> sanPhamDaXem(int uId){
+         String sql = "select PId from ProductLog where Uid = ? and Action = 0";
+         List<Product> list = new ArrayList<>();
+         try {
+             PreparedStatement st = connection.prepareStatement(sql);
+             st.setInt(1, uId);
+             ResultSet rs = st.executeQuery();
+             while (rs.next()) {
+               Product p = new Product();
+               p = getProductByID(rs.getInt(1));
+               list.add(p);
+                 
+             }
+             
+             return list;
+             
+         } catch (Exception e) {
+         }
+         return list;
+     }
+     
+     
+     public List<OrderLog> getAllOrderLogByUser(int uId){
+         String sql = "select od.OID,  ol.StatusID, ol.Date, Confirm, ol.OrderLogId from [Order] od join OrderLog ol on od.OID = ol.OID where od.UID =? Order By ol.OrderLogId desc";
+         List<OrderLog> list = new ArrayList<>();
+         try {
+             PreparedStatement st = connection.prepareStatement(sql);
+             st.setInt(1, uId);
+             ResultSet rs = st.executeQuery();
+             while (rs.next()) {
+                 OrderLog ol = new OrderLog();
+                 ol.setOrder(getOrderById(rs.getInt(1)));
+                 ol.setStatusId(rs.getInt(2));
+                 ol.setDate(rs.getString(3));
+                 ol.setConfirm(rs.getBoolean(4));
+                 list.add(ol);
+             
+                 
+             }
+             return list;
+         } catch (Exception e) {
+         }
+          
+         return list;
+         
+     }
+     
+ 
+    public static void main(String[] args) {
+        DAO d = new DAO();
+        List<Product> list = d.sanPhamDaXem(1);
+        System.out.println("" + list.get(0).getName());
+    }
+
+   
+    
 
 }

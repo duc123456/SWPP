@@ -42,26 +42,26 @@
                 <!-- body left top (dashboard)-->
                 <div class="body_left-dashboard">
                     <div class="body_left-dashboard_title">THÔNG TIN</div>
-                    <a href="./oder.html" class="body_left-dashboard_child">
+                    <a href="hisOrder.jsp" class="body_left-dashboard_child">
                         <div id="hover_icon">
                             <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                             Đơn hàng
                         </div>
-                        <span>69</span>
+                        <span>${orderByUId.size()}</span>
                     </a>
-                    <a href="./favorite.html" class="body_left-dashboard_child">
+                    <a href="sanphamdaxem" class="body_left-dashboard_child">
                         <div id="hover_icon">
                             <i class="fa-solid fa-heart  dashboard_icon"></i>
-                            Yêu thích
+                            San pham da xem
                         </div>
-                        <span>420</span>
+                        <span>${soSanPhamDaXem}</span>
                     </a>
-                    <a href="./support.html" class="body_left-dashboard_child">
+                    <a href="thongbao" class="body_left-dashboard_child">
                         <div id="hover_icon">
                             <i class="fa-solid fa-headset  dashboard_icon"></i>
-                            Hỗ trợ
+                            Thong bao cua toi
                         </div>
-                        <span>1</span>
+                        <span>${thongBao}</span>
                     </a>
                 </div>
                 <!-- body left bot (acc setting)-->
@@ -99,7 +99,7 @@
                             <i class="fa-solid fa-user body_right-title_icon"></i>
                             <p id="body_right-title">Trang Cá Nhân</p>
                         </div>
-                        <a class="body_right-edit_button" href="#">
+                        <a class="body_right-edit_button" href="Profile.jsp">
                             Sửa thông tin cá nhân
                         </a>
                     </div>
@@ -107,13 +107,13 @@
                     <div class="body_right-status">
                         <!-- avatar -->
                         <div class="body_right-status_avatar">
-                            <img src="../assets/img/frog (7).png" alt="con ech" id="body_right-status_avatar">
+                            <img src="uploadDir/${sessionScope.acc.image}" alt="con ech" id="body_right-status_avatar">
                         </div>
                         <!-- name and crown -->
                         <div class="body_right-status_right">
                             <!-- name -->
                             <div class="body_right-status_name">
-                                <div id="body_right-status_name">Đỗ Long</div>
+                                <div id="body_right-status_name">${sessionScope.acc.lName } ${sessionScope.acc.fName}</div>
                                 <div class="body_right-status_name-money">
                                     Đã chi tiêu:
                                     <span id="body_right-status_name-money">69420$</span>
@@ -138,21 +138,22 @@
                     </div>
                     <!-- lịch sử các đơn hàng -->
                     <div class="body_right-history">
+                        
                         <div class="body_right-history_child">
-                            <span class="body_right-history_child-number">267</span>
-                            <p>Đơn hàng đã mua</p>
+                            <span class="body_right-history_child-number">${DangXuLy}</span>
+                            <a href="hisorder?n=1"><p>Đơn hàng đang xác nhân</p></a>
                         </div>
                         <div class="body_right-history_child">
-                            <span class="body_right-history_child-number">6</span>
-                            <p>Đơn hàng đợi thanh toán</p>
+                            <span class="body_right-history_child-number">${DaXacNhan}</span>
+                            <a href="hisorder?n=2"><p>Đơn hàng dã xác nhân</p></a>
                         </div>
                         <div class="body_right-history_child">
-                            <span class="body_right-history_child-number">2</span>
-                            <p>Đơn hàng đã huỷ</p>
+                            <span class="body_right-history_child-number">${DaNhan}</span>
+                            <a href="hisorder?n=3"><p>Đơn hàng đã nhan</p></a>
                         </div>
                         <div class="body_right-history_child">
-                            <span class="body_right-history_child-number">10</span>
-                            <p>Đơn hàng đang giao</p>
+                            <span class="body_right-history_child-number">${DaHuy}</span>
+                            <a href="hisorder?n=1"><p>Đơn hàng đa huy</p></a>
                         </div>
                     </div>
                     <!-- thông tin cá nhân -->
@@ -162,7 +163,7 @@
                                 Họ
                             </div>
                             <div class="body_right-info_child-text">
-                                Đỗ
+                            ${sessionScope.acc.lName}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -170,7 +171,7 @@
                                 Tên
                             </div>
                             <div class="body_right-info_child-text">
-                                Long
+                                ${sessionScope.acc.fName}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -178,7 +179,7 @@
                                 Email
                             </div>
                             <div class="body_right-info_child-text">
-                                LongLinh@gmail.com
+                                ${sessionScope.acc.email}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -186,7 +187,7 @@
                                 Điện thoại
                             </div>
                             <div class="body_right-info_child-text">
-                                +84 912345678
+                                ${sessionScope.acc.phone}
                             </div>
                         </div>
                         <div class="body_right-info_child">
@@ -194,7 +195,7 @@
                                 Ngày sinh
                             </div>
                             <div class="body_right-info_child-text">
-                                29/12/2001
+                                ${sessionScope.acc.dob.substring(0,10)}
                             </div>
                         </div>
                     </div>

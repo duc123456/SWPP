@@ -13,12 +13,12 @@ public class OrderLog {
     private Order order;
     private int statusId;
     private String date;
-    private int confirm;
+    private boolean confirm;
 
     public OrderLog() {
     }
 
-    public OrderLog(int logID, Order order, int statusId, String date, int confirm) {
+    public OrderLog(int logID, Order order, int statusId, String date, boolean confirm) {
         this.logID = logID;
         this.order = order;
         this.statusId = statusId;
@@ -58,11 +58,11 @@ public class OrderLog {
         this.date = date;
     }
 
-    public int getConfirm() {
+    public boolean getConfirm() {
         return confirm;
     }
 
-    public void setConfirm(int confirm) {
+    public void setConfirm(boolean confirm) {
         this.confirm = confirm;
     }
     
