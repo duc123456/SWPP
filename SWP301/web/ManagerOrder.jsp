@@ -174,7 +174,7 @@
                                                         </c:if>
                                                         <c:if test="${o.statusId == 4}">
                                                             <td class="text-end">
-                                                                <div class="font-weight-600 text-dark">Đã Huy</div>
+                                                                <div class="font-weight-600 text-dark">Đã Hủy</div>
                                                             </td>
                                                         </c:if>
                                                 <form action="editorder" method = "post">
@@ -194,7 +194,7 @@
                                                                 <i class="fe fe-check"></i>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 4}">
-                                                                <i class="fe fe-home"></i>
+                                                                <i class="fe fe-close"></i>
                                                             </c:if>
                                                         </div>
                                                     </td>

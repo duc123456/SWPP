@@ -1830,10 +1830,10 @@ public class DAO extends DBContext {
     public List<OrderLog> getAllOrderLog() {
         List<OrderLog> list = new ArrayList<>();
         String sql = "SELECT ol.OID, MAX(ol.StatusID) as MaxStatusID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone\n"
-                + "FROM [SWP].[dbo].[OrderLog] ol\n"
-                + "INNER JOIN [Order] o ON o.OID = ol.OID\n"
-                + "WHERE ol.StatusID = (SELECT MAX(StatusID) FROM [SWP].[dbo].[OrderLog] WHERE OID = ol.OID)\n"
-                + "GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone";
+                + "               FROM [SWP].[dbo].[OrderLog] ol\n"
+                + "                INNER JOIN [Order] o ON o.OID = ol.OID\n"
+                + "               WHERE ol.StatusID = (SELECT MAX(StatusID) FROM [SWP].[dbo].[OrderLog] WHERE OID = ol.OID)\n"
+                + "               GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone";
 
         try {
 
@@ -1884,8 +1884,8 @@ public class DAO extends DBContext {
         }
         return null;
     }
-    //LayUser
 
+    //LayUser
     public int SelProductFolowTime(String month, String year) {
 
         String sql = "SELECT sum(o.TotalPrice) FROM [Order]  o\n"
@@ -1988,7 +1988,9 @@ public class DAO extends DBContext {
             if (rs.next()) {
                 Order t = new Order();
                 t.setoId(rs.getInt(1));
-                t.setAddress(rs.getString(2));
+                t.setAddress(rs.getString(3));
+                t.setDate(rs.getString(4));
+                t.setNote(rs.getString(5));
 
                 return t;
             }
