@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.User;
 
 /**
@@ -77,10 +79,17 @@ public class EditOrder extends HttpServlet {
 
         int oid = Integer.parseInt(request.getParameter("oid"));
         int status = Integer.parseInt(request.getParameter("status"));
+      
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        dao.editOrder(status, oid);
+        
+        dao.editOrder(oid,status, format);
         request.getRequestDispatcher("managerorder").forward(request, response);
     }
 

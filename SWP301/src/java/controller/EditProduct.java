@@ -104,8 +104,14 @@ public class EditProduct extends HttpServlet {
         String ppriceout = request.getParameter("priceout");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
+        Product p = new Product();
         DAO dao = new DAO();
-        dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+
+        if (pimage == null || pimage.isEmpty()) {
+            dao.editProduct2(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+        } else {
+            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+        }
         response.sendRedirect("managerProduct");
 
     }

@@ -53,7 +53,7 @@ public class ManagerProduct extends HttpServlet {
             int productList = dao.getProductCount();
             request.setAttribute("numberOfProducts", productList);
             
-             int productListIn = dao.getProductCountInurance();
+            int productListIn = dao.getProductCountInurance();
             request.setAttribute("ProductInsurance", productListIn);
 
               int productListSum = dao.getProductCountQuantity();
