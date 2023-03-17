@@ -572,6 +572,7 @@
             </div>
 
             <div class="row">
+                <a href="export">xuat excel</a>
                 <div class="col-12">
                     <div class="card mb-3 mb-md-4">
                         <div class="card-header">
