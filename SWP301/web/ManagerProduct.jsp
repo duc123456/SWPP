@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Quản lý sản phẩm</title>
 
-        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
         <link rel="stylesheet" href="assetsEM/css/bootstrap.min.css">
 
@@ -42,7 +42,7 @@
                                     <div class="card-body">
                                         <div class="dash-widget-header">
                                             <span class="dash-widget-icon bg-primary">
-                                                <i class="fas fa-tv"></i>
+                                                <i class="fe fe-desktop"></i>
                                             </span>
                                             <div class="dash-count">
                                                 <a href="#" class="count-title">Số Lượng Sản Phẩm</a>
@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <span class="dash-widget-icon bg-warning">
-                                            <i class="fe fe-phone"></i>
+                                            <i class="fe fe-wallet"></i>
                                         </span>
                                         <div class="dash-count">
                                             <a href="#" class="count-title">
@@ -74,7 +74,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <span class="dash-widget-icon bg-danger">
-                                            <i class="fe fe-comments"></i>
+                                            <i class="fe fe-star"></i>
                                         </span>
                                         <div class="dash-count">
                                             <a href="#" class="count-title">Tổng số sản phẩm</a>

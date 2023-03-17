@@ -69,6 +69,8 @@
                                                 <img id="image-preview" src="Image/${details.imageDf}"  alt="" width="300" height="auto">
                                                 <br>
                                                 <input id="image-input" type="file" name="image" class="form-control">
+                                                
+                                                <input id="image-input" type="hidden" name="image" value="${details.imageDf}" class="form-control">
                                             </div>
                                         </div>
 

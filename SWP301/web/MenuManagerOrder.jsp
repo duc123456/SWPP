@@ -3,6 +3,7 @@
     Created on : Mar 11, 2023, 4:11:25 PM
     Author     : nhant
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,7 @@
                                 <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
                                     <li><a href="managerorder" class="active">Đơn hàng</a></li>
-                                    <li><a href="#">Thanh toán</a></li>
+                                  
                                 
 
                                 </ul>

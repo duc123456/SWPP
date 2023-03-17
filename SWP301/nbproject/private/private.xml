@@ -1,64 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderOfUserController.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LogoutControl.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/PayServlet.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/orderdetail.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menudash.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerProduct.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditOrder.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/RegisterControl.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/hisOrder.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Product.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Order.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/GeneralOrder.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ForgotPass/ForgotPassword.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/OrderLog.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/profilee.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/OrderDetail.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menu.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/ManagerOrder.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/test.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/sidebarDash.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderDetail1.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ListProduct.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/oder_detail.html</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/HisOrder.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/User.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/FindStatus.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/AddCart.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditProduct.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditUserController.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/Profile.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Guest.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoginControl.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DBContext.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoadControl.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerProductSellOut.java</file>
-=======
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_stacked.scss</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/brands.scss</file>
-            <file>file:/C:/SWPP/SWP301/web/ManagerOrder.jsp</file>
-            <file>file:/C:/SWPP/SWP301/web/cart.jsp</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/regular.scss</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/Category.java</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_bordered-pulled.scss</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_animated.scss</file>
-            <file>file:/C:/SWPP/SWP301/src/java/controller/DashContoller.java</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/solid.scss</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_list.scss</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_core.scss</file>
-            <file>file:/C:/SWPP/SWP301/src/java/model/OrderDetail.java</file>
-            <file>file:/C:/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
-            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_rotated-flipped.scss</file>
->>>>>>> main
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/EditOrder.java</file>
         </group>
     </open-files>
 </project-private>
