@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Thêm sản phẩm</title>
 
-        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
+         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
         <link rel="stylesheet" href="assetsEM/css/bootstrap.min.css">
 
@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="addproduct" onsubmit="return validateForm()">
+                                    <form action="addproduct" method="post">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Tên</label>
                                             <div class="col-md-10">
@@ -78,12 +78,14 @@
                                                     <input name="price" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>
                                             </div>  
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Giá Bán</label>
                                                 <div class="col-md-10">
                                                     <input name="priceout" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Màu Sắc</label>
                                                 <div class="col-md-10">
@@ -94,30 +96,35 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Năm Bảo Hành</label>
                                                 <div class="col-md-10">
                                                     <input name="insurance" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Kích Thước</label>
                                                 <div class="col-md-10">
                                                     <input name="size" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Số Lượng</label>
                                                 <div class="col-md-10">
                                                     <input name="quantity" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Giảm Giá</label>
                                                 <div class="col-md-10">
                                                     <input name="discount" type="text" class="form-control" pattern="^(0(\.\d+)?|1(\.0+)?)$" required>
                                                 </div>
                                             </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-form-label col-md-2">Loại Tivi</label>
                                                 <div class="col-md-10">
@@ -194,82 +201,6 @@
                 </div>
 
             </div>
-
-            <script>
-                function validateForm() {
-                    var price = document.getElementsByName("price")[0].value;
-                    if (!/^[1-9]\d*$/.test(price)) {
-                        alert("Giá nhập phải là số và lớn hơn 0!");
-                        return false;
-                    }
-                    return true;
-                }
-            </script>
-
-            <script>
-                function validateForm() {
-                    var price = document.getElementsByName("priceout")[0].value;
-                    if (!/^[1-9]\d*$/.test(price)) {
-                        alert("Giá bán phải là số và lớn hơn 0!");
-                        return false;
-                    }
-                    return true;
-                }
-            </script>
-
-            <script>
-                function validateForm() {
-                    var price = document.getElementsByName("insurance")[0].value;
-                    if (!/^[1-9]\d*$/.test(price)) {
-                        alert("Năm bảo hành phải là số và lớn hơn 0!");
-                        return false;
-                    }
-                    return true;
-                }
-            </script>
-
-            <script>
-                function validateForm() {
-                    var price = document.getElementsByName("quantity")[0].value;
-                    if (!/^[1-9]\d*$/.test(price)) {
-                        alert("Số lượng phải là số nguyên và lớn hơn 0!");
-                        return false;
-                    }
-                    return true;
-                }
-            </script>
-
-            <script>
-                function validateForm() {
-                    var price = document.getElementsByName("size")[0].value;
-                    if (!/^[1-9]\d*$/.test(price)) {
-                        alert("Kích thước là số nguyên và lớn hơn 0!");
-                        return false;
-                    }
-                    return true;
-                }
-            </script>
-
-            <script>
-
-                $(document).ready(function () {
-                    var discount = $("input[name='discount']");
-                    var error = $("<p class='text-danger'>Discount phải là số từ 0 đến 1</p>");
-
-                    discount.after(error);
-                    error.hide();
-
-                    discount.on("keyup", function () {
-                        var value = parseFloat(discount.val());
-                        if (isNaN(value) || value < 0 || value > 1) {
-                            error.show();
-                        } else {
-                            error.hide();
-                        }
-                    });
-                });
-
-            </script>
 
             <script>
                 function previewImage(event) {

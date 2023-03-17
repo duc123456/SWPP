@@ -35,36 +35,19 @@ public class AddProduct extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html;charset=UTF-8");
-        //add product  theo thu tu name, image, price, title ,,.. 
-        String paddby = request.getParameter("addby");
-        String pcatid = request.getParameter("catid");
-        String pprice = request.getParameter("price");
-        String pname = request.getParameter("name");
-        String pcolor = request.getParameter("color");
-        String pdescription = request.getParameter("description");
-        String presolution = request.getParameter("resolution");
-        String pinsurance = request.getParameter("insurance");
-
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String format = simpleDateFormat.format(date);
-
-        String ptid = request.getParameter("tid");
-        String pimage = request.getParameter("image");
-        String psize = request.getParameter("size");
-        String pquantity = request.getParameter("quantity");
-        String pdiscount = request.getParameter("discount");
-        String ppriceout = request.getParameter("priceout");
-
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("acc");
-        DAO dao = new DAO();
-        dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
-        request.getRequestDispatcher("managerProduct").forward(request, response);
-
+        try ( PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddProduct</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddProduct at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,7 +76,33 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //add product  theo thu tu name, image, price, title ,,.. 
+        String paddby = request.getParameter("addby");
+        String pcatid = request.getParameter("catid");
+        String pprice = request.getParameter("price");
+        String pname = request.getParameter("name");
+        String pcolor = request.getParameter("color");
+        String pdescription = request.getParameter("description");
+        String presolution = request.getParameter("resolution");
+        String pinsurance = request.getParameter("insurance");
+
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+
+        String ptid = request.getParameter("tid");
+        String pimage = request.getParameter("image");
+        String psize = request.getParameter("size");
+        String pquantity = request.getParameter("quantity");
+        String pdiscount = request.getParameter("discount");
+        String ppriceout = request.getParameter("priceout");
+
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("acc");
+        DAO dao = new DAO();
+        dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
+        response.sendRedirect("managerProduct");
     }
 
     /**

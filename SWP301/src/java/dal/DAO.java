@@ -372,7 +372,6 @@ public class DAO extends DBContext {
                 + "   SET [LName] =  ?"
                 + "      ,[FName] =  ?"
                 + "      ,[Address] = ?"
-               
                 + "      ,[DOB] = ? "
                 + "      ,[Gender] = ? "
                 + "      ,[Phone] = ? "
@@ -386,7 +385,7 @@ public class DAO extends DBContext {
             st.setString(1, lname);
             st.setString(2, fname);
             st.setString(3, address);
-            
+
             st.setString(4, dob);
             st.setBoolean(5, gen);
             st.setString(6, phone);
@@ -1091,7 +1090,10 @@ public class DAO extends DBContext {
             st.setString(7, pinsurance);
             st.setString(8, format);
             st.setString(9, ptid);
-            st.setString(10, pimage);
+            if (pimage != null || pimage.isEmpty()) {
+
+                st.setString(10, pimage);
+            }
             st.setString(11, psize);
             st.setString(12, pquantity);
             st.setString(13, pdiscount);
@@ -1206,11 +1208,11 @@ public class DAO extends DBContext {
         String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
         String sql6 = "update product set quantity=quantity-? where PID=?";
-        String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
-"           ([OID]\n" +
-"           ,[StatusID]\n" +
-"           ,[Date]\n" +
-"           ,[Confirm]) values (?,?,?,?)";
+        String sql7 = "INSERT INTO [dbo].[OrderLog]\n"
+                + "           ([OID]\n"
+                + "           ,[StatusID]\n"
+                + "           ,[Date]\n"
+                + "           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
         Date d = new Date(millis1);
         String s = d.toString();
@@ -1229,7 +1231,6 @@ public class DAO extends DBContext {
                 gid = rs.getInt(1);
             }
 
-
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
             st3.setString(2, s);
@@ -1238,17 +1239,15 @@ public class DAO extends DBContext {
             st3.setInt(5, gid);
             st3.executeUpdate();
 
-
             int oid = 1;
             PreparedStatement st4 = connection.prepareStatement(sql4);
             rs = st4.executeQuery();
             rs.next();
             oid = rs.getInt(1);
 
-
             PreparedStatement st5 = connection.prepareStatement(sql5);
             for (Item i : c.getItems()) {
-                st5.setInt(1,oid);
+                st5.setInt(1, oid);
                 st5.setInt(2, i.getProduct().getpId());
                 st5.setInt(3, i.getPrice());
                 st5.setInt(4, i.getQuantity());
@@ -1258,7 +1257,7 @@ public class DAO extends DBContext {
             for (Item i : c.getItems()) {
                 st6.setInt(1, i.getQuantity());
                 st6.setInt(2, i.getProduct().getpId());
-                
+
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
                     return "Don hang khong duoc dat thanh cong";
@@ -1274,7 +1273,7 @@ public class DAO extends DBContext {
 
             connection.commit();
         } catch (SQLException e) {
-        
+
             connection.rollback();
             return "Don hang khong duoc dat thanh cong";
         } finally {
@@ -1294,15 +1293,15 @@ public class DAO extends DBContext {
         String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
         String sql6 = "update product set quantity=quantity-? where PID=?";
-         String sql7 = "INSERT INTO [dbo].[OrderLog]\n" +
-"           ([OID]\n" +
-"           ,[StatusID]\n" +
-"           ,[Date]\n" +
-"           ,[Confirm]) values (?,?,?,?)";
+        String sql7 = "INSERT INTO [dbo].[OrderLog]\n"
+                + "           ([OID]\n"
+                + "           ,[StatusID]\n"
+                + "           ,[Date]\n"
+                + "           ,[Confirm]) values (?,?,?,?)";
         long millis1 = System.currentTimeMillis();
         Date d = new Date(millis1);
         String s = d.toString();
-       
+
         try {
 
             PreparedStatement st3 = connection.prepareStatement(sql3);
@@ -1389,7 +1388,6 @@ public class DAO extends DBContext {
         return list;
 
     }
-    
 
     public Order getOrderbyID(int oid) {
 
@@ -1537,7 +1535,6 @@ public class DAO extends DBContext {
         return null;
     }
 
-
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
         String sql = "select *   from [Order] ";
@@ -1563,7 +1560,6 @@ public class DAO extends DBContext {
         }
 
         return list;
-
 
     }
 
@@ -1685,7 +1681,6 @@ public class DAO extends DBContext {
         return list;
     }
 
-
     public List<OrderDetail> listProductMost() {
         List<OrderDetail> list = new ArrayList();
         String sql = "select PID, sum(Amount) from [Order detail]\n"
@@ -1699,11 +1694,13 @@ public class DAO extends DBContext {
                 od.setProduct(getProductByID(rs.getInt(1)));
                 od.setAmount(rs.getInt(2));
                 list.add(od);
-            }}catch(SQLException e){
-                System.out.println(e);
             }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
         return list;
     }
+
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
@@ -1784,14 +1781,60 @@ public class DAO extends DBContext {
         return count;
     }
 
+    public int getTotalOrder() {
+        int count = 0;
+        String sql = "SELECT COUNT(*) FROM [OrderLog] Where [StatusID] =1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    public int getOrder1() {
+        int count = 0;
+        String sql = "	SELECT COUNT(DISTINCT OID) FROM [OrderLog] WHERE [StatusID] = 2";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    public int getOrder2() {
+        int count = 0;
+        String sql = "";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
+
+    //Lay Order
     public List<OrderLog> getAllOrderLog() {
         List<OrderLog> list = new ArrayList<>();
-        String sql = "SELECT TOP (1000) [OrderLogId]\n"
-                + "      ,[OID]\n"
-                + "      ,[StatusID]\n"
-                + "      ,[Date]\n"
-                + "      ,[Confirm]\n"
-                + "  FROM [SWP].[dbo].[OrderLog]";
+        String sql = "SELECT ol.OID, MAX(ol.StatusID) as MaxStatusID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone\n"
+                + "FROM [SWP].[dbo].[OrderLog] ol\n"
+                + "INNER JOIN [Order] o ON o.OID = ol.OID\n"
+                + "WHERE ol.StatusID = (SELECT MAX(StatusID) FROM [SWP].[dbo].[OrderLog] WHERE OID = ol.OID)\n"
+                + "GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone";
+
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
@@ -1799,12 +1842,15 @@ public class DAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 OrderLog p = new OrderLog();
-                p.setLogID(rs.getInt(1));
-                p.setOrder(getOrderById(rs.getInt(2)));
-                p.setStatusId(rs.getInt(3));
-                p.setDate(rs.getString(4));
-                p.setConfirm(rs.getInt(5));
+                // p.setLogID(rs.getInt(1));
+                p.setOrder(getOrderById(rs.getInt(1)));
+                p.setStatusId(rs.getInt(2));
+                p.setDate(rs.getString(5));
+//                p.setConfirm(rs.getInt(5));
+//
+                p.setOrder(getOrderByAddress(rs.getString(4)));
 
+                //  p.setOrder(getGuestByOrder(rs.getInt(12)));       
                 list.add(p);
 
             }
@@ -1815,6 +1861,30 @@ public class DAO extends DBContext {
         return list;
 
     }
+
+    public Order getOrderByAddress(String address) {
+        String sql = "select * from [Order] where [Address] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, address);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Order t = new Order();
+                t.setoId(rs.getInt(1));
+                t.setUser(checkUsUid(rs.getInt(2)));
+                t.setAddress(rs.getString(3));
+                t.setNote(rs.getString(5));
+                t.setTotalPrice(rs.getLong(6));
+                t.setGuest(getGuestById(rs.getInt(7)));
+                t.setPhone(rs.getString(8));
+                return t;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+    //LayUser
 
     public int SelProductFolowTime(String month, String year) {
 
@@ -1831,7 +1901,7 @@ public class DAO extends DBContext {
             if (rs.next()) {
                 return rs.getInt(1);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return 0;
@@ -1840,25 +1910,26 @@ public class DAO extends DBContext {
 
     public List<OrderLog> getStatusOrder(int statusid) {
         List<OrderLog> list = new ArrayList<>();
-        String sql = "SELECT [OrderLogId]\n"
-                + "      ,[OID]\n"
-                + "      ,[StatusID]\n"
-                + "      ,[Date]\n"
-                + "      ,[Confirm]\n"
-                + "  FROM [SWP].[dbo].[OrderLog] Where [StatusID] = ?";
+        String sql = "	SELECT ol.OID, MAX(ol.StatusID) as MaxStatusID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone\n"
+                + "FROM [SWP].[dbo].[OrderLog] ol\n"
+                + "INNER JOIN [Order] o ON o.OID = ol.OID\n"
+                + "WHERE ol.StatusID = ?\n"
+                + "AND ol.StatusID = (SELECT MAX(StatusID) FROM [SWP].[dbo].[OrderLog] WHERE OID = ol.OID)\n"
+                + "GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone";
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, statusid);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                OrderLog p = new OrderLog();
-                p.setLogID(rs.getInt(1));
-                p.setOrder(getOrderById(rs.getInt(2)));
-                p.setStatusId(rs.getInt(3));
-                p.setDate(rs.getString(4));
-                p.setConfirm(rs.getInt(5));
 
+                OrderLog p = new OrderLog();
+                p.setOrder(getOrderById(rs.getInt(1)));
+                p.setStatusId(rs.getInt(2));
+                p.setDate(rs.getString(5));
+//                p.setConfirm(rs.getInt(5));
+//
+                p.setOrder(getOrderByAddress(rs.getString(4)));
                 list.add(p);
 
             }
@@ -1908,8 +1979,6 @@ public class DAO extends DBContext {
         return 0;
     }
 
-
-
     public Order getOrderById(int id) {
         String sql = "select * from Order where [OID] = ?";
         try {
@@ -1929,15 +1998,20 @@ public class DAO extends DBContext {
         return null;
     }
 
-    public void editOrder(int status, int oid) {
-        String query = "UPDATE [dbo].[OrderLog]\n"
-                + "   SET\n"
-                + "     [StatusID] = ?\n"
-                + " WHERE [OrderLogId] = ?";
+    public void editOrder(int oid, int status, String Date) {
+        String query = "INSERT INTO [dbo].[OrderLog]\n"
+                + "           ([OID]\n"
+                + "           ,[StatusID]\n"
+                + "           ,[Date]\n"
+                + "          ,[Confirm])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,0)";
         try {
             PreparedStatement st = connection.prepareStatement(query);
-            st.setInt(1, status);
-            st.setInt(2, oid);
+
+            st.setInt(1, oid);
+            st.setInt(2, status);
+            st.setString(3, Date);
 
             st.executeUpdate();
 
@@ -1979,4 +2053,45 @@ public class DAO extends DBContext {
 
     }
 
+    public void editProduct2(String pcatid, String pprice, String pname, String pcolor, String pdescription, String presolution, String pinsurance, String format, String ptid, String psize, String pquantity, String pdiscount, String ppriceout, int pid) {
+
+        String query = "UPDATE [dbo].[Product]\n"
+                + "  SET     "
+                + "           [CATID] = ?\n"
+                + "           ,[PriceIn] = ?\n"
+                + "           ,[Name] = ?\n"
+                + "           ,[Color] = ?\n"
+                + "           ,[Description] = ?\n"
+                + "           ,[Resolution] = ?\n"
+                + "           ,[Insurance] = ?\n"
+                + "           ,[CreateDate] = ?\n"
+                + "           ,[TID] = ?   \n"
+                + "           ,[Size] = ?\n"
+                + "           ,[Quantity] = ?\n"
+                + "           ,[Discount] = ?\n"
+                + "            ,[PriceOut] = ?\n"
+                + "    Where [PID] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+
+            st.setString(1, pcatid);
+            st.setString(2, pprice);
+            st.setString(3, pname);
+            st.setString(4, pcolor);
+            st.setString(5, pdescription);
+            st.setString(6, presolution);
+            st.setString(7, pinsurance);
+            st.setString(8, format);
+            st.setString(9, ptid);
+
+            st.setString(10, psize);
+            st.setString(11, pquantity);
+            st.setString(12, pdiscount);
+            st.setString(13, ppriceout);
+            st.setInt(14, pid);
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
 }

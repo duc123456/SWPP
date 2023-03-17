@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Quản lý sản phẩm</title>
 
-        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
+         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
         <link rel="stylesheet" href="assetsEM/css/bootstrap.min.css">
 

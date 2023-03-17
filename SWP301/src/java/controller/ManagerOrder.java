@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -48,7 +48,16 @@ public class ManagerOrder extends HttpServlet {
         } else if (a.getRoleId() == 1) {
             DAO dao = new DAO();
             List<OrderLog> list = dao.getAllOrderLog();
+            
+            int productOrder = dao.getTotalOrder();
+            request.setAttribute("totalorder", productOrder);
 
+             int productOrder1 = dao.getOrder1();
+            request.setAttribute("order1", productOrder1);
+            
+                int productOrder2 = dao.getOrder2();
+            request.setAttribute("order2", productOrder2);
+            
             request.setAttribute("listOD", list);
 
             request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
