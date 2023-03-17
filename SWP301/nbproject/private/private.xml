@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderOfUserController.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LogoutControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/PayServlet.java</file>
@@ -41,6 +42,23 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoadControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerProductSellOut.java</file>
+=======
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_stacked.scss</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/brands.scss</file>
+            <file>file:/C:/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/cart.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/regular.scss</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Category.java</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_bordered-pulled.scss</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_animated.scss</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DashContoller.java</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/solid.scss</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_list.scss</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_core.scss</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/OrderDetail.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/web/assets/font/fontawesome-free-6.1.1/scss/_rotated-flipped.scss</file>
+>>>>>>> main
         </group>
     </open-files>
 </project-private>

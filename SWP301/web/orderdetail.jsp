@@ -39,58 +39,7 @@
         <!-- container -->
         <div class="body_container">
             <!-- body left -->
-            <div class="body_left">
-                <!-- body left top (dashboard)-->
-                <div class="body_left-dashboard">
-                    <div class="body_left-dashboard_title">THÔNG TIN</div>
-                    <a href="./oder.html" class="body_left-dashboard_child" id="current_page">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
-                            Đơn hàng
-                        </div>
-                        <span>69</span>
-                    </a>
-                    <a href="./favorite.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-heart  dashboard_icon"></i>
-                            Yêu thích
-                        </div>
-                        <span>420</span>
-                    </a>
-                    <a href="./support.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-headset  dashboard_icon"></i>
-                            Hỗ trợ
-                        </div>
-                        <span>1</span>
-                    </a>
-                </div>
-                <!-- body left bot (acc setting)-->
-                <div class="body_left-setting">
-                    <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                    <a href="../src/profile_info.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-user dashboard_icon"></i>
-                            Trang cá nhân
-                        </div>
-                        <span>1</span>
-                    </a>
-                    <a href="../src/address.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-location-arrow dashboard_icon"></i>
-                            Địa chỉ
-                        </div>
-                        <span>2</span>
-                    </a>
-                    <a href="../src/thanh_toan.html" class="body_left-dashboard_child">
-                        <div id="hover_icon">
-                            <i class="fa-solid fa-credit-card dashboard_icon"></i>
-                            Phương thức thanh toán
-                        </div>
-                        <span>3</span>
-                    </a>
-                </div>
-            </div>
+            <jsp:include page="sbProfile.jsp"></jsp:include>
             <!-- body right -->
             <div class="body_right">
                 <div>
@@ -106,7 +55,7 @@
                     </div>
                     <!-- content -->
                     <div class="body_right-order_info">
-<!--                        <div class="oders_info-child">
+                       <div class="oders_info-child">
                             <div class="oders_info-status">
                                 <div class="oders_info-status-circle statusbar_active">
                                     <div class="check_status">
@@ -132,6 +81,7 @@
                                 </div>
                             </div>
                         </div>-->
+
                         <!-- something i dont know -->
                         <div class="oders_info-child details">
                             <div>

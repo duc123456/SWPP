@@ -34,6 +34,7 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <!-- end header -->
 
+
             <!-- body -->
             <div id="body">
                 <!-- container -->
@@ -64,6 +65,7 @@
                             </div>
                             <span>1</span>
                         </a>
+
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">

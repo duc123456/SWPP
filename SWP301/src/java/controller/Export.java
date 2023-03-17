@@ -5,7 +5,6 @@
 
 package controller;
 
-import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,19 +12,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import model.Order;
-import model.OrderDetail;
-import model.ProductLog;
+import java.io.OutputStream;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name="DashContoller", urlPatterns={"/dash"})
-public class DashContoller extends HttpServlet {
+@WebServlet(name="Export", urlPatterns={"/export"})
+public class Export extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,10 +40,10 @@ public class DashContoller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DashContoller</title>");  
+            out.println("<title>Servlet Export</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DashContoller at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet Export at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,45 +60,32 @@ public class DashContoller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        DAO d = new DAO();
-        String from = request.getParameter("from");
-        if(from != null){
-            request.setAttribute("from", from);
-        }
-        
-        String to  = request.getParameter("to");
-        request.setAttribute("year", request.getParameter("year"));
-        int chiphi =d.ChiPhi(request.getParameter("year"));
-        int doanhthu =d.DoanhThu(request.getParameter("year"));
-        request.setAttribute("doanhthu", doanhthu);
-        request.setAttribute("chiphi", chiphi);
-        
-        
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String now = simpleDateFormat.format(date);
-        request.setAttribute("now", now);
-        if(from != null && to == null){
-            request.setAttribute("from", from);
-            request.setAttribute("to", now);
-        }
-        if(from != null && to != null){
-            request.setAttribute("from", from);
-            request.setAttribute("to", to);
-        }
-        List<OrderDetail> listmost = d.listProductMost();
-        request.setAttribute("listmost", listmost);
-        List<Order> list = d.getAllOrder();
-        List<Order> list3 = d.getOrderResived(from, now,to);
-        List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
-        
-        request.setAttribute("orderList", list);
-        request.setAttribute("PlList", list2);
-        request.setAttribute("order", list3);
-        request.setAttribute("size", list2.size());
-        request.setAttribute("stock", d.totalgetPriceStock(from,now ,to));
-        request.getRequestDispatcher("Dash.jsp").forward(request, response);
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Sheet1");
+        Row headerRow = sheet.createRow(0);
+        Cell cell0 = headerRow.createCell(0);
+    cell0.setCellValue("Column 1");
+    Cell cell1 = headerRow.createCell(1);
+    cell1.setCellValue("Column 2");
+
+    // create data rows
+    for (int i = 1; i < 10; i++) {
+      Row row = sheet.createRow(i);
+      Cell dataCell0 = row.createCell(0);
+      dataCell0.setCellValue("Value " + i);
+      Cell dataCell1 = row.createCell(1);
+      dataCell1.setCellValue(i * 2);
+    }
+    response.setContentType("application/vnd.ms-excel");
+   response.setHeader("Content-Disposition", "attachment; filename=\"userList.xlsx\"");
+   
+   // ghi workbook vào OutputStream
+   OutputStream outputStream = response.getOutputStream();
+   workbook.write(outputStream);
+   outputStream.flush();
+   outputStream.close();
+   response.sendRedirect("dash");
+
     } 
 
     /** 

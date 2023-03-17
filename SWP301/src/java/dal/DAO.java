@@ -379,8 +379,8 @@ public class DAO extends DBContext {
                 + "      ,[Email] = ? "
                 + "      ,[ModifiedDate] = ?"
                 + " WHERE [ID] = ? ";
-
-//        String sql ="insert into Categories values(?,?,?)";
+      
+        
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, lname);
@@ -388,6 +388,7 @@ public class DAO extends DBContext {
             st.setString(3, address);
             
             st.setString(4, dob);
+         
             st.setBoolean(5, gen);
             st.setString(6, phone);
             st.setString(7, email);
@@ -400,6 +401,10 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
 
+    }
+    public static void main(String[] args) {
+        DAO d = new DAO();
+        d.changeprofile("22", "22", "22", "2023-2-2", true, "124124", "1244", "2023-2-2", 1);
     }
 
 //tim san pham tren thanh search
@@ -969,7 +974,7 @@ public class DAO extends DBContext {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 if (rs.getInt(1) == 0) {
-                    return 5;
+                    return 0;
 
                 }
 
@@ -1222,6 +1227,7 @@ public class DAO extends DBContext {
             st1.setString(3, g.getlName());
             st1.setString(4, g.getfName());
             st1.executeUpdate();
+
 
 
             PreparedStatement st2 = connection.prepareStatement(sql2);
@@ -1675,6 +1681,25 @@ public class DAO extends DBContext {
         return list;
     }
 
+
+    public List<OrderDetail> listProductMost() {
+        List<OrderDetail> list = new ArrayList();
+        String sql = "select PID, sum(Amount) from [Order detail]\n"
+                + "Group by PID\n"
+                + "order by PID, sum(Amount)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail od = new OrderDetail();
+                od.setProduct(getProductByID(rs.getInt(1)));
+                od.setAmount(rs.getInt(2));
+                list.add(od);
+            }}catch(SQLException e){
+                System.out.println(e);
+            }
+        return list;
+    }
     public List<Product> searchByName(String txtSearch) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
@@ -1777,12 +1802,35 @@ public class DAO extends DBContext {
                 p.setConfirm(rs.getBoolean(5));
 
                 list.add(p);
+
             }
 
         } catch (SQLException e) {
             System.out.println(e);
         }
         return list;
+
+    }
+
+    public int SelProductFolowTime(String month, String year) {
+
+        String sql = "SELECT sum(o.TotalPrice) FROM [Order]  o\n"
+                + "Inner join [Order Detail] od\n"
+                + "On o.OID =od.OID\n"
+                + "WHERE (1=1) and MONTH(o.Date) = " + month + " ";
+        if (year != null && year != "") {
+            sql += " and YEAR(o.Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return 0;
 
     }
 
@@ -1808,14 +1856,55 @@ public class DAO extends DBContext {
                 p.setConfirm(rs.getBoolean(5));
 
                 list.add(p);
+
             }
 
         } catch (SQLException e) {
             System.out.println(e);
         }
-        return list;
 
+        return list;
     }
+
+    public int ChiPhi(String year) {
+        String sql = "select sum(PriceIn*Quatity) from ProductLog\n"
+                + "where Action = 1 ";
+        if (year != null && year != "") {
+            sql += " and YEAR(Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int DoanhThu(String year) {
+        String sql = "select sum(TotalPrice) from [Order]\n"
+                + "where (1=1) ";
+        if (year != null && year != "") {
+            sql += " and YEAR(Date) = " + year;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+
 
     public Order getOrderById(int id) {
         String sql = "select * from [Order] where [OID] = ?";
@@ -1883,6 +1972,7 @@ public class DAO extends DBContext {
             System.out.println(e);
         }
         return list;
+
     }
     public List<Order> getAllOrderByUID(int uId) {
         List<Order> list = new ArrayList<>();
@@ -2042,12 +2132,6 @@ public class DAO extends DBContext {
      }
      
  
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        List<Product> list = d.sanPhamDaXem(1);
-        System.out.println("" + list.get(0).getName());
-    }
-
    
     
 
