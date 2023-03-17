@@ -164,5 +164,10 @@
         <jsp:include page="menu.jsp"></jsp:include>
         
         <h1>${mess}</h1>
+       
+        <c:if test="${mess.equals('Cam On')}">
+            <a href=""><p>Xem Don Hang</p></a>
+            <a href="listproduct"><p>Quay Lai Trang Chu</p></a>
+        </c:if>
 
 </html>

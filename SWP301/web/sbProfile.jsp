@@ -18,6 +18,7 @@
         </style>
     </head>
     <body>
+        <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
         <div class="body_left">
                 <!-- body left top (dashboard)-->
                 <div class="body_left-dashboard">
@@ -27,7 +28,7 @@
                             
                             Đơn hàng
                         </div>
-                        <span>69</span>
+                        <span>${d.getAllOrderByUID(acc.uId).size()}</span>
                     </a>
                 </div>
                 <!-- body left bot (acc setting)-->

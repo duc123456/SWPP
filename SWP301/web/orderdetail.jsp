@@ -4,6 +4,8 @@
     Author     : ADMIN
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,14 +55,40 @@
                     </div>
                     <!-- content -->
                     <div class="body_right-order_info">
-                          
+                       <div class="oders_info-child">
+                            <div class="oders_info-status">
+                                <div class="oders_info-status-circle statusbar_active">
+                                    <div class="check_status">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-box"></i>
+                                    </div>
+                                </div>
+                                <div class="statusbar statusbar_active"></div>
+                                <div class="oders_info-status-circle statusbar_active">
+                                    <i class="fa-solid fa-truck"></i>
+                                </div>
+                                <div class="statusbar"></div>
+                                <div class="oders_info-status-circle">
+                                    <i class="fa-solid fa-truck-ramp-box"></i>
+                                </div>
+                            </div>
+                            <div class="oders_info-estimated">
+                                <div id="oders_info-estimated">
+                                    Ngày giao dự kiến 
+                                    <b>10/10/2022</b>
+                                </div>
+                            </div>
+                        </div>-->
+
                         <!-- something i dont know -->
                         <div class="oders_info-child details">
                             <div>
                                 <div class="oders_info-details">
                                     <div>
-                                        <span>Mã vận đơn: </span>
-                                        2835070
+                                        <span>Mã don hang: </span>
+                                        ${orderDetail.get(0).order.oId}
                                     </div>
                                     <div>
                                         <span>Đơn vị vận chuyển: </span>
@@ -68,7 +96,7 @@
                                     </div>
                                     <div>
                                         <span>Ngày đặt: </span>
-                                        10/6/2022
+                                        ${orderDetail.get(0).order.date.substring(0,10)}
                                     </div>
                                     <div>
                                         <span>Ngày giao: </span>
@@ -76,23 +104,31 @@
                                     </div>
                                 </div>
                                 <div class="oders_info-description">
-                                    <div class="oders_info-product">
+                                    <c:set var="oddt" value="${orderDetail}"></c:set>
+                                    <c:forEach items="${orderDetail}" var="c">
+                                        <div class="oders_info-product">
                                         <div class="oders_info-product-child">
                                             <div>
-                                                <img src="../assets/img/Albed2.jpg" alt="" class="product_img">
+                                                <a href="detail?pid=${c.product.pId}"><img src="Image/${c.product.imageDf}" alt="" class="product_img"></a>
+                                                
                                             </div>
                                             <div class="product-name">
-                                                <span class="product-name-title">Mô hình Albedo</span>
-                                                <span>$250 x 1</span>
+                                                <span class="product-name-title">${c.product.name}</span>
+                                                
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="description">Mô tả: tỉ lệ 1:20</span>
+                                            <span class="description">${c.price * c.amount}</span>
                                         </div>
                                         <div>
-                                            <span class="review">Viết nhận xét</span>
+                                            <c:if test="${c.order.status == 3}">
+                                                <span class="review">Viết nhận xét</span>
+                                            </c:if>
+                                            
                                         </div>
                                     </div>
+                                    </c:forEach>
+                                    
                                     <!--  -->
                                     <div class="oders_info-product">
                                         <div class="oders_info-product-child">
@@ -137,33 +173,26 @@
                             <!-- left -->
                             <div class="biling_left">
                                 <p class="biling_left-title">Địa chỉ giao hàng</p>
-                                <p class="biling_left-address">326 Phạm Văn Đồng, Mai Dịch, Cầu Giấy, Hà Nội</p>
+                                <p class="biling_left-address">${oddt.get(0).order.address}</p>
                             </div>
                             <!-- right -->
                             <div class="biling_right">
-                                <div class="biling_right-1">
-                                    <p class="biling_right-title">Thành tiền</p>
+<!--                                <div class="biling_right-1">
+                                    <p class="biling_right-title">Thành tiền: </p> 
                                     <div class="biling_right-something">
                                         <div class="biling_right-something-oke">
-                                            <p>Tạm tính:</p>
-                                            <p>$649</p>
+                                            
+                                            <p></p>
                                         </div>
-                                        <div>
-                                            <p>Phí vận chuyển:</p>
-                                            <p>$20</p>
-                                        </div>
-                                        <div>
-                                            <p>Giảm giá:</p>
-                                            <p>-$50</p>
-                                        </div>
+                                        
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="biling_right-something">
                                     <div>
                                         <p class="total">Tổng cộng:</p>
-                                        <p>$619</p>
+                                        <p>${oddt.get(0).order.totalPrice}</p>
                                     </div>
-                                    <p>Trả bằng thẻ ngân hàng</p>
+                                   
                                 </div>
                             </div>
                         </div>

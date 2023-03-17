@@ -148,6 +148,10 @@ public class ListProduct extends HttpServlet {
             }
             request.setAttribute("size", n);
         }
+        
+        if(request.getAttribute("sanPhamDaXem") != null){
+            list1 = (List<Product>) request.getAttribute("sanPhamDaXem");
+        }
 
         request.setAttribute("endP", endPage);
         request.setAttribute("tagw", index);

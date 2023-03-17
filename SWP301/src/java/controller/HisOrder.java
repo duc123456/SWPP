@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package controller;
 
-import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,52 +12,44 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
-import model.Category;
-import model.FeedBack;
-import model.Product;
-import model.Type;
-import model.User;
-
+import model.Order;
 
 /**
  *
- * @author ADMIN
+ * @author Dell
  */
-@WebServlet(name = "DetailControl", urlPatterns = {"/detail"})
-public class DetailControl extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
+@WebServlet(name="HisOrder", urlPatterns={"/hisorder"})
+public class HisOrder extends HttpServlet {
+   
+    /** 
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DetailControl</title>");
+            out.println("<title>Servlet HisOrder</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DetailControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet HisOrder at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    }
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+    /** 
      * Handles the HTTP <code>GET</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -65,47 +57,35 @@ public class DetailControl extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String pid = request.getParameter("pid");
-        String xd = request.getParameter("xd");
-        if(xd == null){
+    throws ServletException, IOException {
+        GeneralOrder g = new GeneralOrder();
+        g.doGet(request, response);
+        
+        String n = request.getParameter("n");
+        List<Order> list = (List<Order>) request.getAttribute("orderByUId");
+        List<Order> list3 = new ArrayList<>();
+        if(list != null){
+            try {
             
-        }else{
-            request.setAttribute("xd", xd);
+            int n2 = Integer.parseInt(n);
+            for (Order order : list) {
+                if(order.getStatus() == n2){
+                    list3.add(order);
+                }
+                
+            }
+        } catch (NumberFormatException e) {
         }
-        int id = Integer.parseInt(pid);
-        DAO d = new DAO();
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("acc");
-        if(u != null){
-            d.insertSanPhamDaXem(u.getuId(), id);
         }
+        request.setAttribute("list3", list3);
+        request.getRequestDispatcher("hisOrder.jsp").forward(request, response);
         
         
-        Product p = d.getProductByID(id);
-        String type = d.getTypebyPID(id);
-        // truyen feedback sang detail jsp
-        List<Type> list3 = d.getAllType();
-        request.setAttribute("type", list3);
-        //List<Size> sizes =d.getAllSizeById(id);
-        List<Product> list4 =d.get4Product();
-        int star = d.getStar(id);
-        request.setAttribute("star", star);
-       // request.setAttribute("sizes", sizes);
-        request.setAttribute("list4", list4);
-        List<FeedBack> feedbacks =d.getFBbyPID(id);
+        
+    } 
 
-        request.setAttribute("feedbacks", feedbacks);
-        request.setAttribute("type1", type);
-        request.setAttribute("product", p);
-        List<Category> list2 = d.getAllCat();
-        request.setAttribute("cate", list2);
-        request.getRequestDispatcher("detail.jsp").forward(request, response);
-    }
-
-    /**
+    /** 
      * Handles the HTTP <code>POST</code> method.
-     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -113,13 +93,12 @@ public class DetailControl extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
+    /** 
      * Returns a short description of the servlet.
-     *
      * @return a String containing servlet description
      */
     @Override

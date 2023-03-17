@@ -34,7 +34,6 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <!-- end header -->
 
-
             <!-- body -->
             <div id="body">
                 <!-- container -->
@@ -65,7 +64,6 @@
                             </div>
                             <span>1</span>
                         </a>
-
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
@@ -114,36 +112,20 @@
                             </div>
                             <!-- content -->
                             <div>
-                             <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
-                                <c:if test="${list3 != null }">
-                                    
-                                    <c:set var="c" value="${list3}"></c:set>
-                                </c:if>
+                             
                             
-                                <c:forEach items="${c}" var="list" >
+                                <c:forEach items="${xemThongBao}" var="list" >
                                     <div class="body_right-oders_child">
                                         <div class="oders_items">
-                                            <div class="oders_items-child">#fff${list.oId}</div>
-                                            <div class="oders_items-child ">
-                                                <c:set var="c" value="Đang xử lý"></c:set>
-                                                <c:if test="${list.status == 2}">
-                                                    <c:set var="c" value="Đa Xac Nhan"></c:set>
-                                                </c:if>
-                                                <c:if test="${list.status == 3}">
-                                                    <c:set var="c" value="Đa Nhan"></c:set>
-                                                </c:if>
-                                                <c:if test="${list.status == 4}">
-                                                    <c:set var="c" value="Đa Huy"></c:set>
-                                                </c:if>
-                                                <span class="status-gray">${c}</span>
-                                            </div>
-                                            <div class="oders_items-child">${list.date.substring(0,10)}</div>
-                                            <div class="oders_items-child money_margin"> <fmt:formatNumber value="${list.totalPrice}" pattern="#,##0 'VND'" /></div>
+                                            <div class="oders_items-child"> Don Hang #fff${list.order.oId}</div>
+                                          ="#,##0 'VND'" /></div>
                                         </div>
                                         <div class="order_items_icon">
-                                            <a href="orderdetail?oId=${list.oId}" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
+                                            
+                                            <c:if test="${list.statusId == 1}">
+                                               Da duoc dat thanh cong 
+                                            </c:if>
+                           
                                         </div>
                                     </div>
                                 </c:forEach>

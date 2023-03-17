@@ -192,8 +192,8 @@ th {
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="m-b-25">
-                                        <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
-                                        <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
+                                        
+                                            <img src="uploadDir/${sessionScope.acc.image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
                                         </div>
                                         <h6 class="f-w-600"  style="font-size:30px; color:white">${sessionScope.acc.lName}</h6>
                                         <form action="changeavarta" method="post" enctype="multipart/form-data" class="row">
