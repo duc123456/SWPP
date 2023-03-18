@@ -45,7 +45,7 @@ public class ManagerOrder extends HttpServlet {
         if (session.getAttribute("acc") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() == 1) {
+        } else if (a.getRoleId() == 2) {
             DAO dao = new DAO();
             List<OrderLog> list = dao.getAllOrderLog();
             
@@ -55,8 +55,11 @@ public class ManagerOrder extends HttpServlet {
              int productOrder1 = dao.getOrder1();
             request.setAttribute("order1", productOrder1);
             
-                int productOrder2 = dao.getOrder2();
+             int productOrder2 = dao.getOrder2();
             request.setAttribute("order2", productOrder2);
+            
+            int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
             
             request.setAttribute("listOD", list);
 

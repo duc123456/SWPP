@@ -2227,7 +2227,7 @@ public class DAO extends DBContext {
 
     public int getOrder2() {
         int count = 0;
-        String sql = "";
+        String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] WHERE [StatusID] = 3";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -2240,5 +2240,19 @@ public class DAO extends DBContext {
         return count;
     }
 
+    public int getOrder3() {
+     int count = 0;
+        String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] WHERE [StatusID] = 4";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
 
 }

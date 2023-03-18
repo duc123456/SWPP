@@ -5,7 +5,14 @@
         <group>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ChangePassword.jsp</file>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ChangePass.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ManagerProduct.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/MenuManagerProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ListProduct.java</file>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/LoginControl.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ManagerProductSellOut.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/assetsEM/css/style.css</file>
         </group>
     </open-files>
 </project-private>

@@ -72,7 +72,7 @@
                                         </span>
                                         <div class="dash-count">
                                             <a class="count-title">Đơn hàng chưa xác nhận</a>
-                                            <a class="count">${totalorder-order1} </a>
+                                            <a class="count">${totalorder-order1-order2-order3} </a>
                                         </div>
                                     </div>
                                 </div>

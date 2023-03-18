@@ -115,7 +115,7 @@
                                             <thead>
                                                 <tr>
                                                     <th >  Tên
-                                                      
+
                                                     </th>
 
 
@@ -170,7 +170,7 @@
                                                                 <a href="loadProduct?pId=${o.pId}"  class="btn btn-sm bg-success-light me-2">
                                                                     <i class="fe fe-pencil"></i>
                                                                 </a>
-                                                                <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
+                                                                <a href="deleteproduct?PID=${o.pId}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i>
                                                                 </a>
                                                             </div>
@@ -205,15 +205,24 @@
     </body>
 
     <script>
-        const productTitles = document.querySelectorAll('.name-Product');
+                                                                    const productTitles = document.querySelectorAll('.name-Product');
 
-        productTitles.forEach(title => {
-            const titleText = title.textContent;
+                                                                    productTitles.forEach(title => {
+                                                                        const titleText = title.textContent;
 
-            if (titleText.length > 24) {
-                const shortenedText = titleText.slice(0, 21) + '...';
-                title.textContent = shortenedText;
+                                                                        if (titleText.length > 24) {
+                                                                            const shortenedText = titleText.slice(0, 21) + '...';
+                                                                            title.textContent = shortenedText;
+                                                                        }
+                                                                    });
+    </script>
+
+
+    <script>
+        function confirmDelete(userId) {
+            if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+                window.location.href = `delete?id=` + userId;
             }
-        });
+        }
     </script>
 </html>

@@ -59,6 +59,9 @@ public class FindStatus extends HttpServlet {
 
             int productOrder2 = dao.getOrder2();
             request.setAttribute("order2", productOrder2);
+            
+             int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
 
             request.setAttribute("listOD", list);
 
