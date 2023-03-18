@@ -577,16 +577,16 @@ public class DAO extends DBContext {
         }
         if (pri != null) {
             if (pri.length == 2) {
-                sql += " AND (Price >= ? and Price <?) ";
+                sql += " AND (PriceOut >= ? and PriceOut <?) ";
             } else if (pri.length == 4) {
-                sql += " And ((Price >= ? and Price <?) or (price >= ? and  price < ?)) ";
+                sql += " And ((PriceOut >= ? and PriceOut <?) or (PriceOut >= ? and  PriceOut < ?)) ";
             } else {
-                sql += " And ((Price >= ? and Price <?)";
+                sql += " And ((PriceOut >= ? and PriceOut <?)";
                 for (int i = 1; i < pri.length / 2 - 1; i++) {
-                    sql += " or (price >= ? and price < ?)";
+                    sql += " or (PriceOut >= ? and PriceOut < ?)";
 
                 }
-                sql += " or (price >= ? and  price < ?))";
+                sql += " or (PriceOut >= ? and  PriceOut < ?))";
             }
 
         }
