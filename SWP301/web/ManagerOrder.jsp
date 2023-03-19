@@ -183,10 +183,10 @@
                                                     <td class="text-end">
                                                         <div class="actions">
                                                             <c:if test="${o.statusId == 1}">
-                                                                <button value="2" name="status"  class="btn btn-sm bg-success-light me-2" title="Accepted">
+                                                                <button value="2" name="status"  class="btn btn-sm bg-success-light me-2" title="Xác nhận">
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
-                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" title="Declined">
+                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" title="Hủy">
                                                                     <i class="fe fe-close"></i>
                                                                 </button>
                                                             </c:if>
@@ -194,13 +194,18 @@
                                                                 <i class="fe fe-check"></i>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 4}">
-                                                                  <i class="fe fe-close"></i>
+                                                                <i class="fe fe-close"></i>
                                                             </c:if>
                                                         </div>
                                                     </td>
                                                     </tr>
                                                 </form>
                                             </c:forEach>
+                                            <c:if test="${empty listOD}">
+                                                <tr>
+                                                    <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                                </tr>
+                                            </c:if>
                                             </tbody>
                                         </table>
                                     </div>

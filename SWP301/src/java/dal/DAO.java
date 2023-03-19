@@ -403,7 +403,7 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) {
         DAO d = new DAO();
-        d.changeprofile("22", "22", "22", "2023-2-2", true, "124124", "1244", "2023-2-2", 1);
+      System.out.print(d.getStatusOrder(1));
     }
 
 //tim san pham tren thanh search
