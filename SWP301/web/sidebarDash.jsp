@@ -15,7 +15,7 @@
 
             <!-- Dashboard -->
             <li class="side-nav-menu-item active">
-                <a class="side-nav-menu-link media align-items-center" href="Dash.jsp">
+                <a class="side-nav-menu-link media align-items-center" href="dash">
               <span class="side-nav-menu-icon d-flex mr-3">
                 <i class="gd-dashboard"></i>
               </span>
@@ -62,25 +62,7 @@
          
 
             <!-- Settings -->
-            <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="settings.html">
-              <span class="side-nav-menu-icon d-flex mr-3">
-                <i class="gd-settings"></i>
-              </span>
-                    <span class="side-nav-fadeout-on-closed media-body">Settings</span>
-                </a>
-            </li>
-            <!-- End Settings -->
-
-            <!-- Static -->
-            <li class="side-nav-menu-item">
-                <a class="side-nav-menu-link media align-items-center" href="static-non-auth.html">
-              <span class="side-nav-menu-icon d-flex mr-3">
-                <i class="gd-file"></i>
-              </span>
-                    <span class="side-nav-fadeout-on-closed media-body">Static page</span>
-                </a>
-            </li>
+            
             <!-- End Static -->
 
         </ul>

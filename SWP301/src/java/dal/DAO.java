@@ -577,16 +577,16 @@ public class DAO extends DBContext {
         }
         if (pri != null) {
             if (pri.length == 2) {
-                sql += " AND (Price >= ? and Price <?) ";
+                sql += " AND (PriceOut >= ? and PriceOut <?) ";
             } else if (pri.length == 4) {
-                sql += " And ((Price >= ? and Price <?) or (price >= ? and  price < ?)) ";
+                sql += " And ((PriceOut >= ? and PriceOut <?) or (PriceOut >= ? and  PriceOut < ?)) ";
             } else {
-                sql += " And ((Price >= ? and Price <?)";
+                sql += " And ((PriceOut >= ? and PriceOut <?)";
                 for (int i = 1; i < pri.length / 2 - 1; i++) {
-                    sql += " or (price >= ? and price < ?)";
+                    sql += " or (PriceOut >= ? and PriceOut < ?)";
 
                 }
-                sql += " or (price >= ? and  price < ?))";
+                sql += " or (PriceOut >= ? and  PriceOut < ?))";
             }
 
         }
@@ -704,16 +704,16 @@ public class DAO extends DBContext {
         }
         if (pri != null) {
             if (pri.length == 2) {
-                sql += " AND (p.Price >= ? and p.Price <?) ";
+                sql += " AND (p.PriceOut >= ? and p.PriceOut <?) ";
             } else if (pri.length == 4) {
-                sql += " And ((p.Price >= ? and p.Price <?) or (p.price >= ? and  p.price < ?)) ";
+                sql += " And ((p.PriceOut >= ? and p.PriceOut <?) or (p.PriceOut >= ? and  p.PriceOut < ?)) ";
             } else {
-                sql += " And ((p.Price >= ? and p.Price <?)";
+                sql += " And ((p.PriceOut >= ? and p.PriceOut <?)";
                 for (int i = 1; i < pri.length / 2 - 1; i++) {
-                    sql += " or (p.price >= ? and p.price < ?)";
+                    sql += " or (p.PriceOut >= ? and p.PriceOut < ?)";
 
                 }
-                sql += " or (p.price >= ? and  p.price < ?))";
+                sql += " or (p.PriceOut >= ? and  p.PriceOut < ?))";
             }
 
         }
@@ -732,7 +732,7 @@ public class DAO extends DBContext {
             }
 
         }
-        sql += "group by od.PID,p.CATID, p.Size,p.Price\n"
+        sql += "group by od.PID,p.CATID, p.Size,p.PriceOut\n"
                 + "\n"
                 + " ORDER BY Sum(Amount) Desc";
 //        if(size != null){
@@ -2036,6 +2036,88 @@ public class DAO extends DBContext {
         return list;
 
     }
+        public List<Order> getAllOrder(String from, String now, String to, String statusId) {
+
+        List<Order> list = new ArrayList<>();
+        String sql = "Select * from [Order] o\n"
+                + "Inner join \n"
+                + " (\n"
+                + "    SELECT OrderLogId, OID,StatusID,[date], \n"
+                + "           ROW_NUMBER() OVER (PARTITION BY oid ORDER BY StatusID DESC) AS row_num\n"
+                + "    FROM OrderLog \n"
+                + "	where (1=1) ";
+
+        if (from != null && to == null) {
+            sql += " and [Date] between '" + from + "' and '" + now + "'";
+
+        } else if (from != null && to != null) {
+            sql += " and [Date] between '" + from + "' and '" + to + "'";
+        }
+        sql = sql + " ) t \n"
+                + " on t.OID = o.OID\n"
+                + "where t.row_num = 1 ";
+        if (statusId != null && statusId != "") {
+            sql += " and t.StatusID = " + statusId;
+        }
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order o = new Order();
+                o.setoId(rs.getInt(1));
+                o.setUser(checkUsUid(rs.getInt(2)));
+                o.setAddress(rs.getString(3));
+                o.setDate(rs.getString(4));
+                o.setNote(rs.getString(5));
+                o.setTotalPrice(rs.getLong(6));
+                o.setGuest(getGuestById(rs.getInt(7)));
+                o.setPhone(rs.getString(8));
+
+                list.add(o);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+
+
+    }
+        public long getAllOrderForchart(String month, String year) {
+        
+        String sql = "Select sum(TotalPrice) from [Order] o\n"
+                + "Inner join(\n"
+                + "SELECT OrderLogId, OID,StatusID,[date], \n"
+                + "ROW_NUMBER() OVER (PARTITION BY oid ORDER BY StatusID DESC) AS row_num\n"
+                + "FROM OrderLog \n"
+                + "where (1=1)  and Month(Date) =" + month + " ";
+        if (year != null && year != "") {
+            sql += " and YEar(Date) =" + year;
+        }
+        sql += " ) t \n"
+                + "on t.OID = o.OID\n"
+                + "where t.row_num = 1 and  t.StatusID =3";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return rs.getLong(1)/1000;
+            }
+            
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return 0;
+
+
+    }
+
+
 
     public Order getOrderbyID1(int oid) {
 
