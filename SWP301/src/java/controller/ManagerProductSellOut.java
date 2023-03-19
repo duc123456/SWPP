@@ -42,7 +42,7 @@ public class ManagerProductSellOut extends HttpServlet {
         if (session.getAttribute("acc") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() == 1) {
+        } else if (a.getRoleId() == 2) {
             DAO dao = new DAO();
             List<Product> list = dao.getAllProdSellOut();
            // List<Category> listC = dao.getAllCategory();
