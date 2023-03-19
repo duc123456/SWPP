@@ -238,7 +238,6 @@
         </div>
     </div>
 
-
 </bod>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
@@ -246,58 +245,111 @@
 <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
 <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
 <script src="assets/js/script.js"></script>
-<script>
-    $(document).ready(function () {
-        var phone = $("input[name='phone']");
-        var error = $("<p class='text-danger'>Please enter a valid mobile number</p>");
 
-        phone.after(error);
-        error.hide();
 
-        phone.on("keyup", function () {
-            if (!/^\d{10}$/.test(phone.val())) {
-                error.show();
-            } else {
-                error.hide();
-            }
+
+
+    <script>
+        $(document).ready(function () {
+            var email = $("input[name='email']");
+            var error = $("<p class='text-danger'>email phải có @ vd(nhan@gmail.com)</p>");
+
+            email.after(error);
+            error.hide();
+
+            email.on("keyup", function () {
+                if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
         });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        var email = $("input[name='email']");
-        var error = $("<p class='text-danger'>Please enter a valid email address</p>");
+    </script>
 
-        email.after(error);
-        error.hide();
 
-        email.on("keyup", function () {
-            if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
-                error.show();
-            } else {
-                error.hide();
-            }
+    <script>
+        $(document).ready(function () {
+            var dob = $("input[name='dob']");
+            var error = $("<p class='text-danger'>Ngày sinh không hợp lệ</p>");
+
+            dob.after(error);
+            error.hide();
+
+            dob.on("change", function () {
+                var inputDate = new Date(dob.val());
+                var today = new Date();
+                if (inputDate >= today) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
         });
-    });
-</script>
 
+    </script>
 
-<script>
-    $(document).ready(function () {
-        $('change-btn').click(function (e) {
+    <script>
+        $(document).ready(function () {
+            var email = $("input[name='email']");
+            var phone = $("input[name='phone']");
+            var dob = $("input[name='dob']");
 
-            var email = $('input[name="email"]').val();
-            var phone = $('input[name="phone"]').val();
-            if (!(/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email))) {
-                alert('Email address is invalid.');
-                e.preventDefault();
-            } else if (!(/^\d{10}$/.test(phone))) {
-                alert('Phone number must be 10 digits long.');
-                e.preventDefault();
-            }
+            var emailError = $("<p class='text-danger'>Email phải có định dạng hợp lệ</p>");
+            var phoneError = $("<p class='text-danger'>Số điện thoại phải có 10 chữ số</p>");
+            var dobError = $("<p class='text-danger'>Ngày sinh không hợp lệ</p>");
+          
+            phone.val(phone.val().trim());
+
+            email.after(emailError);
+            phone.after(phoneError);
+            dob.after(dobError);
+
+            emailError.hide();
+            phoneError.hide();
+            dobError.hide();
+
+            $("form").on("submit", function (event) {
+                var isValid = true;
+
+                // Kiểm tra email
+                if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.val())) {
+                    emailError.show();
+                    isValid = false;
+                } else {
+                    emailError.hide();
+                }
+
+                // Kiểm tra số điện thoại
+                if (!/^\d{10}$/.test(phone.val())) {
+                    phoneError.show();
+                    isValid = false;
+                } else {
+                    phoneError.hide();
+                }
+
+                // Kiểm tra ngày sinh
+                var dobDate = new Date(dob.val());
+                var today = new Date();
+                if (dobDate > today) {
+
+                    isValid = false;
+                } else if (isNaN(dobDate.getTime())) {
+                    dobError.text("Ngày sinh không hợp lệ");
+                    dobError.show();
+                    isValid = false;
+                } else {
+                    dobError.hide();
+                }
+
+                // Nếu không hợp lệ, ngăn chặn việc submit
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
         });
-    });
-</script>
+
+    </script>
 
 
 </html>

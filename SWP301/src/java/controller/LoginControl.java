@@ -86,7 +86,7 @@ public class LoginControl extends HttpServlet {
         DAO dao = new DAO();
         User a = dao.login(username, password);
         if (a == null) {
-            String ms = "username or password is incorrect!!!";
+            String ms = "Sai tài khoản hoặc mật khẩu!";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {

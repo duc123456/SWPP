@@ -44,13 +44,12 @@ public class FindStatus extends HttpServlet {
         if (session.getAttribute("acc") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() == 1) {
+        } else if (a.getRoleId() == 3) {
             DAO dao = new DAO();
             int statusid = Integer.parseInt(request.getParameter("statusid"));
 
             List<OrderLog> list = dao.getStatusOrder(statusid);
-            request.setAttribute("listOD", list);
-
+          
             int productOrder = dao.getTotalOrder();
             request.setAttribute("totalorder", productOrder);
 
@@ -59,6 +58,9 @@ public class FindStatus extends HttpServlet {
 
             int productOrder2 = dao.getOrder2();
             request.setAttribute("order2", productOrder2);
+            
+             int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
 
             request.setAttribute("listOD", list);
 

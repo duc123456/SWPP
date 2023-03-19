@@ -77,7 +77,7 @@ public class Export extends HttpServlet {
       dataCell1.setCellValue(i * 2);
     }
     response.setContentType("application/vnd.ms-excel");
-   response.setHeader("Content-Disposition", "attachment; filename=\"userList.xlsx\"");
+   response.setHeader("Content-Disposition", "attachment; filename=\"userList.xls\"");
    
    // ghi workbook vào OutputStream
    OutputStream outputStream = response.getOutputStream();

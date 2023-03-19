@@ -248,7 +248,7 @@
                                 </div>
 
                         </form>
-                           
+
 
 
 
@@ -302,44 +302,49 @@
                                                     </li>
                                                 </ul>
                                                 <div class="row pt-2">
-                                                    
-                                                    </div>
+
                                                 </div>
                                             </div>
-                                                 <div class="btn fw-bold w-100 btn-outline-danger" >Xem Sản Phẩm</div>
+                                        </div>
+                                        <div class="btn fw-bold w-100 btn-outline-danger" >Xem Sản Phẩm</div>
 
 
-                                        </a>
+                                    </a>
 
-                                    </div>
+                                </div>
 
                             </c:forEach>
+
                             <nav aria-label="breadcrumb">
                                 <ul class="pagination">
-
-
-                                    
-                        <c:if test="${requestScope.xd == 1}">
-                            <c:set var="page" value="${requestScope.page}"/>
-                            <c:forEach begin="1" end="${requestScope.num}" var="i">
                                    
-                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
-                                
-                            </c:forEach>
-                            
-                        </c:if>
-                            
-                        <c:if test="${requestScope.xd != 1}">
-                            <c:forEach begin="1" end="${endP}" var="pa">
-                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
-                            </c:forEach>
-                            
-                        </c:if>    
+
+
+                                    <c:if test="${requestScope.xd == 1}">
+                                        <c:set var="page" value="${requestScope.page}"/>
+                                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+
+                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
+
+                                        </c:forEach>
+
+                                    </c:if>
+
+                                    <c:if test="${requestScope.xd != 1}">
+                                        <c:forEach begin="1" end="${endP}" var="pa">
+                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                                            </c:forEach>
+
+                                    </c:if>    
 
                                 </ul>    
                             </nav>    
 
-
+                             <c:if test="${empty product}">
+                                        <tr>
+                                            <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                        </tr>
+                                    </c:if>
                         </div>
                     </div>
                 </div>
@@ -465,5 +470,5 @@
         <script>
 
         </script>
-        
+
 </html>

@@ -83,14 +83,16 @@ public class ChangePass extends HttpServlet {
         //check
         DAO d = new DAO();
         HttpSession session = request.getSession();
-        
-        User a = (User)session.getAttribute("acc");
-        
-        if (a.getPass().equals(op) || newp.equals(cofmp)) {
+
+        User a = (User) session.getAttribute("acc");
+
+        if (a.getPass().equals(op) && newp.equals(cofmp)) {
             d.changePass(newp, u);
-            response.sendRedirect("Profile.jsp");
+            String ms = "Đổi mật khẩu thành công!";
+            request.setAttribute("ms2", ms);
+            request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
         } else {
-            String ms = "Old pass is wrong is incorrect!";
+            String ms = "Sai mật khẩu cũ !";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
         }
