@@ -40,10 +40,19 @@ public class SearchByAjax extends HttpServlet {
         DAO dao = new DAO();
         List<Product> list = dao.searchByName(txtSearch);
 
+        int productList = dao.getProductCount();
+        request.setAttribute("numberOfProducts", productList);
+
+        int productListIn = dao.getProductCountInurance();
+        request.setAttribute("ProductInsurance", productListIn);
+
+        int productListSum = dao.getProductCountQuantity();
+        request.setAttribute("ProductSum", productListSum);
+
         //gui ve front end
         request.setAttribute("listP", list);
         request.setAttribute("txtS", txtSearch);
-        
+
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }
 

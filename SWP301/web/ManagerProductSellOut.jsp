@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Quản lý sản phẩm</title>
 
-         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
         <link rel="stylesheet" href="assetsEM/css/bootstrap.min.css">
 
@@ -78,9 +78,7 @@
                                                 </thead>
                                                 <tbody>                                           
                                                 <c:forEach items="${listPO}" var="o">
-                                                    <c:if test="${empty listPO}">
-                                                        <tr><td colspan="3">HẾT SẢN PHẨM</td></tr>
-                                                    </c:if>
+
                                                     <tr>
                                                         <td>
 
@@ -116,13 +114,20 @@
                                                             </div>
                                                         </td>
                                                     </c:forEach>
+
                                                 </tr>
 
 
 
 
                                             </tbody>
+                                            <c:if test="${empty listPO}">
+                                                <tr>
+                                                    <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                                </tr>
+                                            </c:if>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +135,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div>

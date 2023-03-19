@@ -2,6 +2,34 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+<<<<<<< HEAD
+            <file>file:/C:/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/login.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/LoginControl.java</file>
+            <file>file:/C:/SWPP/SWP301/web/sidebarDash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Order.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DashContoller.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Guest.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/GeneralOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/web/Dash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ListProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/web/menudash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/EditOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
+=======
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/MenuManagerProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerProductSellOut.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/information.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ManagerProductSellOut.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/MenuManagerOrder.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/EditProduct.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/index.jsp</file>
+>>>>>>> feba6fd4fe90134dfd16c97dfbcc036971962919
+        </group>
     </open-files>
 </project-private>

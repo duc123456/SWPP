@@ -31,9 +31,9 @@
             <a class="mobile_btn" id="mobile_btn">
                 <i class="fa fa-bars"></i>
             </a>
-            <div class="top-nav-search">
+            <div class="top-nav-search" >
                 <form action="searchbyajax" method="post">
-                    <input value="${txtS}" name="txt" type="text" class="form-control" placeholder="Search here">
+                    <input value="${txtS}" name="txt" type="text" class="form-control" placeholder="Tìm kiếm">
                     <button class="btn" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
@@ -55,7 +55,7 @@
                                 <p class="text-muted mb-0">${sessionScope.acc.username}</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="Profile.jsp">My Profile</a>
+                        <a class="dropdown-item" href="Profile.jsp">Trang cá nhân</a>
                       
                         <a class="dropdown-item" href="login.jsp">Logout</a>
                     </div>
@@ -70,7 +70,7 @@
                             <li class="menu-title">
                             </li>
                             <li>
-                                <a href="listproduct"><i class="fe fe-home"></i> <span>Trang Home</span></a>
+                                <a href="listproduct"><i class="fe fe-home"></i> <span>Trang chủ</span></a>
                             </li>
                             <li class="submenu">
                                 <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
