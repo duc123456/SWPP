@@ -404,10 +404,6 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) {
         DAO d = new DAO();
-        User u = new User();
-        u.setRoleId(1);
-        u.setPhone("01sdasdasd");
-        d.register(u);
     }
 
 //tim san pham tren thanh search
@@ -1294,9 +1290,9 @@ public class DAO extends DBContext {
 
     }
 
-    public String insertOrderUser(int uid, String diaChi, Cart c, String note) throws SQLException {
+    public String insertOrderUser(int uid, String diaChi, Cart c, String note, String phone) throws SQLException {
 
-        String sql3 = "insert into [Order](UID ,Address, Date, Note, TotalPrice) values (?,?,?,?,?)";
+        String sql3 = "insert into [Order](UID ,Address, Date, Note, TotalPrice,Phone) values (?,?,?,?,?,?)";
         String sql4 = "Select top 1 OID from [Order] order by OID desc";
         String sql5 = "insert into [Order Detail] (OID,PID,Price,Amount) values (?,?,?,?)";
         String sql6 = "update product set quantity=quantity-? where PID=?";
@@ -1317,6 +1313,7 @@ public class DAO extends DBContext {
             st3.setString(3, s);
             st3.setString(4, note);
             st3.setLong(5, c.totalPrice());
+            st3.setString(6, phone);
 
             st3.executeUpdate();
             int oid = 1;
@@ -1794,9 +1791,10 @@ public class DAO extends DBContext {
                 p.setOrder(getOrderById(rs.getInt(1)));
                 p.setStatusId(rs.getInt(2));
                 p.setDate(rs.getString(5));
+               
 //                p.setConfirm(rs.getInt(5));
 //
-                p.setOrder(getOrderByAddress(rs.getString(4)));
+       //         p.setOrder(getOrderByAddress(rs.getString(4)));
 
                 //  p.setOrder(getGuestByOrder(rs.getInt(12)));       
                 list.add(p);
@@ -1935,7 +1933,12 @@ public class DAO extends DBContext {
             if (rs.next()) {
                 Order t = new Order();
                 t.setoId(rs.getInt(1));
-                t.setAddress(rs.getString(2));
+                t.setUser(checkUsUid(rs.getInt(2)));
+                t.setAddress(rs.getString(3));
+                t.setNote(rs.getString(5));
+                t.setTotalPrice(rs.getLong(6));
+                t.setGuest(getGuestById(rs.getInt(7)));
+                t.setPhone(rs.getString(8));
 
                 return t;
             }
@@ -2040,7 +2043,8 @@ public class DAO extends DBContext {
         return list;
 
     }
-        public List<Order> getAllOrder(String from, String now, String to, String statusId) {
+
+    public List<Order> getAllOrder(String from, String now, String to, String statusId) {
 
         List<Order> list = new ArrayList<>();
         String sql = "Select * from [Order] o\n"
@@ -2087,10 +2091,10 @@ public class DAO extends DBContext {
 
         return null;
 
-
     }
-        public long getAllOrderForchart(String month, String year) {
-        
+
+    public long getAllOrderForchart(String month, String year) {
+
         String sql = "Select sum(TotalPrice) from [Order] o\n"
                 + "Inner join(\n"
                 + "SELECT OrderLogId, OID,StatusID,[date], \n"
@@ -2108,9 +2112,8 @@ public class DAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return rs.getLong(1)/1000;
+                return rs.getLong(1) / 1000;
             }
-            
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -2118,10 +2121,7 @@ public class DAO extends DBContext {
 
         return 0;
 
-
     }
-
-
 
     public Order getOrderbyID1(int oid) {
 
@@ -2281,9 +2281,9 @@ public class DAO extends DBContext {
         }
     }
 
-  public int getTotalOrder() {
+    public int getTotalOrder() {
         int count = 0;
-        String sql = "SELECT COUNT(*) FROM [OrderLog] Where [StatusID] =1";
+        String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] WHERE [StatusID] = 1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -2327,7 +2327,7 @@ public class DAO extends DBContext {
     }
 
     public int getOrder3() {
-     int count = 0;
+        int count = 0;
         String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] WHERE [StatusID] = 4";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -2342,4 +2342,18 @@ public class DAO extends DBContext {
     }
    
 
+    public int getOrder4() {
+        int count = 0;
+        String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] Where [StatusID] =1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+        }
+        return count;
+    }
 }
