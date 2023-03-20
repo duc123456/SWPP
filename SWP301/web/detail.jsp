@@ -52,8 +52,25 @@
                 white-space: nowrap;
             }
 
+            input[type="radio"] {
+                margin-right: 5px;
+            }
+            input[type="submit"] {
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background-color: #3e8e41;
+            }
+
 
         </style>
+
+
+
     </head>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
@@ -64,8 +81,8 @@
                     <div class="row">
                         <h2 class="text-start">${product.name}</h2>
                     <ul>
-                        <li> <a href="#"><i class="bi bi-house-door"></i> Home</a></li>
-                        <li><i class="bi bi-chevron-double-right pe-2"></i> Products</li>
+                        <li> <a href="#"><i class="bi bi-house-door"></i>Trang chủ</a></li>
+                        <li><i class="bi bi-chevron-double-right pe-2"></i>Sản phẩm</li>
                         <li><i class="bi bi-chevron-double-right pe-2"></i>${product.name}</li>
                     </ul>
                 </div>
@@ -111,7 +128,7 @@
 
                         </ul>
                         <c:set var="c" value="addcart"/>
-                       
+
 
 
 
@@ -123,14 +140,14 @@
                                 <input type="button" value="+" class="plus" style="width: 25px;">
                             </div>
                             <input type="hidden" name="price" value="${product.priceOut}">
-                           
+
                             <div class="row pt-2">
 
                                 <div class="col-md-2">
 
 
                                     <button class="btn fw-bold w-100 btn-outline-danger" type="submit" >Chọn Mua</button>
-                                    
+
                                     </form>
                                 </div>
                             </div>
@@ -179,6 +196,36 @@
                                 </div>
                             </div>
                         </c:forEach>   
+                        <form action="feedback" method="post">
+                            <c:if test="${xn == 1}">
+                            
+                                <input type="hidden" name="productfeebid" value="${product.pId}">
+                                <input type="hidden" name="userbe" value="${sessionScope.acc.uId}">
+                                <div class="form-group">
+                                    <label for="rating">Đánh giá:</label>
+                                    <div>
+                                        <input type="radio" id="star5" name="vote" value="5" />
+                                        <label for="star5">5 sao</label>
+                                        <input type="radio" id="star4" name="vote" value="4" />
+                                        <label for="star4">4 sao</label>
+                                        <input type="radio" id="star3" name="vote" value="3" />
+                                        <label for="star3">3 sao</label>
+                                        <input type="radio" id="star2" name="vote" value="2" />
+                                        <label for="star2">2 sao</label>
+                                        <input type="radio" id="star1" name="vote" value="1" />
+                                        <label for="star1">1 sao</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Nhận xét:</label>
+                                    <textarea id="comment" name="comment"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Gửi đánh giá" />
+                                </div>
+                            </c:if>
+                        </form>
+
 
 
 
@@ -191,7 +238,7 @@
             <div class="container">
                 <div class="section-tile row">
                     <div class="col-md-10 mb-4 text-center mx-auto">
-                        <h2>Related Products</h2>
+                        <h2>Sản phẩm liên quan</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -206,7 +253,7 @@
                                     </a>
                                 </div>
                                 <div class="detail p-2">
-                                    <h4 class="mb-1 fs-5 fw-bold">${l.imageDf}</h4>
+                                    <h4 class="mb-1 fs-5 fw-bold">${l.name}</h4>
                                     <b class="fs-4 text-danger">${l.priceOut}</b>
 
                                     <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
@@ -249,129 +296,32 @@
                 </div>
             </div>
         </div>
+        <jsp:include page="footer.jsp"></jsp:include>
 
+        </bod>
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+        <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
+        <script src="assets/js/script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            const minusBtn = document.querySelector(".minus");
+            const plusBtn = document.querySelector(".plus");
+            const quantityInput = document.querySelector(".quantity-input");
 
-        <footer>
-            <div class="inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 foot-about">
-                            <h4>About US</h4>
+            minusBtn.addEventListener("click", () => {
+                if (quantityInput.value > 1) {
+                    quantityInput.value--;
+                }
+            });
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit libero pellentesque libero interdum, id mattis felis dictum. Praesent eget lacus tempor justo efficitur malesuada. Cras ut suscipit nisi.</p>
-
-                            <ul>
-                                <li>23 Rose Stren Melbourn</li>
-                                <li>sales@smarteyeapps.com</li>
-                                <li>+91 876 766 554</li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-3 foot-post">
-                            <h4>Latest Posts</h4>
-
-                            <div class="post-row">
-                                <div class="image">
-                                    <img src="assets/images/blog/blog_01.jpg" alt="">
-                                </div>
-                                <div class="detail">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit </p>
-                                </div>
-                            </div>
-
-                            <div class="post-row">
-                                <div class="image">
-                                    <img src="assets/images/blog/blog_02.jpg" alt="">
-                                </div>
-                                <div class="detail">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit </p>
-                                </div>
-                            </div>
-
-                            <div class="post-row">
-                                <div class="image">
-                                    <img src="assets/images/blog/blog_03.jpg" alt="">
-                                </div>
-                                <div class="detail">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras hendrerit </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 foot-services">
-                            <h4>Top Category</h4>
-
-                            <ul>
-                                <li><a href="">Target Statergy</a></li>
-                                <li><a href="">Web Analytics</a></li>
-                                <li><a href="">Page Monitering</a></li>
-                                <li><a href="">Page Optimization</a></li>
-                                <li><a href="">Target Statergy</a></li>
-                                <li><a href="">Email Marketing</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-3 foot-news">
-                            <h4>News Letter</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, vehicula eget eros. </p>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control mb-0" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text bg-danger" id="basic-addon2"><i class="bi text-white bi-send"></i></span>
-                                </div>
-                            </div>
-
-                            <ul>
-                                <li><i class="bi bi-facebook"></i></li>
-                                <li><i class="bi bi-twitter"></i></li>
-                                <li><i class="bi bi-instagram"></i></li>
-                                <li><i class="bi bi-linkedin"></i></li>
-                                <li><i class="bi bi-pinterest"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <div class="copy">
-            <div class="container">
-                <a href="https://www.smarteyeapps.com/">2022 &copy; All Rights Reserved | Designed and Developed by Smarteyeapps.com</a>
-
-                <span>
-                    <a href=""><i class="fab fa-github"></i></a>
-                    <a href=""><i class="fab fa-google-plus-g"></i></a>
-                    <a href="https://in.pinterest.com/prabnr/pins/"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="https://twitter.com/prabinraja89"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/freewebtemplatesbysmarteye"><i class="fab fa-facebook-f"></i></a>
-                </span>
-            </div>
-        </div>
-
-    </bod>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
-    <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
-    <script src="assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const minusBtn = document.querySelector(".minus");
-        const plusBtn = document.querySelector(".plus");
-        const quantityInput = document.querySelector(".quantity-input");
-
-        minusBtn.addEventListener("click", () => {
-            if (quantityInput.value > 1) {
-                quantityInput.value--;
-            }
-        });
-
-        plusBtn.addEventListener("click", () => {
-            if (quantityInput.value < ${product.getQuantity()- sessionScope.cart.getItemById(product.pId).getQuantity()}) {
-                quantityInput.value++;
-            }
-        });
+            plusBtn.addEventListener("click", () => {
+                if (quantityInput.value < ${product.getQuantity()- sessionScope.cart.getItemById(product.pId).getQuantity()}) {
+                    quantityInput.value++;
+                }
+            });
     </script>
 
 

@@ -371,21 +371,6 @@
             </div>
         </div>
 
-        <div class="ad-cover container-fluid pb-4">
-            <div class="container-lg">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="bg-white shadow-md p-2" src="assets/images/ads/1.webp" alt="">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="bg-white shadow-md p-2" src="assets/images/ads/a2.webp" alt="">
-                    </div>
-                    <div class="col-md-4">
-                        <img class="bg-white shadow-md p-2" src="assets/images/ads/a3.webp" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
 
         
 

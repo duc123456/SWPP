@@ -46,24 +46,24 @@
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
                             <a href="hisOrder.jsp" class="body_left-dashboard_child" id="current_page">
                                 <div id="hover_icon">
-                                    
+
                                     Đơn hàng
                                 </div>
                                 <span>${d.getAllOrderByUID(acc.uId).size()}</span>
                         </a>
                         <a href="sanphamdaxem" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                
-                                 San pham da xem
+
+                                San pham da xem
                             </div>
                             <span>${soSanPhamDaXem}</span>
                         </a>
                         <a href="thongbao" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                
-                               Thong bao cua toi
+
+                                Thong bao cua toi
                             </div>
-                             <span style="color: red">${thongBao}</span>
+                            <span style="color: red">${thongBao}</span>
                         </a>
 
                     </div>
@@ -114,32 +114,43 @@
                             </div>
                             <!-- content -->
                             <div>
-                             <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
+                                <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
                                 <c:if test="${list3 != null }">
-                                    
+
                                     <c:set var="c" value="${list3}"></c:set>
                                 </c:if>
                                 <c:if test="${total != null }">
-                                    
+
                                     <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
                                 </c:if>
-                            
+
                                 <c:forEach items="${c}" var="list" >
                                     <div class="body_right-oders_child">
                                         <div class="oders_items">
-                                            <div class="oders_items-child">#fff${list.oId}</div>
+                                            <div class="oders_items-child">#${list.oId}</div>
                                             <div class="oders_items-child ">
-                                                <c:set var="c" value="Đang xử lý"></c:set>
+                                                <c:if test="${list.status == 1}">
+                                                    <c:set var="c" value="Đang xử lý">
+                                                    </c:set>
+                                                    <span class="status-gray">${c}</span>
+                                                </c:if>
                                                 <c:if test="${list.status == 2}">
-                                                    <c:set var="c" value="Đa Xac Nhan"></c:set>
+                                                    <c:set var="c" value="Đã xác nhận">
+                                                    </c:set>
+                                                    <span class="status-gray">${c}</span>
                                                 </c:if>
                                                 <c:if test="${list.status == 3}">
-                                                    <c:set var="c" value="Đa Nhan"></c:set>
+                                                    <c:set var="c" value="Đã nhận">
+                                                    </c:set>
+                                                    <span class="status-green">${c}</span>
                                                 </c:if>
                                                 <c:if test="${list.status == 4}">
-                                                    <c:set var="c" value="Đa Huy"></c:set>
+                                                    <c:set var="c" value="Đã hủy">
+                                                    </c:set>
+                                                    <span class="status-red">${c}</span>
                                                 </c:if>
-                                                <span class="status-gray">${c}</span>
+
+
                                             </div>
                                             <div class="oders_items-child">${list.date.substring(0,10)}</div>
                                             <div class="oders_items-child money_margin"> <fmt:formatNumber value="${list.totalPrice}" pattern="#,##0 'VND'" /></div>
@@ -151,98 +162,6 @@
                                         </div>
                                     </div>
                                 </c:forEach>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">6223AG</div>
-                                        <div class="oders_items-child ">
-                                            <span class="status-gray">Đang xử lý</span>
-                                        </div>
-                                        <div class="oders_items-child">30 / 4 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">DVFN63</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-green">Đã giao thành công</span>
-                                        </div>
-                                        <div class="oders_items-child">03 / 12 / 2020</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">AV4223</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-red">Đã huỷ đơn</span>
-                                        </div>
-                                        <div class="oders_items-child">12 / 9 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">AV4223</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-red">Đã huỷ đơn</span>
-                                        </div>
-                                        <div class="oders_items-child">12 / 9 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">6223AG</div>
-                                            <div class="oders_items-child ">
-                                                <span class="status-gray">Đang đóng gói</span>
-                                            </div>
-                                            <div class="oders_items-child">30 / 4 / 2022</div>
-                                            <div class="oders_items-child money_margin">$999.99</div>
-                                        </div>
-                                        <div class="order_items_icon">
-                                            <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">DVFN63</div>
-                                            <div class="oders_items-child">
-                                                <span class="status-green">Đã giao thành công</span>
-                                            </div>
-                                            <div class="oders_items-child">03 / 12 / 2020</div>
-                                            <div class="oders_items-child money_margin">$999.99</div>
-                                        </div>
-                                        <div class="order_items_icon">
-                                            <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- page button -->
 
                             </div>
