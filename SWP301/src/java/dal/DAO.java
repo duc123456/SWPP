@@ -103,23 +103,24 @@ public class DAO extends DBContext {
                 + "           ,[FName]\n"
                 + "           ,[UserName]\n"
                 + "           ,[PassWord]\n"
+             
                 + "           ,[Phone]\n"
                 + "           ,[Email]\n"
                 + "           ,[CreatedDate]\n"
-                + "           ,[ModifiedDate])\n"
-                + "     VALUES (?,?,?,?,?,?,?,?)";
+                + "           ,[ModifiedDate]\n"
+                   + "           ,[image])\n"
+                + "     VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, u.getRoleId());
             st.setString(2, u.getfName());
             st.setString(3, u.getUsername());
             st.setString(4, u.getPass());
-
             st.setString(5, u.getPhone());
-
             st.setString(6, u.getEmail());
             st.setString(7, u.getCreateDate());
             st.setString(8, u.getModifyDate());
+            st.setString(9, u.getImage());
             st.executeUpdate();
 
         } catch (SQLException e) {
@@ -403,7 +404,10 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) {
         DAO d = new DAO();
-      System.out.print(d.getStatusOrder(1));
+        User u = new User();
+        u.setRoleId(1);
+        u.setPhone("01sdasdasd");
+        d.register(u);
     }
 
 //tim san pham tren thanh search
@@ -2336,5 +2340,6 @@ public class DAO extends DBContext {
         }
         return count;
     }
+   
 
 }
