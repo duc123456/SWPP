@@ -12,6 +12,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import model.Product;
+import model.ProductLog;
+import model.User;
 
 /**
  *
@@ -36,6 +42,8 @@ public class DeleteProduct extends HttpServlet {
         String pid = request.getParameter("PID");
         DAO dao = new DAO();
         dao.deletProduct(pid);
+        
+        
         response.sendRedirect("managerProduct");
 
     }

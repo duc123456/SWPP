@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.Product;
+import model.ProductLog;
 import model.User;
 
 /**
@@ -81,6 +82,36 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
+        String xd = request.getParameter("xd");
+        DAO dao = new DAO();
+         Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+        if(xd.equalsIgnoreCase("1")){
+            Product p =dao.getProductByID(Integer.parseInt(pid));
+            String pquantity = request.getParameter("quantity");
+            int quantity =p.getQuantity()+Integer.parseInt(pquantity);
+            p.setQuantity(quantity);
+
+            dao.updateQuantity(p);
+            
+            String pprice = request.getParameter("price");
+            
+            ProductLog pl = new ProductLog();
+            HttpSession session = request.getSession();
+            User a = (User) session.getAttribute("acc");
+            pl.setUser(a);
+            pl.setProduct(p);
+            pl.setAction(4);
+            pl.setPriceIn(Integer.parseInt(pprice));
+            pl.setQuantity(Integer.parseInt(pquantity));
+            pl.setDate(format);
+            dao.addProductLog(pl);
+        }else {
+            
+            
+        
 
         String paddby = request.getParameter("addby");
         String pcatid = request.getParameter("catid");
@@ -91,10 +122,7 @@ public class EditProduct extends HttpServlet {
         String presolution = request.getParameter("resolution");
         String pinsurance = request.getParameter("insurance");
 
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String format = simpleDateFormat.format(date);
+       
 
         String ptid = request.getParameter("tid");
         String pimage = request.getParameter("image");
@@ -104,14 +132,21 @@ public class EditProduct extends HttpServlet {
         String ppriceout = request.getParameter("priceout");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
-        Product p = new Product();
-        DAO dao = new DAO();
-
-        if (pimage == null || pimage.isEmpty()) {
-            dao.editProduct2(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-        } else {
+        
+        
+        if(pimage == null || pimage == ""){
+           Product p = dao.getProductByID(Integer.parseInt(pid));
+            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+        }else{
             dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
         }
+            
+            
+        }
+        
+        
+        
+        
         response.sendRedirect("managerProduct");
 
     }

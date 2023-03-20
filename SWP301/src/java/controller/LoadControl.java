@@ -38,6 +38,8 @@ public class LoadControl extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         //lay thong tin san pham ra dua tren id de sua
         String id = request.getParameter("pId");
+        String xd = request.getParameter("xd");
+        request.setAttribute("xd", xd);
         int id_raw = Integer.parseInt(id);
         DAO dao = new DAO();
         Product p = dao.getProductByID(id_raw);

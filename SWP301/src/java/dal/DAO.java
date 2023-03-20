@@ -487,7 +487,7 @@ public class DAO extends DBContext {
         try {
 
             PreparedStatement st = connection.prepareStatement(sql);
-            
+
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 Product p = new Product();
@@ -1615,7 +1615,7 @@ public class DAO extends DBContext {
 
     public long totalgetPriceStock(String from, String to, String now) {
         String sql = "select Sum(PriceIn *Quatity) from ProductLog\n"
-                + " Where (1=1) ";
+                + " Where (1=1) and Action = 1 or Action = 4";
         if (from != null && to == null) {
             sql += " and Date between '" + from + "' and '" + now + "'";
 
@@ -2386,7 +2386,6 @@ public class DAO extends DBContext {
         return count;
     }
 
-
     public int getOrder4() {
         int count = 0;
         String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] Where [StatusID] =1";
@@ -2402,18 +2401,8 @@ public class DAO extends DBContext {
         return count;
     }
 
-
     public void addProductLog(ProductLog pl) {
 
-        //       SELECT [UserID]
-        //   ,[FullName]
-        // ,[Email]
-        //  ,[Phone]
-        //  ,[Address]
-        // ,[Password]
-        //,[RoleID]
-        //,[Create_Date]
-        //,[Update_Date]
         String sql = "INSERT INTO [dbo].[ProductLog]\n"
                 + "           ([UId]\n"
                 + "           ,[PId]\n"
@@ -2464,6 +2453,25 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
+
+
+    public void updateQuantity(Product p) {
+        String query = "UPDATE [dbo].[Product]\n"
+                + "  SET  "
+                + "           [Quantity] = ?\n"
+                + "    Where [PID] = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+
+
+            st.setInt(1, p.getQuantity());
+            st.setInt(2, p.getpId());
+   
+            st.executeUpdate();
+
+        } catch (Exception e) {
+               }
+    }
     
     public void huyDonHang(int oId){
         String sql6 = "update product set quantity=quantity+? where PID=?";
@@ -2478,12 +2486,10 @@ public class DAO extends DBContext {
                 }
             }
         } catch (SQLException e) {
+
         }
     }
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        d.huyDonHang(56);
-    }
     
+    public static void main(String[] args) {}
 
 }
