@@ -25,6 +25,31 @@
         <link rel="stylesheet" href="assetsEM/plugins/morris/morris.css">
 
         <link rel="stylesheet" href="assetsEM/css/style.css">
+        <style>
+            .moda{
+                position: fixed;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                top: 0;
+                background: rgba(0,0,0,0.4);
+
+                align-items: center;
+                justify-content: center;
+                display: none;
+            }
+            .moda.open{
+                display: flex;
+            }
+            .moda-container {
+
+                background-color: white;
+                width: 900px;
+
+                min-height: 200px;
+            }
+
+        </style>
     </head>
     <jsp:include page="MenuManagerOrder.jsp"></jsp:include>
         <body>
@@ -72,7 +97,7 @@
                                         </span>
                                         <div class="dash-count">
                                             <a class="count-title">Đơn hàng chưa xác nhận</a>
-                                            <a class="count">${totalorder-order1-order2-order3} </a>
+                                            <a class="count">${order4-order1-order3} </a>
                                         </div>
                                     </div>
                                 </div>
@@ -116,14 +141,13 @@
                                                     <th class="text-center">Địa chỉ</th>
                                                     <th class="text-end">Trạng thái</th>
                                                     <th class="text-end">Hành động</th>
+                                                    <th class="text-end">Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <c:forEach items="${listOD}" var="o">
                                                     <tr>
-
-
                                                         <c:if test="${not empty o.order.guest.lName}">
                                                             <td class="text-nowrap">${o.order.guest.fName}</td>
                                                         </c:if>
@@ -174,7 +198,7 @@
                                                         </c:if>
                                                         <c:if test="${o.statusId == 4}">
                                                             <td class="text-end">
-                                                                <div class="font-weight-600 text-dark">Đã Huy</div>
+                                                                <div class="font-weight-600 text-dark">Đã Hủy</div>
                                                             </td>
                                                         </c:if>
                                                 <form action="editorder" method = "post">
@@ -191,6 +215,11 @@
                                                                 </button>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 2}">
+                                                                <button value="3" name="status"  class="btn btn-sm bg-success" title="Đã nhận">
+                                                                    <i class="fe fe-check"></i>
+                                                                </button>
+                                                            </c:if>
+                                                             <c:if test="${o.statusId == 3}">
                                                                 <i class="fe fe-check"></i>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 4}">
@@ -198,8 +227,10 @@
                                                             </c:if>
                                                         </div>
                                                     </td>
-                                                    </tr>
                                                 </form>
+                                                <td><a href="managerorder?id=${o.order.getoId()}"  class="js-detail">ok</a></td>
+                                                </tr>
+
                                             </c:forEach>
                                             <c:if test="${empty listOD}">
                                                 <tr>
@@ -218,6 +249,37 @@
             </div>
 
         </div>
+        <div class="moda">
+            <div class="moda-container">
+                <div >
+                    <a  href="managerorder" class="closetb" value="Dong" style="">X</a>
+                    <table class="table table-hover table-center">                                      
+                        <tr>   
+                           
+                            <th class="text-center">Tên sản phẩm</th>
+                            <th class="text-center"></th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Tổng tiền</th>
+                        </tr>
+                        <c:forEach items="${requestScope.dt}" var="dt">
+                            <tr>
+                                <td><img class="avatar-img rounded-circle" src="Image/${dt.getProduct().getImageDf()}" style="width: 100px; height: 100px"></td>
+                                <td>${dt.getProduct().getName()}</td>
+                                <td>${dt.getAmount()}</td>
+                                <td>${dt.getPrice()}</td>
+
+                            </tr>          
+                        </c:forEach>
+                        <tr>                
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+
+        </div>
         <script>
             function submitForm() {
                 document.getElementById("myForm").submit();
@@ -232,5 +294,25 @@
         <script src="assetsEM/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
         <script src="assetsEM/js/script.js"></script>
+        <script>
+            const disPlays = document.querySelectorAll('.js-detail');
+            const moda = document.querySelector('.moda');
+            const close = document.querySelector('.closetb');
+            //const closetd = doccument.querySelector('.closetb');
+            <c:if test="${requestScope.xd == 1}">
+
+            moda.classList.add('open');
+            </c:if>
+
+            for (const disPlay of disPlays) {
+                disPlay.addEventListener('click', ShowTables);
+            }
+            function hidentable() {
+                moda.classList.remove('open');
+            }
+            close.addEventListener('click', hidentable);
+
+
+        </script>
     </body>
 </html>

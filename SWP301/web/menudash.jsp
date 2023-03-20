@@ -83,9 +83,10 @@
                 <!-- User Avatar -->
                 <div class="dropdown mx-3 dropdown ml-2">
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
-                        <!--img class="avatar rounded-circle mr-md-2" src="#" alt="John Doe"-->
+                        
+                        <img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="avatar rounded-circle mr-md-2" alt="alt"/>
                         <span class="mr-md-2 avatar-placeholder"></span>
-                        <span class="d-none d-md-block">John</span>
+                        <span class="d-none d-md-block">${sessionScope.acc.fName}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
 
@@ -95,7 +96,7 @@
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-user"></i>
                     </span>
-                                ${sessionScope.acc.lName}
+                                ${sessionScope.acc.lName} ${sessionScope.acc.fName}
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
