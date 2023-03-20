@@ -37,7 +37,9 @@
     <!-- body -->
     <div id="body">
         <!-- container -->
-        <div class="body_container">
+        <div class="row">
+            <div class="col-md-2" ></div>
+        <div class="body_container col-md-10">
             <!-- body left -->
             
             <!-- body right -->
@@ -46,12 +48,12 @@
 
 
                     <!-- body right -->
-                    <div class="body_right">
+                    <div class="body_right col-md-9">
                        <div>
                     <!-- title -->
                     <div class="body_right-title">
                         <div class="body_right-title-1">
-                            <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
+                            <img src="https://img.icons8.com/ios/50/null/details-pane.png"/>
                             <p id="body_right-title">Chi tiết đơn hàng</p>
                         </div>
                          <a class="body_right-edit_button" href="#">
@@ -59,7 +61,7 @@
                         </a>
                     <c:if test="${orderDetail.get(0).order.status == 1}">
                         <a class="body_right-edit_button" href="huydonhang?oid=${orderDetail.get(0).order.oId}">
-                            Huy Don Hang
+                            Hủy đơn hàng
                         </a>
                     </c:if>
                         
@@ -165,6 +167,8 @@
                     </div>
                 </div>
             </div>
+            <div class=""></div>
+                                        </div>
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
     </body>

@@ -39,55 +39,56 @@
                 <!-- container -->
                 <div class="body_container">
                     <!-- body left -->
+                 
                     <div class="body_left">
                         <!-- body left top (dashboard)-->
                         <div class="body_left-dashboard">
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
-                            <a href="hisOrder.jsp" class="body_left-dashboard_child" id="current_page">
+                            <a href="hisorder?xn=1" class="body_left-dashboard_child">
                                 <div id="hover_icon">
-                                    <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
+                                    
                                     Đơn hàng
                                 </div>
-                                <span>${d.getAllOrderByUID(acc.uId).size()}</span>
+                                <span>${orderByUId.size()}</span>
                         </a>
-                        <a href="./favorite.html" class="body_left-dashboard_child">
+                        <a href="sanphamdaxem" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-heart  dashboard_icon"></i>
-                                Yêu thích
+                               
+                                Sản phẩm đã xem
                             </div>
-                            <span>420</span>
+                            <span>${soSanPhamDaXem}</span>
                         </a>
-                        <a href="./support.html" class="body_left-dashboard_child">
+                        <a href="thongbao" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-headset  dashboard_icon"></i>
-                                Hỗ trợ
+                               
+                                Thông báo
                             </div>
-                            <span>1</span>
+                            <span style="color: red">${thongBao}</span>
                         </a>
                     </div>
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
                         <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                        <a href="../src/profile_info.html" class="body_left-dashboard_child">
+                        <a href="orderofuser" class="body_left-dashboard_child" id="current_page">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-user dashboard_icon"></i>
+                                
                                 Trang cá nhân
                             </div>
-                            <span>1</span>
+                            
                         </a>
                         <a href="../src/address.html" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-location-arrow dashboard_icon"></i>
+                                
                                 Địa chỉ
                             </div>
-                            <span>2</span>
+                            
                         </a>
                         <a href="../src/thanh_toan.html" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-credit-card dashboard_icon"></i>
+                               
                                 Phương thức thanh toán
                             </div>
-                            <span>3</span>
+                            
                         </a>
                     </div>
                 </div>
@@ -97,123 +98,24 @@
                         <!-- title -->
                         <div class="body_right-title">
                             <div class="body_right-title-1">
-                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
-                                <p id="body_right-title">Đơn hàng</p>
+                                <img src="https://img.icons8.com/ios/50/null/appointment-reminders--v1.png"/>
+                                <p id="body_right-title">Thông báo</p>
                             </div>
                         </div>
                         <!-- content -->
-                        <div class="body_right-oders">
-                            <!-- title -->
-                            <div class="body_right-oders-title">
-                                <div class="oders-title-child">Đơn hàng</div>
-                                <div class="oders-title-child">Trạng thái</div>
-                                <div class="oders-title-child">Ngày thanh toán</div>
-                                <div class="oders-title-child">Tổng tiền</div>
-                            </div>
-                            <!-- content -->
+                        <div class="body_right-oders">                    <!-- content -->
                             <div>
-                             
-                            
-                                
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">6223AG</div>
-                                        <div class="oders_items-child ">
-                                            <span class="status-gray">Đang xử lý</span>
-                                        </div>
-                                        <div class="oders_items-child">30 / 4 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
+                                <div class="body_right-oders_child" style="min-height: 60px">
+                                    <p> Thông báo ở chỗ này</p>
                                 </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">DVFN63</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-green">Đã giao thành công</span>
-                                        </div>
-                                        <div class="oders_items-child">03 / 12 / 2020</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">AV4223</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-red">Đã huỷ đơn</span>
-                                        </div>
-                                        <div class="oders_items-child">12 / 9 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="body_right-oders_child">
-                                    <div class="oders_items">
-                                        <div class="oders_items-child">AV4223</div>
-                                        <div class="oders_items-child">
-                                            <span class="status-red">Đã huỷ đơn</span>
-                                        </div>
-                                        <div class="oders_items-child">12 / 9 / 2022</div>
-                                        <div class="oders_items-child money_margin">$999.99</div>
-                                    </div>
-                                    <div class="order_items_icon">
-                                        <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                            <i class="fa-solid fa-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">6223AG</div>
-                                            <div class="oders_items-child ">
-                                                <span class="status-gray">Đang đóng gói</span>
-                                            </div>
-                                            <div class="oders_items-child">30 / 4 / 2022</div>
-                                            <div class="oders_items-child money_margin">$999.99</div>
-                                        </div>
-                                        <div class="order_items_icon">
-                                            <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child">DVFN63</div>
-                                            <div class="oders_items-child">
-                                                <span class="status-green">Đã giao thành công</span>
-                                            </div>
-                                            <div class="oders_items-child">03 / 12 / 2020</div>
-                                            <div class="oders_items-child money_margin">$999.99</div>
-                                        </div>
-                                        <div class="order_items_icon">
-                                            <a href="orderdetail.jsp" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- page button -->
-
+     
                             </div>
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
+                        
             <!-- end body -->
 
             <!-- footer -->
