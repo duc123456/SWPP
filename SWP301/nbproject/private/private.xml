@@ -15,8 +15,30 @@
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/orderdetail.jsp</file>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/information.jsp</file>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ManagerProductSellOut.java</file>
+<<<<<<< HEAD
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
             <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/model/OrderLog.java</file>
+=======
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/MenuManagerOrder.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/index.jsp</file>
+=======
+            <file>file:/C:/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/login.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/LoginControl.java</file>
+            <file>file:/C:/SWPP/SWP301/web/sidebarDash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Order.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DashContoller.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/model/Guest.java</file>
+            <file>file:/C:/SWPP/SWP301/web/Dash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ListProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/web/menudash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/PayServlet.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/EditOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
+>>>>>>> c7ba820a8fc2dfdd003b34e668381aac7c991bda
+>>>>>>> main
         </group>
     </open-files>
 </project-private>
