@@ -86,6 +86,7 @@ public class RegisterControl extends HttpServlet {
             u.setPass(pass);
             u.setPhone(phone);
             u.setRoleId(1);
+            u.setImage("avtDF.png");
             u.setCreateDate(format);
             u.setModifyDate(format);
             d.register(u);
