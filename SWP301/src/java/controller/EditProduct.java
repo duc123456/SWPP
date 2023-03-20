@@ -104,7 +104,7 @@ public class EditProduct extends HttpServlet {
         String ppriceout = request.getParameter("priceout");
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
-        Product p = new Product();
+       
         DAO dao = new DAO();
 
         if (pimage == null || pimage.isEmpty()) {

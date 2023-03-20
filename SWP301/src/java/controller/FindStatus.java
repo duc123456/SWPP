@@ -49,7 +49,6 @@ public class FindStatus extends HttpServlet {
             int statusid = Integer.parseInt(request.getParameter("statusid"));
 
             List<OrderLog> list = dao.getStatusOrder(statusid);
-          
             int productOrder = dao.getTotalOrder();
             request.setAttribute("totalorder", productOrder);
 
@@ -58,9 +57,12 @@ public class FindStatus extends HttpServlet {
 
             int productOrder2 = dao.getOrder2();
             request.setAttribute("order2", productOrder2);
-            
-             int productOrder3 = dao.getOrder3();
+
+            int productOrder3 = dao.getOrder3();
             request.setAttribute("order3", productOrder3);
+
+            int productOrder4 = dao.getOrder4();
+            request.setAttribute("order4", productOrder4);
 
             request.setAttribute("listOD", list);
 
