@@ -34,13 +34,7 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <!-- end header -->
 
-<<<<<<< HEAD
-            <!-- body -->
-            <div id="body">
-                <!-- container -->
-                <div class="body_container">
-                    <!-- body left -->
-=======
+
     <!-- body -->
     <div id="body">
         <!-- container -->
@@ -69,7 +63,7 @@
                     <!-- content -->
                     <div class="body_right-order_info">
                       
->>>>>>> main
+
 
                     <!-- body right -->
                     <div class="body_right">

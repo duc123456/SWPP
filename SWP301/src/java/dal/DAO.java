@@ -481,6 +481,43 @@ public class DAO extends DBContext {
         return null;
     }
 
+    public Product getProductNewMost() {
+        String sql = "select top 1 * from Product\n"
+                + "Order by PID Desc";
+        try {
+
+            PreparedStatement st = connection.prepareStatement(sql);
+            
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Product p = new Product();
+                p.setpId(rs.getInt(1));
+                p.setAddedBy(rs.getInt(2));
+                p.setCat(getCategoryById(rs.getInt(3)));
+                p.setPriceIn(rs.getInt(4));
+                p.setName(rs.getString(5));
+                p.setColor(rs.getString(6));
+                p.setDescription(rs.getString(7));
+                p.setResolution(rs.getString(8));
+                p.setInsurance(rs.getInt(9));
+                p.setcDate(rs.getString(10));
+                p.setType(getTypeById(rs.getInt(11)));
+                p.setImageDf(rs.getString(12));
+                p.setSize(rs.getInt(13));
+                p.setQuantity(rs.getInt(14));
+                p.setDiscount(rs.getFloat(15));
+                p.setPriceOut(rs.getInt(16));
+
+                return p;
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
     public String getTypebyPID(int id) {
         String sql = "select TName from Product p\n"
                 + "Inner join [Type] t on t.TID = p.TID\n"
@@ -2349,6 +2386,7 @@ public class DAO extends DBContext {
         return count;
     }
 
+
     public int getOrder4() {
         int count = 0;
         String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] Where [StatusID] =1";
@@ -2362,6 +2400,45 @@ public class DAO extends DBContext {
 
         }
         return count;
+    }
+
+
+    public void addProductLog(ProductLog pl) {
+
+        //       SELECT [UserID]
+        //   ,[FullName]
+        // ,[Email]
+        //  ,[Phone]
+        //  ,[Address]
+        // ,[Password]
+        //,[RoleID]
+        //,[Create_Date]
+        //,[Update_Date]
+        String sql = "INSERT INTO [dbo].[ProductLog]\n"
+                + "           ([UId]\n"
+                + "           ,[PId]\n"
+                + "           ,[Action]\n"
+                + "           ,[PriceIn]\n"
+                + "           ,[PriceOut]\n"
+                + "           ,[Quatity]\n"
+                + "           ,[Date])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, pl.getUser().getuId());
+            st.setInt(2, pl.getProduct().getpId());
+            st.setInt(3, pl.getAction());
+            st.setLong(4, pl.getPriceIn());
+            st.setLong(5, pl.getPriceOut());
+            st.setLong(6, pl.getQuantity());
+            st.setString(7, pl.getDate());
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     public void Feedback(int uid, int pid, String description, String date, int vote) {
@@ -2388,4 +2465,5 @@ public class DAO extends DBContext {
         }
     }
     
+
 }
