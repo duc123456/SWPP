@@ -173,6 +173,9 @@
                                                                 <a href="deleteproduct?PID=${o.pId}" title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i>
                                                                 </a>
+                                                                <a href="loadProduct?pId=${o.pId}&&xd=1" title="Thêm số lượng"  class="btn btn-sm bg-danger-light">
+                                                                    <i class="fe fe-plus"></i>
+                                                                </a>
                                                             </div>
                                                         </td>
                                                     </c:forEach>
