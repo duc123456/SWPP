@@ -141,7 +141,7 @@
                                                     <th class="text-center">Địa chỉ</th>
                                                     <th class="text-end">Trạng thái</th>
                                                     <th class="text-end">Hành động</th>
-                                                    <th class="text-end">Detail</th>
+                                                    <th class="text-end">Thông tin</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

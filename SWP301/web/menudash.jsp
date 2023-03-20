@@ -12,13 +12,13 @@
     <nav class="navbar flex-nowrap p-0">
         <div class="navbar-brand-wrapper d-flex align-items-center col-auto">
             <!-- Logo For Mobile View -->
-            <a class="navbar-brand navbar-brand-mobile" href="/">
-                <img class="img-fluid w-100" src="Image/logo.png" alt="Graindashboard">
+            <a class="navbar-brand navbar-brand-mobile" href="listproduct">
+                <img class="img-fluid w-100" src="Image/logo.png" alt="Trang chủ">
             </a>
             <!-- End Logo For Mobile View -->
 
             <!-- Logo For Desktop View -->
-            <a class="navbar-brand navbar-brand-desktop" href="/">
+            <a class="navbar-brand navbar-brand-desktop" href="listproduct">
                 <img class="side-nav-show-on-closed" src="Image/logo2.png" alt="Graindashboard" style="width: auto; height: 40px; border-radius: 100%">
                 <img class="side-nav-hide-on-closed" src="Image/logo2.png" alt="Graindashboard" style="width: auto; height: 60px; border-radius: 100%">
             </a>

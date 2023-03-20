@@ -13,20 +13,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
-import model.Category;
-import model.FeedBack;
-import model.Product;
-import model.Type;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import model.User;
-
 
 /**
  *
- * @author ADMIN
+ * @author nhant
  */
-@WebServlet(name = "DetailControl", urlPatterns = {"/detail"})
-public class DetailControl extends HttpServlet {
+@WebServlet(name = "Feedback", urlPatterns = {"/feedback"})
+public class Feedback extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,10 +41,10 @@ public class DetailControl extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DetailControl</title>");
+            out.println("<title>Servlet Feedback</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DetailControl at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Feedback at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,43 +62,7 @@ public class DetailControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String pid = request.getParameter("pid");
-        String xd = request.getParameter("xd");
-        String xn = request.getParameter("xn");
-        request.setAttribute("xn", xn);
-        if(xd == null){
-            
-        }else{
-            request.setAttribute("xd", xd);
-        }
-        int id = Integer.parseInt(pid);
-        DAO d = new DAO();
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("acc");
-        if(u != null){
-            d.insertSanPhamDaXem(u.getuId(), id);
-        }
-        
-        
-        Product p = d.getProductByID(id);
-        String type = d.getTypebyPID(id);
-        // truyen feedback sang detail jsp
-        List<Type> list3 = d.getAllType();
-        request.setAttribute("type", list3);
-        //List<Size> sizes =d.getAllSizeById(id);
-        List<Product> list4 =d.get4Product();
-        int star = d.getStar(id);
-        request.setAttribute("star", star);
-       // request.setAttribute("sizes", sizes);
-        request.setAttribute("list4", list4);
-        List<FeedBack> feedbacks =d.getFBbyPID(id);
-
-        request.setAttribute("feedbacks", feedbacks);
-        request.setAttribute("type1", type);
-        request.setAttribute("product", p);
-        List<Category> list2 = d.getAllCat();
-        request.setAttribute("cate", list2);
-        request.getRequestDispatcher("detail.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -116,7 +76,24 @@ public class DetailControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        int uid = Integer.parseInt(request.getParameter("userbe"));
+        String pid = request.getParameter("productfeebid");
+        String description = request.getParameter("comment");
+        int vote = Integer.parseInt(request.getParameter("vote"));
+        
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+        
+        HttpSession session = request.getSession();
+        User a = (User) session.getAttribute("acc");
+        DAO dao = new DAO();
+        
+        dao.Feedback(uid, Integer.parseInt(pid), description, format, vote);
+        response.sendRedirect("listproduct");
+        
     }
 
     /**
