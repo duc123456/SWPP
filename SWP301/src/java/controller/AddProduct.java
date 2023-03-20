@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import model.ProductLog;
 import model.User;
 
 /**
@@ -85,7 +86,7 @@ public class AddProduct extends HttpServlet {
         String pdescription = request.getParameter("description");
         String presolution = request.getParameter("resolution");
         String pinsurance = request.getParameter("insurance");
-
+        DAO dao = new DAO();
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
@@ -97,11 +98,25 @@ public class AddProduct extends HttpServlet {
         String pquantity = request.getParameter("quantity");
         String pdiscount = request.getParameter("discount");
         String ppriceout = request.getParameter("priceout");
-
+        
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
-        DAO dao = new DAO();
-        dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
+       dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
+        /// Add ProductLog ///
+        ProductLog pl = new ProductLog();
+        pl.setUser(a);
+        pl.setProduct(dao.getProductNewMost());
+        pl.setAction(1);
+        pl.setPriceIn(Integer.parseInt(pprice));
+        pl.setPriceOut(Integer.parseInt(ppriceout));
+        pl.setQuantity(Integer.parseInt(pquantity));
+        pl.setDate(format);
+        dao.addProductLog(pl);
+        
+        
+        
+        
+        
         response.sendRedirect("managerProduct");
     }
 
