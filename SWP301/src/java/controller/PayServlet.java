@@ -95,7 +95,7 @@ public class PayServlet extends HttpServlet {
             User u = (User) session.getAttribute("acc");
             int uid = u.getuId();
             try {
-                String s = d.insertOrderUser(uid, dia, c, note);
+                String s = d.insertOrderUser(uid, dia, c, note,so);
                 request.setAttribute("mess", s);
                 if (s.equals("Cam On")) {
                     Cookie[] cookie = request.getCookies();
