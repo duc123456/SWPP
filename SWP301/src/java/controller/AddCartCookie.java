@@ -81,6 +81,7 @@ public class AddCartCookie extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         DAO d = new DAO();
         List<Product> list = d.getAllProd();
         Cookie[] arr = request.getCookies();

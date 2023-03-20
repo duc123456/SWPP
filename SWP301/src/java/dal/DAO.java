@@ -2454,6 +2454,7 @@ public class DAO extends DBContext {
         }
     }
 
+
     public void updateQuantity(Product p) {
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET  "
@@ -2469,17 +2470,26 @@ public class DAO extends DBContext {
             st.executeUpdate();
 
         } catch (Exception e) {
+               }
+    }
+    
+    public void huyDonHang(int oId){
+        String sql6 = "update product set quantity=quantity+? where PID=?";
+        List<OrderDetail> list = getODDTbyOId(oId);
+        try {
+            PreparedStatement st = connection.prepareStatement(sql6);
+            if(list != null){
+                for (OrderDetail orderDetail : list) {
+                    st.setInt(1, orderDetail.getAmount());
+                    st.setInt(2, orderDetail.getProduct().getpId());
+                    st.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+
         }
     }
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        ProductLog pl = new ProductLog();
-          pl.setUser(d.login("mrb", "123"));
-            pl.setProduct(d.getProductByID(26));
-            pl.setAction(4);
-            pl.setPriceIn(20000000);
-            pl.setQuantity(10);
-            d.addProductLog(pl);
-    }
+    
+    public static void main(String[] args) {}
 
 }
