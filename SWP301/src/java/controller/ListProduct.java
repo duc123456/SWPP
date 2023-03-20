@@ -151,11 +151,12 @@ public class ListProduct extends HttpServlet {
         
         if(request.getAttribute("sanPhamDaXem") != null){
             list1 = (List<Product>) request.getAttribute("sanPhamDaXem");
+             request.setAttribute("daXem", 1);
         }
 
         request.setAttribute("endP", endPage);
         request.setAttribute("tagw", index);
-
+       
         request.setAttribute("cate", list2);
         request.setAttribute("product", list1);
         request.setAttribute("type", list3);

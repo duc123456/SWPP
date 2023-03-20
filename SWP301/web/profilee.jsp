@@ -38,6 +38,7 @@
         <!-- header -->
         <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
         <jsp:include page="menu.jsp"></jsp:include>
+       
             <!-- end header -->
 
             <!-- body -->
@@ -50,7 +51,7 @@
                         <!-- body left top (dashboard)-->
                         <div class="body_left-dashboard">
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
-                            <a href="hisOrder.jsp" class="body_left-dashboard_child">
+                            <a href="hisorder" class="body_left-dashboard_child">
                                 <div id="hover_icon">
                                     <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                                     Đơn hàng
@@ -69,7 +70,7 @@
                                 <i class="fa-solid fa-headset  dashboard_icon"></i>
                                 Thong bao cua toi
                             </div>
-                            <span>${thongBao}</span>
+                            <span style="color: red">${thongBao}</span>
                         </a>
                     </div>
                     <!-- body left bot (acc setting)-->
@@ -167,7 +168,7 @@
                             </div>
                             <div class="body_right-history_child">
                                 <span class="body_right-history_child-number">${DaHuy}</span>
-                                <a href="hisorder?n=1"><p>Đơn hàng đa huy</p></a>
+                                <a href="hisorder?n=4"><p>Đơn hàng đa huy</p></a>
                             </div>
                         </div>
                         <!-- thông tin cá nhân -->

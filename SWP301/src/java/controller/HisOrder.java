@@ -78,6 +78,7 @@ public class HisOrder extends HttpServlet {
         }
         }
         request.setAttribute("list3", list3);
+        request.setAttribute("total", 1);
         request.getRequestDispatcher("hisOrder.jsp").forward(request, response);
         
         
