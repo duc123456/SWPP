@@ -279,10 +279,7 @@
                                     <c:set var="x1" value="Xem Sản Phẩm"></c:set>
                                     <c:if test="${daXem != null}">
 
-                                        <c:set var="x" value="deletedaxem?pid=${p.pId}">
-
-
-                                        </c:set>
+                                        
                                         <c:set var="x1" value="Xóa Sản Phẩm"></c:set>
                                     </c:if>
 
@@ -318,8 +315,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                                <c:if test="${daXem != null}">
 
-                                        <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
+                                      <a href="sanphamdaxem?pId=${p.pId}&&uId=${acc.uId}"> <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div></a>
+                                                </c:if>
+                                       <c:if test="${daXem == null}">
+
+                                      <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
+                                                </c:if>
+                                                
+                                       
 
 
 

@@ -52,9 +52,12 @@
                          <a class="body_right-edit_button" href="#">
                             Đặt lại đơn hàng
                         </a>
+                    <c:if test="${orderDetail.get(0).order.status == 1}">
                         <a class="body_right-edit_button" href="">
                             Huy Don Hang
                         </a>
+                    </c:if>
+                        
                     </div>
                     <!-- content -->
                     <div class="body_right-order_info">
