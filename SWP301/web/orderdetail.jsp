@@ -39,7 +39,7 @@
         <!-- container -->
         <div class="body_container">
             <!-- body left -->
-            <jsp:include page="sbProfile.jsp"></jsp:include>
+            
             <!-- body right -->
             <div class="body_right">
                 <div>
@@ -49,38 +49,16 @@
                             <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
                             <p id="body_right-title">Chi tiết đơn hàng</p>
                         </div>
-                        <a class="body_right-edit_button" href="#">
+                         <a class="body_right-edit_button" href="#">
                             Đặt lại đơn hàng
+                        </a>
+                        <a class="body_right-edit_button" href="">
+                            Huy Don Hang
                         </a>
                     </div>
                     <!-- content -->
                     <div class="body_right-order_info">
-                       <div class="oders_info-child">
-                            <div class="oders_info-status">
-                                <div class="oders_info-status-circle statusbar_active">
-                                    <div class="check_status">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-                                    <div>
-                                        <i class="fa-solid fa-box"></i>
-                                    </div>
-                                </div>
-                                <div class="statusbar statusbar_active"></div>
-                                <div class="oders_info-status-circle statusbar_active">
-                                    <i class="fa-solid fa-truck"></i>
-                                </div>
-                                <div class="statusbar"></div>
-                                <div class="oders_info-status-circle">
-                                    <i class="fa-solid fa-truck-ramp-box"></i>
-                                </div>
-                            </div>
-                            <div class="oders_info-estimated">
-                                <div id="oders_info-estimated">
-                                    Ngày giao dự kiến 
-                                    <b>10/10/2022</b>
-                                </div>
-                            </div>
-                        </div>-->
+                      
 
                         <!-- something i dont know -->
                         <div class="oders_info-child details">
@@ -88,20 +66,17 @@
                                 <div class="oders_info-details">
                                     <div>
                                         <span>Mã don hang: </span>
-                                        ${orderDetail.get(0).order.oId}
+                                        #FFF${orderDetail.get(0).order.oId}
                                     </div>
                                     <div>
-                                        <span>Đơn vị vận chuyển: </span>
+                                        <span>So Luong</span>
                                         Giaohangnhanh
                                     </div>
                                     <div>
                                         <span>Ngày đặt: </span>
                                         ${orderDetail.get(0).order.date.substring(0,10)}
                                     </div>
-                                    <div>
-                                        <span>Ngày giao: </span>
-                                        12/6/2022
-                                    </div>
+                                    
                                 </div>
                                 <div class="oders_info-description">
                                     <c:set var="oddt" value="${orderDetail}"></c:set>

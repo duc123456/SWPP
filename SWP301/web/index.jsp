@@ -248,7 +248,7 @@
                                 </div>
 
                         </form>
-                           
+
 
 
 
@@ -273,8 +273,20 @@
                             <c:forEach items="${product}" var="p">
 
                                 <div class="col-lg-3 col-md-3 mb-4" >
+                                    <c:set var="x" value="detail?pid=${p.pId}">
 
-                                    <a href="detail?pid=${p.pId}">
+                                    </c:set>
+                                    <c:set var="x1" value="Xem Sản Phẩm"></c:set>
+                                    <c:if test="${daXem != null}">
+
+                                        <c:set var="x" value="deletedaxem?pid=${p.pId}">
+
+
+                                        </c:set>
+                                        <c:set var="x1" value="Xóa Sản Phẩm"></c:set>
+                                    </c:if>
+
+                                    <a href="${x}">
                                         <div class="bg-white p-2 shadow-md">
                                             <div class="text-center" style="min-height: 176px !important;">
 
@@ -302,39 +314,39 @@
                                                     </li>
                                                 </ul>
                                                 <div class="row pt-2">
-                                                    
-                                                    </div>
+
                                                 </div>
                                             </div>
-                                                 <div class="btn fw-bold w-100 btn-outline-danger" >Xem Sản Phẩm</div>
+                                        </div>
+                                        <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
 
 
-                                        </a>
+                                    </a>
 
-                                    </div>
+                                </div>
 
                             </c:forEach>
                             <nav aria-label="breadcrumb">
                                 <ul class="pagination">
 
 
-                                    
-                        <c:if test="${requestScope.xd == 1}">
-                            <c:set var="page" value="${requestScope.page}"/>
-                            <c:forEach begin="1" end="${requestScope.num}" var="i">
-                                   
-                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
-                                
-                            </c:forEach>
-                            
-                        </c:if>
-                            
-                        <c:if test="${requestScope.xd != 1}">
-                            <c:forEach begin="1" end="${endP}" var="pa">
-                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
-                            </c:forEach>
-                            
-                        </c:if>    
+
+                                    <c:if test="${requestScope.xd == 1}">
+                                        <c:set var="page" value="${requestScope.page}"/>
+                                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+
+                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
+
+                                        </c:forEach>
+
+                                    </c:if>
+
+                                    <c:if test="${requestScope.xd != 1}">
+                                        <c:forEach begin="1" end="${endP}" var="pa">
+                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                                            </c:forEach>
+
+                                    </c:if>    
 
                                 </ul>    
                             </nav>    
@@ -465,5 +477,5 @@
         <script>
 
         </script>
-        
+
 </html>

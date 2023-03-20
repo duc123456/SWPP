@@ -114,21 +114,7 @@
                             <div>
                              
                             
-                                <c:forEach items="${xemThongBao}" var="list" >
-                                    <div class="body_right-oders_child">
-                                        <div class="oders_items">
-                                            <div class="oders_items-child"> Don Hang #fff${list.order.oId}</div>
-                                          ="#,##0 'VND'" /></div>
-                                        </div>
-                                        <div class="order_items_icon">
-                                            
-                                            <c:if test="${list.statusId == 1}">
-                                               Da duoc dat thanh cong 
-                                            </c:if>
-                           
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                
                                 <div class="body_right-oders_child">
                                     <div class="oders_items">
                                         <div class="oders_items-child">6223AG</div>
