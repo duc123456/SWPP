@@ -66,12 +66,14 @@ public class ManagerOrder extends HttpServlet {
             int productOrder1 = dao.getOrder1();
             request.setAttribute("order1", productOrder1);
 
-            
              int productOrder2 = dao.getOrder2();
             request.setAttribute("order2", productOrder2);
             
             int productOrder3 = dao.getOrder3();
             request.setAttribute("order3", productOrder3);
+                     
+            int productOrder4 = dao.getOrder4();
+            request.setAttribute("order4", productOrder4);
             
 
             request.setAttribute("listOD", list);
