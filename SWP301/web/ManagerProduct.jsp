@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Quản lý sản phẩm</title>
 
-        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
         <link rel="stylesheet" href="assetsEM/css/bootstrap.min.css">
 
@@ -42,7 +42,7 @@
                                     <div class="card-body">
                                         <div class="dash-widget-header">
                                             <span class="dash-widget-icon bg-primary">
-                                                <i class="fas fa-tv"></i>
+                                                <i class="fe fe-desktop"></i>
                                             </span>
                                             <div class="dash-count">
                                                 <a href="#" class="count-title">Số Lượng Sản Phẩm</a>
@@ -57,7 +57,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <span class="dash-widget-icon bg-warning">
-                                            <i class="fe fe-phone"></i>
+                                            <i class="fe fe-wallet"></i>
                                         </span>
                                         <div class="dash-count">
                                             <a href="#" class="count-title">
@@ -74,7 +74,7 @@
                                 <div class="card-body">
                                     <div class="dash-widget-header">
                                         <span class="dash-widget-icon bg-danger">
-                                            <i class="fe fe-comments"></i>
+                                            <i class="fe fe-star"></i>
                                         </span>
                                         <div class="dash-count">
                                             <a href="#" class="count-title">Tổng số sản phẩm</a>
@@ -115,7 +115,7 @@
                                             <thead>
                                                 <tr>
                                                     <th >  Tên
-                                                      
+
                                                     </th>
 
 
@@ -167,16 +167,21 @@
 
                                                         <td class="text-end">
                                                             <div class="actions">
-                                                                <a href="loadProduct?pId=${o.pId}"  class="btn btn-sm bg-success-light me-2">
+                                                                <a href="loadProduct?pId=${o.pId}"  title="Sửa sản phẩm" class="btn btn-sm bg-success-light me-2">
                                                                     <i class="fe fe-pencil"></i>
                                                                 </a>
-                                                                <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
+                                                                <a href="deleteproduct?PID=${o.pId}" title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i>
                                                                 </a>
                                                             </div>
                                                         </td>
                                                     </c:forEach>
                                                 </tr>
+                                                <c:if test="${empty listP}">
+                                                    <tr>
+                                                        <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                                    </tr>
+                                                </c:if>
 
                                             </tbody>
 
@@ -205,15 +210,24 @@
     </body>
 
     <script>
-        const productTitles = document.querySelectorAll('.name-Product');
+                                                                    const productTitles = document.querySelectorAll('.name-Product');
 
-        productTitles.forEach(title => {
-            const titleText = title.textContent;
+                                                                    productTitles.forEach(title => {
+                                                                        const titleText = title.textContent;
 
-            if (titleText.length > 24) {
-                const shortenedText = titleText.slice(0, 21) + '...';
-                title.textContent = shortenedText;
+                                                                        if (titleText.length > 24) {
+                                                                            const shortenedText = titleText.slice(0, 21) + '...';
+                                                                            title.textContent = shortenedText;
+                                                                        }
+                                                                    });
+    </script>
+
+
+    <script>
+        function confirmDelete(userId) {
+            if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+                window.location.href = `delete?id=` + userId;
             }
-        });
+        }
     </script>
 </html>

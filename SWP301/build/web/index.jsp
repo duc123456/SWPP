@@ -318,7 +318,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
+
 
 
                                     </a>
@@ -326,6 +328,7 @@
                                 </div>
 
                             </c:forEach>
+
                             <nav aria-label="breadcrumb">
                                 <ul class="pagination">
 
@@ -351,7 +354,11 @@
                                 </ul>    
                             </nav>    
 
-
+                             <c:if test="${empty product}">
+                                        <tr>
+                                            <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                        </tr>
+                                    </c:if>
                         </div>
                     </div>
                 </div>

@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import model.OrderDetail;
 import model.OrderLog;
 import model.Product;
 import model.User;
@@ -37,17 +38,41 @@ public class ManagerOrder extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        DAO dao = new DAO();
         HttpSession session = request.getSession();
         //ep string acc sang user
         User a = (User) session.getAttribute("acc");
-        //bat buoc phai dang nhap 
+        String _id = request.getParameter("id");
+        if(_id != null && _id != ""){
+            int id = Integer.parseInt(_id);
+            List<OrderDetail> dt = dao.getODDTbyOId(id);
+            request.setAttribute("xd", 1);
+            request.setAttribute("dt", dt);
+            
+        }
+        
         if (session.getAttribute("acc") == null) {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             //neu role = 1 (Admin) thi moi duoc vao manager 
-        } else if (a.getRoleId() == 1) {
-            DAO dao = new DAO();
+
+        } else if (a.getRoleId() == 3) {
+       
+
             List<OrderLog> list = dao.getAllOrderLog();
+
+            int productOrder = dao.getTotalOrder();
+            request.setAttribute("totalorder", productOrder);
+
+            int productOrder1 = dao.getOrder1();
+            request.setAttribute("order1", productOrder1);
+
+            
+             int productOrder2 = dao.getOrder2();
+            request.setAttribute("order2", productOrder2);
+            
+            int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
+            
 
             request.setAttribute("listOD", list);
 

@@ -112,7 +112,7 @@
                                 <p id="body_right-title">Trang Cá Nhân</p>
                             </div>
 
-                            <a class="body_right-edit_button" href="EditProfile.jsp">
+                            <a class="body_right-edit_button" href="Profile.jsp">
 
                                 Sửa thông tin cá nhân
                             </a>

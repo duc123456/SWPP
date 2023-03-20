@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderOfUserController.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/HisOrder.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/profilee.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/OrderDetail.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/hisOrder.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Product.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/orderdetail.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/GeneralOrder.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Order.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderDetail1.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

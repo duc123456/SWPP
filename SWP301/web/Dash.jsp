@@ -224,176 +224,9 @@
                 </div>
                 <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
                     <!-- Card -->
-                    <div class="card h-100">
-                        <div class="card-header d-flex">
-                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Marketing</h5>
-                        </div>
-                        <div class="card-body pt-0">
-                            <h4 class="h2 lh-1 mb-2">+15,870.98 USD</h4>
-
-                            <p class="mb-3 mb-md-4">Total Income</p>
-
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <strong class="d-block mb-3">Conversion Rate</strong>
-
-                                    <div class="d-flex align-items-center text-muted mb-2">
-                                        <span class="indicator indicator-lg indicator-primary rounded-circle mr-2"></span>
-                                        <small>AdWords</small>
-                                    </div>
-
-                                    <div class="d-flex align-items-center text-muted">
-                                        <span class="indicator indicator-lg bg-semi-lighter rounded-circle mr-2"></span>
-                                        <small>Facebook</small>
-                                    </div>
-                                </div>
-
-                                <div class="js-donut-chart position-relative d-flex ml-auto" style="width: 120px; height: 120px;"
-                                     data-series='[
-                               {"meta":"AdWords - ","value":78},
-                               {"meta":"Facebook - ","value":22}
-                             ]'
-                                     data-border-width="8"
-                                     data-start-angle="0"
-                                     data-fill-colors='["#8069f2","#eeeef1"]'
-                                     data-is-show-tooltips="true"
-                                     data-tooltip-currency="%"
-                                     data-is-tooltip-currency-reverse="true"
-                                     data-tooltip-custom-class="chart-tooltip chart-tooltip--none-triangle chart-tooltip--centered chart-tooltip--black small text-white text-nowrap px-2 py-1"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card -->
-                </div>
-       
-
-            </div>
-
-           
-
-            <div class="row">
-                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                    <!-- Card -->
-                    <div class="card h-100">
-                        <div class="card-header d-flex">
-                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Doanh thu từng tháng của năm</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="border-bottom p-3 p-md-4 mt-3 pb-md-6">
-                                <form action="dash">
-                                    <span class="custom-dropdown big" style="background-color: #377dff; margin: 0px">
-                                    <select name="year" onchange="this.form.submit()" style="min-height: 30px">
-                                        <option value="">Tất cả</option>
-                                       
-                                       <c:forEach begin="${2020}" end="${(requestScope.now).substring(0,4)}" var="i">
-                                           <option value="${i}" ${(requestScope.year)==i?'selected':''}>${i}</option> 
-                                       </c:forEach>
-                                        
-                                        
-                                    </select></span>
-                                    
-                                    
-                                </form>
-                                <div class="js-bar-chart position-relative" style="height: 160px;"
-                                     data-series="[
-                               [400000000,400000000,400000000,400000000,400000000,400000000,400000000,400000000,400000000,100000000,400000000,400000000],
-                               [${d.SelProductFolowTime(1, requestScope.year)},
-                               ${d.SelProductFolowTime(2, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)},
-                               ${d.SelProductFolowTime(3, requestScope.year)}]
-                             ]"
-                                     data-height="160"
-                                     data-high="400000000"
-                                     data-low="0"
-                                     data-distance="20"
-                                     data-stroke-width="5"
-                                     data-stroke-color='["#e0f6fc","#a0eee7","#8069f2"]'
-                                     data-is-stack-bars="true"
-                                     data-is-show-axis-x="false"
-                                     data-is-show-axis-y="false"
-                                     data-is-show-label-axis-x="false"
-                                     data-is-show-label-axis-y="false"
-                                     data-is-stroke-rounded="true"
-                                     data-is-show-tooltips="true"
-                                     data-postfix="%"
-                                     data-tooltip-custom-class="chart-tooltip chart-tooltip--black small text-white px-2 py-1"></div>
-                            </div>
-
-                            <div class="border-bottom media align-items-center p-3">
-                                <div class="media-body d-flex align-items-center mr-2">
-                                    <span>Expenses</span>
-                                    <span class="ml-auto"><fmt:formatNumber value="${requestScope.chiphi}" pattern="#,##0 'VND'" /></span>
-                                </div>
-
-                                <i class="gd-arrow-down icon-text icon-text-xs d-flex text-danger ml-auto"></i>
-                            </div>
-
-                            <div class="media align-items-center p-3">
-                                <div class="media-body d-flex align-items-center mr-2">
-                                    <span>Profit</span>
-                                    <span class="ml-auto"><fmt:formatNumber value="${requestScope.doanhthu - requestScope.chiphi}" pattern="#,##0 'VND'" /></span>
-                                </div>
-
-                                <i class="gd-arrow-up icon-text icon-text-xs d-flex text-success ml-auto"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card -->
-                </div>
-                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                    <!-- Card -->
-                    <div class="card h-100">
-                        <div class="card-header d-flex">
-                            <h5 class="h6 font-weight-semi-bold text-uppercase mb-0">Available Balance</h5>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="border-bottom text-center p-3 p-md-4 pb-md-6">
-                                <div class="js-donut-chart position-relative d-flex mx-auto mb-3 mb-md-4" style="width: 130px; height: 130px;"
-                                     data-series="[65,35]"
-                                     data-border-width="12"
-                                     data-slice-margin="2"
-                                     data-start-angle="0"
-                                     data-fill-colors='["#8069f2","#0cdcB9"]'
-                                     data-is-show-tooltips="true"
-                                     data-tooltip-currency="%"
-                                     data-is-tooltip-currency-reverse="true"
-                                     data-tooltip-custom-class="chart-tooltip chart-tooltip--triangle-right chart-tooltip--black small text-white px-2 py-1 mt-5 ml-n5"></div>
-
-                                <div class="small text-muted">Total Balance ≈ 32,754.56 USD</div>
-                            </div>
-
-                            <div class="border-bottom media align-items-center p-3">
-                                <div class="media-body d-flex align-items-center mr-2">
-                                    <span>Cash</span>
-                                    <span class="ml-auto">$13,380.25</span>
-                                </div>
-
-                                <i class="gd-arrow-up icon-text icon-text-xs d-flex text-success ml-auto"></i>
-                            </div>
-
-                            <div class="media align-items-center p-3">
-                                <div class="media-body d-flex align-items-center mr-2">
-                                    <span>Bank Account</span>
-                                    <span class="ml-auto">$19,432.80</span>
-                                </div>
-
-                                <i class="gd-arrow-up icon-text icon-text-xs d-flex text-success ml-auto"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Card -->
-                </div>
-                <div class="col-lg-6 col-xl-4 mb-3 mb-lg-4">
-                    <!-- Card -->
-                    <div class="card h-100">
+                      
+                    
+                     <div class="card h-100">
                         <div class="card-header">
                             <h5 class="h6 text-uppercase font-weight-semi-bold mb-0">Recent Transactions</h5>
                         </div>
@@ -424,159 +257,133 @@
 
                         </div>
                     </div>
+                    
                     <!-- End Card -->
                 </div>
-
-                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                    <!-- Card -->
-                    <div class="card flex-row align-items-center p-3 p-md-4">
-                        <div>
-                            <h5 class="lh-1 mb-0">Orers</h5>
-                            <small>125 (+5)</small>
-                        </div>
-                        <div class="js-area-chart chart--points-invisible chart--labels-hidden py-1 ml-auto"
-                             data-series='[
-                           [
-                            {"value":"25"},
-                            {"value":"35"},
-                            {"value":"10"},
-                            {"value":"40"},
-                            {"value":"20"}
-                           ]
-                         ]'
-                             data-width="100"
-                             data-height="40"
-                             data-high="40"
-                             data-is-line-smooth='["simple"]'
-                             data-line-width='["1px"]'
-                             data-line-colors='["#0cdcB9"]'
-                             data-fill-opacity=".3"
-                             data-is-fill-colors-gradient="true"
-                             data-fill-colors='[
-                           ["rgba(28,240,221,.6)","rgba(255,255,255,.6)"]
-                         ]'
-                             data-is-show-tooltips="true"
-                             data-is-tooltips-append-to-body="true"
-                             data-tooltip-custom-class="chart-tooltip chart-tooltip--none-triangle d-flex align-items-center small text-white p-2 mt-5 ml-5"
-                             data-tooltip-badge-markup='<span class="indicator indicator-sm bg-secondary rounded-circle mr-1"></span>'
-                             data-is-show-points="true"
-                             data-point-custom-class='chart__point--hidden'
-                             data-point-dimensions='{"width":8,"height":8}'></div>
-                    </div>
-                    <!-- End Card -->
-                </div>
-
-                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                    <!-- Card -->
-                    <div class="card flex-row align-items-center p-3 p-md-4">
-                        <div>
-                            <h5 class="lh-1 mb-0">Visitors</h5>
-                            <small>1,450 (+325)</small>
-                        </div>
-                        <div class="js-area-chart chart--points-invisible chart--labels-hidden py-2 ml-auto"
-                             data-series='[
-                           [
-                             {"value":"40"},
-                             {"value":"40"},
-                             {"value":"40"},
-                             {"value":"25"},
-                             {"value":"30"},
-                             {"value":"35"},
-                             {"value":"50"},
-                             {"value":"35"},
-                             {"value":"35"},
-                             {"value":"35"},
-                             {"value":"30"},
-                             {"value":"30"},
-                             {"value":"40"},
-                             {"value":"35"},
-                             {"value":"35"},
-                             {"value":"55"},
-                             {"value":"50"},
-                             {"value":"45"},
-                             {"value":"60"},
-                             {"value":"70"},
-                             {"value":"80"}
-                           ]
-                         ]'
-                             data-width="100"
-                             data-height="40"
-                             data-high="100"
-                             data-is-line-smooth='[false]'
-                             data-line-width='["1px"]'
-                             data-line-colors='["#8069f2"]'
-                             data-fill-opacity=".3"
-                             data-is-fill-colors-gradient="true"
-                             data-fill-colors='[
-                           ["rgba(128,105,242,.7)","rgba(255,255,255,.6)"]
-                         ]'
-                             data-is-show-tooltips="true"
-                             data-is-tooltips-append-to-body="true"
-                             data-tooltip-custom-class="chart-tooltip chart-tooltip--none-triangle d-flex align-items-center small text-white p-2 mt-5 ml-5"
-                             data-tooltip-badge-markup='<span class="indicator indicator-sm bg-primary rounded-circle mr-1"></span>'
-                             data-is-show-points="true"
-                             data-point-custom-class='chart__point--hidden'
-                             data-point-dimensions='{"width":8,"height":8}'></div>
-                    </div>
-                    <!-- End Card -->
-                </div>
-
-                <div class="col-md-6 col-xl-4 mb-3 mb-md-4">
-                    <!-- Card -->
-                    <div class="card flex-row align-items-center p-3 p-md-4">
-                        <div>
-                            <h5 class="lh-1 mb-0">Customers</h5>
-                            <small>320 (+20)</small>
-                        </div>
-                        <div class="js-area-chart chart--points-invisible chart--labels-hidden py-2 ml-auto"
-                             data-series='[
-                           [
-                             {"value":"35"},
-                             {"value":"20"},
-                             {"value":"10"},
-                             {"value":"20"},
-                             {"value":"20"},
-                             {"value":"0"},
-                             {"value":"10"},
-                             {"value":"0"},
-                             {"value":"10"},
-                             {"value":"10"},
-                             {"value":"15"},
-                             {"value":"35"},
-                             {"value":"15"},
-                             {"value":"20"},
-                             {"value":"35"},
-                             {"value":"35"},
-                             {"value":"40"},
-                             {"value":"42"}
-                           ]
-                         ]'
-                             data-is-hide-area="true"
-                             data-width="123"
-                             data-height="42"
-                             data-high="42"
-                             data-is-line-smooth='[false]'
-                             data-line-width='["2px"]'
-                             data-line-colors='["#8069f2"]'
-                             data-is-show-tooltips="true"
-                             data-is-tooltips-append-to-body="true"
-                             data-tooltip-custom-class="chart-tooltip chart-tooltip--none-triangle d-flex align-items-center small text-white p-2 mt-5 ml-5"
-                             data-tooltip-badge-markup='<span class="indicator indicator-sm bg-primary rounded-circle mr-1"></span>'
-                             data-is-show-points="true"
-                             data-point-custom-class='chart__point--hidden'
-                             data-point-dimensions='{"width":8,"height":8}'></div>
-                    </div>
-                    <!-- End Card -->
-                </div>
+       
 
             </div>
+                                    <div class="row">
+                                    <div class="col-md-12">
+                    <!-- Card -->
+                    <div class="card mb-3 mb-md-4">
+                        <div>
+                                <form action="dash">
+                                    <span class="custom-dropdown big" style="background-color: #377dff; margin: 0px">
+                                        <select name="year" onchange="this.form.submit()" style="min-height: 30px">
+                                            <option value="">Tất cả</option>
+                                            <c:forEach begin="2020" end="${requestScope.yearnow}" var="i">
+                                                <option ${(requestScope.year == i) ?'selected':''} value="${i}" >${i}</option>
+                                            </c:forEach>
+                                    </select></span>
+                            </form>
+                            </div>
+
+                            
+                        <div id="walletsContent" class="card-body tab-content">
+                            <div class="tab-pane fade show active" id="bitcoin" role="tabpanel">
+                                
+                                
+                                
+
+                                <div class="js-area-chart chart chart--axis-x--nowrap chart--points-invisible position-relative mh-15_6 safari-overflow-hidden pt-4 pt-md-5 pb-1"
+                                     data-series='[
+                           [
+                           {"meta":"31/1","value":"${d.getAllOrderForchart(1,requestScope.year)}"},
+                             {"meta":"28/2","value":"${d.getAllOrderForchart(2,requestScope.year)}"},
+                             {"meta":"31/3","value":"${d.getAllOrderForchart(3,requestScope.year)}"},
+                             {"meta":"30/4","value":"${d.getAllOrderForchart(4,requestScope.year)}"},
+                             {"meta":"31/5","value":"${d.getAllOrderForchart(5,requestScope.year)}"},
+                             {"meta":"30/6","value":"${d.getAllOrderForchart(6,requestScope.year)}"},
+                             {"meta":"31/7","value":"${d.getAllOrderForchart(7,requestScope.year)}"},
+                             {"meta":"31/8","value":"${d.getAllOrderForchart(8,requestScope.year)}"},
+                             {"meta":"30/9","value":"${d.getAllOrderForchart(9,requestScope.year)}"},
+                             {"meta":"31/10","value":"${d.getAllOrderForchart(10,requestScope.year)}"},
+                             {"meta":"30/11","value":"${d.getAllOrderForchart(11,requestScope.year)}"},
+                             {"meta":"31/12","value":"${d.getAllOrderForchart(12,requestScope.year)}"}    
+                             
+                            
+                                 
+                           ]
+                         ]'
+                                     data-labels='["January","February","March","April","May","June","July","August","September","October","November","December"]'
+                                     data-labels-qty="12"
+                                     data-labels-start-from="1"
+                                     data-prefix=""
+                                     data-height="250"
+                                     data-mobile-height="75"
+                                     data-high="300000"
+                                     data-low="0"
+                                     data-offset-x="30"
+                                     data-offset-y="60"
+                                     data-is-line-smooth='[false]'
+                                     data-line-width='["1px"]'
+                                     data-line-colors='["#8069f2"]'
+                                     data-fill-opacity="1"
+                                     data-fill-colors='["#ecebfa"]'
+                                     data-text-size-x="14px"
+                                     data-text-color-x="#4a4e69"
+                                     data-text-offset-top-x="10"
+                                     data-text-align-axis-x="center"
+                                     data-text-size-y="14px"
+                                     data-text-color-y="#868e96"
+                                     data-is-show-tooltips="true"
+                                     data-is-tooltip-divided="true"
+                                     data-tooltip-custom-class="chart-tooltip--divided chart-tooltip__value--bg-black chart-tooltip__meta--bg-primary small text-white"
+                                     data-tooltip-currency="Triệu"
+                                     data-is-show-points="true"
+                                     data-point-custom-class='chart__point--donut chart__point--has-line-helper chart__point--border-xxs border-primary rounded-circle'
+                                     data-point-dimensions='{"width":8,"height":8}'></div>
+                            </div>
+
+                            <div class="tab-pane fade" id="bitcoinCash" role="tabpanel">
+                                <div class="row text-center">
+                                    <div class="col-6 col-md-4 mb-3 mb-md-0">
+                                        <div class="h3 mb-0">
+                                            $8,038<sup class="h5">.00</sup>
+                                        </div>
+                                        <small class="text-muted">Total Sales</small>
+                                    </div>
+
+                                    <div class="col-6 col-md-4 mb-3 mb-md-0 border-left">
+                                        <div class="h3 mb-0">
+                                            <span class="text-success">+</span>$105<sup class="h5">.84</sup>
+                                        </div>
+                                        <small class="text-muted">Today Sales (USD)</small>
+                                    </div>
+
+                                    <div class="col-12 col-md-4 border-left">
+                                        <div class="h3 mb-0">
+                                            <span class="text-danger">-</span>2.38<sup class="h5">%</sup>
+                                        </div>
+                                        <small class="text-muted">Net Profit (%)</small>
+                                    </div>
+                                </div>
+
+                               
+                    <!-- End Card -->
+                </div>
+                             </div>
+                             </div>
+                             </div>
+                             </div>
+           
+
+            
 
             <div class="row">
-                <a href="export">xuat excel</a>
+                <c:if test="${requestScope.from==null}" >
+                    
+                    <a href="export">Xuất excel</a>
+                </c:if>
+                <c:if test="${requestScope.from!=null}" >
+                    
+                    <a href="export?from=${requestScope.from}&&to=${requestScope.to}">Xuất excel từ ${requestScope.from} ngày đến ${requestScope.to} ngày</a>
+                </c:if>
                 <div class="col-12">
                     <div class="card mb-3 mb-md-4">
                         <div class="card-header">
-                            <h5 class="font-weight-semi-bold mb-0">Recent Orders</h5>
+                            <h5 class="font-weight-semi-bold mb-0">Order gần đây</h5>
                         </div>
 
                         <div class="card-body pt-0">
@@ -601,11 +408,23 @@
                                         <tr>
                                         <td class="py-3">149531</td>
                                         <td class="py-3">
-                                            <div>${o.getUser().getlName()}</div>
+                                            <c:if test="${o.getUser()==null}">
+                                            <div>${o.getGuest().getlName()} ${o.getGuest().getfName()}</div>
+                                        </c:if>
+                                            <c:if test="${o.getUser()!=null}">
+                                                <div>${o.getUser().getlName()} ${o.getUser().getfName()}</div>
+                                        </c:if>
+                                            
                                             
                                         </td>
                                         <td class="py-3">${o.date.substring(0,10)}</td>
-                                        <td class="py-3">${o.phone}</td>
+                                        <c:if test="${o.getUser()==null}">
+                                            <td>${o.getGuest().getPhone()}</td>
+                                        </c:if>
+                                            <c:if test="${o.getUser()!=null}">
+                                                <td>${o.getUser().getPhone()}</td>
+                                        </c:if>
+                                        
                                         <td class="py-3">${o.totalPrice}</td>
                                         <c:if test="${d.getODLogByOID(o.oId).statusId == 1}">
                                         <td class="py-3">
@@ -628,14 +447,7 @@
                                         </td>
                                         </c:if>
                                         <td class="py-3">${d.getODLogByOID(o.oId).date}</td>
-                                        
-                                   
-                                        
-                                        
-                                    
-                                    
-                                    
-                                        
+            
                                     </c:forEach>
                                     
                                     

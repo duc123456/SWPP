@@ -3,6 +3,7 @@
     Created on : Mar 11, 2023, 4:11:25 PM
     Author     : nhant
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +37,7 @@
 
 
                 <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                    <a href="Profile.jsp" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
                     </a>
                     <div class="dropdown-menu">
@@ -50,9 +51,9 @@
                                 <p class="text-muted mb-0">${sessionScope.acc.username}</p>
                             </div>
                         </div>
-                        <a class="dropdown-item" href="Profile.jsp">My Profile</a>
-                        <a class="dropdown-item" href="general.html">Account Settings</a>
-                        <a class="dropdown-item" href="login.jsp">Logout</a>
+                        <a class="dropdown-item" href="Profile.jsp">Trang cá nhân</a>
+
+                        <a class="dropdown-item" href="login.jsp">Đăng xuất</a>
                     </div>
                 </li>
 
@@ -71,8 +72,8 @@
                                 <a href="listProduct"><i class="fe fe-users"></i> <span> Hành động</span> <span class="menu-arrow"></span></a>
                                 <ul style="display: none;">
                                     <li><a href="managerorder" class="active">Đơn hàng</a></li>
-                                    <li><a href="#">Thanh toán</a></li>
-                                
+
+
 
                                 </ul>
                             </li>

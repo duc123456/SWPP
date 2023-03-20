@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import model.Order;
@@ -63,19 +64,11 @@ public class DashContoller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d = new DAO();
+         String to  = request.getParameter("to");
         String from = request.getParameter("from");
         if(from != null){
             request.setAttribute("from", from);
         }
-        
-        String to  = request.getParameter("to");
-        request.setAttribute("year", request.getParameter("year"));
-        int chiphi =d.ChiPhi(request.getParameter("year"));
-        int doanhthu =d.DoanhThu(request.getParameter("year"));
-        request.setAttribute("doanhthu", doanhthu);
-        request.setAttribute("chiphi", chiphi);
-        
-        
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
@@ -89,10 +82,21 @@ public class DashContoller extends HttpServlet {
             request.setAttribute("from", from);
             request.setAttribute("to", to);
         }
+        LocalDate currentDate = LocalDate.now();
+        int yearnow = currentDate.getYear();
+        request.setAttribute("yearnow", yearnow);
+        String year = request.getParameter("year");
+        request.setAttribute("year", year);
+       
+        
+        
+        
+        
+        
         List<OrderDetail> listmost = d.listProductMost();
         request.setAttribute("listmost", listmost);
-        List<Order> list = d.getAllOrder();
-        List<Order> list3 = d.getOrderResived(from, now,to);
+        List<Order> list = d.getAllOrder(from,now,to,"");
+        List<Order> list3 = d.getAllOrder(from,now,to,"3");
         List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
         
         request.setAttribute("orderList", list);

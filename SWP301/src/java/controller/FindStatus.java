@@ -36,13 +36,36 @@ public class FindStatus extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int statusid = Integer.parseInt(request.getParameter("statusid"));
 
-        DAO dao = new DAO();
-        List<OrderLog> list = dao.getStatusOrder(statusid);
-        request.setAttribute("listOD", list);
-        request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        //ep string acc sang user
+        User a = (User) session.getAttribute("acc");
+        //bat buoc phai dang nhap 
+        if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //neu role = 1 (Admin) thi moi duoc vao manager 
+        } else if (a.getRoleId() == 3) {
+            DAO dao = new DAO();
+            int statusid = Integer.parseInt(request.getParameter("statusid"));
 
+            List<OrderLog> list = dao.getStatusOrder(statusid);
+          
+            int productOrder = dao.getTotalOrder();
+            request.setAttribute("totalorder", productOrder);
+
+            int productOrder1 = dao.getOrder1();
+            request.setAttribute("order1", productOrder1);
+
+            int productOrder2 = dao.getOrder2();
+            request.setAttribute("order2", productOrder2);
+            
+             int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
+
+            request.setAttribute("listOD", list);
+
+            request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
