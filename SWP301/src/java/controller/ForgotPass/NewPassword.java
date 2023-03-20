@@ -19,19 +19,25 @@ import jakarta.servlet.http.HttpSession;
  */
 @WebServlet("/newPassword")
 public class NewPassword extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-                DAO d= new DAO();
-		HttpSession session = request.getSession();
-		String newPassword = request.getParameter("password");
-		String confPassword = request.getParameter("confPassword");
-		RequestDispatcher dispatcher = null;
-		if (newPassword != null && confPassword != null && newPassword.equals(confPassword)) {
-                    d.changePass(newPassword, (String)session.getAttribute("user"));
-                    
-		}
-	}
+    private static final long serialVersionUID = 1L;
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        DAO d = new DAO();
+        HttpSession session = request.getSession();
+        String newPassword = request.getParameter("password");
+        String confPassword = request.getParameter("confPassword");
+
+        if (newPassword != null && confPassword != null && newPassword.equals(confPassword)) {
+            d.changePass(newPassword, (String) session.getAttribute("user"));
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        } else {
+            String ms = "Mật khẩu không hợp lệ!";
+            request.setAttribute("ms", ms);
+            request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+        }
+
+    }
 
 }

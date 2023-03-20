@@ -79,6 +79,7 @@ public class EditOrder extends HttpServlet {
 
         int oid = Integer.parseInt(request.getParameter("oid"));
         int status = Integer.parseInt(request.getParameter("status"));
+
       
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
@@ -88,8 +89,11 @@ public class EditOrder extends HttpServlet {
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        
-        dao.editOrder(oid,status, format);
+
+        dao.editOrder(oid, status, format);
+        if (status == 4) {
+            dao.huyDonHang(oid);
+        }
         request.getRequestDispatcher("managerorder").forward(request, response);
     }
 

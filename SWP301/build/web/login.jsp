@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
+    <style>
+       
+    </style>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
 
@@ -47,11 +50,11 @@
                                 <h4 class="text-center mb-5">Nhập thông tin đăng nhập</h4>
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
-                                        <label class="float-end" for="">Email</label>
+                                        <label class="float-end" for="">Tài khoản</label>
                                                                          
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" name="user" placeholder="Enter Email Address" class="form-control" required="">
+                                        <input type="text" name="user" placeholder="Nhập tài khoản" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="form-row row">
@@ -59,7 +62,7 @@
                                         <a  class="float-end" for="">Mật khẩu</a>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="password" name="pass" placeholder="Enter Password" class="form-control" required="">
+                                        <input type="password" name="pass" placeholder="Nhập mật khẩu" class="form-control" required="">
                                     </div>
                                 </div>
                                 <div class="form-row row">
@@ -70,7 +73,7 @@
                                         <button type="submit" value="Login" class="btn btn-danger">Đăng Nhập</button>
                                         <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:9999/SWP391/logingg&response_type=code&client_id=55055519665-ah0bae7b1vdvc36fdd0c78tl3c6v0cpf.apps.googleusercontent.com&approval_prompt=force">Login GG</a>
 
-                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">Quên mật khẩu</span></a> 
+                                        <a href="forgotPassword.jsp"><span class="float-end pt-2">Quên mật khẩu?</span></a> 
                                     </div>
                                 </div>
                             </form>

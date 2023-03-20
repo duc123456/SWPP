@@ -72,7 +72,7 @@ public class RegisterControl extends HttpServlet {
         DAO d = new DAO();
         User u = d.login(username, pass);
         if ((u != null) || (d.existedUser(username)) || (!pass.equals(repass))) {
-            String ms = "username existed or Password is not match!!";
+            String ms = "Tên người dùng đã tồn tại hoặc Mật khẩu không khớp!!";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         }else {
