@@ -46,24 +46,24 @@
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
                             <a href="hisOrder.jsp" class="body_left-dashboard_child" id="current_page">
                                 <div id="hover_icon">
-                                    <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
+                                    
                                     Đơn hàng
                                 </div>
                                 <span>${d.getAllOrderByUID(acc.uId).size()}</span>
                         </a>
-                        <a href="./favorite.html" class="body_left-dashboard_child">
+                        <a href="sanphamdaxem" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-heart  dashboard_icon"></i>
-                                Yêu thích
+                                
+                                 San pham da xem
                             </div>
-                            <span>420</span>
+                            <span>${soSanPhamDaXem}</span>
                         </a>
-                        <a href="./support.html" class="body_left-dashboard_child">
+                        <a href="thongbao" class="body_left-dashboard_child">
                             <div id="hover_icon">
-                                <i class="fa-solid fa-headset  dashboard_icon"></i>
-                                Hỗ trợ
+                                
+                               Thong bao cua toi
                             </div>
-                            <span>1</span>
+                             <span style="color: red">${thongBao}</span>
                         </a>
 
                     </div>
@@ -118,6 +118,10 @@
                                 <c:if test="${list3 != null }">
                                     
                                     <c:set var="c" value="${list3}"></c:set>
+                                </c:if>
+                                <c:if test="${total != null }">
+                                    
+                                    <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
                                 </c:if>
                             
                                 <c:forEach items="${c}" var="list" >

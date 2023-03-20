@@ -63,6 +63,8 @@ public class OrderDetail1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        GeneralOrder g = new GeneralOrder();
+        g.doGet(request, response);
         String oId_raw = request.getParameter("oId");
         DAO d = new DAO();
 
