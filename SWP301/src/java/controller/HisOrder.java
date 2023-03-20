@@ -62,6 +62,7 @@ public class HisOrder extends HttpServlet {
         g.doGet(request, response);
         
         String n = request.getParameter("n");
+        String xn = request.getParameter("xn");
         List<Order> list = (List<Order>) request.getAttribute("orderByUId");
         List<Order> list3 = new ArrayList<>();
         if(list != null){
@@ -78,7 +79,10 @@ public class HisOrder extends HttpServlet {
         }
         }
         request.setAttribute("list3", list3);
-        request.setAttribute("total", 1);
+        if(xn!=null){
+            request.setAttribute("xn", 1);
+        }
+        
         request.getRequestDispatcher("hisOrder.jsp").forward(request, response);
         
         

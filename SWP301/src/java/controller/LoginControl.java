@@ -88,7 +88,10 @@ public class LoginControl extends HttpServlet {
         if (a == null) {
             String ms = "Sai tài khoản hoặc mật khẩu!";
             request.setAttribute("ms", ms);
+//            PrintWriter out = response.getWriter();
+//            out.println("sadasd");
             request.getRequestDispatcher("login.jsp").forward(request, response);
+
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
@@ -104,26 +107,23 @@ public class LoginControl extends HttpServlet {
                     session.setAttribute("cart", c);
                     session.setAttribute("size", c.getItems().size());
                 }
+            }
+            response.sendRedirect("listproduct");
 
-            }
-            }
-           
 
         }
-
-        // request.getRequestDispatcher("home").forward(request, response);
-        response.sendRedirect("listproduct");
+        }
+        //// request.getRequestDispatcher("home").forward(request, response);
+        
     }
 
-
-
-/**
- * Returns a short description of the servlet.
- *
- * @return a String containing servlet description
- */
-@Override
-public String getServletInfo() {
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

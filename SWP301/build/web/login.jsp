@@ -18,13 +18,18 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
+    <style>
+       
+    </style>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
 
             <!--  ************************* Page Title Starts Here ************************** -->
             <div class="page-nav no-margin row">
+                
                 <div class="container">
                     <div class="row">
+                        <h3 style="color: red">${requestScope.ms}</h3>
                         <h2 class="text-start">ĐĂNG NHẬP</h2>
                         <ul>
                             <li> <a href="#"><i class="bi bi-house-door"></i>Trang chủ</a></li>

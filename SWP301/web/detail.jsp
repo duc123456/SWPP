@@ -72,7 +72,7 @@
             .plus{
                 background-color: white;
             }
-            
+
         </style>
 
 
@@ -205,10 +205,14 @@
                             </div>
                         </c:forEach>   
                         <form action="feedback" method="post">
-                            <c:if test="${xn == 1}">
-                                
+                            <c:if test="${xn == 1}">                       
                                 <input type="hidden" name="productfeebid" value="${product.pId}">
+
+                                <input type="hidden" name="pid" value="${product.pId}">
                                 <input type="hidden" name="userbe" value="${sessionScope.acc.uId}">
+                                <input type="hidden" name="xn" value="${product.pId}">
+                                <input type="hidden" name="xd" value="${product.pId}">
+
                                 <div class="form-group">
                                     <label for="rating">Đánh giá:</label>
                                     <div>
