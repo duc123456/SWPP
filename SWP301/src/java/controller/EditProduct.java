@@ -88,32 +88,8 @@ public class EditProduct extends HttpServlet {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
         String format = simpleDateFormat.format(date);
-        if(xd.equalsIgnoreCase("1")){
-            Product p =dao.getProductByID(Integer.parseInt(pid));
-            String pquantity = request.getParameter("quantity");
-            int quantity =p.getQuantity()+Integer.parseInt(pquantity);
-            p.setQuantity(quantity);
-
-            dao.updateQuantity(p);
-            
-            String pprice = request.getParameter("price");
-            
-            ProductLog pl = new ProductLog();
-            HttpSession session = request.getSession();
-            User a = (User) session.getAttribute("acc");
-            pl.setUser(a);
-            pl.setProduct(p);
-            pl.setAction(4);
-            pl.setPriceIn(Integer.parseInt(pprice));
-            pl.setQuantity(Integer.parseInt(pquantity));
-            pl.setDate(format);
-            dao.addProductLog(pl);
-        }else {
-            
-            
-        
-
-        String paddby = request.getParameter("addby");
+        if(xd == null || xd == ""){
+            String paddby = request.getParameter("addby");
         String pcatid = request.getParameter("catid");
         String pprice = request.getParameter("price");
         String pname = request.getParameter("pname");
@@ -140,6 +116,31 @@ public class EditProduct extends HttpServlet {
         }else{
             dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
         }
+            
+        }else {
+            Product p =dao.getProductByID(Integer.parseInt(pid));
+            String pquantity = request.getParameter("quantity");
+            int quantity =p.getQuantity()+Integer.parseInt(pquantity);
+            p.setQuantity(quantity);
+
+            dao.updateQuantity(p);
+            
+            String pprice = request.getParameter("price");
+            
+            ProductLog pl = new ProductLog();
+            HttpSession session = request.getSession();
+            User a = (User) session.getAttribute("acc");
+            pl.setUser(a);
+            pl.setProduct(p);
+            pl.setAction(4);
+            pl.setPriceIn(Integer.parseInt(pprice));
+            pl.setQuantity(Integer.parseInt(pquantity));
+            pl.setDate(format);
+            dao.addProductLog(pl);
+            
+        
+
+        
             
             
         }
