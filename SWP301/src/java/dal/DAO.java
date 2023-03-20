@@ -103,12 +103,11 @@ public class DAO extends DBContext {
                 + "           ,[FName]\n"
                 + "           ,[UserName]\n"
                 + "           ,[PassWord]\n"
-             
                 + "           ,[Phone]\n"
                 + "           ,[Email]\n"
                 + "           ,[CreatedDate]\n"
                 + "           ,[ModifiedDate]\n"
-                   + "           ,[image])\n"
+                + "           ,[image])\n"
                 + "     VALUES (?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -401,8 +400,6 @@ public class DAO extends DBContext {
         }
 
     }
-
-
 
 //tim san pham tren thanh search
     public List<Product> search(String key) {
@@ -1789,11 +1786,10 @@ public class DAO extends DBContext {
                 p.setOrder(getOrderById(rs.getInt(1)));
                 p.setStatusId(rs.getInt(2));
                 p.setDate(rs.getString(5));
-               
+
 //                p.setConfirm(rs.getInt(5));
 //
-       //         p.setOrder(getOrderByAddress(rs.getString(4)));
-
+                //         p.setOrder(getOrderByAddress(rs.getString(4)));
                 //  p.setOrder(getGuestByOrder(rs.getInt(12)));       
                 list.add(p);
 
@@ -2170,7 +2166,8 @@ public class DAO extends DBContext {
         }
 
     }
-     public List<Product> sanPhamDaXem(int uId) {
+
+    public List<Product> sanPhamDaXem(int uId) {
         String sql = "select PId from ProductLog where UId = ? and Action = 0";
         List<Product> list = new ArrayList<>();
         try {
@@ -2191,20 +2188,18 @@ public class DAO extends DBContext {
         return list;
     }
 
-    public void xoaSanPham(int uId , int pId) {
+    public void xoaSanPham(int uId, int pId) {
         String sql = "delete ProductLog where UId = ? and PId = ?";
-        
-        
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uId);
             st.setInt(2, pId);
-           st.executeUpdate();
-           
+            st.executeUpdate();
 
         } catch (SQLException e) {
         }
-        
+
     }
 
     public List<OrderLog> getAllOrderLogByUser(int uId) {
@@ -2354,8 +2349,6 @@ public class DAO extends DBContext {
         return count;
     }
 
-   
-
     public int getOrder4() {
         int count = 0;
         String sql = "SELECT COUNT(DISTINCT OID) FROM [OrderLog] Where [StatusID] =1";
@@ -2370,4 +2363,29 @@ public class DAO extends DBContext {
         }
         return count;
     }
+
+    public void Feedback(int uid, int pid, String description, String date, int vote) {
+        String query = "INSERT INTO [dbo].[FeedBack]\n"
+                + "           ([UID]\n"
+                + "           ,[PID]\n"
+                + "           ,[Description]\n"
+                + "           ,[Date]\n"
+                + "           ,[Vote])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+
+            st.setInt(1, uid);
+            st.setInt(2, pid);
+            st.setString(3, description);
+            st.setString(4, date);
+            st.setInt(5, vote);
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+    
 }

@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>Create User | Graindashboard UI Kit</title>
+    <title>Tao tai khoan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

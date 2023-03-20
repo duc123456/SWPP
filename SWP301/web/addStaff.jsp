@@ -9,7 +9,7 @@
 <html lang="en">
   <head>
     <!-- Title -->
-    <title>Create new account | Graindashboard UI Kit</title>
+    <title>Thêm nhân viên</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,12 +58,12 @@
 										<div class="form-group col-md-6">
 											<label for="password">Mật khẩu
 											</label>
-											<input id="password" type="password" class="form-control" name="pass" required="">
+											<input id="password" type="text" class="form-control" name="pass" required="">
 										</div>
 										<div class="form-group col-md-6">
 											<label for="password-confirm">Nhập lại mật khẩu
 											</label>
-											<input id="password-confirm" type="password2" class="form-control" name="repass" required="">
+											<input id="password-confirm" type="text" class="form-control" name="repass" required="">
 										</div>
 									</div>
                                                                     <div class="form-row">
