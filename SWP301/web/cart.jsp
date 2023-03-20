@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Gift Shoping Website Template  | Smarteyeapps.com</title>
+        <title>Giỏ hàng</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -27,10 +27,10 @@
      <div class="page-nav no-margin row">
             <div class="container">
                 <div class="row">
-                    <h2 class="text-start">About Us</h2>
+                    <h2 class="text-start">Giỏ hàng</h2>
                     <ul>
-                        <li> <a href="#"><i class="bi bi-house-door"></i> Home</a></li>
-                        <li><i class="bi bi-chevron-double-right pe-2"></i> About Us</li>
+                        <li> <a href="#"><i class="bi bi-house-door"></i>Trang</a></li>
+                        <li><i class="bi bi-chevron-double-right pe-2"></i>Giỏ hàng</li>
                     </ul>
                 </div>
             </div>
@@ -45,12 +45,12 @@
                     <table class="table bg-white shadow-md" >
                                 <tr>
                                     <th>#</th>
-                                    <th>Image</th>
-                                    <th>Product Name</th>
-                                    <th style="width: 20%">Qty</th>
-                                    <th>Price</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th style="width: 20%">Số lượng</th>
+                                    <th>Giá tiền</th>
 
-                                    <th>Action</th>
+                                    <th>Hành động</th>
                                 </tr>
                             <c:set var="i" value="1"></c:set>
                             <c:forEach items="${sessionScope.cart.getItems()}" var="c">
@@ -68,7 +68,7 @@
                                 <td><fmt:formatNumber value="${c.getPrice() * c.getQuantity()}" pattern="#,##0 'VND'" /></td>
 
                                 <td>
-                                    <a href="deleteitem?id=${c.getProduct().getpId()}">
+                                    <a href="deleteitem?id=${c.getProduct().getpId()}" title="Xóa">
                                     <button class="btn btn-xs pt-2 btn-danger"><i class="bi bi-trash"></i></button>
                                 </td>
                                 </tr>
@@ -83,7 +83,7 @@
                                 <br/>
                                 <br/>
                                
-                                     <button class="btn btn-danger float-end fw-bolder px-4" id="show-form-btn" ><a href="information.jsp">Make Payment</a></button>
+                                     <button class="btn btn-danger float-end fw-bolder px-4" id="show-form-btn" ><a href="information.jsp">Mua hàng</a></button>
                                 </c:if>
                                
                 </div>
