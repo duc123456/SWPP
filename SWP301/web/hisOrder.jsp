@@ -54,14 +54,14 @@
                         <a href="sanphamdaxem" class="body_left-dashboard_child">
                             <div id="hover_icon">
 
-                                San pham da xem
+                                Sản phẩm đã xem
                             </div>
                             <span>${soSanPhamDaXem}</span>
                         </a>
                         <a href="thongbao" class="body_left-dashboard_child">
                             <div id="hover_icon">
 
-                                Thong bao cua toi
+                                Thông báo
                             </div>
                             <span style="color: red">${thongBao}</span>
                         </a>
@@ -99,7 +99,7 @@
                         <!-- title -->
                         <div class="body_right-title">
                             <div class="body_right-title-1">
-                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
+                                <img src="https://img.icons8.com/ios/50/null/purchase-order.png"/>
                                 <p id="body_right-title">Đơn hàng</p>
                             </div>
                         </div>
@@ -132,22 +132,22 @@
                                                 <c:if test="${list.status == 1}">
                                                     <c:set var="c" value="Đang xử lý">
                                                     </c:set>
-                                                    <span class="status-gray">${c}</span>
+                                                    <span class="badge bg-secondary">${c}</span>
                                                 </c:if>
                                                 <c:if test="${list.status == 2}">
                                                     <c:set var="c" value="Đã xác nhận">
                                                     </c:set>
-                                                    <span class="status-gray">${c}</span>
+                                                    <span class="badge bg-success">${c}</span>
                                                 </c:if>
                                                 <c:if test="${list.status == 3}">
                                                     <c:set var="c" value="Đã nhận">
                                                     </c:set>
-                                                    <span class="status-green">${c}</span>
+                                                    <span class="badge bg-primary">${c}</span>
                                                 </c:if>
                                                 <c:if test="${list.status == 4}">
                                                     <c:set var="c" value="Đã hủy">
                                                     </c:set>
-                                                    <span class="status-red">${c}</span>
+                                                    <span class="badge bg-danger">${c}</span>
                                                 </c:if>
 
 
@@ -157,7 +157,7 @@
                                         </div>
                                         <div class="order_items_icon">
                                             <a href="orderdetail?oId=${list.oId}" class="order_items_icon-link"> 
-                                                <i class="fa-solid fa-arrow-right"></i>
+                                                <img src="https://img.icons8.com/ios/50/null/long-arrow-right--v1.png"/>
                                             </a>
                                         </div>
                                     </div>

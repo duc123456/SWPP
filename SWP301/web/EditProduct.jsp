@@ -42,7 +42,14 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
+<<<<<<< HEAD
                                     <form action="editproduct" method = "post" enctype="multipart/form-data">
+=======
+                                    <!-- Edit all -->
+                                <c:if test="${requestScope.xd != 1}">
+                                    
+                                    <form action="editproduct" method = "post">
+>>>>>>> main
                                     <c:set var="details" value="${requestScope.details}"/>
                                     <div class="card-header">
                                         <h4 class="card-title">Sửa Sản Phẩm</h4>
@@ -78,7 +85,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Giá Nhập</label>
                                             <div class="col-md-10">
-                                                <input type="text" name="price" value="${details.priceIn}" class="form-control" pattern="[1-9]\d*" required>
+                                                <input type="text" name="price" value="${details.priceIn}" class="form-control" pattern="[1-9]\d*" required readonly>
                                                 <p class="text-danger" id="price-error"></p>         
                                             </div>
                                         </div>
@@ -116,7 +123,7 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Số lượng</label>
                                             <div class="col-md-10">
-                                                <input type="number" name="quantity" value="${details.quantity}" class="form-control" min="0" step="1"  pattern="[1-9]\d*" required>
+                                                <input type="number" name="quantity" value="${details.quantity}" class="form-control" min="0" step="1"  pattern="[1-9]\d*" required readonly>
 
                                             </div>
                                         </div>
@@ -187,6 +194,98 @@
                                     </div>
 
                                 </form>
+                                </c:if>
+                                    <!-- only edit to quantity -->
+                                <c:if test="${requestScope.xd == 1}">
+                                    <form action="editproduct" method = "post">
+                                    <c:set var="details" value="${requestScope.details}"/>
+                                    <div class="card-header">
+                                        <h4 class="card-title">Sửa Sản Phẩm</h4>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">ID</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="pid" value="${details.pId}" class="form-control" readonly="">
+                                            </div>
+                                                <input name="xd" value="${requestScope.xd}" hidden="">
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Tên</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="pname" value="${details.name}" class="form-control" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Ảnh</label>
+                                            <div class="col-md-10">
+                                                <img id="image-preview" src="Image/${details.imageDf}"  alt="" width="300" height="auto">
+                                                <br>
+                                                <input id="image-input" type="file" name="image" class="form-control" readonly>
+                                                
+                                                <input id="image-input" type="hidden" name="image" value="${details.imageDf}" class="form-control" readonly>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Giá Nhập</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="price" value="${details.priceIn}" class="form-control" pattern="[1-9]\d*" required>
+                                                <p class="text-danger" id="price-error"></p>         
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Giá Bán</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="priceout" value="${details.priceOut}" class="form-control"  pattern="[1-9]\d*" required readonly>
+
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Bảo hành</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="insurance" value="${details.insurance}" class="form-control"  pattern="[1-9]\d*" readonly> 
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Số lượng</label>
+                                            <div class="col-md-10">
+                                                <input type="number" name="quantity"  class="form-control" min="0" step="1"  pattern="[1-9]\d*" required >
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Giảm giá</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="discount" value="${details.discount}" class="form-control"  pattern="^(0(\.\d+)?|1(\.0+)?)$" onblur="validateDiscount()" readonly>
+                                                <div id="discount-error" style="color: red;"></div>
+                                            </div>
+                                        </div>
+
+                                        
+
+
+                             
+
+
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-md-2">Mô tả</label>
+                                            <div class="col-md-10">
+                                                <textarea rows="5" cols="5" value=""  name="description"  readonly="" class="form-control">${details.description}</textarea>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Xác nhận</button>
+                                    </div>
+
+                                </form>
+                                    
+                                </c:if>    
                             </div>
 
                         </div>

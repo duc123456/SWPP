@@ -61,14 +61,14 @@
                         <a href="sanphamdaxem" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-heart  dashboard_icon"></i>
-                                San pham da xem
+                                Sản phẩm đã xem
                             </div>
                             <span>${soSanPhamDaXem}</span>
                         </a>
                         <a href="thongbao" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-headset  dashboard_icon"></i>
-                                Thong bao cua toi
+                                Thông báo
                             </div>
                             <span style="color: red">${thongBao}</span>
                         </a>

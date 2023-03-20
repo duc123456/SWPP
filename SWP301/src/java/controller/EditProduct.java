@@ -20,6 +20,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.Product;
+import model.ProductLog;
 import model.User;
 
 /**
@@ -93,79 +94,66 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
-        try {
-            int pId = Integer.parseInt("pid");
-            String paddby = request.getParameter("addby");
-        String pcatid = request.getParameter("catid");
-        String pprice = request.getParameter("price");
-        String pname = request.getParameter("pname");
-        String pcolor = request.getParameter("color");
-        String pdescription = request.getParameter("description");
-        String presolution = request.getParameter("resolution");
-        String pinsurance = request.getParameter("insurance");
+
+        String xd = request.getParameter("xd");
+        DAO dao = new DAO();
 
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
         String format = simpleDateFormat.format(date);
+        if (xd == null || xd == "") {
+            String paddby = request.getParameter("addby");
+            String pcatid = request.getParameter("catid");
+            String pprice = request.getParameter("price");
+            String pname = request.getParameter("pname");
+            String pcolor = request.getParameter("color");
+            String pdescription = request.getParameter("description");
+            String presolution = request.getParameter("resolution");
+            String pinsurance = request.getParameter("insurance");
 
-        String ptid = request.getParameter("tid");
-        String pimage = request.getParameter("image");
-        String psize = request.getParameter("size");
-        String pquantity = request.getParameter("quantity");
-        String pdiscount = request.getParameter("discount");
-        String ppriceout = request.getParameter("priceout");
-        HttpSession session = request.getSession();
-        User a = (User) session.getAttribute("acc");
-        Product p = new Product();
-        DAO dao = new DAO();
-        String appPath = request.getServletContext().getRealPath("");
-        appPath = appPath.replace('\\', '/');
 
-        // Thư mục để save file tải lên.
-        String fullSavePath = null;
-        if (appPath.endsWith("/")) {
-            fullSavePath = appPath + SAVE_DIRECTORY;
-        } else {
-            fullSavePath = appPath + "/" + SAVE_DIRECTORY;
-        }
+            String ptid = request.getParameter("tid");
+            String pimage = request.getParameter("image");
+            String psize = request.getParameter("size");
+            String pquantity = request.getParameter("quantity");
+            String pdiscount = request.getParameter("discount");
+            String ppriceout = request.getParameter("priceout");
+            HttpSession session = request.getSession();
+            User a = (User) session.getAttribute("acc");
 
-        // Tạo thư mục nếu nó không tồn tại.
-        File fileSaveDir = new File(fullSavePath);
-        if (!fileSaveDir.exists()) {
-            fileSaveDir.mkdir();
-        }
-        DAO d = new DAO();
-
-        // Danh mục các phần đã upload lên (Có thể là nhiều file).
-        for (Part part : request.getParts()) {
-            if (part.getName().equals("file")) {
-                String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
-                if (fileName != null && fileName.length() > 0) {
-                    String filePath = fullSavePath + File.separator + fileName;
-
-                    // Ghi vào file.
-                    part.write(filePath);
-
-                }
-                if (pimage == null || pimage.isEmpty()) {
-                    fileName = dao.getProductByID(pId).getImageDf();
-                    dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-                } else {
-                    dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-                }
+            if (pimage == null || pimage == "") {
+                Product p = dao.getProductByID(Integer.parseInt(pid));
+                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+            } else {
+                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
             }
 
+        } else {
+            Product p = dao.getProductByID(Integer.parseInt(pid));
+            String pquantity = request.getParameter("quantity");
+            int quantity = p.getQuantity() + Integer.parseInt(pquantity);
+            p.setQuantity(quantity);
+
+            dao.updateQuantity(p);
+
+            String pprice = request.getParameter("price");
+
+            ProductLog pl = new ProductLog();
+            HttpSession session = request.getSession();
+            User a = (User) session.getAttribute("acc");
+            pl.setUser(a);
+            pl.setProduct(p);
+            pl.setAction(4);
+            pl.setPriceIn(Integer.parseInt(pprice));
+            pl.setQuantity(Integer.parseInt(pquantity));
+            pl.setDate(format);
+            dao.addProductLog(pl);
+
         }
 
-        
-
-        } catch (Exception e) {
-            
-        }
         response.sendRedirect("managerProduct");
 
-        
     }
 
     /**
