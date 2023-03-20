@@ -6,12 +6,25 @@
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/OrderOfUserController.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/profilee.jsp</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/OrderDetail.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Item.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/AddCartCookie.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Cart.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Category.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/orderdetail.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/HisOrder.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerProduct.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditOrder.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/RegisterControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/hisOrder.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/ManagerOrder.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoginControl.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Product.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/orderdetail.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/SanPhamDaXem.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Order.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/GeneralOrder.java</file>
         </group>
     </open-files>
 </project-private>

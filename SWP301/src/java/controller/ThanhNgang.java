@@ -13,17 +13,16 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import model.Product;
-import model.User;
+import model.Category;
+import model.Type;
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name="SanPhamDaXem", urlPatterns={"/sanphamdaxem"})
-public class SanPhamDaXem extends HttpServlet {
+@WebServlet(name="ThanhNgang", urlPatterns={"/thanhngang"})
+public class ThanhNgang extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +39,10 @@ public class SanPhamDaXem extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SanPhamDaXem</title>");  
+            out.println("<title>Servlet ThanhNgang</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SanPhamDaXem at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ThanhNgang at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,26 +59,7 @@ public class SanPhamDaXem extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        DAO d = new DAO();
-        User u = (User) session.getAttribute("acc");
-        
-         
-         String pId_raw = request.getParameter("pId");
-         String uId_raw = request.getParameter("uId");
-         if(pId_raw != null){
-              try {
-            int pId = Integer.parseInt(pId_raw);
-            int uId = Integer.parseInt(uId_raw);
-            d.xoaSanPham(uId, pId);
-        } catch (NumberFormatException e) {
-        }
-         }
-        
-         List<Product> list4 = d.sanPhamDaXem(u.getuId());
-        request.setAttribute("sanPhamDaXem", list4);
-        request.setAttribute("soSanPhamDaXem", list4.size());
-        request.getRequestDispatcher("listproduct").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -92,7 +72,12 @@ public class SanPhamDaXem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+         DAO d = new DAO();
+        List<Category> list2 = d.getAllCat();
+        List<Type> list3 = d.getAllType();
+         request.setAttribute("cate", list2);
+        
+        request.setAttribute("type", list3);
     }
 
     /** 

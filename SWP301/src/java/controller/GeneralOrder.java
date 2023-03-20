@@ -94,6 +94,8 @@ public class GeneralOrder extends HttpServlet {
             if(orderLog.getConfirm() == false)
                 thongBao++;
         }
+        ThanhNgang thanhNgang = new ThanhNgang();
+        thanhNgang.doPost(request, response);
         request.setAttribute("thongBao", thongBao);
         request.setAttribute("xemThongBao", list5);
               
