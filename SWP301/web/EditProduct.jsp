@@ -42,7 +42,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                    <form action="editproduct" method = "post">
+                                    <form action="editproduct" method = "post" enctype="multipart/form-data">
                                     <c:set var="details" value="${requestScope.details}"/>
                                     <div class="card-header">
                                         <h4 class="card-title">Sửa Sản Phẩm</h4>
@@ -66,11 +66,11 @@
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Ảnh</label>
                                             <div class="col-md-10">
-                                                <img id="image-preview" src="Image/${details.imageDf}"  alt="" width="300" height="auto">
+                                                <img id="image-preview" src="ProductImage/${details.imageDf}"  alt="" width="300" height="auto">
                                                 <br>
-                                                <input id="image-input" type="file" name="image" class="form-control">
                                                 
-                                                <input id="image-input" type="hidden" name="image" value="${details.imageDf}" class="form-control">
+                                                
+                                                <input id="image-input" type="file" name="file"  class="form-control">
                                             </div>
                                         </div>
 

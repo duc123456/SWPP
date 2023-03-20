@@ -4,15 +4,19 @@
  */
 package controller;
 
+import static controller.AddProduct.SAVE_DIRECTORY;
 import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.Product;
@@ -23,7 +27,15 @@ import model.User;
  * @author nhant
  */
 @WebServlet(name = "EditProduct2", urlPatterns = {"/editproduct"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50) // 50MB
+
 public class EditProduct extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    public static final String SAVE_DIRECTORY = "ProductImage";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,8 +93,9 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
-
-        String paddby = request.getParameter("addby");
+        try {
+            int pId = Integer.parseInt("pid");
+            String paddby = request.getParameter("addby");
         String pcatid = request.getParameter("catid");
         String pprice = request.getParameter("price");
         String pname = request.getParameter("pname");
@@ -106,14 +119,53 @@ public class EditProduct extends HttpServlet {
         User a = (User) session.getAttribute("acc");
         Product p = new Product();
         DAO dao = new DAO();
+        String appPath = request.getServletContext().getRealPath("");
+        appPath = appPath.replace('\\', '/');
 
-        if (pimage == null || pimage.isEmpty()) {
-            dao.editProduct2(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+        // Thư mục để save file tải lên.
+        String fullSavePath = null;
+        if (appPath.endsWith("/")) {
+            fullSavePath = appPath + SAVE_DIRECTORY;
         } else {
-            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+            fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+        }
+
+        // Tạo thư mục nếu nó không tồn tại.
+        File fileSaveDir = new File(fullSavePath);
+        if (!fileSaveDir.exists()) {
+            fileSaveDir.mkdir();
+        }
+        DAO d = new DAO();
+
+        // Danh mục các phần đã upload lên (Có thể là nhiều file).
+        for (Part part : request.getParts()) {
+            if (part.getName().equals("file")) {
+                String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
+                if (fileName != null && fileName.length() > 0) {
+                    String filePath = fullSavePath + File.separator + fileName;
+
+                    // Ghi vào file.
+                    part.write(filePath);
+
+                }
+                if (pimage == null || pimage.isEmpty()) {
+                    fileName = dao.getProductByID(pId).getImageDf();
+                    dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                } else {
+                    dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                }
+            }
+
+        }
+
+        
+
+        } catch (Exception e) {
+            
         }
         response.sendRedirect("managerProduct");
 
+        
     }
 
     /**
