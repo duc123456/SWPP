@@ -45,12 +45,15 @@ public class Cart {
 
     public void addItem(Item t) {
         DAO d = new DAO();
-        if (getItemById(t.getProduct().getpId()) != null) {
+        if(t != null){
+            if (getItemById(t.getProduct().getpId()) != null) {
             Item i = getItemById(t.getProduct().getpId());
             i.setQuantity(i.getQuantity() + t.getQuantity());
         } else {
             items.add(t);
         }
+        }
+        
     }
 
     public void remove(Item t) {

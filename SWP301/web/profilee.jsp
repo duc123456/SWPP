@@ -76,26 +76,26 @@
                     <!-- body left bot (acc setting)-->
                     <div class="body_left-setting">
                         <div class="body_left-dashboard_title">TÀI KHOẢN</div>
-                        <a href="../src/profile_info.html" class="body_left-dashboard_child" id="current_page">
+                        <a href="orderofuser" class="body_left-dashboard_child" id="current_page">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-user dashboard_icon"></i>
                                 Trang cá nhân
                             </div>
-                            <span>1</span>
+                            
                         </a>
                         <a href="../src/address.html" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-location-arrow dashboard_icon"></i>
                                 Địa chỉ
                             </div>
-                            <span>2</span>
+                            
                         </a>
                         <a href="../src/thanh_toan.html" class="body_left-dashboard_child">
                             <div id="hover_icon">
                                 <i class="fa-solid fa-credit-card dashboard_icon"></i>
                                 Phương thức thanh toán
                             </div>
-                            <span>3</span>
+                            
                         </a>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                 <p id="body_right-title">Trang Cá Nhân</p>
                             </div>
 
-                            <a class="body_right-edit_button" href="Profile.jsp">
+                            <a class="body_right-edit_button" href="EditProfile.jsp">
 
                                 Sửa thông tin cá nhân
                             </a>

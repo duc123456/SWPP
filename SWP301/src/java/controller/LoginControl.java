@@ -96,7 +96,8 @@ public class LoginControl extends HttpServlet {
 
             Cookie[] cookie = request.getCookies();
             String cart = "cart" + a.getuId();
-            for (Cookie o : cookie) {
+            if(cookie != null){
+                 for (Cookie o : cookie) {
                 if (o.getName().equals(cart)) {
                     String txt = o.getValue();
                     Cart c = new Cart(txt);
@@ -105,6 +106,8 @@ public class LoginControl extends HttpServlet {
                 }
 
             }
+            }
+           
 
         }
 

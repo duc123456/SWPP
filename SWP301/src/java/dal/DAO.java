@@ -402,9 +402,7 @@ public class DAO extends DBContext {
 
     }
 
-    public static void main(String[] args) {
-        DAO d = new DAO();
-    }
+
 
 //tim san pham tren thanh search
     public List<Product> search(String key) {
@@ -2160,7 +2158,7 @@ public class DAO extends DBContext {
     }
 
     public void insertSanPhamDaXem(int uId, int pId) {
-        String sql = "insert into ProductLog (Uid, PId, Action) values(?,?,?)";
+        String sql = "insert into ProductLog (UId, PId, Action) values(?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uId);
@@ -2172,9 +2170,8 @@ public class DAO extends DBContext {
         }
 
     }
-
-    public List<Product> sanPhamDaXem(int uId) {
-        String sql = "select PId from ProductLog where Uid = ? and Action = 0";
+     public List<Product> sanPhamDaXem(int uId) {
+        String sql = "select PId from ProductLog where UId = ? and Action = 0";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -2192,6 +2189,22 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
         return list;
+    }
+
+    public void xoaSanPham(int uId , int pId) {
+        String sql = "delete ProductLog where UId = ? and PId = ?";
+        
+        
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            st.setInt(2, pId);
+           st.executeUpdate();
+           
+
+        } catch (SQLException e) {
+        }
+        
     }
 
     public List<OrderLog> getAllOrderLogByUser(int uId) {
@@ -2340,6 +2353,7 @@ public class DAO extends DBContext {
         }
         return count;
     }
+
    
 
     public int getOrder4() {
