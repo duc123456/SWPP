@@ -34,11 +34,42 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <!-- end header -->
 
+<<<<<<< HEAD
             <!-- body -->
             <div id="body">
                 <!-- container -->
                 <div class="body_container">
                     <!-- body left -->
+=======
+    <!-- body -->
+    <div id="body">
+        <!-- container -->
+        <div class="body_container">
+            <!-- body left -->
+            
+            <!-- body right -->
+            <div class="body_right">
+                <div>
+                    <!-- title -->
+                    <div class="body_right-title">
+                        <div class="body_right-title-1">
+                            <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
+                            <p id="body_right-title">Chi tiết đơn hàng</p>
+                        </div>
+                         <a class="body_right-edit_button" href="#">
+                            Đặt lại đơn hàng
+                        </a>
+                    <c:if test="${orderDetail.get(0).order.status == 1}">
+                        <a class="body_right-edit_button" href="">
+                            Huy Don Hang
+                        </a>
+                    </c:if>
+                        
+                    </div>
+                    <!-- content -->
+                    <div class="body_right-order_info">
+                      
+>>>>>>> main
 
                     <!-- body right -->
                     <div class="body_right">
