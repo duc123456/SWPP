@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,16 +13,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import model.Order;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name="HisOrder", urlPatterns={"/hisorder"})
-public class HisOrder extends HttpServlet {
+@WebServlet(name="HuyDonHang", urlPatterns={"/huydonhang"})
+public class HuyDonHang extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +38,10 @@ public class HisOrder extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HisOrder</title>");  
+            out.println("<title>Servlet HuyDonHang</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HisOrder at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet HuyDonHang at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,35 +58,21 @@ public class HisOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        GeneralOrder g = new GeneralOrder();
-        g.doGet(request, response);
-        
-        String n = request.getParameter("n");
-        String xn = request.getParameter("xn");
-        List<Order> list = (List<Order>) request.getAttribute("orderByUId");
-        List<Order> list3 = new ArrayList<>();
-        if(list != null){
-            try {
+       String oId_raw = request.getParameter("oid");
+       DAO d = new DAO();
+       Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        String format = simpleDateFormat.format(date);
+        try {
+            int oId = Integer.parseInt(oId_raw);
+            d.editOrder(oId, 4, format);
+            d.huyDonHang(oId);
+           
+            request.getRequestDispatcher("orderofuser").forward(request, response);
             
-            int n2 = Integer.parseInt(n);
-            for (Order order : list) {
-                if(order.getStatus() == n2){
-                    list3.add(order);
-                }
-                
-            }
         } catch (NumberFormatException e) {
         }
-        }
-        request.setAttribute("list3", list3);
-        if(xn!=null){
-            request.setAttribute("xn", 1);
-        }
-        
-        request.getRequestDispatcher("hisOrder.jsp").forward(request, response);
-        
-        
-        
     } 
 
     /** 

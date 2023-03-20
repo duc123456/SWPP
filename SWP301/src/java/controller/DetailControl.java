@@ -131,7 +131,59 @@ public class DetailControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       String pid = request.getParameter("pid");
+        String xd = request.getParameter("xd");
+        String xn = request.getParameter("xn");
+        request.setAttribute("xn", xn);
+        if(xd == null){
+            
+        }else{
+            request.setAttribute("xd", xd);
+        }
+        int id = Integer.parseInt(pid);
+        DAO d = new DAO();
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("acc");
+        if (u != null) {
+
+            List<Product> sanPhamDaXem = d.sanPhamDaXem(u.getuId());
+            if (sanPhamDaXem.size() == 0) {
+                d.insertSanPhamDaXem(u.getuId(), id);
+            } else {
+                int n = 0;
+                for (Product product : sanPhamDaXem) {
+                    if (product.getpId() == id) {
+                        n++;
+                        break;
+                    }
+
+                }
+                if (n == 0) {
+                    d.insertSanPhamDaXem(u.getuId(), id);
+                }
+            }
+
+        }
+
+        Product p = d.getProductByID(id);
+        String type = d.getTypebyPID(id);
+        // truyen feedback sang detail jsp
+        List<Type> list3 = d.getAllType();
+        request.setAttribute("type", list3);
+        //List<Size> sizes =d.getAllSizeById(id);
+        List<Product> list4 = d.get4Product();
+        int star = d.getStar(id);
+        request.setAttribute("star", star);
+        // request.setAttribute("sizes", sizes);
+        request.setAttribute("list4", list4);
+        List<FeedBack> feedbacks = d.getFBbyPID(id);
+
+        request.setAttribute("feedbacks", feedbacks);
+        request.setAttribute("type1", type);
+        request.setAttribute("product", p);
+        List<Category> list2 = d.getAllCat();
+        request.setAttribute("cate", list2);
+        request.getRequestDispatcher("detail.jsp").forward(request, response);
     }
 
     /**

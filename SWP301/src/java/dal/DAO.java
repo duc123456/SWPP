@@ -2465,5 +2465,25 @@ public class DAO extends DBContext {
         }
     }
     
+    public void huyDonHang(int oId){
+        String sql6 = "update product set quantity=quantity+? where PID=?";
+        List<OrderDetail> list = getODDTbyOId(oId);
+        try {
+            PreparedStatement st = connection.prepareStatement(sql6);
+            if(list != null){
+                for (OrderDetail orderDetail : list) {
+                    st.setInt(1, orderDetail.getAmount());
+                    st.setInt(2, orderDetail.getProduct().getpId());
+                    st.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+        }
+    }
+    public static void main(String[] args) {
+        DAO d = new DAO();
+        d.huyDonHang(56);
+    }
+    
 
 }
