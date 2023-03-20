@@ -78,7 +78,7 @@ public class Feedback extends HttpServlet {
             throws ServletException, IOException {
         
         int uid = Integer.parseInt(request.getParameter("userbe"));
-        String pid = request.getParameter("productfeebid");
+        String pid = request.getParameter("pid");
         String description = request.getParameter("comment");
         int vote = Integer.parseInt(request.getParameter("vote"));
         
@@ -91,8 +91,9 @@ public class Feedback extends HttpServlet {
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
         
+        
         dao.Feedback(uid, Integer.parseInt(pid), description, format, vote);
-        response.sendRedirect("listproduct");
+        request.getRequestDispatcher("detail").forward(request, response);
         
     }
 

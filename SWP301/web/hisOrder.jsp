@@ -44,7 +44,7 @@
                         <!-- body left top (dashboard)-->
                         <div class="body_left-dashboard">
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
-                            <a href="hisOrder.jsp" class="body_left-dashboard_child" id="current_page">
+                            <a href="hisorder?xn=1" class="body_left-dashboard_child" id="current_page">
                                 <div id="hover_icon">
 
                                     Đơn hàng
@@ -119,7 +119,7 @@
 
                                     <c:set var="c" value="${list3}"></c:set>
                                 </c:if>
-                                <c:if test="${total != null }">
+                                <c:if test="${xn != null }">
 
                                     <c:set var="c" value="${d.getAllOrderByUID(acc.uId)}"></c:set>
                                 </c:if>

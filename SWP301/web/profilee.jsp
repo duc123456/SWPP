@@ -51,7 +51,7 @@
                         <!-- body left top (dashboard)-->
                         <div class="body_left-dashboard">
                             <div class="body_left-dashboard_title">THÔNG TIN</div>
-                            <a href="hisorder" class="body_left-dashboard_child">
+                            <a href="hisorder?xn=1" class="body_left-dashboard_child">
                                 <div id="hover_icon">
                                     <i class="fa-solid fa-cart-shopping  dashboard_icon"></i>
                                     Đơn hàng
