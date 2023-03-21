@@ -2520,11 +2520,7 @@ public class DAO extends DBContext {
         } catch (SQLException e) {
         }
     }
-    public static void main(String[] args) {
-        DAO d = new DAO();
-        
-        System.out.println("" + d.thongBao(1).size());
-    }
+
 }
 
 

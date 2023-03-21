@@ -183,21 +183,26 @@
 
                                 <div class="col-md-12 align-items-center col-9 rcolm"> 
                                     <div class="review">
+                                        
+                                        <h3 class="fs-6 fw-semi mt-2">${a.getName(fb.getUID())}    </h3>
                                         <li class="col-8 ratfac">
+
                                             <c:forEach begin="1" end="${fb.vote}" var="pa">
                                                 <i class="bi text-warning bi-star-fill"></i>
+
                                             </c:forEach>
+
                                             <c:forEach begin="1" end="${5-fb.vote}" var="pa">
                                                 <i class="bi bi-star-fill"></i>
                                             </c:forEach>    
-
+                                            <small class="float fw-normal small-tag">${fb.getDate().substring(0,16)}</small>
 
                                         </li>              
                                     </div>
-                                    <h3 class="fs-6 fw-semi mt-2">${a.getName(fb.getUID())}
 
-                                        <small class="float-end fw-normal small-tag">${fb.getDate()}</small>
-                                    </h3>
+
+
+
 
                                     <div class="review-text">
                                         ${fb.description}
