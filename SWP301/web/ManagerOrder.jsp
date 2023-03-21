@@ -215,7 +215,7 @@
                                                                 <button value="2" name="status"  class="btn btn-sm bg-success-light me-2" title="Xác nhận">
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
-                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" title="Hủy">
+                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" onclick="return confirm('Bạn có chắc chắn muốn hủy Đơn hàng này?')" title="Hủy">
                                                                     <i class="fe fe-close"></i>
                                                                 </button>
                                                             </c:if>

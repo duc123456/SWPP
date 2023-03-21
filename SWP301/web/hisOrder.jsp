@@ -152,7 +152,7 @@
 
 
                                             </div>
-                                            <div class="oders_items-child">${list.date.substring(0,10)}</div>
+                                            <div class="oders_items-child">${list.date.substring(0,16)}</div>
                                             <div class="oders_items-child money_margin"> <fmt:formatNumber value="${list.totalPrice}" pattern="#,##0 'VND'" /></div>
                                         </div>
                                         <div class="order_items_icon">

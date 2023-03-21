@@ -76,25 +76,24 @@ public class Feedback extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         int uid = Integer.parseInt(request.getParameter("userbe"));
         String pid = request.getParameter("pid");
         String description = request.getParameter("comment");
         int vote = Integer.parseInt(request.getParameter("vote"));
-        
+
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        simpleDateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
         String format = simpleDateFormat.format(date);
-        
+
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
         DAO dao = new DAO();
-        
-        
+
         dao.Feedback(uid, Integer.parseInt(pid), description, format, vote);
         request.getRequestDispatcher("detail").forward(request, response);
-        
+
     }
 
     /**
