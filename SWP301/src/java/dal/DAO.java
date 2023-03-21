@@ -1318,7 +1318,7 @@ public class DAO extends DBContext {
             }
         }
 
-        return "Cam On";
+        return "CẢM ƠN";
 
     }
 
@@ -2015,7 +2015,7 @@ public class DAO extends DBContext {
 
     public List<Order> getAllOrderByUID(int uId) {
         List<Order> list = new ArrayList<>();
-        String sql = "select *   from [Order] where [UID] = ? ";
+        String sql = "select *   from [Order] where [UID] = ? order by OID desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uId);
@@ -2205,7 +2205,7 @@ public class DAO extends DBContext {
     }
 
     public List<Product> sanPhamDaXem(int uId) {
-        String sql = "select PId from ProductLog where UId = ? and Action = 0";
+        String sql = "select LogId PId from ProductLog where UId = ? and Action = 0 Order By LogId desc";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -2252,6 +2252,30 @@ public class DAO extends DBContext {
                 ol.setStatusId(rs.getInt(2));
                 ol.setDate(rs.getString(3));
                 ol.setConfirm(rs.getBoolean(4));
+                list.add(ol);
+
+            }
+            return list;
+        } catch (Exception e) {
+        }
+
+        return list;
+
+    }
+    public List<OrderLog> thongBao(int uId) {
+        String sql = "select ol.OrderLogId, od.OID,  ol.StatusID, ol.Date, ol.Confirm from [Order] od join OrderLog ol on od.OID = ol.OID where od.UID =? and  ol.Confirm= 0 Order By ol.OrderLogId desc";
+        List<OrderLog> list = new ArrayList<>();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderLog ol = new OrderLog();
+                ol.setLogID(rs.getInt(1));
+                ol.setOrder(getOrderById(rs.getInt(2)));
+                ol.setStatusId(rs.getInt(3));
+                ol.setDate(rs.getString(4));
+                ol.setConfirm(rs.getBoolean(5));
                 list.add(ol);
 
             }
@@ -2487,5 +2511,20 @@ public class DAO extends DBContext {
 
         }
     }
-
+    public void daXemThongBao(int logId){
+        String sql = "update OrderLog set Confirm = 1 where OrderLogId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, logId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    public static void main(String[] args) {
+        DAO d = new DAO();
+        
+        System.out.println("" + d.thongBao(1).size());
+    }
 }
+
+

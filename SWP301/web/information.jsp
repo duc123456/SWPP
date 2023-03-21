@@ -162,8 +162,74 @@
     
     <body>
         <jsp:include page="menu.jsp"></jsp:include>
+        <c:if test="${acc != null}">
+            <form action="pay" method="post" onsubmit="return validateForm()" name="myForm">
+                <input type="hidden" name="id" value="${sessionScope.acc.uId}">
+            <div class="page-content page-container" id="page-content">
+                <div class="padding">
+                    <div class="row container d-flex justify-content-center">
+                        <div class="col-xl-12 col-md-12">
+                            <div class="card user-card-full">
+                                <div class="row m-l-0 m-r-0">
+<!--                                    <div class="col-sm-4 bg-c-lite-green user-profile">
+                                        <div class="card-block text-center text-white">
+                                            <div class="m-b-25">
+                                                <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                            </div>
+                                            <h6 class="f-w-600">${sessionScope.acc.lName}</h6>
+                                            <a href="">Change</a>
+                                            <img href="listproduct" src="Image/edituser.png" alt="" style="width: 50px; height: 50px;" >
+                                        </div>
+                                    </div>-->
+                                    <div class="col-sm-8">
+                                        <div class="card-block">
+                                            <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Nhập Thông Tin Giao Hàng
+</h6>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Họ   </p>
+                                                    <input type="text"  name="ho" value="${sessionScope.acc.getlName()}"  class="form-control" readonly>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Tên</p>
+                                                    <input type="text"  name="ten" value="${sessionScope.acc.getfName()}" class="form-control" readonly>
+                                                </div>
 
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Địa Chỉ</p>
+                                                    <input type="text"  name="dia" value="${sessionScope.acc.getAddress()}" class="form-control">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Số Điện Thoại</p>
+                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone()}" class="form-control">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <p class="m-b-10 f-w-600">Chú Ý</p>
+                                                    <input type="text"  name="note" class="form-control">
+                                                </div>
+                                         
+                                                <div class="col-md-8">
+                                                    <button type="submit" class="btn btn-danger change-btn">Xác Nhận</button>
+                                                </div>
+                                              
+                                            </div>
+                                            <ul class="social-link list-unstyled m-t-40 m-b-10">
+                                                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
+                                                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
+                                                <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i class="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+  </form>
+        </c:if>
+         <c:if test="${acc == null}">
             <form action="pay" method="post" onsubmit="return validateForm()" name="myForm">
                 <input type="hidden" name="id" value="${sessionScope.acc.uId}">
             <div class="page-content page-container" id="page-content">
@@ -202,7 +268,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Số Điện Thoại</p>
-                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone()}" class="form-control">
+                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone().substring(0,10)}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Chú Ý</p>
@@ -212,7 +278,7 @@
                                                 <div class="col-md-8">
                                                     <button type="submit" class="btn btn-danger change-btn">Xác Nhận</button>
                                                 </div>
-                                                </form>
+                                              
                                             </div>
                                             <ul class="social-link list-unstyled m-t-40 m-b-10">
                                                 <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
@@ -228,7 +294,10 @@
                 </div>
             </div>
 
+  </form>
+        </c:if>
 
+            
     </body>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>

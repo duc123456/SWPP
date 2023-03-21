@@ -14,7 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import model.Cart;
+import model.OrderLog;
+import model.Product;
 import model.User;
 
 /**
@@ -92,6 +95,66 @@ public class LoginControl extends HttpServlet {
 //            out.println("sadasd");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
+        } else if (a.getRoleId() == 2) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", a);
+
+            List<Product> list = dao.getAllProd();
+            // List<Category> listC = dao.getAllCategory();
+
+            int productList = dao.getProductCount();
+            request.setAttribute("numberOfProducts", productList);
+
+            int productListIn = dao.getProductCountInurance();
+            request.setAttribute("ProductInsurance", productListIn);
+
+            int productListSum = dao.getProductCountQuantity();
+            request.setAttribute("ProductSum", productListSum);
+
+            request.setAttribute("listP", list);
+            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
+        } else if (a.getRoleId() == 3) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("acc", a);
+
+            List<OrderLog> list = dao.getAllOrderLog();
+
+            int productOrder = dao.getTotalOrder();
+            request.setAttribute("totalorder", productOrder);
+
+            int productOrder1 = dao.getOrder1();
+            request.setAttribute("order1", productOrder1);
+
+            int productOrder2 = dao.getOrder2();
+            request.setAttribute("order2", productOrder2);
+
+            int productOrder3 = dao.getOrder3();
+            request.setAttribute("order3", productOrder3);
+
+            int productOrder4 = dao.getOrder4();
+            request.setAttribute("order4", productOrder4);
+
+            request.setAttribute("listOD", list);
+            request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
+        } else if (a.getRoleId() == 4) {
+            String role = request.getParameter("role");
+            List<User> list = null;
+            if (role == null || role.equalsIgnoreCase("0")) {
+                role = "0";
+                list = dao.getAllUser();
+            } else {
+                int role_ = Integer.parseInt(role);
+                list = dao.getUserbyRole(role_);
+            }
+            request.setAttribute("role", role);
+            int numberOfUser = list.size();
+            request.setAttribute(role, dao);
+
+            request.setAttribute("users", list);
+            request.setAttribute("total", numberOfUser);
+            request.getRequestDispatcher("user.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
@@ -99,22 +162,21 @@ public class LoginControl extends HttpServlet {
 
             Cookie[] cookie = request.getCookies();
             String cart = "cart" + a.getuId();
-            if(cookie != null){
-                 for (Cookie o : cookie) {
-                if (o.getName().equals(cart)) {
-                    String txt = o.getValue();
-                    Cart c = new Cart(txt);
-                    session.setAttribute("cart", c);
-                    session.setAttribute("size", c.getItems().size());
+            if (cookie != null) {
+                for (Cookie o : cookie) {
+                    if (o.getName().equals(cart)) {
+                        String txt = o.getValue();
+                        Cart c = new Cart(txt);
+                        session.setAttribute("cart", c);
+                        session.setAttribute("size", c.getItems().size());
+                    }
                 }
+                response.sendRedirect("listproduct");
+
             }
-            response.sendRedirect("listproduct");
-
-
-        }
         }
         //// request.getRequestDispatcher("home").forward(request, response);
-        
+
     }
 
     /**

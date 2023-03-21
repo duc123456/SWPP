@@ -5,6 +5,7 @@
 
 package controller;
 
+import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -55,8 +56,19 @@ public class ThongBao extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+       String logId_raw = request.getParameter("logId");
+       if(logId_raw != null){
+           try {
+            int logId = Integer.parseInt(logId_raw);
+            DAO d = new DAO();
+            d.daXemThongBao(logId);
+        } catch (NumberFormatException e) {
+        }
+       }
+        
        GeneralOrder g = new GeneralOrder();
        g.doGet(request, response);
+       
        
        request.getRequestDispatcher("XemThongBao.jsp").forward(request, response);
     } 
