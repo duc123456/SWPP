@@ -56,9 +56,16 @@
                             <img src="https://img.icons8.com/ios/50/null/details-pane.png"/>
                             <p id="body_right-title">Chi tiết đơn hàng</p>
                         </div>
-                         <a class="body_right-edit_button" href="#">
+                    <c:if test="${orderDetail.get(0).order.status == 4}">
+                         <a class="body_right-edit_button" href="datlaidonhang?oId=${orderDetail.get(0).order.oId}">
                             Đặt lại đơn hàng
                         </a>
+                            </c:if>
+                         <c:if test="${orderDetail.get(0).order.status == 3}">
+                         <a class="body_right-edit_button" href="datlaidonhang?oId=${orderDetail.get(0).order.oId}">
+                            Đặt lại đơn hàng
+                        </a>
+                            </c:if>
                     <c:if test="${orderDetail.get(0).order.status == 1}">
                         <a class="body_right-edit_button" href="huydonhang?oid=${orderDetail.get(0).order.oId}">
                             Hủy đơn hàng
@@ -73,18 +80,7 @@
                                 <div class="body_right">
                                     <div>
                                         <!-- title -->
-                                        <div class="body_right-title">
-                                            <div class="body_right-title-1">
-                                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
-                                                <p id="body_right-title">Chi tiết đơn hàng</p>
-                                            </div>
-                                            <a class="body_right-edit_button" href="#">
-                                                Đặt lại đơn hàng
-                                            </a>
-                                            <a class="body_right-edit_button" href="">
-                                                Huy Don Hang
-                                            </a>
-                                        </div>
+                                       
                                         <!-- content -->
                                         <div class="body_right-order_info">
 

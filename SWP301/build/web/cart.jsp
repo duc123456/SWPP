@@ -43,13 +43,17 @@
                 </div>
             </div>
 
+        </div>
+        
+        
+    <!--####################### About US Starts Here ###################-->
+    <div class="container-fluid big-padding about-cover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <h1>${thongBao}</h1>
+                    <table class="table bg-white shadow-md" >
 
-            <!--####################### About US Starts Here ###################-->
-            <div class="container-fluid big-padding about-cover">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-10 mx-auto">
-                            <table class="table bg-white shadow-md" >
                                 <tr>
                                     <th>#</th>
                                     <th>Ảnh</th>
