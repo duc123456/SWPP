@@ -2015,7 +2015,7 @@ public class DAO extends DBContext {
 
     public List<Order> getAllOrderByUID(int uId) {
         List<Order> list = new ArrayList<>();
-        String sql = "select *   from [Order] where [UID] = ? ";
+        String sql = "select *   from [Order] where [UID] = ? order by OID desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uId);
@@ -2205,7 +2205,7 @@ public class DAO extends DBContext {
     }
 
     public List<Product> sanPhamDaXem(int uId) {
-        String sql = "select PId from ProductLog where UId = ? and Action = 0";
+        String sql = "select LogId PId from ProductLog where UId = ? and Action = 0 Order By LogId desc";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
