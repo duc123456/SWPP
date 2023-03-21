@@ -26,7 +26,7 @@ import model.User;
  *
  * @author Dell
  */
-@WebServlet(name = "ListProduct", urlPatterns = {"/listproduct"})
+@WebServlet(name = "ListProduct", urlPatterns ={"/listproduct"})
 public class ListProduct extends HttpServlet {
 
     /**

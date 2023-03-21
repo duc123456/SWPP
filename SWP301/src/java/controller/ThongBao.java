@@ -57,6 +57,7 @@ public class ThongBao extends HttpServlet {
     throws ServletException, IOException {
        GeneralOrder g = new GeneralOrder();
        g.doGet(request, response);
+       
        request.getRequestDispatcher("XemThongBao.jsp").forward(request, response);
     } 
 

@@ -13,6 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -20,6 +21,7 @@ import java.util.List;
 import model.Order;
 import model.OrderDetail;
 import model.ProductLog;
+import model.User;
 
 /**
  *
@@ -64,6 +66,11 @@ public class DashContoller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d = new DAO();
+        HttpSession session = request.getSession();
+            User a =(User) session.getAttribute("acc");
+         if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);}
+         else{
          String to  = request.getParameter("to");
         String from = request.getParameter("from");
         if(from != null){
@@ -95,7 +102,7 @@ public class DashContoller extends HttpServlet {
         
         List<OrderDetail> listmost = d.listProductMost();
         request.setAttribute("listmost", listmost);
-        List<Order> list = d.getAllOrder(from,now,to,"");
+        List<Order> list = d.getAllOrder(from,now,to,"3");
         List<Order> list3 = d.getAllOrder(from,now,to,"3");
         List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
         
@@ -105,6 +112,7 @@ public class DashContoller extends HttpServlet {
         request.setAttribute("size", list2.size());
         request.setAttribute("stock", d.totalgetPriceStock(from,now ,to));
         request.getRequestDispatcher("Dash.jsp").forward(request, response);
+         }
     } 
 
     /** 

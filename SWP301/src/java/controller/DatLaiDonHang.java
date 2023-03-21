@@ -14,11 +14,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
-import model.Guest;
-import model.Item;
 import model.OrderDetail;
 import model.Product;
 import model.User;
@@ -27,8 +24,8 @@ import model.User;
  *
  * @author Dell
  */
-@WebServlet(name = "AddCartCookie", urlPatterns = {"/addcartcookie"})
-public class AddCartCookie extends HttpServlet {
+@WebServlet(name = "DatLaiDonHang", urlPatterns = {"/datlaidonhang"})
+public class DatLaiDonHang extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +44,10 @@ public class AddCartCookie extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddCartCookie</title>");
+            out.println("<title>Servlet DatLaiDonHang</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddCartCookie at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DatLaiDonHang at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,25 +65,13 @@ public class AddCartCookie extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         DAO d = new DAO();
-        int oId = 1;
-        List<OrderDetail> orderDetail = d.getODDTbyOId(oId);
+        String oId_raw = request.getParameter("oId");
+        try {
+            int oId = Integer.parseInt(oId_raw);
+            List<OrderDetail> orderDetail = d.getODDTbyOId(oId);
+
         
-        List<Product> list = d.getAllProd();
         Cookie[] arr = request.getCookies();
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("acc");
@@ -102,28 +87,68 @@ public class AddCartCookie extends HttpServlet {
             }
         }
 
-        String txt2 = "";
-        String num = request.getParameter("quantity");
-        String id = request.getParameter("product");
-        String price = request.getParameter("price");
-        String xd = request.getParameter("det");
         
-        if (txt.isEmpty()) {
-            txt = id + ":" + num + ":" + price;
-        } else {
-            Cart c = new Cart(txt);
-            session.setAttribute("cart", c);
-            session.setAttribute("size1", c.getItems().size());
+       String datLai = "Duoc phep";
+        if (orderDetail != null) {
+            for (OrderDetail od : orderDetail) {
 
-            txt = c.cartToTxt(c);
-            txt += "/" + id + ":" + num + ":" + price;
+                if (txt.isEmpty()) {
+                    txt = od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
+                    if(od.getAmount() > od.getProduct().getQuantity() && od.getProduct().getQuantity() > 0){
+                        datLai = "So luong cua tivi " + od.getProduct().getName() + " nhieu hon so luong trong kho."
+                                + " Vui long dat so luong san pham <" + od.getProduct().getQuantity();
+                    }
+                     if(od.getProduct().getQuantity() == 0){
+                        datLai = "Tivi " + od.getProduct().getName() + " da het.";
+                               
+                    }
+                } else {
+                    Cart c = new Cart(txt);
+                    session.setAttribute("cart", c);
+                    session.setAttribute("size1", c.getItems().size());
+
+                    txt = c.cartToTxt(c);
+                    txt += "/" + od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
+                     if(od.getAmount() > od.getProduct().getQuantity() && od.getProduct().getQuantity() > 0){
+                        datLai = "So luong cua tivi " + od.getProduct().getName() + " nhieu hon so luong trong kho."
+                                + " Vui long dat so luong san pham <" + od.getProduct().getQuantity();
+                    }
+                     if(od.getProduct().getQuantity() == 0){
+                        datLai = "Tivi " + od.getProduct().getName() + " da het.";
+                               
+                    }
+
+                }
+            }
 
         }
+
         Cookie c = new Cookie(cart, txt);
         c.setMaxAge(2 * 24 * 60 * 60);
         response.addCookie(c);
-        response.sendRedirect("detail?pid=" + id);//thay cai duoi
+        if(!datLai.equals("Duoc phep")){
+            request.setAttribute("thongBao", datLai);
+        }
+        request.getRequestDispatcher("cartsession");
+       // response.sendRedirect("cartsession");//thay cai duoi
         //request.getRequestDispatcher("shop").forward(request, response);
+        } catch (NumberFormatException e) {
+        }
+        
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
