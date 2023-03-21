@@ -79,8 +79,6 @@
                                 <!-- body right -->
                                 <div class="body_right">
                                     <div>
-                                        <!-- title -->
-                                       
                                         <!-- content -->
                                         <div class="body_right-order_info">
 

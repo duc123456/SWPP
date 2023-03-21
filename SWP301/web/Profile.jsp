@@ -166,7 +166,7 @@ th {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> PROFILE</title>
+        <title> Thông tin tài khoản</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -182,10 +182,7 @@ th {
                     
                 </div>
                 <div class="col-md-10 container d-flex justify-content-center">
-                    <div class="">
-                        <button  id="myButton1" class="btn btn-danger active" style="background-color: white; color: #dc3545; min-width: 120px ; ">Trang cá nhân</button>
-                    <button  id="myButton2" class="btn btn-danger" style="background-color: white; color: #dc3545 ;min-width: 120px">Đơn mua</button>
-                    </div>
+                   
                     <div class="col-xl-12 col-md-12 page1">
                         <div class="card user-card-full">
                             <div class="row m-l-0 m-r-0">
