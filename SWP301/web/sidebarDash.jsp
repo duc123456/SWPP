@@ -10,7 +10,7 @@
     <aside id="sidebar" class="js-custom-scroll side-nav">
         <ul id="sideNav" class="side-nav-menu side-nav-menu-top-level mb-0">
             <!-- Title -->
-            <li class="sidebar-heading h6">Dashboard</li>
+            <li class="sidebar-heading h6">Biểu đồ</li>
             <!-- End Title -->
 
             <!-- Dashboard -->
@@ -28,7 +28,7 @@
             
 
             <!-- Title -->
-            <li class="sidebar-heading h6">Examples</li>
+            <li class="sidebar-heading h6">Ví dụ</li>
             <!-- End Title -->
 
             <!-- Users -->
