@@ -105,9 +105,28 @@
                         <!-- content -->
                         <div class="body_right-oders">                    <!-- content -->
                             <div>
+                                 <c:forEach items="${xemThongBao}" var="c">
+                                     <c:if test="${c.statusId == 1}">
+                                         <c:set var="s" value="da dat thanh cong"></c:set>
+                                     </c:if>
+                                     <c:if test="${c.statusId == 2}">
+                                         <c:set var="s" value="da xac nhan thanh cong"></c:set>
+                                     </c:if>
+                                     <c:if test="${c.statusId == 3}">
+                                         <c:set var="s" value="da nhan"></c:set>
+                                     </c:if>
+                                     <c:if test="${c.statusId == 4}">
+                                         <c:set var="s" value="da huy thanh cong"></c:set>
+                                     </c:if>
                                 <div class="body_right-oders_child" style="min-height: 60px">
-                                    <p> Thông báo ở chỗ này</p>
+                                   
+                                        
+                                        <div>Ðon hang ${c.order.oId}  ${s} vao ngay ${c.date}  </div> 
+                                        <button data-id="" class="read-btn"><a href="thongbao?logId=${c.logID}">Đã đọc</a></button>
+                                  
+                                    
                                 </div>
+                                  </c:forEach>
      
                             </div>
                         </div>

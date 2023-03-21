@@ -154,9 +154,10 @@
 
                                     <button class="btn fw-bold w-100 btn-outline-danger" type="submit" >Chọn Mua</button>
 
-                                    </form>
+                                 
                                 </div>
                             </div>
+                               </form>
 
                     </div>
                 </div>
