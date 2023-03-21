@@ -71,54 +71,49 @@ public class DatLaiDonHang extends HttpServlet {
             int oId = Integer.parseInt(oId_raw);
             List<OrderDetail> orderDetail = d.getODDTbyOId(oId);
 
-        
-        Cookie[] arr = request.getCookies();
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("acc");
-        String txt = "";
-        String cart = "cart" + u.getuId();
-        if (arr != null) {
-            for (Cookie o : arr) {
-                if (o.getName().equals(cart)) {
-                    txt += o.getValue();
-                    o.setMaxAge(0);
-                    response.addCookie(o);
-                }
-            }
-        }
-
-        
-       
-        if (orderDetail != null) {
-            for (OrderDetail od : orderDetail) {
-
-                if (txt.isEmpty()) {
-                    txt = od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
-                    
-                } else {
-                    Cart c = new Cart(txt);
-                    session.setAttribute("cart", c);
-                    session.setAttribute("size1", c.getItems().size());
-
-                    txt = c.cartToTxt(c);
-                    txt += "/" + od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
-                     
-
+            Cookie[] arr = request.getCookies();
+            HttpSession session = request.getSession();
+            User u = (User) session.getAttribute("acc");
+            String txt = "";
+            String cart = "cart" + u.getuId();
+            if (arr != null) {
+                for (Cookie o : arr) {
+                    if (o.getName().equals(cart)) {
+                        txt += o.getValue();
+                        o.setMaxAge(0);
+                        response.addCookie(o);
+                    }
                 }
             }
 
-        }
+            if (orderDetail != null) {
+                for (OrderDetail od : orderDetail) {
 
-        Cookie c = new Cookie(cart, txt);
-        c.setMaxAge(2 * 24 * 60 * 60);
-        response.addCookie(c);
-        
-        request.getRequestDispatcher("cartsession").forward(request, response);
-       // response.sendRedirect("cartsession");//thay cai duoi
-        //request.getRequestDispatcher("shop").forward(request, response);
+                    if (txt.isEmpty()) {
+                        txt = od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
+
+                    } else {
+
+                        txt += "/" + od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
+
+                    }
+                }
+
+            }
+            Cart c1 = new Cart(txt);
+            session.setAttribute("cart", c1);
+            session.setAttribute("size1", c1.getItems().size());
+
+            Cookie c = new Cookie(cart, txt);
+            c.setMaxAge(2 * 24 * 60 * 60);
+            response.addCookie(c);
+
+            request.getRequestDispatcher("cartsession").forward(request, response);
+            // response.sendRedirect("cartsession");//thay cai duoi
+            //request.getRequestDispatcher("shop").forward(request, response);
         } catch (NumberFormatException e) {
         }
-        
+
     }
 
     /**
