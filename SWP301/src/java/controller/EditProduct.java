@@ -122,11 +122,7 @@ public class EditProduct extends HttpServlet {
                 HttpSession session = request.getSession();
                 User a = (User) session.getAttribute("acc");
 
-<<<<<<< HEAD
-                /// Xu Ly Anh
-                String appPath = request.getServletContext().getRealPath("");
-                appPath = appPath.replace('\\', '/');
-=======
+
             /// Xu Ly Anh
             String appPath = request.getServletContext().getRealPath("");
             appPath = appPath.replace('\\', '/');
@@ -157,37 +153,10 @@ public class EditProduct extends HttpServlet {
                             part.write(filePath);
                             dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
                     }
->>>>>>> main
+
 
                 // Thư mục để save file tải lên.
-                String fullSavePath = null;
-                if (appPath.endsWith("/")) {
-                    fullSavePath = appPath + SAVE_DIRECTORY;
-                } else {
-                    fullSavePath = appPath + "/" + SAVE_DIRECTORY;
-                }
-
-                // Tạo thư mục nếu nó không tồn tại.
-                File fileSaveDir = new File(fullSavePath);
-                if (!fileSaveDir.exists()) {
-                    fileSaveDir.mkdir();
-                }
-
-                // Danh mục các phần đã upload lên (Có thể là nhiều file).
-                for (Part part : request.getParts()) {
-                    if (part.getName().equals("file")) {
-                        String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
-                        if (pimage == null) {
-                            fileName = dao.getProductByID(pId).getImageDf();
-                        }
-                        if (fileName != null && fileName.length() > 0) {
-                            String filePath = fullSavePath + File.separator + fileName;
-
-                            // Ghi vào file.
-                            part.write(filePath);
-                             dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-
-                        }
+               
                        
 
                     }
