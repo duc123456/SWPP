@@ -48,6 +48,11 @@
 
                 min-height: 200px;
             }
+            .closetb i {
+                font-size: 40px;
+            }
+
+
 
         </style>
     </head>
@@ -252,7 +257,7 @@
         <div class="moda">
             <div class="moda-container">
                 <div >
-                    <a  href="managerorder" class="closetb" value="Dong" style="">X</a>
+                    <a  href="managerorder" class="closetb" value="Dong" style="float:right;"><i class="fe fe-close"></i></a>
                     <table class="table table-hover table-center">                                      
                         <tr>   
 
