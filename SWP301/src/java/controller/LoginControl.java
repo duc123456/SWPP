@@ -138,6 +138,23 @@ public class LoginControl extends HttpServlet {
 
             request.setAttribute("listOD", list);
             request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
+        } else if (a.getRoleId() == 4) {
+            String role = request.getParameter("role");
+            List<User> list = null;
+            if (role == null || role.equalsIgnoreCase("0")) {
+                role = "0";
+                list = dao.getAllUser();
+            } else {
+                int role_ = Integer.parseInt(role);
+                list = dao.getUserbyRole(role_);
+            }
+            request.setAttribute("role", role);
+            int numberOfUser = list.size();
+            request.setAttribute(role, dao);
+
+            request.setAttribute("users", list);
+            request.setAttribute("total", numberOfUser);
+            request.getRequestDispatcher("user.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("acc", a);
