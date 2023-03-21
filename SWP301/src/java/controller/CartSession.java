@@ -91,7 +91,8 @@ public class CartSession extends HttpServlet {
         session.setAttribute("cart", cart);
         session.setAttribute("size", n);
          }
-             response.sendRedirect("cart.jsp");
+       
+             request.getRequestDispatcher("cart.jsp").forward(request, response);
         
     } 
 

@@ -4,15 +4,19 @@
  */
 package controller;
 
+import static controller.AddProduct.SAVE_DIRECTORY;
 import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.Product;
@@ -24,7 +28,15 @@ import model.User;
  * @author nhant
  */
 @WebServlet(name = "EditProduct2", urlPatterns = {"/editproduct"})
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50) // 50MB
+
 public class EditProduct extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    public static final String SAVE_DIRECTORY = "ProductImage";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -82,8 +94,11 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
-        String xd = request.getParameter("xd");
+        try {
+            int pId = Integer.parseInt(pid);
+             String xd = request.getParameter("xd");
         DAO dao = new DAO();
+
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         simpleDateFormat.applyPattern("yyyy-MM-dd");
@@ -99,7 +114,7 @@ public class EditProduct extends HttpServlet {
             String pinsurance = request.getParameter("insurance");
 
             String ptid = request.getParameter("tid");
-            String pimage = request.getParameter("image");
+            String pimage = request.getParameter("file");
             String psize = request.getParameter("size");
             String pquantity = request.getParameter("quantity");
             String pdiscount = request.getParameter("discount");
@@ -107,13 +122,49 @@ public class EditProduct extends HttpServlet {
             HttpSession session = request.getSession();
             User a = (User) session.getAttribute("acc");
 
-            if (pimage == null || pimage == "") {
-                Product p = dao.getProductByID(Integer.parseInt(pid));
-                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+            /// Xu Ly Anh
+            String appPath = request.getServletContext().getRealPath("");
+            appPath = appPath.replace('\\', '/');
+
+            // Thư mục để save file tải lên.
+            String fullSavePath = null;
+            if (appPath.endsWith("/")) {
+                fullSavePath = appPath + SAVE_DIRECTORY;
             } else {
-                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                fullSavePath = appPath + "/" + SAVE_DIRECTORY;
             }
 
+            // Tạo thư mục nếu nó không tồn tại.
+            File fileSaveDir = new File(fullSavePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdir();
+            }
+
+            // Danh mục các phần đã upload lên (Có thể là nhiều file).
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("file")) {
+                    String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
+                    if(pimage == null || pimage.equals("")){
+                        fileName = dao.getProductByID(pId).getImageDf();
+                    }
+                    if (fileName != null && fileName.length() > 0) {
+                        String filePath = fullSavePath + File.separator + fileName;
+
+                        // Ghi vào file.
+                        
+                              part.write(filePath);
+                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                            
+                        
+                     
+                          
+                        
+                    }
+
+                }
+            }
+
+            //////////////
         } else {
             Product p = dao.getProductByID(Integer.parseInt(pid));
             String pquantity = request.getParameter("quantity");
@@ -138,6 +189,11 @@ public class EditProduct extends HttpServlet {
         }
 
         response.sendRedirect("managerProduct");
+        } catch (Exception e) {
+        }
+
+       
+
     }
 
     /**
