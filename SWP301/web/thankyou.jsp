@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-        <style>
+    <style>
         body {
             background-color: #f9f9fa
         }
@@ -145,13 +145,23 @@
             transition: all 0.3s ease-in-out;
         }
 
+        h1 {
+            color: red;
+            font-family: Arial;
+            font-size: 36px; /* tăng kích thước phông chữ */
+            text-align: center; /* canh giữa phần tử h1 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* set chiều cao của phần tử h1 bằng chiều cao của màn hình */
+        }
 
 
     </style>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Thank you</title>
+        <title> Cảm ơn đã mua hàng</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -159,15 +169,18 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
-    
+
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
-        
-        <h1>${mess}</h1>
-       
+
+            <h1 style="color: red; font-family: Arial;">${mess}</h1>
+
+
         <c:if test="${mess.equals('Cam On')}">
-            <a href=""><p>Xem Don Hang</p></a>
-            <a href="listproduct"><p>Quay Lai Trang Chu</p></a>
+            <a href="hisorder?xn=1" style="color: blue; font-weight: bold;">Xem Đơn Hàng</a>
+            <a href="listproduct" style="color: green;">Quay Lại Trang Chủ</a>
+
         </c:if>
+    </bod>
 
 </html>
