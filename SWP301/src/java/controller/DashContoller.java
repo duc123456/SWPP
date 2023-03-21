@@ -95,7 +95,7 @@ public class DashContoller extends HttpServlet {
         
         List<OrderDetail> listmost = d.listProductMost();
         request.setAttribute("listmost", listmost);
-        List<Order> list = d.getAllOrder(from,now,to,"");
+        List<Order> list = d.getAllOrder(from,now,to,"3");
         List<Order> list3 = d.getAllOrder(from,now,to,"3");
         List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
         
