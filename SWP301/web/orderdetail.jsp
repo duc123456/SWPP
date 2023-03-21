@@ -34,7 +34,6 @@
         <jsp:include page="menu.jsp"></jsp:include>
             <!-- end header -->
 
-
     <!-- body -->
     <div id="body">
         <!-- container -->
@@ -57,9 +56,16 @@
                             <img src="https://img.icons8.com/ios/50/null/details-pane.png"/>
                             <p id="body_right-title">Chi tiết đơn hàng</p>
                         </div>
-                         <a class="body_right-edit_button" href="#">
+                    <c:if test="${orderDetail.get(0).order.status == 4}">
+                         <a class="body_right-edit_button" href="datlaidonhang?oId=${orderDetail.get(0).order.oId}">
                             Đặt lại đơn hàng
                         </a>
+                            </c:if>
+                         <c:if test="${orderDetail.get(0).order.status == 3}">
+                         <a class="body_right-edit_button" href="datlaidonhang?oId=${orderDetail.get(0).order.oId}">
+                            Đặt lại đơn hàng
+                        </a>
+                            </c:if>
                     <c:if test="${orderDetail.get(0).order.status == 1}">
                         <a class="body_right-edit_button" href="huydonhang?oid=${orderDetail.get(0).order.oId}">
                             Hủy đơn hàng
@@ -70,75 +76,86 @@
                             <!-- content -->
                             <div class="body_right-order_info">
 
-
-                                <!-- something i dont know -->
-                                <div class="oders_info-child details">
+                                <!-- body right -->
+                                <div class="body_right">
                                     <div>
-                                        <div class="oders_info-details">
-                                            <div>
-                                                <span>Mã đơn hàng:</span>
-                                                #FFF${orderDetail.get(0).order.oId}
-                                        </div>
+                                        <!-- title -->
+                                       
+                                        <!-- content -->
+                                        <div class="body_right-order_info">
 
-                                        <div>
-                                            <span>Ngày đặt: </span>
-                                            ${orderDetail.get(0).order.date.substring(0,10)}
-                                        </div>
 
-                                    </div>
-                                    <div class="oders_info-description">
-                                        <c:set var="oddt" value="${orderDetail}"></c:set>
-                                        <c:forEach items="${orderDetail}" var="c">
-                                            <div class="oders_info-product">
-                                                <div class="oders_info-product-child">
+                                            <!-- something i dont know -->
+                                            <div class="oders_info-child details">
+                                                <div>
+                                                    <div class="oders_info-details">
+                                                        <div>
+                                                            <span>Mã đơn hàng:</span>
+                                                            #FFF${orderDetail.get(0).order.oId}
+                                                    </div>
+
                                                     <div>
-                                                        <a href="detail?pid=${c.product.pId}"><img src="Image/${c.product.imageDf}" alt="" class="product_img"></a>
-
+                                                        <span>Ngày đặt: </span>
+                                                        ${orderDetail.get(0).order.date.substring(0,10)}
                                                     </div>
-                                                    <div class="product-name">
-                                                        <span class="product-name-title">${c.product.name}</span>
 
+                                                </div>
+                                                <div class="oders_info-description">
+                                                    <c:set var="oddt" value="${orderDetail}"></c:set>
+                                                    <c:forEach items="${orderDetail}" var="c">
+                                                        <div class="oders_info-product">
+                                                            <div class="oders_info-product-child">
+                                                                <div>
+                                                                    <a href="detail?pid=${c.product.pId}"><img src="Image/${c.product.imageDf}" alt="" class="product_img"></a>
+
+                                                                </div>
+                                                                <div class="product-name">
+                                                                    <span class="product-name-title">${c.product.name}</span>
+
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <span class="description">${c.price * c.amount}</span>
+                                                            </div>
+                                                            <div>
+                                                                <c:if test="${c.order.status == 3}">
+                                                                    <a class="review" href="detail?pid=${c.product.pId}&&xn=1">Viết nhận xét</a>
+                                                                </c:if>
+
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>                                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- detail order(adress and billing,etc..) -->
+                                        <div class="biling">
+                                            <!-- left -->
+                                            <div class="biling_left">
+                                                <p class="biling_left-title">Địa chỉ giao hàng</p>
+                                                <p class="biling_left-address">${oddt.get(0).order.address}</p>
+                                            </div>
+                                            <!-- right -->
+                                            <div class="biling_right">
+                                                <!--                                <div class="biling_right-1">
+                                                                                    <p class="biling_right-title">Thành tiền: </p> 
+                                                                                    <div class="biling_right-something">
+                                                                                        <div class="biling_right-something-oke">
+                                                                                            
+                                                                                            <p></p>
+                                                                                        </div>
+                                                                                        
+                                                                                    </div>
+                                                                                </div>-->
+                                                <div class="biling_right-something">
+                                                    <div>
+                                                        <p class="total">Tổng cộng:</p>
+                                                        <p>${oddt.get(0).order.totalPrice}</p>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <span class="description">${c.price * c.amount}</span>
-                                                </div>
-                                                <div>
-                                                    <c:if test="${c.order.status == 3}">
-                                                        <a class="review" href="detail?pid=${c.product.pId}&&xn=1">Viết nhận xét</a>
-                                                    </c:if>
 
                                                 </div>
                                             </div>
-                                        </c:forEach>                                                                  
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- detail order(adress and billing,etc..) -->
-                            <div class="biling">
-                                <!-- left -->
-                                <div class="biling_left">
-                                    <p class="biling_left-title">Địa chỉ giao hàng</p>
-                                    <p class="biling_left-address">${oddt.get(0).order.address}</p>
-                                </div>
-                                <!-- right -->
-                                <div class="biling_right">
-                                    <!--                                <div class="biling_right-1">
-                                                                        <p class="biling_right-title">Thành tiền: </p> 
-                                                                        <div class="biling_right-something">
-                                                                            <div class="biling_right-something-oke">
-                                                                                
-                                                                                <p></p>
-                                                                            </div>
-                                                                            
-                                                                        </div>
-                                                                    </div>-->
-                                    <div class="biling_right-something">
-                                        <div>
-                                            <p class="total">Tổng cộng:</p>
-                                            <p>${oddt.get(0).order.totalPrice}</p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -149,10 +166,7 @@
             <div class=""></div>
                                         </div>
         </div>
-        <!-- end body -->
-
-        <!-- footer -->
         <jsp:include page="footer.jsp"></jsp:include>
-        <!-- end footer -->
     </body>
+
 </html>

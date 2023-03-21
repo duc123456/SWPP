@@ -63,16 +63,16 @@ public class ForgotPassword extends HttpServlet {
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(email));// change accordingly
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                    message.setSubject("Hello");
-                    message.setText("your OTP is: " + otpvalue);
+                    message.setSubject("Xin chào!");
+                    message.setText("OTP của bạn là: " + otpvalue);
                     // send message
                     Transport.send(message);
-                    System.out.println("message sent successfully");
+                    System.out.println("Tin nhắn đã được gửi thành công!");
                 } catch (MessagingException e) {
                     throw new RuntimeException(e);
                 }
                 dispatcher = request.getRequestDispatcher("EnterOtp.jsp");
-                request.setAttribute("message", "OTP is sent to your email id");
+                request.setAttribute("message", "OTP đã được gửi đến địa chỉ email của bạn");
                 //request.setAttribute("connection", con);
                 mySession.setAttribute("otp", otpvalue);
                 mySession.setAttribute("email", email);
@@ -83,7 +83,7 @@ public class ForgotPassword extends HttpServlet {
             }
 
         } else {
-            String ms = "invalid";
+            String ms = "Sai tài khoản hoặc địa chỉ email";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("forgotPassword.jsp").forward(request, response);
 

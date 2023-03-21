@@ -11,7 +11,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Gift Shoping Website Template  | Smarteyeapps.com</title>
+        <title>Chi tiết sản phẩm</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -66,6 +66,12 @@
                 background-color: #3e8e41;
             }
 
+            .minus{
+                background-color: white;
+            }
+            .plus{
+                background-color: white;
+            }
 
         </style>
 
@@ -96,7 +102,7 @@
             <div class="container">
                 <div class="row about-row">
                     <div class="col-md-5 text-center">
-                        <img src="Image/${product.imageDf}" alt="">
+                        <img src="ProductImage/${product.imageDf}" alt="">
                     </div>
                     <div class="col-md-7">
                         <h2>${product.name}-${type1}</h2>
@@ -156,7 +162,7 @@
                 </div>
 
                 <div class="row product-detail">
-                    <h4>Product Detail</h4>
+                    <h4>Thông tin sản phẩm</h4>
 
                     <p class="mb-3 multiline">${product.description}</p>
 
@@ -164,7 +170,9 @@
                 <jsp:useBean id="a" class="dal.DAO" scope="request"></jsp:useBean>
                     <div class="row review">
                         <div class="col-md-8">
-                            <h4>Product Review</h4>
+
+                            <h4>Đánh giá sản phẩm</h4>
+
                         <c:forEach items="${feedbacks}" var="fb">
                             <div class="row m-0 reviewrow p-3 px-0 border-bottom">
 
@@ -197,31 +205,34 @@
                             </div>
                         </c:forEach>   
                         <form action="feedback" method="post">
-                            <c:if test="${xn == 1}">
-                            
+                            <c:if test="${xn == 1}">                       
+                                <input type="hidden" name="productfeebid" value="${product.pId}">
+
                                 <input type="hidden" name="pid" value="${product.pId}">
                                 <input type="hidden" name="userbe" value="${sessionScope.acc.uId}">
                                 <input type="hidden" name="xn" value="${product.pId}">
-                                 <input type="hidden" name="xd" value="${product.pId}">
-                                
+                                <input type="hidden" name="xd" value="${product.pId}">
+
                                 <div class="form-group">
                                     <label for="rating">Đánh giá:</label>
                                     <div>
-                                        <input type="radio" id="star5" name="vote" value="5" />
-                                        <label for="star5">5 sao</label>
-                                        <input type="radio" id="star4" name="vote" value="4" />
-                                        <label for="star4">4 sao</label>
-                                        <input type="radio" id="star3" name="vote" value="3" />
-                                        <label for="star3">3 sao</label>
-                                        <input type="radio" id="star2" name="vote" value="2" />
-                                        <label for="star2">2 sao</label>
                                         <input type="radio" id="star1" name="vote" value="1" />
-                                        <label for="star1">1 sao</label>
+                                        <label for="star1">  <i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star2" name="vote" value="2" />
+                                        <label for="star2"> <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star3" name="vote" value="3" />
+                                        <label for="star3"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star4" name="vote" value="4" />
+                                        <label for="star4"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></label>
+                                        <input type="radio" id="star5" name="vote" value="5" />
+                                        <label for="star5"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></label>
+
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="comment">Nhận xét:</label>
-                                    <textarea id="comment" name="comment"></textarea>
+                                    <textarea id="comment" name="comment" rows="5" cols="5" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Gửi đánh giá" />

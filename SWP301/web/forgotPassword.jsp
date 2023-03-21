@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
     <head>
@@ -60,7 +61,7 @@
                         <h2>Quên mật khẩu?</h2>
                         <p>Thay đổi mật khẩu của bạn trong ba bước đơn giản. Điều này sẽ giúp bạn bảo mật mật khẩu của mình!</p>
                         <ol class="list-unstyled">
-                            <li><span class="text-primary text-medium">1. </span>Nhập địa chỉ email của bạn vào bên dưới.</li>
+                            <li><span class="text-primary text-medium">1. </span>Nhập địa chỉ email và tên đăng nhập của bạn vào bên dưới.</li>
                             <li><span class="text-primary text-medium">2. </span>Hệ thống của chúng tôi sẽ gửi mã OTP vào email của bạn</li>
                             <li><span class="text-primary text-medium">3. </span>Nhập OTP trên trang tiếp theo</li>
                         </ol>

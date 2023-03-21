@@ -168,8 +168,10 @@
            
         <div class="page-content page-container" id="page-content">
             <div class="padding">
-                <div class="row container d-flex justify-content-center">
-                    <div class="col-xl-12 col-md-12">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 container d-flex justify-content-center">
+                    
+                    <div class="col-xl-12 col-md-11">
                         <div class="card user-card-full">
                             <div class="row m-l-0 m-r-0">
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
