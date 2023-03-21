@@ -72,19 +72,8 @@
                                 <!-- body right -->
                                 <div class="body_right">
                                     <div>
-                                        <!-- title -->
-                                        <div class="body_right-title">
-                                            <div class="body_right-title-1">
-                                                <i class="fa-solid fa-cart-shopping  body_right-title_icon"></i>
-                                                <p id="body_right-title">Chi tiết đơn hàng</p>
-                                            </div>
-                                            <a class="body_right-edit_button" href="#">
-                                                Đặt lại đơn hàng
-                                            </a>
-                                            <a class="body_right-edit_button" href="">
-                                                Huy Don Hang
-                                            </a>
-                                        </div>
+                                      
+                                        
                                         <!-- content -->
                                         <div class="body_right-order_info">
 
