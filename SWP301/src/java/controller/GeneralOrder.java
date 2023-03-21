@@ -88,15 +88,12 @@ public class GeneralOrder extends HttpServlet {
         List<Product> list4 = d.sanPhamDaXem(u.getuId());
         request.setAttribute("sanPhamDaXem", list4);
         request.setAttribute("soSanPhamDaXem", list4.size());
-        List<OrderLog> list5 = d.getAllOrderLogByUser(u.getuId());
+        List<OrderLog> list5 = d.thongBao(u.getuId());
         int thongBao = 0;
-        for (OrderLog orderLog : list5) {
-            if(orderLog.getConfirm() == false)
-                thongBao++;
-        }
+        
         ThanhNgang thanhNgang = new ThanhNgang();
         thanhNgang.doPost(request, response);
-        request.setAttribute("thongBao", thongBao);
+        request.setAttribute("thongBao", list5.size());
         request.setAttribute("xemThongBao", list5);
               
         

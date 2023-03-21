@@ -2262,6 +2262,30 @@ public class DAO extends DBContext {
         return list;
 
     }
+    public List<OrderLog> thongBao(int uId) {
+        String sql = "select ol.OrderLogId, od.OID,  ol.StatusID, ol.Date, ol.Confirm from [Order] od join OrderLog ol on od.OID = ol.OID where od.UID =? and  ol.Confirm= 0 Order By ol.OrderLogId desc";
+        List<OrderLog> list = new ArrayList<>();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderLog ol = new OrderLog();
+                ol.setLogID(rs.getInt(1));
+                ol.setOrder(getOrderById(rs.getInt(2)));
+                ol.setStatusId(rs.getInt(3));
+                ol.setDate(rs.getString(4));
+                ol.setConfirm(rs.getBoolean(5));
+                list.add(ol);
+
+            }
+            return list;
+        } catch (Exception e) {
+        }
+
+        return list;
+
+    }
 
     public void editOrder(int oid, int status, String Date) {
         String query = "INSERT INTO [dbo].[OrderLog]\n"
@@ -2487,5 +2511,20 @@ public class DAO extends DBContext {
 
         }
     }
-
+    public void daXemThongBao(int logId){
+        String sql = "update OrderLog set Confirm = 1 where OrderLogId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, logId);
+            st.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    public static void main(String[] args) {
+        DAO d = new DAO();
+        
+        System.out.println("" + d.thongBao(1).size());
+    }
 }
+
+
