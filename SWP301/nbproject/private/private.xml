@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/SWPP/SWP301/web/thankyou.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/newPassword.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/profilee.jsp</file>
@@ -37,6 +38,21 @@
             <file>file:/C:/SWPP/SWP301/src/java/controller/AddCartCookie.java</file>
             <file>file:/C:/SWPP/SWP301/web/hisOrder.jsp</file>
             <file>file:/C:/SWPP/SWP301/web/detail.jsp</file>
+=======
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/Export.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/Feedback.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/model/Image.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/HisOrder.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/PayServlet.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/model/Guest.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/model/FeedBack.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/hisOrder.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/detail.jsp</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/DashContoller.java</file>
+            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/index.jsp</file>
+>>>>>>> main
         </group>
     </open-files>
 </project-private>

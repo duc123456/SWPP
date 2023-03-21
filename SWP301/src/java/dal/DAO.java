@@ -2205,7 +2205,7 @@ public class DAO extends DBContext {
     }
 
     public List<Product> sanPhamDaXem(int uId) {
-        String sql = "select LogId PId from ProductLog where UId = ? and Action = 0 Order By LogId desc";
+        String sql = "select LogId, PId from ProductLog where UId = ? and Action = 0 Order By LogId desc";
         List<Product> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -2523,6 +2523,7 @@ public class DAO extends DBContext {
         }
     }
 
+
     public List<ProductLog> getLogAddProduct(String from, String to) {
 
         List<ProductLog> list = new ArrayList<>();
@@ -2561,4 +2562,5 @@ public class DAO extends DBContext {
        long a = d.totalgetPriceStock("2022-05-21", "2022-06-21", null);
         System.out.println(a);
     }
+
 }
