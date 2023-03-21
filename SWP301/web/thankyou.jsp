@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-        <style>
+    <style>
         body {
             background-color: #f9f9fa
         }
@@ -145,13 +145,23 @@
             transition: all 0.3s ease-in-out;
         }
 
+        h1 {
+            color: red;
+            font-family: Arial;
+            font-size: 36px; /* tăng kích thước phông chữ */
+            text-align: center; /* canh giữa phần tử h1 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* set chiều cao của phần tử h1 bằng chiều cao của màn hình */
+        }
 
 
     </style>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Thank you</title>
+        <title> Cảm ơn đã mua hàng</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -204,7 +214,7 @@
 }
 </style>
     </head>
-    
+
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
         
@@ -226,7 +236,5 @@
         </div>
     </section>
         <jsp:include page="footer.jsp"></jsp:include>
-       
-        
-
+     
 </html>

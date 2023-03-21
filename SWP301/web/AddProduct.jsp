@@ -98,7 +98,7 @@
                                             </div>
                                             
                                             <div class="form-group row">
-                                                <label class="col-form-label col-md-2">Năm Bảo Hành</label>
+                                                <label class="col-form-label col-md-2">Bảo Hành(Tháng)</label>
                                                 <div class="col-md-10">
                                                     <input name="insurance" type="text" class="form-control" pattern="[1-9]\d*" required>
                                                 </div>

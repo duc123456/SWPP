@@ -358,7 +358,7 @@
                                     <c:if test="${requestScope.endP != 1}">
                                         <c:if test="${requestScope.xd != 1}">
                                             <c:forEach begin="1" end="${endP}" var="pa">
-                                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}" class="page-link">${pa}</a></li>   
                                                 </c:forEach>
 
                                         </c:if>
