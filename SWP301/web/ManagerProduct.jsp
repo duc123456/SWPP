@@ -145,7 +145,7 @@
                                                         <td>
 
                                                             <h2 class="table-avatar">
-                                                                <a href="detail?pid=${o.pId}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="ProductImage/${o.imageDf}"></a>
+                                                                <a href="detail?pid=${o.pId}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="Image/${o.imageDf}"></a>
                                                                 <a href="detail?pid=${o.pId}">${o.name} <span>${o.pId}</span></a>
                                                             </h2>
                                                         </td>

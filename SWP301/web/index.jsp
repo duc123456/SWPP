@@ -292,7 +292,7 @@
                                         <div class="bg-white p-2 shadow-md">
                                             <div class="text-center" style="min-height: 176px !important;">
 
-                                                <img  src="ProductImage/${p.imageDf}" alt="">
+                                                <img  src="Image/${p.imageDf}" alt="">
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
