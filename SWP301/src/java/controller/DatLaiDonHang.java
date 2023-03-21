@@ -88,20 +88,13 @@ public class DatLaiDonHang extends HttpServlet {
         }
 
         
-       String datLai = "Duoc phep";
+       
         if (orderDetail != null) {
             for (OrderDetail od : orderDetail) {
 
                 if (txt.isEmpty()) {
                     txt = od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
-                    if(od.getAmount() > od.getProduct().getQuantity() && od.getProduct().getQuantity() > 0){
-                        datLai = "So luong cua tivi " + od.getProduct().getName() + " nhieu hon so luong trong kho."
-                                + " Vui long dat so luong san pham <" + od.getProduct().getQuantity();
-                    }
-                     if(od.getProduct().getQuantity() == 0){
-                        datLai = "Tivi " + od.getProduct().getName() + " da het.";
-                               
-                    }
+                    
                 } else {
                     Cart c = new Cart(txt);
                     session.setAttribute("cart", c);
@@ -109,14 +102,7 @@ public class DatLaiDonHang extends HttpServlet {
 
                     txt = c.cartToTxt(c);
                     txt += "/" + od.getProduct().getpId() + ":" + od.getAmount() + ":" + od.getPrice();
-                     if(od.getAmount() > od.getProduct().getQuantity() && od.getProduct().getQuantity() > 0){
-                        datLai = "So luong cua tivi " + od.getProduct().getName() + " nhieu hon so luong trong kho."
-                                + " Vui long dat so luong san pham <" + od.getProduct().getQuantity();
-                    }
-                     if(od.getProduct().getQuantity() == 0){
-                        datLai = "Tivi " + od.getProduct().getName() + " da het.";
-                               
-                    }
+                     
 
                 }
             }
@@ -126,10 +112,8 @@ public class DatLaiDonHang extends HttpServlet {
         Cookie c = new Cookie(cart, txt);
         c.setMaxAge(2 * 24 * 60 * 60);
         response.addCookie(c);
-        if(!datLai.equals("Duoc phep")){
-            request.setAttribute("thongBao", datLai);
-        }
-        request.getRequestDispatcher("cartsession");
+        
+        request.getRequestDispatcher("cartsession").forward(request, response);
        // response.sendRedirect("cartsession");//thay cai duoi
         //request.getRequestDispatcher("shop").forward(request, response);
         } catch (NumberFormatException e) {
