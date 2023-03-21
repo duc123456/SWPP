@@ -14,16 +14,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
+import model.ProductLog;
 import model.User;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name="AddStaff", urlPatterns={"/addstaff"})
-public class AddStaff extends HttpServlet {
+@WebServlet(name="ImportThongke", urlPatterns={"/import"})
+public class ImportThongke extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,17 +38,13 @@ public class AddStaff extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
-            String role  = request.getParameter("role");
-            role.trim();
-            out.print(role);
-            int role_ = 0;
-            
-                    role_ =Integer.parseInt(role);
-                    
-                    User u = new User();
-                    u.setRoleId(role_);
-                    out.print(u.getRoleId());
-            out.println(role_);
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ImportThongke</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ImportThongke at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
             out.println("</html>");
         }
     } 
@@ -64,56 +60,24 @@ public class AddStaff extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-        
-        String username = request.getParameter("name");
-        String fname = request.getParameter("fname");
-        String email = request.getParameter("email");
-       
-        String role  = request.getParameter("role");
-        
-        String pass = request.getParameter("pass");
-        String repass = request.getParameter("repass");
         DAO d = new DAO();
-        User u = d.checkUsername(username);
-        if ((u != null) || (d.existedUser(username)) ) {
-            String ms = "Tài khoản đã tồn tại";
-            request.setAttribute("ms", ms);
-            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        request.setAttribute("from", from);
+        request.setAttribute("to", to);
         
-        }else if (d.getUserbyEmail(email) != null){
-            
-        String ms = "Email đã được đăng kí với tài khoản khác";
-            request.setAttribute("ms", ms);
-            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
-        }else if (!pass.equalsIgnoreCase(repass)){
-            
-        String ms = "Mật khẩu không khớp";
-            request.setAttribute("ms", ms);
-            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        //ep string acc sang user
+        User a = (User) session.getAttribute("acc");
+        //bat buoc phai dang nhap 
+        if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //neu role = 1 (Admin) thi moi duoc vao manager 
+        }else if (a.getRoleId()==2){
+        List<ProductLog> list = d.getLogAddProduct(from,to); 
+        request.setAttribute("listPL", list);
+        request.getRequestDispatcher("DashImport.jsp").forward(request, response);
         }
-        
-        else {
-            Date date = new Date();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-            simpleDateFormat.applyPattern("yyyy-MM-dd");
-            String format = simpleDateFormat.format(date);
-            int role_ = 1;
-            role_=    Integer.parseInt(role);
-//            PrintWriter out = response.getWriter();
-//            out.print(role_);
-             u = new User();
-            u.setRoleId(role_);
-            u.setfName(fname);
-            u.setUsername(username);
-            u.setEmail(email);
-            u.setPass(pass);
-            u.setCreateDate(format);
-            u.setModifyDate(format);
-            d.register(u);
-            
-            response.sendRedirect("user");
-     }
     } 
 
     /** 

@@ -374,11 +374,11 @@
             <div class="row">
                 <c:if test="${requestScope.from==null}" >
                     
-                    <a href="export">Xuất excel</a>
+                    <a href="export?xd=1">Xuất excel</a>
                 </c:if>
                 <c:if test="${requestScope.from!=null}" >
                     
-                    <a href="export?from=${requestScope.from}&&to=${requestScope.to}">Xuất excel từ ${requestScope.from} ngày đến ${requestScope.to} ngày</a>
+                    <a href="export?xd=1&&from=${requestScope.from}&&to=${requestScope.to}">Xuất excel từ ${requestScope.from} ngày đến ${requestScope.to} ngày</a>
                 </c:if>
                 <div class="col-12">
                     <div class="card mb-3 mb-md-4">
