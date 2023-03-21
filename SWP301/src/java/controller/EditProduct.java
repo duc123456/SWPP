@@ -148,17 +148,9 @@ public class EditProduct extends HttpServlet {
                         fileName = dao.getProductByID(pId).getImageDf();
                     }
                     if (fileName != null && fileName.length() > 0) {
-                        String filePath = fullSavePath + File.separator + fileName;
-
-                        // Ghi vào file.
-                        
-                              part.write(filePath);
-                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-                            
-                        
-                     
-                          
-                        
+                        String filePath = fullSavePath + File.separator + fileName;    
+                            part.write(filePath);
+                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
                     }
 
                 }

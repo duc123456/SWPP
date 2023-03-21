@@ -3,15 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/menu.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerProduct.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/addStaff.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/ManagerOrder.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/ListProduct.java</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/MenuManagerOrder.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/src/java/controller/SearchCheckBox.java</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/index.jsp</file>
-            <file>file:/D:/Desktop/GitSWPP/SWPP/SWP301/web/Dash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/thankyou.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/newPassword.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/profilee.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/HuyDonHang.java</file>
+            <file>file:/C:/SWPP/SWP301/web/signup.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/cart.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/login.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/CartSession.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/LoadControl.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DashContoller.java</file>
+            <file>file:/C:/SWPP/SWP301/web/forgotPassword.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/AddProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/FindStatus.java</file>
+            <file>file:/C:/SWPP/SWP301/web/EnterOtp.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/orderdetail.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/EditOrder.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/dal/DAO.java</file>
+            <file>file:/C:/SWPP/SWP301/web/ManagerOrder.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/ManagerProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/EditProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/AddProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/web/Dash.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/EditProduct.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/index.jsp</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/DeleteProduct.java</file>
+            <file>file:/C:/SWPP/SWP301/src/java/controller/AddCartCookie.java</file>
+            <file>file:/C:/SWPP/SWP301/web/hisOrder.jsp</file>
+            <file>file:/C:/SWPP/SWP301/web/detail.jsp</file>
 
         </group>
     </open-files>

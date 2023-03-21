@@ -158,16 +158,75 @@
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <style>
+.thankyou-wrapper{
+  width:100%;
+  height:auto;
+  margin:auto;
+  background:#ffffff; 
+  padding:10px 0px 50px;
+}
+.thankyou-wrapper h1{
+  font:100px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#333333;
+  padding:0px 10px 10px;
+}
+.thankyou-wrapper p{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#333333;
+  padding:5px 10px 10px;
+}
+.thankyou-wrapper a{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#ffffff;
+  display:block;
+  text-decoration:none;
+  width:250px;
+  background:#E47425;
+  margin:10px auto 0px;
+  padding:15px 20px 15px;
+  border-bottom:5px solid #F96700;
+}
+.thankyou-wrapper a:hover{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#ffffff;
+  display:block;
+  text-decoration:none;
+  width:250px;
+  background:#F96700;
+  margin:10px auto 0px;
+  padding:15px 20px 15px;
+  border-bottom:5px solid #F96700;
+}
+</style>
     </head>
     
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
         
-        <h1>${mess}</h1>
+        <section class="login-main-wrapper">
+      <div class="main-container">
+          <div class="login-process">
+              <div class="login-main-container">
+                  <div class="thankyou-wrapper">
+                      <h1><img src="http://montco.happeningmag.com/wp-content/uploads/2014/11/thankyou.png" alt="thanks" /></h1>
+                        <p>Cảm ơn bạn đã đặt hàng, bạn có thể theo dõi đơn hàng trong phần thông tin</p>
+                        <a style="background-color: #dc3545; border-bottom: 0px" href="listproduct">Quay lại trang chủ</a>
+                       
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+            <div class="clr"></div>
+        </div>
+    </section>
+        <jsp:include page="footer.jsp"></jsp:include>
        
-        <c:if test="${mess.equals('Cam On')}">
-            <a href=""><p>Xem Don Hang</p></a>
-            <a href="listproduct"><p>Quay Lai Trang Chu</p></a>
-        </c:if>
+        
 
 </html>
