@@ -19,7 +19,9 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <style>
-       
+        .dangnhap {
+           
+        }
     </style>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
@@ -31,7 +33,7 @@
                     <div class="row">
                     
                         <h2 class="text-start">ĐĂNG NHẬP</h2>
-                        <ul>
+                        <ul class="dangnhap">
                             <li> <a href="#"><i class="bi bi-house-door"></i>Trang chủ</a></li>
                             <li><i class="bi bi-chevron-double-right pe-2"></i>ĐĂNG NHẬP</li>
                         </ul>
