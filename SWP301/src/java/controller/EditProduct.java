@@ -94,8 +94,9 @@ public class EditProduct extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String pid = request.getParameter("pid");
-
-        String xd = request.getParameter("xd");
+        try {
+            int pId = Integer.parseInt(pid);
+             String xd = request.getParameter("xd");
         DAO dao = new DAO();
 
         Date date = new Date();
@@ -112,9 +113,8 @@ public class EditProduct extends HttpServlet {
             String presolution = request.getParameter("resolution");
             String pinsurance = request.getParameter("insurance");
 
-
             String ptid = request.getParameter("tid");
-            String pimage = request.getParameter("image");
+            String pimage = request.getParameter("file");
             String psize = request.getParameter("size");
             String pquantity = request.getParameter("quantity");
             String pdiscount = request.getParameter("discount");
@@ -122,13 +122,49 @@ public class EditProduct extends HttpServlet {
             HttpSession session = request.getSession();
             User a = (User) session.getAttribute("acc");
 
-            if (pimage == null || pimage == "") {
-                Product p = dao.getProductByID(Integer.parseInt(pid));
-                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+            /// Xu Ly Anh
+            String appPath = request.getServletContext().getRealPath("");
+            appPath = appPath.replace('\\', '/');
+
+            // Thư mục để save file tải lên.
+            String fullSavePath = null;
+            if (appPath.endsWith("/")) {
+                fullSavePath = appPath + SAVE_DIRECTORY;
             } else {
-                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                fullSavePath = appPath + "/" + SAVE_DIRECTORY;
             }
 
+            // Tạo thư mục nếu nó không tồn tại.
+            File fileSaveDir = new File(fullSavePath);
+            if (!fileSaveDir.exists()) {
+                fileSaveDir.mkdir();
+            }
+
+            // Danh mục các phần đã upload lên (Có thể là nhiều file).
+            for (Part part : request.getParts()) {
+                if (part.getName().equals("file")) {
+                    String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
+                    if(pimage == null || pimage.equals("")){
+                        fileName = dao.getProductByID(pId).getImageDf();
+                    }
+                    if (fileName != null && fileName.length() > 0) {
+                        String filePath = fullSavePath + File.separator + fileName;
+
+                        // Ghi vào file.
+                        
+                              part.write(filePath);
+                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                            
+                        
+                     
+                          
+                        
+                    }
+
+                }
+            }
+
+            //////////////
         } else {
             Product p = dao.getProductByID(Integer.parseInt(pid));
             String pquantity = request.getParameter("quantity");
@@ -153,6 +189,10 @@ public class EditProduct extends HttpServlet {
         }
 
         response.sendRedirect("managerProduct");
+        } catch (Exception e) {
+        }
+
+       
 
     }
 

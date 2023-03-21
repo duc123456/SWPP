@@ -42,14 +42,12 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card">
-<<<<<<< HEAD
-                                    <form action="editproduct" method = "post" enctype="multipart/form-data">
-=======
+
                                     <!-- Edit all -->
                                 <c:if test="${requestScope.xd != 1}">
                                     
-                                    <form action="editproduct" method = "post">
->>>>>>> main
+                                    <form action="editproduct" method = "post" enctype="multipart/form-data">
+
                                     <c:set var="details" value="${requestScope.details}"/>
                                     <div class="card-header">
                                         <h4 class="card-title">Sửa Sản Phẩm</h4>
