@@ -45,7 +45,7 @@
                                         <div class="col-xl-8 col-lg-7 col-md-10 py-5 mx-auto">
                                             <div class="login-card bg-white shadow-md p-5">
                                                 <h1 style="color: red;size: 12px">${requestScope.ms}</h1>
-                                            <h4 class="text-center mb-5">Nhập thông tin đăng kí</h4>
+                                            <h4 class="text-center mb-4">Nhập thông tin đăng kí</h4>
                                             <div class="form-row row">
                                                 <div class="col-md-4 pt-2">
                                                     <label for="">Tên</label>                        
@@ -60,7 +60,7 @@
 
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input name="username" type="text" placeholder="Nhập tài khoản" class="form-control">
+                                                    <input name="username" type="text" placeholder="Nhập tài khoản" class="form-control" required="">
                                                 </div>
                                             </div>
 
@@ -79,7 +79,7 @@
 
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input name="pass" type="text" placeholder="Nhập mật khẩu" class="form-control">
+                                                    <input name="pass" type="text" placeholder="Nhập mật khẩu" class="form-control" required="">
                                                 </div>
                                             </div>
                                             <div class="form-row row">
@@ -88,7 +88,7 @@
 
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <input name="repass" type="text" placeholder="Nhập lại mật khẩu" class="form-control">
+                                                    <input name="repass" type="text" placeholder="Nhập lại mật khẩu" class="form-control" required="">
                                                 </div>
                                             </div>
                                             <div class="form-row row">
@@ -109,97 +109,100 @@
                 </div>
             </div>
         </div>
-                    </bod>
-                    <jsp:include page="footer.jsp"></jsp:include>
-                    <script src="assets/js/jquery-3.2.1.min.js"></script>
-                    <script src="assets/js/popper.min.js"></script>
-                    <script src="assets/js/bootstrap.bundle.min.js"></script>
-                    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
-                    <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
-                    <script src="assets/js/script.js"></script>
+    </bod>
+    <jsp:include page="footer.jsp"></jsp:include>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="assets/plugins/testimonial/js/owl.carousel.min.js"></script>
+    <script src="assets/js/script.js"></script>
 
 
-                    <script>
-                        $(document).ready(function () {
-                            var pass = $("input[name='pass']");
-                            var repass = $("input[name='repass']");
-                            var icon = $("<i class='fa'></i>");
+    <script>
+        $(document).ready(function () {
+            var pass = $("input[name='pass']");
+            var repass = $("input[name='repass']");
+            var icon = $("<i class='fa'></i>");
 
-                            repass.after(icon);
+            repass.after(icon);
 
-                            repass.on("keyup", function () {
-                                if (repass.val() === pass.val()) {
-                                    icon.removeClass().addClass("fa fa-check text-success");
-                                } else {
-                                    icon.removeClass().addClass("fa fa-times text-danger");
-                                }
-                            });
-                        });
-                    </script>
-                    <script>
-                        $(document).ready(function () {
-                            var pass = $("input[name='pass']");
-                            var repass = $("input[name='repass']");
-                            var error = $("<p class='text-danger'>Mật khẩu phải dài ít nhất 8 ký tự và chứa ít nhất một chữ cái viết hoa.</p>");
-                            var match = $("<p class='text-danger'>Mật khẩu không khớp</p>");
+            repass.on("keyup", function () {
+                if (repass.val() === pass.val()) {
+                    icon.removeClass().addClass("fa fa-check text-success");
+                } else {
+                    icon.removeClass().addClass("fa fa-times text-danger");
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            var pass = $("input[name='pass']");
+            var repass = $("input[name='repass']");
+            var error = $("<p class='text-danger'>Mật khẩu phải dài ít nhất 8 ký tự và chứa ít nhất một chữ cái viết hoa.</p>");
+            var match = $("<p class='text-danger'>Mật khẩu không khớp</p>");
 
-                            pass.after(error);
-                            error.hide();
-                            repass.after(match);
-                            match.hide();
+            pass.after(error);
+            error.hide();
+            repass.after(match);
+            match.hide();
 
-                            pass.on("keyup", function () {
-                                if (pass.val().length < 8 || !/[A-Z]/.test(pass.val())) {
-                                    error.show();
-                                } else {
-                                    error.hide();
-                                }
-                            });
+            pass.on("keyup", function () {
+                if (pass.val().length < 8 || !/[A-Z]/.test(pass.val())) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
 
-                            repass.on("keyup", function () {
-                                if (repass.val() !== pass.val()) {
-                                    match.show();
-                                } else {
-                                    match.hide();
-                                }
-                            });
-                        });
-                    </script>
+            repass.on("keyup", function () {
+                if (repass.val() !== pass.val()) {
+                    match.show();
+                } else {
+                    match.hide();
+                }
+            });
+        });
+    </script>
 
-                    <script>
-                        $(document).ready(function () {
-                            var phone = $("input[name='phone']");
-                            var error = $("<p class='text-danger'>Số điện thoại phải có 10 số</p>");
+    <script>
+        $(document).ready(function () {
+            var phone = $("input[name='phone']");
+            var error = $("<p class='text-danger'>Số điện thoại phải có 10 số</p>");
 
-                            phone.after(error);
-                            error.hide();
+            phone.after(error);
+            error.hide();
 
-                            phone.on("keyup", function () {
-                                if (!/^\d{10}$/.test(phone.val())) {
-                                    error.show();
-                                } else {
-                                    error.hide();
-                                }
-                            });
-                        });
-                    </script>
-                    <script>
-                        $(document).ready(function () {
-                            $('regis-btn').click(function (e) {
-                                var password = $('input[name="pass"]').val();
-                                var repassword = $('input[name="repass"]').val();
+            phone.on("keyup", function () {
+                if (!/^\d{10}$/.test(phone.val())) {
+                    error.show();
+                } else {
+                    error.hide();
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $('.regis-btn').click(function (e) {
+                var password = $('input[name="pass"]').val();
+                var repassword = $('input[name="repass"]').val();
 
-                                if (password.length < 8 || !/[A-Z]/.test(password)) {
-                                    alert('Mật khẩu phải dài ít nhất 8 ký tự và chứa ít nhất một chữ cái viết hoa.');
-                                    e.preventDefault();
-                                } else if (password !== repassword) {
-                                    alert('Mật khẩu và Xác nhận mật khẩu phải khớp nhau.');
-                                    e.preventDefault();
-                                }
-                            }
-                            });
-                        });
-                    </script>
+                if (password.length < 8 || !/[A-Z]/.test(password)) {
+                    alert('Mật khẩu phải dài ít nhất 8 ký tự và chứa ít nhất một chữ cái viết hoa.');
+                    e.preventDefault();
+                } else if (password !== repassword) {
+                    alert('Mật khẩu và Xác nhận mật khẩu phải khớp nhau.');
+                    e.preventDefault();
+                }
+            }
+            });
+        });
+    </script>
 
 
-                    </html>
+
+
+</html>

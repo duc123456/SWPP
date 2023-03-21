@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
     <!-- Title -->
-    <title>Dashboard | Graindashboard UI Kit</title>
+    <title>Thống kê</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -108,7 +108,7 @@
         <div class="py-4 px-3 px-md-4">
 
             <div class="mb-3 mb-md-4 d-flex justify-content-between">
-                <div class="h3 mb-0">Dashboard</div>
+                <div class="h3 mb-0">Biểu đồ</div>
             </div>
             <form action="dash">
                 <input type="date" name="from" value="${requestScope.from}"/>

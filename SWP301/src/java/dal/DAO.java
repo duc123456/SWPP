@@ -1318,7 +1318,7 @@ public class DAO extends DBContext {
             }
         }
 
-        return "Cam On";
+        return "CẢM ƠN";
 
     }
 

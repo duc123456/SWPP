@@ -26,7 +26,7 @@ import model.User;
  *
  * @author Dell
  */
-@WebServlet(name = "ListProduct", urlPatterns = {"/listproduct"})
+@WebServlet(name = "ListProduct", urlPatterns ={"/listproduct"})
 public class ListProduct extends HttpServlet {
 
     /**
@@ -75,10 +75,6 @@ public class ListProduct extends HttpServlet {
         int index = Integer.parseInt(indexPage);
 
         List<Product> list1 = d.pagingProduct(index);
-
-        
-        
-
 
         String cat1 = request.getParameter("cat1");
         if (cat1 != null) {

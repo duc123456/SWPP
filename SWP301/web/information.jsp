@@ -268,7 +268,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Số Điện Thoại</p>
-                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone()}" class="form-control">
+                                                    <input type="text"  name="so" value="${sessionScope.acc.getPhone().substring(0,10)}" class="form-control">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <p class="m-b-10 f-w-600">Chú Ý</p>

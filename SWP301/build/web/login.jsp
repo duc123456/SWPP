@@ -19,19 +19,21 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <style>
-       
+        .dangnhap {
+           
+        }
     </style>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
 
             <!--  ************************* Page Title Starts Here ************************** -->
-            <div class="page-nav no-margin row">
+            <div class="page-nav row">
                 
                 <div class="container">
                     <div class="row">
-                        <h3 style="color: red">${requestScope.ms}</h3>
+                    
                         <h2 class="text-start">ĐĂNG NHẬP</h2>
-                        <ul>
+                        <ul class="dangnhap">
                             <li> <a href="#"><i class="bi bi-house-door"></i>Trang chủ</a></li>
                             <li><i class="bi bi-chevron-double-right pe-2"></i>ĐĂNG NHẬP</li>
                         </ul>
@@ -47,7 +49,8 @@
                         <div class="col-xl-6 col-lg-7 col-md-10 py-5 mx-auto">
                             <form class="login-card bg-white shadow-md p-5" action="login" method="post">
 
-                                <h4 class="text-center mb-5">Nhập thông tin đăng nhập</h4>
+                                <h4 class="text-center mb-4">Nhập thông tin đăng nhập</h4>
+                                  <h4 class="text-center" style="color: red;padding-top: 0px">${requestScope.ms}</h4>
                                 <div class="form-row row">
                                     <div class="col-md-4 pt-2">
                                         <label class="float-end" for="">Tài khoản</label>

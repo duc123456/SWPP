@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-        <style>
+    <style>
         body {
             background-color: #f9f9fa
         }
@@ -145,29 +145,96 @@
             transition: all 0.3s ease-in-out;
         }
 
+        h1 {
+            color: red;
+            font-family: Arial;
+            font-size: 36px; /* tăng kích thước phông chữ */
+            text-align: center; /* canh giữa phần tử h1 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* set chiều cao của phần tử h1 bằng chiều cao của màn hình */
+        }
 
 
     </style>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title> Thank you</title>
+        <title> Cảm ơn đã mua hàng</title>
         <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="assets/images/fav.jpg">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <style>
+.thankyou-wrapper{
+  width:100%;
+  height:auto;
+  margin:auto;
+  background:#ffffff; 
+  padding:10px 0px 50px;
+}
+.thankyou-wrapper h1{
+  font:100px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#333333;
+  padding:0px 10px 10px;
+}
+.thankyou-wrapper p{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#333333;
+  padding:5px 10px 10px;
+}
+.thankyou-wrapper a{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#ffffff;
+  display:block;
+  text-decoration:none;
+  width:250px;
+  background:#E47425;
+  margin:10px auto 0px;
+  padding:15px 20px 15px;
+  border-bottom:5px solid #F96700;
+}
+.thankyou-wrapper a:hover{
+  font:26px Arial, Helvetica, sans-serif;
+  text-align:center;
+  color:#ffffff;
+  display:block;
+  text-decoration:none;
+  width:250px;
+  background:#F96700;
+  margin:10px auto 0px;
+  padding:15px 20px 15px;
+  border-bottom:5px solid #F96700;
+}
+</style>
     </head>
-    
+
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
         
-        <h1>${mess}</h1>
-       
-        <c:if test="${mess.equals('Cam On')}">
-            <a href=""><p>Xem Don Hang</p></a>
-            <a href="listproduct"><p>Quay Lai Trang Chu</p></a>
-        </c:if>
-
+        <section class="login-main-wrapper">
+      <div class="main-container">
+          <div class="login-process">
+              <div class="login-main-container">
+                  <div class="thankyou-wrapper">
+                      <h1><img src="http://montco.happeningmag.com/wp-content/uploads/2014/11/thankyou.png" alt="thanks" /></h1>
+                        <p>Cảm ơn bạn đã đặt hàng, bạn có thể theo dõi đơn hàng trong phần thông tin</p>
+                        <a style="background-color: #dc3545; border-bottom: 0px" href="listproduct">Quay lại trang chủ</a>
+                       
+                        <div class="clr"></div>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+            </div>
+            <div class="clr"></div>
+        </div>
+    </section>
+        <jsp:include page="footer.jsp"></jsp:include>
+     
 </html>
