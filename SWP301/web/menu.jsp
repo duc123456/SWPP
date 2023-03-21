@@ -145,59 +145,8 @@
                 </div>
             </div>   
         </div>
-        <div class="menu-bar bg-danger container-fluid border-top">
-            <div class="container">
-                <h6 class="d-md-none text-white p-3 mb-0 fw-bold">Menu 
-                    <a class="text-white" data-bs-target="#menu" data-bs-toggle="collapse" aria-expanded="false" aria-controls="menu"><i class="bi cp bi-list float-end fs-1 dmji"></i></a> 
-                </h6>
-                <ul id="menu" class=" navcol fw-bold d-none d-md-inline-flex">
-                    <li class="p-21 px-4"><a class="text-white" href="listproduct">Trang chủ</a></li>
-                    <li class="p-21 px-4"><a class="text-white" href="">Thương hiệu<i class="bi pt-2 bi-chevron-down"></i></a> 
-                        <div class="inner-div">
-                            <ul class="">
-                                <c:forEach items="${requestScope.cate}" var="ca">
-                                    <li><a href="listproduct?cat1=${ca.cid}">${ca.getcName()}</a></li>
-                                    </c:forEach>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li class="p-21 px-4"><a class="text-white" href="">Loại TV<i class="bi pt-2 bi-chevron-down"></i></a> 
-
-                        <div class="inner-div">
-                            <ul class="">
-                                <c:forEach items="${requestScope.type}" var="ty">
-                                    <li><a href="listproduct?type=${ty.tId}">${ty.gettName()}</a></li>
-                                    </c:forEach>
-
-
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="p-21 px-4"><a class="text-white" href="searchproduct?most=1">Sản phẩm bán chạy</a> 
-                        <!--                            <div class="inner-div">
-                                                        <ul class="">
-                                                            <li><a href="index.jsp">Home</a></li>
-                                                            <li><a href="about.jsp">About US</a></li>
-                                                            <li><a href="contact.jsp">Contact US</a></li>
-                                                            <li><a href="product.jsp">Product Listing</a></li>
-                                                            <li><a href="detail.jsp">Product Detail</a></li>
-                                                            <li><a href="login.jsp">login</a></li>
-                                                            <li><a href="signup.jsp">Sing Up</a></li>
-                                                            <li><a href="cart.jsp">Cart</a></li>
-                                                        </ul>
-                                                    </div>-->
-                    </li>
-                    <!--                        <li class="p-21 px-4"><a class="text-white" href=""> <i class="bi pt-2 bi-chevron-down"></i></a></li>-->
-                    <li class="p-21 px-4"><a class="text-white" href="">Giảm giá sâu</a></li>
-                    <li class="p-21 px-4"><a class="text-white" href="">Quà tặng</a></li>
-                    <li class="p-21 px-4"><a class="text-white" href="">Liên hệ</a></li>
-                    <li class="p-21 px-4"><a class="text-white" href=""> </a></li>
-
-
-                </ul>
-
-            </div>
+        <div class="menu-bar bg-danger container-fluid border-top" style="padding: 10px">
+            
         </div>
     </header>
 

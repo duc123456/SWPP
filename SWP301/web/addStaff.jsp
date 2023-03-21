@@ -143,7 +143,7 @@
     <script>
         $(document).ready(function () {
             var email = $("input[name='email']");
-            var error = $("<p class='text-danger'>Please enter a valid email</p>");
+            var error = $("<p class='text-danger'>Vui lòng nhập email hợp lệ</p>");
 
             email.after(error);
             error.hide();

@@ -4,15 +4,19 @@
  */
 package controller;
 
+import static controller.ChangeAvarta.SAVE_DIRECTORY;
 import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import model.ProductLog;
@@ -23,8 +27,14 @@ import model.User;
  * @author nhant
  */
 @WebServlet(name = "AddProduct", urlPatterns = {"/addproduct"})
-public class AddProduct extends HttpServlet {
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+       maxFileSize = 1024 * 1024 * 10, // 10MB
+       maxRequestSize = 1024 * 1024 * 50) // 50MB
 
+public class AddProduct extends HttpServlet {
+ private static final long serialVersionUID = 1L;
+
+   public static final String SAVE_DIRECTORY = "ProductImage";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -101,7 +111,49 @@ public class AddProduct extends HttpServlet {
         
         HttpSession session = request.getSession();
         User a = (User) session.getAttribute("acc");
-       dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout);
+        String appPath = request.getServletContext().getRealPath("");
+        appPath = appPath.replace('\\', '/');
+
+ 
+           // Thư mục để save file tải lên.
+           String fullSavePath = null;
+           if (appPath.endsWith("/")) {
+               fullSavePath = appPath + SAVE_DIRECTORY;
+           } else {
+               fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+           }
+
+ 
+           // Tạo thư mục nếu nó không tồn tại.
+           File fileSaveDir = new File(fullSavePath);
+           if (!fileSaveDir.exists()) {
+               fileSaveDir.mkdir();
+           }
+           DAO d = new DAO();
+ 
+           // Danh mục các phần đã upload lên (Có thể là nhiều file).
+            
+           for (Part part : request.getParts()) {
+               if(part.getName().equals("file")){
+                   String fileName = "product" + pname  +(int)(Math.random()*100000000)+ ".jpg";
+                   if (fileName != null && fileName.length() > 0) {
+                   String filePath = fullSavePath + File.separator + fileName;
+                  
+ 
+                   // Ghi vào file.
+                  
+                   part.write(filePath);
+                  
+               }
+                    dao.insertProduct(a.getuId(), pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout);
+               }
+
+              
+
+               
+           }
+          
+       
         /// Add ProductLog ///
         ProductLog pl = new ProductLog();
         pl.setUser(a);

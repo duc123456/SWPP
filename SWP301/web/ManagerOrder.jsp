@@ -48,6 +48,11 @@
 
                 min-height: 200px;
             }
+            .closetb i {
+                font-size: 40px;
+            }
+
+
 
         </style>
     </head>
@@ -219,7 +224,7 @@
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
                                                             </c:if>
-                                                             <c:if test="${o.statusId == 3}">
+                                                            <c:if test="${o.statusId == 3}">
                                                                 <i class="fe fe-check"></i>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 4}">
@@ -228,7 +233,7 @@
                                                         </div>
                                                     </td>
                                                 </form>
-                                                <td><a href="managerorder?id=${o.order.getoId()}"  class="js-detail">ok</a></td>
+                                                <td><a href="managerorder?id=${o.order.getoId()}"  class="js-detail">OK</a></td>
                                                 </tr>
 
                                             </c:forEach>
@@ -252,10 +257,10 @@
         <div class="moda">
             <div class="moda-container">
                 <div >
-                    <a  href="managerorder" class="closetb" value="Dong" style="">X</a>
+                    <a  href="managerorder" class="closetb" value="Dong" style="float:right;"><i class="fe fe-close"></i></a>
                     <table class="table table-hover table-center">                                      
                         <tr>   
-                           
+
                             <th class="text-center">Tên sản phẩm</th>
                             <th class="text-center"></th>
                             <th class="text-center">Số lượng</th>

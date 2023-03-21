@@ -56,7 +56,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="addproduct" method="post">
+                                    <form action="addproduct" method="post" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label class="col-form-label col-md-2">Tên</label>
                                             <div class="col-md-10">
@@ -68,7 +68,7 @@
                                                 <label class="col-form-label col-md-2">Ảnh</label>
                                                 <div class="col-md-10">
                                                     <img id="preview" src="#" alt="" width="300" height="auto">
-                                                    <input name="image" type="file" class="form-control" required="" onchange="previewImage(event)">
+                                                    <input name="file" type="file" class="form-control" required="" onchange="previewImage(event)">
                                                 </div>
                                             </div>
 

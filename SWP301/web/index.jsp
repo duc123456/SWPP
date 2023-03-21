@@ -58,7 +58,6 @@
                 clear: both;
             }
 
-
         </style>
     </head>
     <body>
@@ -70,10 +69,16 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/images/slider/s1.jpg" class="d-block w-100" alt="...">
+                                <img src="assets/images/slider/anhbia10.jpg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/images/slider/s2.jpg" class="d-block w-100" alt="...">
+                                <img src="assets/images/slider/anhbia12.jpg" class="d-block w-100" alt="...">
+                            </div>
+                           <div class="carousel-item">
+                                <img src="assets/images/slider/annhbia2.jpg" class="d-block w-100" alt="...">
+                            </div>
+                               <div class="carousel-item">
+                                <img src="assets/images/slider/anhbia6.jpg" class="d-block w-100" alt="...">
                             </div>
 
                         </div>
@@ -279,7 +284,7 @@
                                     <c:set var="x1" value="Xem Sản Phẩm"></c:set>
                                     <c:if test="${daXem != null}">
 
-                                        
+
                                         <c:set var="x1" value="Xóa Sản Phẩm"></c:set>
                                     </c:if>
 
@@ -287,7 +292,7 @@
                                         <div class="bg-white p-2 shadow-md">
                                             <div class="text-center" style="min-height: 176px !important;">
 
-                                                <img  src="Image/${p.imageDf}" alt="">
+                                                <img  src="ProductImage/${p.imageDf}" alt="">
                                             </div>
                                             <div class="detail p-2">
                                                 <h4 class="mb-1 fs-5 fw-bold name-Product">${p.name}</h4>
@@ -315,16 +320,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                <c:if test="${daXem != null}">
+                                        <c:if test="${daXem != null}">
 
-                                      <a href="sanphamdaxem?pId=${p.pId}&&uId=${acc.uId}"> <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div></a>
-                                                </c:if>
-                                       <c:if test="${daXem == null}">
+                                            <a href="sanphamdaxem?pId=${p.pId}&&uId=${acc.uId}"> <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div></a>
+                                            </c:if>
+                                            <c:if test="${daXem == null}">
 
-                                      <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
-                                                </c:if>
-                                                
-                                       
+                                            <div class="btn fw-bold w-100 btn-outline-danger" >${x1}</div>
+                                        </c:if>
+
+
 
 
 
@@ -338,32 +343,35 @@
                                 <ul class="pagination">
 
 
+                                    <c:if test="${requestScope.page != 1}">
+                                        <c:if test="${requestScope.xd == 1}">
+                                            <c:set var="page" value="${requestScope.page}"/>
+                                            <c:forEach begin="1" end="${requestScope.num}" var="i">
 
-                                    <c:if test="${requestScope.xd == 1}">
-                                        <c:set var="page" value="${requestScope.page}"/>
-                                        <c:forEach begin="1" end="${requestScope.num}" var="i">
+                                                <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
 
-                                            <li class="page-item ${page == i?"active":""}"><a href="searchproduct?page=${i}${requestScope.cats}${requestScope.pris}${requestScope.sizes}${requestScope.most}" class="page-link">${i}</a></li> 
-
-                                        </c:forEach>
-
-                                    </c:if>
-
-                                    <c:if test="${requestScope.xd != 1}">
-                                        <c:forEach begin="1" end="${endP}" var="pa">
-                                            <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
                                             </c:forEach>
 
-                                    </c:if>    
+                                        </c:if>
+                                    </c:if>
+
+                                    <c:if test="${requestScope.endP != 1}">
+                                        <c:if test="${requestScope.xd != 1}">
+                                            <c:forEach begin="1" end="${endP}" var="pa">
+                                                <li class="page-item ${tagw == pa?"active":""}"><a href="listproduct?index=${pa}&find=${requestScope.find}" class="page-link">${pa}</a></li>   
+                                                </c:forEach>
+
+                                        </c:if>
+                                    </c:if>
 
                                 </ul>    
                             </nav>    
 
-                             <c:if test="${empty product}">
-                                        <tr>
-                                            <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
-                                        </tr>
-                                    </c:if>
+                            <c:if test="${empty product}">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; font-size: 24px; padding: 50px 0;">KHÔNG CÓ SẢN PHẨM NÀO</td>
+                                </tr>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -372,7 +380,7 @@
         </div>
 
 
-        
+
 
         <jsp:include page="footer.jsp"></jsp:include>
         <script>

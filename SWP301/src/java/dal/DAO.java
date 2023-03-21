@@ -2453,8 +2453,6 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
-
-
     public void updateQuantity(Product p) {
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET  "
@@ -2489,7 +2487,5 @@ public class DAO extends DBContext {
 
         }
     }
-    
-    public static void main(String[] args) {}
 
 }
