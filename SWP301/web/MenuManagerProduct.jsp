@@ -78,7 +78,7 @@
                                     <li><a href="managerProduct" class="active">Sản phẩm</a></li>
                                     <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
                                     <li><a href="managerproductsellout">Sản phẩm sắp hết hàng</a></li>
-
+                                    <li><a href="import">Số liệu nhập hàng</a></li>
                                 </ul>
                             </li>
 

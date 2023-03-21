@@ -14,12 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
-import model.Order;
-import model.OrderDetail;
 import model.ProductLog;
 import model.User;
 
@@ -27,8 +22,8 @@ import model.User;
  *
  * @author ADMIN
  */
-@WebServlet(name="DashContoller", urlPatterns={"/dash"})
-public class DashContoller extends HttpServlet {
+@WebServlet(name="ImportThongke", urlPatterns={"/import"})
+public class ImportThongke extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -45,10 +40,10 @@ public class DashContoller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DashContoller</title>");  
+            out.println("<title>Servlet ImportThongke</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DashContoller at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ImportThongke at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,53 +61,23 @@ public class DashContoller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DAO d = new DAO();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        request.setAttribute("from", from);
+        request.setAttribute("to", to);
+        
         HttpSession session = request.getSession();
-            User a =(User) session.getAttribute("acc");
-         if (session.getAttribute("acc") == null) {
-            request.getRequestDispatcher("login.jsp").forward(request, response);}
-         else{
-         String to  = request.getParameter("to");
-            String from = request.getParameter("from");
-        if(from != null){
-            request.setAttribute("from", from);
+        //ep string acc sang user
+        User a = (User) session.getAttribute("acc");
+        //bat buoc phai dang nhap 
+        if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //neu role = 1 (Admin) thi moi duoc vao manager 
+        }else if (a.getRoleId()==2){
+        List<ProductLog> list = d.getLogAddProduct(from,to); 
+        request.setAttribute("listPL", list);
+        request.getRequestDispatcher("DashImport.jsp").forward(request, response);
         }
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String now = simpleDateFormat.format(date);
-        request.setAttribute("now", now);
-        if(from != null && to == null){
-            request.setAttribute("from", from);
-            request.setAttribute("to", now);
-        }
-        if(from != null && to != null){
-            request.setAttribute("from", from);
-            request.setAttribute("to", to);
-        }
-        LocalDate currentDate = LocalDate.now();
-        int yearnow = currentDate.getYear();
-        request.setAttribute("yearnow", yearnow);
-        String year = request.getParameter("year");
-        request.setAttribute("year", year);
-       
-        
-        
-        
-        
-        
-        List<OrderDetail> listmost = d.listProductMost();
-        request.setAttribute("listmost", listmost);
-        List<Order> list = d.getAllOrder(from,now,to,"3");
-        List<Order> list3 = d.getAllOrder(from,now,to,"3");
-        List<ProductLog> list2 = d.getProductLogByDate(from, now,to);
-       
-        request.setAttribute("orderList", list);
-        request.setAttribute("PlList", list2);
-        request.setAttribute("order", list3);
-        request.setAttribute("size", list2.size());
-        request.setAttribute("stock", d.totalgetPriceStock(from,now ,to));
-        request.getRequestDispatcher("Dash.jsp").forward(request, response);
-         }
     } 
 
     /** 
