@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -119,7 +120,8 @@
 
                             </c:forEach>
                         </ul>
-                        <b class="fs-3 py-4 text-danger vietnamese-currency">${product.priceOut}</b>
+                        <b class="fs-3 py-4 text-danger">   <fmt:formatNumber value="${product.priceOut}" pattern="#,##0 'VND'" /></b>
+
 
                         <ul class="mt-0 mt-2 mb-3 vgth">
                             <li class="fs-8">
@@ -156,10 +158,10 @@
 
                                     <button class="btn fw-bold w-100 btn-outline-danger" type="submit" >Chọn Mua</button>
 
-                                 
+
                                 </div>
                             </div>
-                               </form>
+                        </form>
 
                     </div>
                 </div>
@@ -273,9 +275,9 @@
                                     <h4 class="mb-1 fs-5 fw-bold">${l.name}</h4>
                                     <b class="fs-4 text-danger">${l.priceOut}</b>
 
-                                   
-                                        <ul class="mt-0 vgth">
-                                            <li class="fs-8">
+
+                                    <ul class="mt-0 vgth">
+                                        <li class="fs-8">
                                             <c:forEach begin="1" end="${d.getStar(l.pId)}" var="pa">
                                                 <i class="bi text-warning bi-star-fill"></i>
                                             </c:forEach>

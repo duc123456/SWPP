@@ -81,21 +81,7 @@ public class DetailControl extends HttpServlet {
         if (u != null) {
 
             List<Product> sanPhamDaXem = d.sanPhamDaXem(u.getuId());
-            if (sanPhamDaXem.size() == 0) {
-                d.insertSanPhamDaXem(u.getuId(), id);
-            } else {
-                int n = 0;
-                for (Product product : sanPhamDaXem) {
-                    if (product.getpId() == id) {
-                        n++;
-                        break;
-                    }
-
-                }
-                if (n == 0) {
-                    d.insertSanPhamDaXem(u.getuId(), id);
-                }
-            }
+           
 
         }
 
