@@ -121,7 +121,7 @@
                                 <div class="body_right-oders_child" style="min-height: 60px">
                                    
                                         
-                                        <div>Ðon hang ${c.order.oId}  ${s} vao ngay ${c.date}  </div> 
+                                    <div><a href="orderdetail?oId=${c.order.oId}">Ðon hang ${c.order.oId}  ${s} vao ngay ${c.date} </a> </div> 
                                         <button data-id="" class="read-btn"><a href="thongbao?logId=${c.logID}">Đã đọc</a></button>
                                   
                                     

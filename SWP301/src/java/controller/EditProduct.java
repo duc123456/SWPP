@@ -96,103 +96,97 @@ public class EditProduct extends HttpServlet {
         String pid = request.getParameter("pid");
         try {
             int pId = Integer.parseInt(pid);
-             String xd = request.getParameter("xd");
-        DAO dao = new DAO();
+            String xd = request.getParameter("xd");
+            DAO dao = new DAO();
 
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
-        String format = simpleDateFormat.format(date);
-        if (xd == null || xd == "") {
-            String paddby = request.getParameter("addby");
-            String pcatid = request.getParameter("catid");
-            String pprice = request.getParameter("price");
-            String pname = request.getParameter("pname");
-            String pcolor = request.getParameter("color");
-            String pdescription = request.getParameter("description");
-            String presolution = request.getParameter("resolution");
-            String pinsurance = request.getParameter("insurance");
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+            simpleDateFormat.applyPattern("yyyy-MM-dd");
+            String format = simpleDateFormat.format(date);
+            if (xd == null || xd == "") {
+                String paddby = request.getParameter("addby");
+                String pcatid = request.getParameter("catid");
+                String pprice = request.getParameter("price");
+                String pname = request.getParameter("pname");
+                String pcolor = request.getParameter("color");
+                String pdescription = request.getParameter("description");
+                String presolution = request.getParameter("resolution");
+                String pinsurance = request.getParameter("insurance");
 
-            String ptid = request.getParameter("tid");
-            String pimage = request.getParameter("file");
-            String psize = request.getParameter("size");
-            String pquantity = request.getParameter("quantity");
-            String pdiscount = request.getParameter("discount");
-            String ppriceout = request.getParameter("priceout");
-            HttpSession session = request.getSession();
-            User a = (User) session.getAttribute("acc");
+                String ptid = request.getParameter("tid");
+                String pimage = request.getParameter("file");
+                String psize = request.getParameter("size");
+                String pquantity = request.getParameter("quantity");
+                String pdiscount = request.getParameter("discount");
+                String ppriceout = request.getParameter("priceout");
+                HttpSession session = request.getSession();
+                User a = (User) session.getAttribute("acc");
 
-            /// Xu Ly Anh
-            String appPath = request.getServletContext().getRealPath("");
-            appPath = appPath.replace('\\', '/');
+                /// Xu Ly Anh
+                String appPath = request.getServletContext().getRealPath("");
+                appPath = appPath.replace('\\', '/');
 
-            // Thư mục để save file tải lên.
-            String fullSavePath = null;
-            if (appPath.endsWith("/")) {
-                fullSavePath = appPath + SAVE_DIRECTORY;
-            } else {
-                fullSavePath = appPath + "/" + SAVE_DIRECTORY;
-            }
-
-            // Tạo thư mục nếu nó không tồn tại.
-            File fileSaveDir = new File(fullSavePath);
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdir();
-            }
-
-            // Danh mục các phần đã upload lên (Có thể là nhiều file).
-            for (Part part : request.getParts()) {
-                if (part.getName().equals("file")) {
-                    String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
-                    if(pimage == null || pimage.equals("")){
-                        fileName = dao.getProductByID(pId).getImageDf();
-                    }
-                    if (fileName != null && fileName.length() > 0) {
-                        String filePath = fullSavePath + File.separator + fileName;
-
-                        // Ghi vào file.
-                        
-                              part.write(filePath);
-                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
-                            
-                        
-                     
-                          
-                        
-                    }
-
+                // Thư mục để save file tải lên.
+                String fullSavePath = null;
+                if (appPath.endsWith("/")) {
+                    fullSavePath = appPath + SAVE_DIRECTORY;
+                } else {
+                    fullSavePath = appPath + "/" + SAVE_DIRECTORY;
                 }
+
+                // Tạo thư mục nếu nó không tồn tại.
+                File fileSaveDir = new File(fullSavePath);
+                if (!fileSaveDir.exists()) {
+                    fileSaveDir.mkdir();
+                }
+
+                // Danh mục các phần đã upload lên (Có thể là nhiều file).
+                for (Part part : request.getParts()) {
+                    if (part.getName().equals("file")) {
+                        String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
+                        if (pimage == null) {
+                            fileName = dao.getProductByID(pId).getImageDf();
+                        }
+                        if (fileName != null && fileName.length() > 0) {
+                            String filePath = fullSavePath + File.separator + fileName;
+
+                            // Ghi vào file.
+                            part.write(filePath);
+                             dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+
+                        }
+                       
+
+                    }
+                }
+
+                //////////////
+            } else {
+                Product p = dao.getProductByID(Integer.parseInt(pid));
+                String pquantity = request.getParameter("quantity");
+                int quantity = p.getQuantity() + Integer.parseInt(pquantity);
+                p.setQuantity(quantity);
+
+                dao.updateQuantity(p);
+
+                String pprice = request.getParameter("price");
+
+                ProductLog pl = new ProductLog();
+                HttpSession session = request.getSession();
+                User a = (User) session.getAttribute("acc");
+                pl.setUser(a);
+                pl.setProduct(p);
+                pl.setAction(4);
+                pl.setPriceIn(Integer.parseInt(pprice));
+                pl.setQuantity(Integer.parseInt(pquantity));
+                pl.setDate(format);
+                dao.addProductLog(pl);
+
             }
 
-            //////////////
-        } else {
-            Product p = dao.getProductByID(Integer.parseInt(pid));
-            String pquantity = request.getParameter("quantity");
-            int quantity = p.getQuantity() + Integer.parseInt(pquantity);
-            p.setQuantity(quantity);
-
-            dao.updateQuantity(p);
-
-            String pprice = request.getParameter("price");
-
-            ProductLog pl = new ProductLog();
-            HttpSession session = request.getSession();
-            User a = (User) session.getAttribute("acc");
-            pl.setUser(a);
-            pl.setProduct(p);
-            pl.setAction(4);
-            pl.setPriceIn(Integer.parseInt(pprice));
-            pl.setQuantity(Integer.parseInt(pquantity));
-            pl.setDate(format);
-            dao.addProductLog(pl);
-
-        }
-
-        response.sendRedirect("managerProduct");
+            response.sendRedirect("managerProduct");
         } catch (Exception e) {
         }
-
-       
 
     }
 

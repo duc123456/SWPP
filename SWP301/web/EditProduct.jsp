@@ -75,7 +75,7 @@
                                                 <br>
                                                 
                                                 
-                                                <input id="image-input" type="file" name="file"  class="form-control">
+                                                <input id="image-input" type="file" name="file"   class="form-control">
                                             </div>
                                         </div>
 

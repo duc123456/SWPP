@@ -80,6 +80,7 @@
     </head>
     <bod>
         <jsp:include page="menu.jsp"></jsp:include>
+        <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
 
             <!--  ************************* Page Title Starts Here ************************** -->
             <div class="page-nav no-margin row">
@@ -102,7 +103,7 @@
             <div class="container">
                 <div class="row about-row">
                     <div class="col-md-5 text-center">
-                        <img src="ProductImage/${product.imageDf}" alt="">
+                        <img src="ProductImage/${d.getProductByID(product.pId).imageDf}" alt="">
                     </div>
                     <div class="col-md-7">
                         <h2>${product.name}-${type1}</h2>
@@ -264,14 +265,14 @@
                             <div class="bg-white p-2 shadow-md">
                                 <div class="text-center">
                                     <a href="detail?pid=${l.pId}">
-                                        <img src="Image/${l.imageDf}" alt="">
+                                        <img src="ProductImage/${d.getProductByID(l.pId).imageDf}" alt="">
                                     </a>
                                 </div>
                                 <div class="detail p-2">
                                     <h4 class="mb-1 fs-5 fw-bold">${l.name}</h4>
                                     <b class="fs-4 text-danger">${l.priceOut}</b>
 
-                                    <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+                                   
                                         <ul class="mt-0 vgth">
                                             <li class="fs-8">
                                             <c:forEach begin="1" end="${d.getStar(l.pId)}" var="pa">
