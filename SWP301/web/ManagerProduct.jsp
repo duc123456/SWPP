@@ -146,6 +146,7 @@
                                                         <td>
 
                                                             <h2 class="table-avatar">
+
                                                                 <a href="detail?pid=${o.pId}" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="ProductImage/${d.getProductByID(o.pId).imageDf}"></a>
                                                                 <a href="detail?pid=${o.pId}">${o.name} <span>${o.pId}</span></a>
                                                             </h2>

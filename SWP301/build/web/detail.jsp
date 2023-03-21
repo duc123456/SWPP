@@ -103,6 +103,7 @@
             <div class="container">
                 <div class="row about-row">
                     <div class="col-md-5 text-center">
+
                         <img src="ProductImage/${d.getProductByID(product.pId).imageDf}" alt="">
                     </div>
                     <div class="col-md-7">
