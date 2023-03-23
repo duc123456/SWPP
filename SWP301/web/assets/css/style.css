@@ -180,45 +180,6 @@ body {
     font-size: 0.8rem;
 }
 
-.page-nav {
-    background-size: 100%;
-    padding: 68px;
-    text-align: center;
-    background-color: #eaeaea;
-}
-.page-nav ul {
-    float: none;
-    margin: auto;
-}
-@media screen and (max-width: 992px) {
-    .page-nav {
-        padding-top: 0px;
-        background-size: auto;
-    }
-}
-@media screen and (max-width: 767px) {
-    .page-nav {
-        padding-top: 0px;
-        padding-bottom: 70px;
-    }
-}
-@media screen and (max-width: 356px) {
-    .page-nav {
-        padding-top: 0px;
-        padding-bottom: 70px;
-    }
-}
-.page-nav h2 {
-    font-size: 28px;
-    width: 100%;
-    font-weight: 700;
-    color: #444;
-}
-@media screen and (max-width: 600px) {
-    .page-nav h2 {
-        font-size: 26px;
-    }
-}
 .page-nav ul li {
     float: left;
     margin-right: 10px;
@@ -226,7 +187,7 @@ body {
     font-size: 16px;
     font-size: 0.93rem;
     font-weight: 600;
-    color: #444;
+  
 }
 .page-nav ul li i {
     width: 30px;
