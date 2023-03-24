@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import model.Order;
+import model.ProductLog;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -78,8 +79,12 @@ public class Export extends HttpServlet {
         cell2.setCellValue("Column 3");
         Cell cell3 = headerRow.createCell(3);
         cell3.setCellValue("Column 4");
+        Cell cell4 = headerRow.createCell(4);
+        cell4.setCellValue("Column 5");
         
         String to = request.getParameter("to");
+        String _xd = request.getParameter("xd");
+        int xd = Integer.parseInt(_xd);
         String from = request.getParameter("from");
         if (from != null) {
             request.setAttribute("from", from);
@@ -99,7 +104,8 @@ public class Export extends HttpServlet {
         }
         // create data rows
         DAO d = new DAO();
-        List<Order> list = d.getAllOrder(from, now, to, "3");
+        if(xd == 1 ){
+            List<Order> list = d.getAllOrder(from, now, to, "3");
         for (int i = 0; i < list.size(); i++) {
 
             Row row = sheet.createRow(i);
@@ -118,7 +124,7 @@ public class Export extends HttpServlet {
 
         }
         response.setContentType("application/vnd.ms-excel");
-        response.setHeader("Content-Disposition", "attachment; filename=\"userList.xls\"");
+        response.setHeader("Content-Disposition", "attachment; filename=\"OrderList.xls\"");
 
         // ghi workbook vào OutputStream
         OutputStream outputStream = response.getOutputStream();
@@ -126,6 +132,34 @@ public class Export extends HttpServlet {
         outputStream.flush();
         outputStream.close();
         response.sendRedirect("dash");
+        }else if (xd == 2){
+            List<ProductLog> list = d.getLogAddProduct(from, to);
+        for (int i = 0; i < list.size(); i++) {
+
+            Row row = sheet.createRow(i);
+            Cell dataCell0 = row.createCell(0);
+            dataCell0.setCellValue(list.get(i).getProduct().getName());
+            Cell dataCell1 = row.createCell(1);
+            dataCell1.setCellValue(list.get(i).getPriceIn());
+            Cell dataCell2 = row.createCell(2);
+            dataCell2.setCellValue(list.get(i).getPriceOut());
+            Cell dataCell3 = row.createCell(3);
+            dataCell3.setCellValue(list.get(i).getQuantity());
+            Cell dataCell4 = row.createCell(4);
+            dataCell3.setCellValue(list.get(i).getDate());
+
+        }
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment; filename=\"LogProductList.xls\"");
+
+        // ghi workbook vào OutputStream
+        OutputStream outputStream = response.getOutputStream();
+        workbook.write(outputStream);
+        outputStream.flush();
+        outputStream.close();
+        response.sendRedirect("import");
+        }
+        
 
     }
 

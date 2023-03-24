@@ -159,7 +159,7 @@
                                                         <c:if test="${empty o.order.guest.gId}">
                                                             <td class="text-nowrap">${o.order.user.username}</td>
                                                         </c:if>
-                                                        <td class="text-center">${o.date.substring(0,10)}</td>
+                                                        <td class="text-center">${o.date.substring(0,16)}</td>
                                                         <td class="text-center">
                                                             ${o.order.note}
                                                         </td>
@@ -215,12 +215,12 @@
                                                                 <button value="2" name="status"  class="btn btn-sm bg-success-light me-2" title="Xác nhận">
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
-                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" title="Hủy">
+                                                                <button value="4" name="status" class="btn btn-sm bg-danger-light" onclick="return confirm('Bạn có chắc chắn muốn hủy Đơn hàng này?')" title="Hủy">
                                                                     <i class="fe fe-close"></i>
                                                                 </button>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 2}">
-                                                                <button value="3" name="status"  class="btn btn-sm bg-success" title="Đã nhận">
+                                                                <button value="3" name="status"  class="btn btn-sm bg-success"  title="Đã nhận">
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
                                                             </c:if>

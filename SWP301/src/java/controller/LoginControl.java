@@ -88,6 +88,8 @@ public class LoginControl extends HttpServlet {
 
         DAO dao = new DAO();
         User a = dao.login(username, password);
+        HttpSession session = request.getSession();
+        session.setAttribute("acc", a);
         if (a == null) {
             String ms = "Sai tài khoản hoặc mật khẩu!";
             request.setAttribute("ms", ms);
@@ -96,9 +98,6 @@ public class LoginControl extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
         } else if (a.getRoleId() == 2) {
-
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
 
             List<Product> list = dao.getAllProd();
             // List<Category> listC = dao.getAllCategory();
@@ -115,10 +114,6 @@ public class LoginControl extends HttpServlet {
             request.setAttribute("listP", list);
             request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
         } else if (a.getRoleId() == 3) {
-
-            HttpSession session = request.getSession();
-            session.setAttribute("acc", a);
-
             List<OrderLog> list = dao.getAllOrderLog();
 
             int productOrder = dao.getTotalOrder();
@@ -139,6 +134,7 @@ public class LoginControl extends HttpServlet {
             request.setAttribute("listOD", list);
             request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
         } else if (a.getRoleId() == 4) {
+
             String role = request.getParameter("role");
             List<User> list = null;
             if (role == null || role.equalsIgnoreCase("0")) {
@@ -155,9 +151,11 @@ public class LoginControl extends HttpServlet {
             request.setAttribute("users", list);
             request.setAttribute("total", numberOfUser);
             request.getRequestDispatcher("user.jsp").forward(request, response);
+
         } 
-            HttpSession session = request.getSession();
+          
             session.setAttribute("acc", a);
+
             session.removeAttribute("cart");
 
             Cookie[] cookie = request.getCookies();

@@ -297,7 +297,9 @@ public class DAO extends DBContext {
 
     public List<Product> getAllProd() {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product where quantity > 0";
+
+        String sql = "select * from Product where quantity > 0 Order BY PID DESC";
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -1150,10 +1152,25 @@ public class DAO extends DBContext {
             st.setString(1, pid);
             st.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }
+     public void deletProductLog(String pid) {
+        String query = "delete from ProductLog\n"
+                + "where PID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, pid);
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
+    
 
     public void updateRole(int id, int role) {
         String query = "UPDATE [dbo].[User]\n"
@@ -1618,9 +1635,9 @@ public class DAO extends DBContext {
 
     }
 
-    public long totalgetPriceStock(String from, String to, String now) {
+    public long totalgetPriceStock(String from,String now ,String to) {
         String sql = "select Sum(PriceIn *Quatity) from ProductLog\n"
-                + " Where (1=1) and Action = 1 or Action = 4";
+                + " Where (1=1) and (Action = 1 or Action = 4)";
         if (from != null && to == null) {
             sql += " and Date between '" + from + "' and '" + now + "'";
 
@@ -1631,7 +1648,7 @@ public class DAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                OrderLog ol = new OrderLog();
+                
                 return rs.getLong(1);
             }
         } catch (SQLException e) {
@@ -1710,7 +1727,7 @@ public class DAO extends DBContext {
 
     public List<OrderDetail> listProductMost() {
         List<OrderDetail> list = new ArrayList();
-        String sql = "select PID, sum(Amount) from [Order detail]\n"
+        String sql = "select top 5 PID, sum(Amount) from [Order detail]\n"
                 + "Group by PID\n"
                 + "order by PID, sum(Amount)";
         try {
@@ -2329,6 +2346,7 @@ public class DAO extends DBContext {
         return list;
 
     }
+
     public List<OrderLog> thongBao(int uId) {
         String sql = "select ol.OrderLogId, od.OID,  ol.StatusID, ol.Date, ol.Confirm from [Order] od join OrderLog ol on od.OID = ol.OID where od.UID =? and  ol.Confirm= 0 Order By ol.OrderLogId desc";
         List<OrderLog> list = new ArrayList<>();
@@ -2544,6 +2562,7 @@ public class DAO extends DBContext {
         } catch (Exception e) {
         }
     }
+
     public void updateQuantity(Product p) {
         String query = "UPDATE [dbo].[Product]\n"
                 + "  SET  "
@@ -2552,22 +2571,21 @@ public class DAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(query);
 
-
             st.setInt(1, p.getQuantity());
             st.setInt(2, p.getpId());
-   
+
             st.executeUpdate();
 
         } catch (Exception e) {
-               }
+        }
     }
-    
-    public void huyDonHang(int oId){
+
+    public void huyDonHang(int oId) {
         String sql6 = "update product set quantity=quantity+? where PID=?";
         List<OrderDetail> list = getODDTbyOId(oId);
         try {
             PreparedStatement st = connection.prepareStatement(sql6);
-            if(list != null){
+            if (list != null) {
                 for (OrderDetail orderDetail : list) {
                     st.setInt(1, orderDetail.getAmount());
                     st.setInt(2, orderDetail.getProduct().getpId());
@@ -2578,7 +2596,8 @@ public class DAO extends DBContext {
 
         }
     }
-    public void daXemThongBao(int logId){
+
+    public void daXemThongBao(int logId) {
         String sql = "update OrderLog set Confirm = 1 where OrderLogId = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -2587,16 +2606,41 @@ public class DAO extends DBContext {
         } catch (SQLException e) {
         }
     }
-    public static void main(String[] args) throws SQLException {
-        DAO d = new DAO();
-        
-        Guest g = new Guest(0, "Chien", "Vu", "Ha Noi", "0987654321");
-        Item t1 = new Item(d.getProductByID(32),1, 24690000);
-        Cart c = new Cart();
-        c.addItem(t1);
-        String s = d.insertOrder(g, c, "mua");
-        System.out.println("" + s);
+
+
+
+    public List<ProductLog> getLogAddProduct(String from, String to) {
+
+        List<ProductLog> list = new ArrayList<>();
+        String sql = "select * from ProductLog\n"
+                + "where Action = 1 ";
+        if(from != null && to != null){
+            sql+=" and date between '"+from+"' and '"+to+"' ";
+        }
+        sql+=" Order by Date desc";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ProductLog pl = new ProductLog();
+                pl.setProductLog(rs.getInt(1));
+                pl.setUser(checkUsUid(rs.getInt(2)));
+                pl.setProduct(getProductByID(rs.getInt(3)));
+                pl.setAction(rs.getInt(4));
+                pl.setPriceIn(rs.getLong(5));
+                pl.setPriceOut(rs.getLong(6));
+                pl.setQuantity(rs.getLong(7));
+                pl.setDate(rs.getString(8));
+                list.add(pl);
+                
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+       
     }
+
+
 }
-
-

@@ -13,15 +13,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.ProductLog;
+import model.User;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name="HuyDonHang", urlPatterns={"/huydonhang"})
-public class HuyDonHang extends HttpServlet {
+@WebServlet(name="ImportThongke", urlPatterns={"/import"})
+public class ImportThongke extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +40,10 @@ public class HuyDonHang extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HuyDonHang</title>");  
+            out.println("<title>Servlet ImportThongke</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HuyDonHang at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ImportThongke at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,20 +60,23 @@ public class HuyDonHang extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       String oId_raw = request.getParameter("oid");
-       DAO d = new DAO();
-       Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
-        String format = simpleDateFormat.format(date);
-        try {
-            int oId = Integer.parseInt(oId_raw);
-            d.editOrder(oId, 4, format);
-            d.huyDonHang(oId);
-           
-            request.getRequestDispatcher("orderofuser").forward(request, response);
-            
-        } catch (NumberFormatException e) {
+        DAO d = new DAO();
+        String from = request.getParameter("from");
+        String to = request.getParameter("to");
+        request.setAttribute("from", from);
+        request.setAttribute("to", to);
+        
+        HttpSession session = request.getSession();
+        //ep string acc sang user
+        User a = (User) session.getAttribute("acc");
+        //bat buoc phai dang nhap 
+        if (session.getAttribute("acc") == null) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            //neu role = 1 (Admin) thi moi duoc vao manager 
+        }else if (a.getRoleId()==2){
+        List<ProductLog> list = d.getLogAddProduct(from,to); 
+        request.setAttribute("listPL", list);
+        request.getRequestDispatcher("DashImport.jsp").forward(request, response);
         }
     } 
 

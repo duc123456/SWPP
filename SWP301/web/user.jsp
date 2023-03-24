@@ -164,8 +164,7 @@
                                                             <span class="indicator indicator-lg indicator-bordered-reverse indicator-top-left indicator-success rounded-circle"></span>
                                                             <!--img class="avatar rounded-circle" src="#" alt="John Doe"-->
 
-                                                            <span class="avatar-placeholder mr-md-2 ten">${u.uId}</span>
-                                                        </div>
+                                                        <img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="avatar rounded-circle mr-md-2" alt="alt"/>                                                   
                                                         ${u.getfName()} ${u.getlName()}
                                                     </div>
                                                 </td>

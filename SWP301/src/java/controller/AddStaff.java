@@ -86,6 +86,11 @@ public class AddStaff extends HttpServlet {
         String ms = "Email đã được đăng kí với tài khoản khác";
             request.setAttribute("ms", ms);
             request.getRequestDispatcher("addStaff.jsp").forward(request, response);
+        }else if (!pass.equalsIgnoreCase(repass)){
+            
+        String ms = "Mật khẩu không khớp";
+            request.setAttribute("ms", ms);
+            request.getRequestDispatcher("addStaff.jsp").forward(request, response);
         }
         
         else {

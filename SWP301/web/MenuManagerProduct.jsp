@@ -41,9 +41,11 @@
 
             <ul class="nav user-menu">
 
+
                 <li class="nav-item dropdown has-arrow">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
+
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
@@ -52,12 +54,12 @@
                             </div>
                             <div class="user-text">
                                 <h6>${sessionScope.acc.fName} ${sessionScope.acc.lName}</h6>
-                                
+
                                 <p class="text-muted mb-0">${sessionScope.acc.username}</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="Profile.jsp">Trang cá nhân</a>
-                      
+
                         <a class="dropdown-item" href="login.jsp">Logout</a>
                     </div>
                 </li>
@@ -79,7 +81,7 @@
                                     <li><a href="managerProduct" class="active">Sản phẩm</a></li>
                                     <li><a href="AddProduct.jsp">Thêm sản phẩm</a></li>
                                     <li><a href="managerproductsellout">Sản phẩm sắp hết hàng</a></li>
-
+                                    <li><a href="import">Số liệu nhập hàng</a></li>
                                 </ul>
                             </li>
 

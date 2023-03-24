@@ -4,9 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/detail.jsp</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/menu.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/EditOrder.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/GoiYSanPham.java</file>
-            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/NewClass.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/model/Cart.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/DetailControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/controller/LoginControl.java</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/MenuManagerProduct.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/orderdetail.jsp</file>
+            <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/src/java/dal/DAO.java</file>
             <file>file:/C:/Users/Dell/Desktop/New%20folder/SWPP/SWP301/web/index.jsp</file>
         </group>
     </open-files>
