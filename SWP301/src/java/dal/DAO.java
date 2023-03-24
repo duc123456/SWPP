@@ -296,7 +296,7 @@ public class DAO extends DBContext {
 
     public List<Product> getAllProd() {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product";
+        String sql = "select * from Product Order BY PID DESC";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -1148,10 +1148,25 @@ public class DAO extends DBContext {
             st.setString(1, pid);
             st.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
         }
 
     }
+     public void deletProductLog(String pid) {
+        String query = "delete from ProductLog\n"
+                + "where PID = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, pid);
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
+    
 
     public void updateRole(int id, int role) {
         String query = "UPDATE [dbo].[User]\n"
@@ -2559,8 +2574,8 @@ public class DAO extends DBContext {
 
     public static void main(String[] args) {
         DAO d = new DAO();
-       long a = d.totalgetPriceStock("2022-05-21", "2022-06-21", null);
-        System.out.println(a);
+       d.deletProduct("49");
+     
     }
 
 }

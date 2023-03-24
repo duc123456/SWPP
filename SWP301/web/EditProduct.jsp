@@ -72,9 +72,7 @@
                                             <label class="col-form-label col-md-2">Ảnh</label>
                                             <div class="col-md-10">
                                                 <img id="image-preview" src="Image/${details.imageDf}"  alt="" width="300" height="auto">
-                                                <br>
-                                                
-                                                
+                                                <br>                    
                                                 <input id="image-input" type="file" name="file"   class="form-control">
                                             </div>
                                         </div>

@@ -29,7 +29,7 @@
 
     <jsp:include page="MenuManagerProduct.jsp"></jsp:include>
         <body>
- <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
+        <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
 
 
 
@@ -37,84 +37,34 @@
 
                 <div class="page-wrapper">
                     <div class="content container-fluid">
+
+
+                        <div class="page-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h3 class="page-title">Xuất sản phẩm ra Excel</h3>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
                         <div class="row">
-                            <div class="col-xl-4 col-sm-4 col-12">
-                                <div class="card">
+                            <div class="col-md-12 d-flex">
+
+                                <div class="card card-table flex-fill">
                                     <div class="card-body">
-                                        <div class="dash-widget-header">
-                                            <span class="dash-widget-icon bg-primary">
-                                                <i class="fe fe-desktop"></i>
-                                            </span>
-                                            <div class="dash-count">
-                                                <a href="#" class="count-title">Số Lượng Sản Phẩm</a>
-                                                <a href="#" class="count">${numberOfProducts}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-sm-4 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dash-widget-header">
-                                        <span class="dash-widget-icon bg-warning">
-                                            <i class="fe fe-wallet"></i>
-                                        </span>
-                                        <div class="dash-count">
-                                            <a href="#" class="count-title">
-                                                Sản phẩm bảo hành trên 12 tháng
-                                            </a>
-                                            <a href="#" class="count">${ProductInsurance}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-sm-4 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dash-widget-header">
-                                        <span class="dash-widget-icon bg-danger">
-                                            <i class="fe fe-star"></i>
-                                        </span>
-                                        <div class="dash-count">
-                                            <a href="#" class="count-title">Tổng số sản phẩm</a>
-                                            <a href="#" class="count"> ${ProductSum}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="page-header">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h3 class="page-title">Sản phẩm</h3>
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="listproduct">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active">Nhập sản phẩm</li>
-                                </ul>
+                                        <a class="breadcrumb-item" href="export?xd=2">Xuất excel</a>
+                                        <div class="table-responsive" >
 
+                                            <table class="table table-hover table-center mb-0">
 
-                            </div>
-
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="row">
-                        <div class="col-md-12 d-flex">
-
-                            <div class="card card-table flex-fill">
-                                <div class="card-body">
-                                    <a href="export?xd=2">Xuất excel</a>
-                                    <div class="table-responsive" >
-
-                                        <table class="table table-hover table-center mb-0">
-                                            
                                                 <tr>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Giá nhập</th>
@@ -122,24 +72,24 @@
                                                     <th>Số lượng</th>
                                                     <th>Ngày</th>
                                                 </tr>
-                                            
-                                            
 
-                                                <c:forEach items="${listPL}" var="pl">
-                                                    
-                                                    <tr>
-                                                        <th>${pl.getProduct().getName()}</th>
-                                                        <th>${pl.getPriceIn()}</th>
-                                                        <th>${pl.getPriceOut()}</th>
-                                                        <th>${pl.getQuantity()}</th>
-                                                        <th>${pl.getDate()}</th>
-                                                        
-                                                    </tr>
-                                                    
-                                                    </c:forEach>
-                                                       
 
-                                            
+
+                                            <c:forEach items="${listPL}" var="pl">
+
+                                                <tr>
+                                                    <th>${pl.getProduct().getName()}</th>
+                                                    <th>${pl.getPriceIn()}</th>
+                                                    <th>${pl.getPriceOut()}</th>
+                                                    <th>${pl.getQuantity()}</th>
+                                                    <th>${pl.getDate().substring(0,16)}</th>
+
+                                                </tr>
+
+                                            </c:forEach>
+
+
+
                                         </table>
                                     </div>
                                 </div>
@@ -163,16 +113,16 @@
     </body>
 
     <script>
-                                                                    const productTitles = document.querySelectorAll('.name-Product');
+        const productTitles = document.querySelectorAll('.name-Product');
 
-                                                                    productTitles.forEach(title => {
-                                                                        const titleText = title.textContent;
+        productTitles.forEach(title => {
+            const titleText = title.textContent;
 
-                                                                        if (titleText.length > 24) {
-                                                                            const shortenedText = titleText.slice(0, 21) + '...';
-                                                                            title.textContent = shortenedText;
-                                                                        }
-                                                                    });
+            if (titleText.length > 24) {
+                const shortenedText = titleText.slice(0, 21) + '...';
+                title.textContent = shortenedText;
+            }
+        });
     </script>
 
 
