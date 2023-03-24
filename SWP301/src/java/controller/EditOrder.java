@@ -83,7 +83,7 @@ public class EditOrder extends HttpServlet {
       
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        simpleDateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
         String format = simpleDateFormat.format(date);
 
         HttpSession session = request.getSession();

@@ -99,7 +99,7 @@ public class AddProduct extends HttpServlet {
         DAO dao = new DAO();
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        simpleDateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
         String format = simpleDateFormat.format(date);
 
         String ptid = request.getParameter("tid");

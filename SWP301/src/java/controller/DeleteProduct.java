@@ -39,8 +39,9 @@ public class DeleteProduct extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String pid = request.getParameter("PID");
+        String pid = request.getParameter("pId");
         DAO dao = new DAO();
+        dao.deletProductLog(pid);
         dao.deletProduct(pid);
         
         

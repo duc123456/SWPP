@@ -62,7 +62,7 @@ public class HuyDonHang extends HttpServlet {
        DAO d = new DAO();
        Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        simpleDateFormat.applyPattern("yyyy-MM-dd");
+        simpleDateFormat.applyPattern("yyyy-MM-dd HH:mm:ss");
         String format = simpleDateFormat.format(date);
         try {
             int oId = Integer.parseInt(oId_raw);

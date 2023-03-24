@@ -120,18 +120,18 @@
                                             <c:forEach items="${requestScope.cat}" var="i">
 
                                                 <c:if test="${(i==ca.cid)}">
-                                                    <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" checked="checked" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                                    <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" checked="checked" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
                                                             <c:set var="c" value="${ca.cid}"/>
                                                         </c:if>
                                                     </c:forEach>
                                                     <c:if test="${ca.cid != c}">
-                                                <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat"  type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>  
+                                                <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat"  type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>  
                                                     </c:if>                                               
                                                 </c:forEach>  
                                             </c:if> 
                                             <c:if test="${requestScope.cat == null}">
                                                 <c:forEach items="${d.allCat}" var="i">
-                                            <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${i.cid}" id="flexCheckDefault">${i.cName} </a></li>   
+                                            <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${i.cid}" id="flexCheckDefault">${i.cName} </a></li>   
                                                 </c:forEach>
                                             </c:if>    
 

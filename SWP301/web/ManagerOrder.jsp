@@ -159,7 +159,7 @@
                                                         <c:if test="${empty o.order.guest.gId}">
                                                             <td class="text-nowrap">${o.order.user.username}</td>
                                                         </c:if>
-                                                        <td class="text-center">${o.date.substring(0,10)}</td>
+                                                        <td class="text-center">${o.date.substring(0,16)}</td>
                                                         <td class="text-center">
                                                             ${o.order.note}
                                                         </td>
@@ -220,7 +220,7 @@
                                                                 </button>
                                                             </c:if>
                                                             <c:if test="${o.statusId == 2}">
-                                                                <button value="3" name="status"  class="btn btn-sm bg-success" title="Đã nhận">
+                                                                <button value="3" name="status"  class="btn btn-sm bg-success"  title="Đã nhận">
                                                                     <i class="fe fe-check"></i>
                                                                 </button>
                                                             </c:if>

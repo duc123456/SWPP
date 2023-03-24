@@ -110,6 +110,7 @@ public class EditProduct extends HttpServlet {
 
             String pprice = request.getParameter("price");
 
+
             ProductLog pl = new ProductLog();
             HttpSession session = request.getSession();
             User a = (User) session.getAttribute("acc");
@@ -172,15 +173,16 @@ public class EditProduct extends HttpServlet {
                        
                     
 
-                    } if(pimage == null){
+                     if(pimage == null){
                         Product p = dao.getProductByID(Integer.parseInt(pid));
              dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf() , psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+
                     }
                             
 
                     // Thư mục để save file tải lên.
-                }
-            }
+                }}}
+
             
             // dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, pimage, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
 
@@ -194,7 +196,9 @@ public class EditProduct extends HttpServlet {
             pl.setDate(format);
             dao.addProductLog(pl);
 
+
         }
+        
 
         response.sendRedirect("managerProduct");
 

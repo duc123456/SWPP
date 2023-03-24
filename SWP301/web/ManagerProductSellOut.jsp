@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Quản lý sản phẩm</title>
+        <title>Sản phẩm sắp hết hàng</title>
 
         <link rel="shortcut icon" type="image/x-icon" href="assetsEM/img/logotivi.png">
 
@@ -39,11 +39,8 @@
                         <div class="page-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="page-title">Sản phẩm</h3>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="listproduct">Trang chủ</a></li>
-                                        <li class="breadcrumb-item active">Quản lý Sản phẩm</li>
-                                    </ul>
+                                    <h3 class="page-title">Sản phẩm sắp hết hàng</h3>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -95,7 +92,7 @@
                                                         <td>${o.color}</td>
                                                         <td>${o.resolution}</td>
                                                         <td>${o.insurance}</td>
-                                                        <td>${o.cDate.substring(0,10)}</td>
+                                                        <td>${o.cDate.substring(0,16)}</td>
                                                         <td>${o.getType().tName}</td>
                                                         <td>${o.getCat().cName}</td>
                                                         <td>${o.size}</td>
@@ -110,6 +107,9 @@
                                                                 </a>
                                                                 <a href="deleteproduct?PID=${o.pId}" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i>
+                                                                </a>
+                                                                <a href="loadProduct?pId=${o.pId}&&xd=1" title="Thêm số lượng"  class="btn btn-sm bg-danger-light">
+                                                                    <i class="fe fe-plus"></i>
                                                                 </a>
                                                             </div>
                                                         </td>
