@@ -19,8 +19,8 @@
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     </head>
     <style>
-        .dangnhap {
-           
+        .page-nav {
+           padding: 10px;
         }
     </style>
     <bod>

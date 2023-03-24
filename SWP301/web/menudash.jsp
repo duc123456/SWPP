@@ -24,7 +24,7 @@
             </a>
             <!-- End Logo For Desktop View -->
         </div>
-
+        <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
         <div class="header-content col px-md-3">
             <div class="d-flex align-items-center">
                 <!-- Side Nav Toggle -->
@@ -84,8 +84,8 @@
                 <div class="dropdown mx-3 dropdown ml-2">
                     <a id="profileMenuInvoker" class="header-complex-invoker" href="#" aria-controls="profileMenu" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#profileMenu" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-animation-in="fadeIn" data-unfold-animation-out="fadeOut">
                         
-                        <img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="avatar rounded-circle mr-md-2" alt="alt"/>
-                        <span class="mr-md-2 avatar-placeholder"></span>
+                        
+                        <span class="mr-md-2 avatar-placeholder"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="avatar rounded-circle mr-md-2" alt="alt"/></span>
                         <span class="d-none d-md-block">${sessionScope.acc.fName}</span>
                         <i class="gd-angle-down d-none d-md-block ml-2"></i>
                     </a>
@@ -100,7 +100,7 @@
                             </a>
                         </li>
                         <li class="unfold-item unfold-item-has-divider">
-                            <a class="unfold-link d-flex align-items-center text-nowrap" href="#">
+                            <a class="unfold-link d-flex align-items-center text-nowrap" href="logout">
                     <span class="unfold-item-icon mr-3">
                       <i class="gd-power-off"></i>
                     </span>
