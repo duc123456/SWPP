@@ -109,7 +109,7 @@ public class DatLaiDonHang extends HttpServlet {
             c.setMaxAge(2 * 24 * 60 * 60);
             response.addCookie(c);
 
-            request.getRequestDispatcher("cartsession").forward(request, response);
+            response.sendRedirect("cart.jsp");
             // response.sendRedirect("cartsession");//thay cai duoi
             //request.getRequestDispatcher("shop").forward(request, response);
         } catch (NumberFormatException e) {

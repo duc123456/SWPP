@@ -74,10 +74,10 @@
                             <div class="carousel-item">
                                 <img src="assets/images/slider/anhbia12.jpg" class="d-block w-100" alt="...">
                             </div>
-                           <div class="carousel-item">
+                            <div class="carousel-item">
                                 <img src="assets/images/slider/annhbia2.jpg" class="d-block w-100" alt="...">
                             </div>
-                               <div class="carousel-item">
+                            <div class="carousel-item">
                                 <img src="assets/images/slider/anhbia6.jpg" class="d-block w-100" alt="...">
                             </div>
 
@@ -109,89 +109,128 @@
 
                         <div class="col md-2">
                             <form action="searchproduct" method="get">
+                            <c:if test="${goiy == null}">
                                 <h4 class="fs-5">Lọc Theo Thương Hiệu</h4>
+                                </c:if>
                                 <ul class="filt">
-                                <c:if test="${requestScope.xd == 1}">
+                                <c:if test="${goiy == null}">
+                                    <c:if test="${requestScope.xd == 1}">
 
-                                    <c:if test="${requestScope.cat != null}">
+                                        <c:if test="${requestScope.cat != null}">
 
-                                        <c:forEach items="${requestScope.cate}" var="ca">
-                                            <c:set var="c" value="0"/>
-                                            <c:forEach items="${requestScope.cat}" var="i">
+                                            <c:forEach items="${requestScope.cate}" var="ca">
+                                                <c:set var="c" value="0"/>
+                                                <c:forEach items="${requestScope.cat}" var="i">
 
-                                                <c:if test="${(i==ca.cid)}">
-                                                    <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" checked="checked" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
-                                                            <c:set var="c" value="${ca.cid}"/>
-                                                        </c:if>
+                                                    <c:if test="${(i==ca.cid)}">
+                                                        <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" checked="checked" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+                                                                <c:set var="c" value="${ca.cid}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <c:if test="${ca.cid != c}">
+                                                    <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat"  type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>  
+                                                        </c:if>                                               
+                                                    </c:forEach>  
+                                                </c:if> 
+                                                <c:if test="${requestScope.cat == null}">
+                                                    <c:forEach items="${d.allCat}" var="i">
+                                                <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${i.cid}" id="flexCheckDefault">${i.cName} </a></li>   
                                                     </c:forEach>
-                                                    <c:if test="${ca.cid != c}">
-                                                <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat"  type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>  
-                                                    </c:if>                                               
-                                                </c:forEach>  
-                                            </c:if> 
-                                            <c:if test="${requestScope.cat == null}">
-                                                <c:forEach items="${d.allCat}" var="i">
-                                            <li><a><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${i.cid}" id="flexCheckDefault">${i.cName} </a></li>   
-                                                </c:forEach>
-                                            </c:if>    
+                                                </c:if>    
 
-                                    <c:if test="${requestScope.pri != null }">
-                                        <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
-                                        <c:set value="${requestScope.spri}" var="spri"/>
+                                        <c:if test="${requestScope.pri != null }">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                                            <c:set value="${requestScope.spri}" var="spri"/>
 
-                                        <ul class="filt">
-                                            <c:forEach begin="0" end="${3}" var="i">
-                                                <c:set var="c" value="-1"/>
-                                                <c:forEach items="${requestScope.pri}" var="pri">
-                                                    <c:if test="${pri==i}" >
+                                            <ul class="filt">
+                                                <c:forEach begin="0" end="${3}" var="i">
+                                                    <c:set var="c" value="-1"/>
+                                                    <c:forEach items="${requestScope.pri}" var="pri">
+                                                        <c:if test="${pri==i}" >
 
-                                                        <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
-                                                            <c:set var="c" value="${i}"/>
+                                                            <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
+                                                                <c:set var="c" value="${i}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <c:if test="${i != c}">
+                                                        <li> <input class="form-check-input me-1 bg-danger border-danger"   name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
                                                         </c:if>
-                                                    </c:forEach>
-                                                    <c:if test="${i != c}">
-                                                    <li> <input class="form-check-input me-1 bg-danger border-danger"   name="pri" type="checkbox" value="${i}"  id="flexCheckDefault">${spri[i]}</li> 
-                                                    </c:if>
 
-                                            </c:forEach> 
-                                        </ul>            
+                                                </c:forEach> 
+                                            </ul>            
+                                        </c:if>
+                                        <c:if test="${requestScope.pri == null }">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
+                                            <ul class="filt">
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="0"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="1"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="2"  id="flexCheckDefault"> 25 triệu - 80 triệu  </li>
+                                                <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="3"  id="flexCheckDefault"> 80 triệu - 120 triệu  </li>
+                                            </ul 
+                                        </c:if>
+
+
+
+                                        <c:if test="${requestScope.size != null }">
+
+                                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+
+                                            <c:set value="${requestScope.ssize}" var="ssize"/>
+
+                                            <ul class="filt">
+                                                <c:forEach begin="0" end="${3}" var="i">
+                                                    <c:set var="c" value="-1"/>
+                                                    <c:forEach items="${requestScope.size}" var="size">
+                                                        <c:if test="${size==i}" >
+
+                                                            <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
+                                                                <c:set var="c" value="${i}"/>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                        <c:if test="${i != c}">
+                                                        <li> <input class="form-check-input me-1 bg-danger border-danger"   name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
+                                                        </c:if>
+
+                                                </c:forEach> 
+                                            </ul> 
+                                        </c:if>
+                                        <c:if test="${requestScope.size == null }">
+                                            <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
+
+
+                                            <ul class="filt">
+                                                <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="0"> 30 inch -  45 inch</li>
+                                                <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="1"> 45 inch -  60 inch </li>
+                                                <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="2" > 60 inch -  75 inch</li>
+                                                <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="3" > 75 inch - 90 inch</li>
+                                            </ul>
+                                        </c:if>         
+
                                     </c:if>
-                                    <c:if test="${requestScope.pri == null }">
+                                </c:if>
+
+
+
+
+
+
+                                <c:if test="${goiy == null}">
+
+                                    <c:if test="${requestScope.xd != 1}">
+                                        <c:forEach items="${requestScope.cate}" var="ca">
+
+                                            <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
+
+                                        </c:forEach>
+
+
                                         <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
                                         <ul class="filt">
                                             <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="0"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
                                             <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="1"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
                                             <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="2"  id="flexCheckDefault"> 25 triệu - 80 triệu  </li>
                                             <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="3"  id="flexCheckDefault"> 80 triệu - 120 triệu  </li>
-                                        </ul 
-                                    </c:if>
-
-
-
-                                    <c:if test="${requestScope.size != null }">
-
-                                        <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
-
-                                        <c:set value="${requestScope.ssize}" var="ssize"/>
-
-                                        <ul class="filt">
-                                            <c:forEach begin="0" end="${3}" var="i">
-                                                <c:set var="c" value="-1"/>
-                                                <c:forEach items="${requestScope.size}" var="size">
-                                                    <c:if test="${size==i}" >
-
-                                                        <li> <input class="form-check-input me-1 bg-danger border-danger" checked  name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
-                                                            <c:set var="c" value="${i}"/>
-                                                        </c:if>
-                                                    </c:forEach>
-                                                    <c:if test="${i != c}">
-                                                    <li> <input class="form-check-input me-1 bg-danger border-danger"   name="size" type="checkbox" value="${i}"  id="flexCheckDefault">${ssize[i]}</li> 
-                                                    </c:if>
-
-                                            </c:forEach> 
-                                        </ul> 
-                                    </c:if>
-                                    <c:if test="${requestScope.size == null }">
+                                        </ul>
                                         <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
 
 
@@ -201,7 +240,9 @@
                                             <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="2" > 60 inch -  75 inch</li>
                                             <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="3" > 75 inch - 90 inch</li>
                                         </ul>
-                                    </c:if>         
+
+
+                                    </c:if>
 
                                 </c:if>
 
@@ -210,48 +251,11 @@
 
 
 
-
-
-                                <c:if test="${requestScope.xd != 1}">
-                                    <c:forEach items="${requestScope.cate}" var="ca">
-
-                                        <li><a href=""><input class="form-check-input me-1 bg-danger border-danger" name="cat" type="checkbox" value="${ca.cid}" id="flexCheckDefault">${ca.cName} </a></li>   
-
-                                    </c:forEach>
-
-
-                                    <h4 class="fs-5 mt-3">Lọc Theo Khoảng Giá</h4>
-                                    <ul class="filt">
-                                        <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"  type="checkbox" value="0"  id="flexCheckDefault"> 3 triệu - 10 triệu  </li>
-                                        <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="1"  id="flexCheckDefault">  10 triệu - 25 triệu   </li>
-                                        <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="2"  id="flexCheckDefault"> 25 triệu - 80 triệu  </li>
-                                        <li> <input class="form-check-input me-1 bg-danger border-danger" name="pri"   type="checkbox" value="3"  id="flexCheckDefault"> 80 triệu - 120 triệu  </li>
-                                    </ul>
-                                    <h4 class="fs-5 mt-3">Lọc Theo Inch</h4>
-
-
-                                    <ul class="filt">
-                                        <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="0"> 30 inch -  45 inch</li>
-                                        <li>  <input class="form-check-input border-danger bg-danger" type="checkbox" name="size" id="exampleRadios1" value="1"> 45 inch -  60 inch </li>
-                                        <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="2" > 60 inch -  75 inch</li>
-                                        <li>  <input class="form-check-input border-danger bg-danger"  type="checkbox" name="size" id="exampleRadios1" value="3" > 75 inch - 90 inch</li>
-                                    </ul>
-
-
+                                <c:if test="${goiy == null}">
+                                    <div class="col-md-6">
+                                        <button class="btn mb-2 fw-bold w-100 btn-danger">Tìm kiếm</button>
+                                    </div>
                                 </c:if>
-
-
-
-
-
-
-
-
-
-                                <div class="col-md-6">
-                                    <button class="btn mb-2 fw-bold w-100 btn-danger">Tìm kiếm</button>
-                                </div>
-
                         </form>
 
 

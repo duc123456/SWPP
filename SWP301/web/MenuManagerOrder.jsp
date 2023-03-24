@@ -39,7 +39,7 @@
 
                 <li class="nav-item dropdown has-arrow">
                     <a href="Profile.jsp" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="user-img"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
+                        <span class="avatar avatar-sm"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">

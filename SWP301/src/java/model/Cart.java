@@ -45,15 +45,15 @@ public class Cart {
 
     public void addItem(Item t) {
         DAO d = new DAO();
-        if(t != null){
+        if (t != null) {
             if (getItemById(t.getProduct().getpId()) != null) {
-            Item i = getItemById(t.getProduct().getpId());
-            i.setQuantity(i.getQuantity() + t.getQuantity());
-        } else {
-            items.add(t);
+                Item i = getItemById(t.getProduct().getpId());
+                i.setQuantity(i.getQuantity() + t.getQuantity());
+            } else {
+                items.add(t);
+            }
         }
-        }
-        
+
     }
 
     public void remove(Item t) {
@@ -71,7 +71,6 @@ public class Cart {
         return l;
     }
 
-   
     public Cart(String txt) {
         items = new ArrayList<>();
         DAO d = new DAO();
@@ -84,8 +83,11 @@ public class Cart {
                     int quantity = Integer.parseInt(n[1]);
                     int price = Integer.parseInt(n[2]);
                     Product p = d.getProductByID(id);
-                    Item t = new Item(p, quantity, price);
-                    addItem(t);
+                    if (p != null) {
+                        Item t = new Item(p, quantity, price);
+                        addItem(t);
+                    }
+
                 }
             }
         } catch (NumberFormatException e) {

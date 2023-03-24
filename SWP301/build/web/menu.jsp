@@ -101,8 +101,8 @@
                     <div class="col-md-3 col-3 pt-1 text-end">
                         
                         <a href="goiysanpham">
-                            <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
-                                <i class="bi fs-4 bi-list"></i>
+                            <button  type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích" style="color: white; background-color: #D10024; margin-right: 30px; padding: 10px">
+                                Gợi ý sản phẩm
 
                             </button>
                         </a>
