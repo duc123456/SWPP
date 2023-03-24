@@ -4,16 +4,17 @@
  */
 package dal;
 
-import com.sun.scenario.effect.impl.prism.PrCropPeer;
-import controller.ListProduct;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
 import model.Category;
+import model.Data;
 import model.FeedBack;
 import model.Guest;
 import model.Image;
@@ -239,7 +240,7 @@ public class DAO extends DBContext {
     //phan trang dua tren so san pham sau do chia ra
     public List<Product> pagingProduct(int index) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product where quantity > 0 order by [PID] OFFSET ? rows  fetch next 12 row only";
+        String sql = "select * from Product where quantity > 0 order by [PID] desc OFFSET ? rows  fetch next 12 row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, (index - 1) * 12);
@@ -296,7 +297,9 @@ public class DAO extends DBContext {
 
     public List<Product> getAllProd() {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product Order BY PID DESC";
+
+        String sql = "select * from Product where quantity > 0 Order BY PID DESC";
+
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -591,7 +594,7 @@ public class DAO extends DBContext {
 
     public List<Product> searchCheckBox(int[] cat, int[] pri, int[] size) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product where (1=1)";
+        String sql = "select * from Product where (1=1) and quantity > 0";
         if (cat != null) {
             if (cat.length == 1) {
                 sql += "And CATID = ?";
@@ -637,6 +640,7 @@ public class DAO extends DBContext {
             }
 
         }
+        sql += " Order by PID desc";
 //        if(size != null){
 //            for (int i = 0; i < size.length; i++) {
 //                sql += "And size >= ? and < ?";
@@ -1262,9 +1266,10 @@ public class DAO extends DBContext {
                 + "           ,[StatusID]\n"
                 + "           ,[Date]\n"
                 + "           ,[Confirm]) values (?,?,?,?)";
-        long millis1 = System.currentTimeMillis();
-        Date d = new Date(millis1);
-        String s = d.toString();
+        LocalDateTime myDateObj = LocalDateTime.now();
+   //YYYY-MM-DD HH:MI:SS
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+     String formattedDate = myDateObj.format(myFormatObj);
         connection.setAutoCommit(false);
         try {
             PreparedStatement st1 = connection.prepareStatement(sql1);
@@ -1283,7 +1288,7 @@ public class DAO extends DBContext {
 
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setString(1, g.getAddress());
-            st3.setString(2, s);
+            st3.setString(2, formattedDate);
             st3.setString(3, note);
             st3.setLong(4, c.totalPrice());
             st3.setInt(5, gid);
@@ -1310,14 +1315,14 @@ public class DAO extends DBContext {
 
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
-                    return "Don hang khong duoc dat thanh cong";
+                    return "Đơn hàng không được đặt thành công";
                 }
                 st6.executeUpdate();
             }
             PreparedStatement st7 = connection.prepareStatement(sql7);
             st7.setInt(1, oid);
             st7.setInt(2, 1);
-            st7.setString(3, s);
+            st7.setString(3, formattedDate);
             st7.setBoolean(4, false);
             st7.executeUpdate();
 
@@ -1325,7 +1330,7 @@ public class DAO extends DBContext {
         } catch (SQLException e) {
 
             connection.rollback();
-            return "Don hang khong duoc dat thanh cong";
+            return "Đơn hàng không được đặt thành công";
         } finally {
             try {
                 connection.setAutoCommit(true);
@@ -1348,16 +1353,18 @@ public class DAO extends DBContext {
                 + "           ,[StatusID]\n"
                 + "           ,[Date]\n"
                 + "           ,[Confirm]) values (?,?,?,?)";
-        long millis1 = System.currentTimeMillis();
-        Date d = new Date(millis1);
-        String s = d.toString();
+        LocalDateTime myDateObj = LocalDateTime.now();
+   
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+     String formattedDate = myDateObj.format(myFormatObj);
+     connection.setAutoCommit(false);
 
         try {
 
             PreparedStatement st3 = connection.prepareStatement(sql3);
             st3.setInt(1, uid);
             st3.setString(2, diaChi);
-            st3.setString(3, s);
+            st3.setString(3, formattedDate);
             st3.setString(4, note);
             st3.setLong(5, c.totalPrice());
             st3.setString(6, phone);
@@ -1383,21 +1390,21 @@ public class DAO extends DBContext {
 
                 if (getProductByID(i.getProduct().getpId()).getQuantity() < i.getQuantity()) {
                     connection.rollback();
-                    return "Don hang khong duoc dat thanh cong";
+                    return "Đơn hàng không được đặt thành công";
                 }
                 st6.executeUpdate();
             }
             PreparedStatement st7 = connection.prepareStatement(sql7);
             st7.setInt(1, oid);
             st7.setInt(2, 1);
-            st7.setString(3, s);
+            st7.setString(3, formattedDate);
             st7.setBoolean(4, false);
             st7.executeUpdate();
 
             connection.commit();
         } catch (SQLException e) {
             connection.rollback();
-            return "Don hang khong duoc dat thanh cong";
+            return "Đơn hàng không được đặt thành công";
         } finally {
             try {
                 connection.setAutoCommit(true);
@@ -1405,7 +1412,7 @@ public class DAO extends DBContext {
             }
         }
 
-        return "Cam On";
+        return "CẢM ƠN";
     }
 
     public List<Order> getListOrderbyID(int uid) {
@@ -2206,18 +2213,33 @@ public class DAO extends DBContext {
     }
 
     public void insertSanPhamDaXem(int uId, int pId) {
-        String sql = "insert into ProductLog (UId, PId, Action) values(?,?,?)";
+        String sql = "insert into ProductLog (UId, PId, Action, Quatity) values(?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, uId);
             st.setInt(2, pId);
             st.setInt(3, 0);
+            st.setInt(4,1);
             st.executeUpdate();
 
         } catch (SQLException e) {
         }
 
     }
+    public void updateSanPhamDaXem(int uId, int pId) {
+        String sql = "update ProductLog set Quatity = Quatity + 1 where UId = ? and PId = ? and Action = 0";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            st.setInt(2, pId);
+           
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+        }
+
+    }
+  
 
     public List<Product> sanPhamDaXem(int uId) {
         String sql = "select LogId, PId from ProductLog where UId = ? and Action = 0 Order By LogId desc";
@@ -2228,14 +2250,61 @@ public class DAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p = getProductByID(rs.getInt(1));
+                p = getProductByID(rs.getInt(2));
                 list.add(p);
 
             }
 
             return list;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    public List<Data> xemData(int uId) {
+        String sql = "select LogId, PId, Quatity from ProductLog where [UId] = ? and Action = 0 Order By LogId desc";
+        List<Data> list = new ArrayList<>();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               Data d = new Data();
+               d.setId(rs.getInt(2));
+               d.setQuantity(rs.getInt(3));
+               
+                list.add(d);
+
+            }
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+    public List<Data> xemDataOrder(int uId) {
+        String sql = "select o.OID, od.PID, od.Amount from [Order] o join [Order Detail] od on o.OID = od.OID where o.UID = ? ";
+        List<Data> list = new ArrayList<>();
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, uId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               Data d = new Data();
+               d.setId(rs.getInt(2));
+               d.setQuantity(rs.getInt(3));
+               
+                list.add(d);
+
+            }
+
+            return list;
+
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return list;
     }
@@ -2539,6 +2608,7 @@ public class DAO extends DBContext {
     }
 
 
+
     public List<ProductLog> getLogAddProduct(String from, String to) {
 
         List<ProductLog> list = new ArrayList<>();
@@ -2572,10 +2642,5 @@ public class DAO extends DBContext {
        
     }
 
-    public static void main(String[] args) {
-        DAO d = new DAO();
-       d.deletProduct("49");
-     
-    }
 
 }

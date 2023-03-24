@@ -56,7 +56,7 @@
                             <ul class="ms-auto d-inline-flex">
                                 <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>  
 
-                                <li class="p-2"><a  href="orderofuser"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius"  style="max-width: 50px;max-height: 50px; border-radius: 100%" title="${sessionScope.acc.fName}"></a></li>
+                                    <li class="p-2"><a  href="orderofuser"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius"  style="max-width: 50px;max-height: 50px; border-radius: 100%" title="${sessionScope.acc.fName}"></a></li>
 
                                 <li class="p-2" style="margin-top: 6px"><a  href="logout"><button class="btn px-4 btn-danger">Đăng Xuất</button></a></li>
 
@@ -99,7 +99,16 @@
 
 
                     <div class="col-md-3 col-3 pt-1 text-end">
-                        <a href="cartsession">
+                        
+                        <a href="goiysanpham">
+                            <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
+                                <i class="bi fs-4 bi-list"></i>
+
+                            </button>
+                        </a>
+                        
+                        
+                        <a href="cart.jsp">
                             <button type="button" class="btn btn-light shadow-md border position-relative" title="Giỏ Hàng">
                                 <i class="bi fs-4 bi-basket"></i>
                                 <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -133,20 +142,13 @@
                             </button>
                         </a>
 
-                        <button type="button" class="btn d-none d-md-inline-block ms-3 btn-light shadow-md border position-relative" title="Yêu Thích">
-                            <i class="bi fs-4 bi-heart"></i>
-                            <span class="position-absolute fs-6 top-0 start-100 translate-middle badge rounded-pill bg-warning">
-                                2
-
-                            </span>
-                        </button>
-
+                        
                     </div>
                 </div>
             </div>   
         </div>
         <div class="menu-bar bg-danger container-fluid border-top" style="padding: 10px">
-            
+
         </div>
     </header>
 

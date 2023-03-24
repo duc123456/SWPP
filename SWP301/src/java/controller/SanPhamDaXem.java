@@ -75,7 +75,7 @@ public class SanPhamDaXem extends HttpServlet {
         } catch (NumberFormatException e) {
         }
          }
-        
+        /// Ðây là phân dã xem san pham
          List<Product> list4 = d.sanPhamDaXem(u.getuId());
         request.setAttribute("sanPhamDaXem", list4);
         request.setAttribute("soSanPhamDaXem", list4.size());

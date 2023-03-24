@@ -26,7 +26,7 @@ import model.User;
  *
  * @author Dell
  */
-@WebServlet(name = "PayServlet", urlPatterns = {"/pay"})
+//@WebServlet(name = "PayServlet", urlPatterns = {"/pay"})
 public class PayServlet extends HttpServlet {
 
     /**
@@ -97,7 +97,7 @@ public class PayServlet extends HttpServlet {
             try {
                 String s = d.insertOrderUser(uid, dia, c, note,so);
                 request.setAttribute("mess", s);
-                if (s.equals("Cam On")) {
+                if (s.equals("CẢM ƠN")) {
                     Cookie[] cookie = request.getCookies();
 
                     String cart = "cart" + u.getuId();
@@ -106,10 +106,16 @@ public class PayServlet extends HttpServlet {
                             cookie1.setMaxAge(0);
                             response.addCookie(cookie1);
                         }
-                        session.removeAttribute("cart");
-                        session.removeAttribute("size");
+                       
                     }
-                }
+                     session.removeAttribute("cart");
+                        session.removeAttribute("size");
+                        request.getRequestDispatcher("thankyou.jsp").forward(request, response);
+                        
+                }else{
+                        request.setAttribute("ms", s);
+                        request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    }
 
             } catch (SQLException ex) {
                 Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,10 +134,16 @@ public class PayServlet extends HttpServlet {
                 try {
                     String s = d.insertOrder(g, c, note);
                     request.setAttribute("mess", s);
-                    if (s.equals("Cam On")) {
+                    if (s.equals("CẢM ƠN")) {
                         session.removeAttribute("cart");
                         session.removeAttribute("size");
+                        request.getRequestDispatcher("thankyou.jsp").forward(request, response);
                     }
+                    else{
+                        request.setAttribute("ms", s);
+                        request.getRequestDispatcher("cart.jsp").forward(request, response);
+                    }
+                         
                 } catch (SQLException ex) {
                     Logger.getLogger(PayServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -142,7 +154,7 @@ public class PayServlet extends HttpServlet {
 //                
 //            }
         }
-        request.getRequestDispatcher("thankyou.jsp").forward(request, response);
+        
 
     }
 
@@ -155,5 +167,6 @@ public class PayServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
 
 }

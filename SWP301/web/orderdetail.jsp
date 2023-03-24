@@ -7,6 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -94,7 +95,7 @@
 
                                                     <div>
                                                         <span>Ngày đặt: </span>
-                                                        ${orderDetail.get(0).order.date.substring(0,10)}
+                                                        ${orderDetail.get(0).order.date.substring(0,16)}
                                                     </div>
 
                                                 </div>
@@ -113,7 +114,7 @@
                                                                 </div>
                                                             </div>
                                                             <div>
-                                                                <span class="description">${c.price * c.amount}</span>
+                                                                <span class="description"><fmt:formatNumber value="${c.price * c.amount}" pattern="#,##0 'VND'" /></span>
                                                             </div>
                                                             <div>
                                                                 <c:if test="${c.order.status == 3}">
@@ -148,7 +149,8 @@
                                                 <div class="biling_right-something">
                                                     <div>
                                                         <p class="total">Tổng cộng:</p>
-                                                        <p>${oddt.get(0).order.totalPrice}</p>
+                                                       
+                                                        <p><fmt:formatNumber value="${oddt.get(0).order.totalPrice}" pattern="#,##0 'VND'" /></p>
                                                     </div>
 
                                                 </div>

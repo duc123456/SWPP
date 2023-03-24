@@ -12,6 +12,7 @@
         <title>Menu</title>
     </head>
     <body>
+          <jsp:useBean class="dal.DAO" id="d"></jsp:useBean>
         <div class="header">
 
             <div class="header-left">
@@ -39,10 +40,12 @@
             </div>
 
             <ul class="nav user-menu">
-                <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
-                    <li class="nav-item dropdown has-arrow">
-                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                            <span class="avatar avatar-sm"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
+
+
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                        <span class="user-img"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
+
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">

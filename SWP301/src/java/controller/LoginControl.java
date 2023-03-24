@@ -151,7 +151,10 @@ public class LoginControl extends HttpServlet {
             request.setAttribute("users", list);
             request.setAttribute("total", numberOfUser);
             request.getRequestDispatcher("user.jsp").forward(request, response);
-        } else {
+
+        } 
+          
+            session.setAttribute("acc", a);
 
             session.removeAttribute("cart");
 
@@ -169,7 +172,7 @@ public class LoginControl extends HttpServlet {
                 response.sendRedirect("listproduct");
 
             }
-        }
+        
         //// request.getRequestDispatcher("home").forward(request, response);
 
     }

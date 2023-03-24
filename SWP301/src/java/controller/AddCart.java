@@ -96,6 +96,7 @@ public class AddCart extends HttpServlet {
                 int price = Integer.parseInt(price_raw);
                 Product p = d.getProductByID(id);
                 Item t = new Item(p, quantity, price);
+                // Chac chan tao duoc item
 
                 Cart c = (Cart) session.getAttribute("cart");
                 if (c != null) {
@@ -110,7 +111,7 @@ public class AddCart extends HttpServlet {
                 if (u != null) {
                     String txt = c.cartToTxt(c);
                     Cookie[] cookie = request.getCookies();
-                    String cart = "cart" + u.getuId();
+                   String cart = "cart" + u.getuId();
                     for (Cookie o : cookie) {
                         if (o.getName().equals(cart)) {
                             txt += o.getValue();

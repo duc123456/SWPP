@@ -102,7 +102,8 @@ public class DatLaiDonHang extends HttpServlet {
             }
             Cart c1 = new Cart(txt);
             session.setAttribute("cart", c1);
-            session.setAttribute("size1", c1.getItems().size());
+            session.setAttribute("size", c1.getItems().size());
+           
 
             Cookie c = new Cookie(cart, txt);
             c.setMaxAge(2 * 24 * 60 * 60);

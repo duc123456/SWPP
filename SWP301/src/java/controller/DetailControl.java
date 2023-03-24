@@ -66,6 +66,7 @@ public class DetailControl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pid = request.getParameter("pid");
+        
         String xd = request.getParameter("xd");
         String xn = request.getParameter("xn");
         request.setAttribute("xn", xn);
@@ -78,10 +79,26 @@ public class DetailControl extends HttpServlet {
         DAO d = new DAO();
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("acc");
+        // them san pham da xem
         if (u != null) {
 
             List<Product> sanPhamDaXem = d.sanPhamDaXem(u.getuId());
-           
+
+            if (sanPhamDaXem.size() == 0) {
+                d.insertSanPhamDaXem(u.getuId(), id);
+            } else {
+                int n = 0;
+                for(Product product : sanPhamDaXem) {
+                    if (product.getpId() == id) {
+                        n++;
+                        d.updateSanPhamDaXem(u.getuId(), id);
+                    }
+
+                }
+                if (n == 0) {
+                    d.insertSanPhamDaXem(u.getuId(), id);
+                }
+            }
 
         }
 
