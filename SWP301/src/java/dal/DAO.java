@@ -296,7 +296,7 @@ public class DAO extends DBContext {
 
     public List<Product> getAllProd() {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product";
+        String sql = "select * from Product Order BY PID DESC";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

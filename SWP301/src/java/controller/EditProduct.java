@@ -151,7 +151,32 @@ public class EditProduct extends HttpServlet {
                     if (fileName != null && fileName.length() > 0) {
                         String filePath = fullSavePath + File.separator + fileName;    
                             part.write(filePath);
-                            dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
+                            Product p = dao.getProductByID(pId);
+                            if (pimage == null|| pimage.equalsIgnoreCase("")){
+                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
+                            }else{
+                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
+                            }
+                            
+               
+                int quantity = p.getQuantity() + Integer.parseInt(pquantity);
+                p.setQuantity(quantity);
+
+                dao.updateQuantity(p);
+
+              
+
+                ProductLog pl = new ProductLog();
+                
+                pl.setUser(a);
+                pl.setProduct(p);
+                pl.setAction(4);
+                pl.setPriceIn(Integer.parseInt(pprice));
+                pl.setQuantity(Integer.parseInt(pquantity));
+                pl.setDate(format);
+                dao.addProductLog(pl);
+                            
+                            
                     }
 
 
@@ -164,31 +189,14 @@ public class EditProduct extends HttpServlet {
 
                 //////////////
             } else {
-                Product p = dao.getProductByID(Integer.parseInt(pid));
-                String pquantity = request.getParameter("quantity");
-                int quantity = p.getQuantity() + Integer.parseInt(pquantity);
-                p.setQuantity(quantity);
-
-                dao.updateQuantity(p);
-
-                String pprice = request.getParameter("price");
-
-                ProductLog pl = new ProductLog();
-                HttpSession session = request.getSession();
-                User a = (User) session.getAttribute("acc");
-                pl.setUser(a);
-                pl.setProduct(p);
-                pl.setAction(4);
-                pl.setPriceIn(Integer.parseInt(pprice));
-                pl.setQuantity(Integer.parseInt(pquantity));
-                pl.setDate(format);
-                dao.addProductLog(pl);
+                
 
             }
 
-            response.sendRedirect("managerProduct");
+            
         } catch (Exception e) {
         }
+        response.sendRedirect("managerProduct");
 
     }
 

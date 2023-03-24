@@ -39,24 +39,24 @@
             </div>
 
             <ul class="nav user-menu">
-
-                <li class="nav-item dropdown has-arrow">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="user-img"><img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
+                <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
+                    <li class="nav-item dropdown has-arrow">
+                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                            <span class="avatar avatar-sm"><img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px"></span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="user-header">
                             <div class="avatar avatar-sm">
-                                <img src="uploadDir/${d.getUserImage(sessionScope.acc.uId)}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
+                                <img src="uploadDir/${d.login(sessionScope.acc.username,sessionScope.acc.pass).image}" class="img-radius" style="border-radius: 100%;max-height: 150px;min-height: 50px;max-width: 150px">
                             </div>
                             <div class="user-text">
                                 <h6>${sessionScope.acc.fName} ${sessionScope.acc.lName}</h6>
-                                <jsp:useBean id="d" class="dal.DAO"></jsp:useBean>
+
                                 <p class="text-muted mb-0">${sessionScope.acc.username}</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="Profile.jsp">Trang cá nhân</a>
-                      
+
                         <a class="dropdown-item" href="login.jsp">Logout</a>
                     </div>
                 </li>
