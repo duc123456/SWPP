@@ -172,7 +172,7 @@
                                                                 <a href="loadProduct?pId=${o.pId}"  title="Sửa sản phẩm" class="btn btn-sm bg-success-light me-2">
                                                                     <i class="fe fe-pencil"></i>
                                                                 </a>
-                                                                <a href="deleteproduct?PID=${o.pId}" title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" class="btn btn-sm bg-danger-light">
+                                                                <a href="deleteproduct?pId=${o.pId}" title="Xóa sản phẩm" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')" class="btn btn-sm bg-danger-light">
                                                                     <i class="fe fe-trash"></i>
                                                                 </a>
                                                                 <a href="loadProduct?pId=${o.pId}&&xd=1" title="Thêm số lượng"  class="btn btn-sm bg-danger-light">

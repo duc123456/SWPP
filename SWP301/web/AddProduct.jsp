@@ -122,7 +122,7 @@
                                                         <option  value="1">Smart TV</option>
                                                         <option  value="2">LED</option>
                                                         <option  value="3">QLED</option>
-                                                        <option  value="4">QLED</option>
+                                                        <option  value="4">OLED</option>
                                                         <option  value="5">Android TV</option>
                                                         <option  value="6">Nano Cell</option>
                                                         <option  value="7">TV man hinh cong</option>

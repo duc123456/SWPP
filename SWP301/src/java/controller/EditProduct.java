@@ -122,78 +122,67 @@ public class EditProduct extends HttpServlet {
                 HttpSession session = request.getSession();
                 User a = (User) session.getAttribute("acc");
 
-
-            /// Xu Ly Anh
-            String appPath = request.getServletContext().getRealPath("");
-            appPath = appPath.replace('\\', '/');
-
-            // Thư mục để save file tải lên.
-            String fullSavePath = null;
-            if (appPath.endsWith("/")) {
-                fullSavePath = appPath + SAVE_DIRECTORY;
-            } else {
-                fullSavePath = appPath + "/" + SAVE_DIRECTORY;
-            }
-
-            // Tạo thư mục nếu nó không tồn tại.
-            File fileSaveDir = new File(fullSavePath);
-            if (!fileSaveDir.exists()) {
-                fileSaveDir.mkdir();
-            }
-
-            // Danh mục các phần đã upload lên (Có thể là nhiều file).
-            for (Part part : request.getParts()) {
-                if (part.getName().equals("file")) {
-                    String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
-                    if(pimage == null || pimage.equals("")){
-                        fileName = dao.getProductByID(pId).getImageDf();
-                    }
-                    if (fileName != null && fileName.length() > 0) {
-                        String filePath = fullSavePath + File.separator + fileName;    
-                            part.write(filePath);
-                            Product p = dao.getProductByID(pId);
-                            if (pimage == null|| pimage.equalsIgnoreCase("")){
-                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
-                            }else{
-                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid)); 
-                            }
-                            
-               
-                int quantity = p.getQuantity() + Integer.parseInt(pquantity);
-                p.setQuantity(quantity);
-
-                dao.updateQuantity(p);
-
-              
-
-                ProductLog pl = new ProductLog();
-                
-                pl.setUser(a);
-                pl.setProduct(p);
-                pl.setAction(4);
-                pl.setPriceIn(Integer.parseInt(pprice));
-                pl.setQuantity(Integer.parseInt(pquantity));
-                pl.setDate(format);
-                dao.addProductLog(pl);
-                            
-                            
-                    }
-
+                /// Xu Ly Anh
+                String appPath = request.getServletContext().getRealPath("");
+                appPath = appPath.replace('\\', '/');
 
                 // Thư mục để save file tải lên.
-               
-                       
+                String fullSavePath = null;
+                if (appPath.endsWith("/")) {
+                    fullSavePath = appPath + SAVE_DIRECTORY;
+                } else {
+                    fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+                }
 
+                // Tạo thư mục nếu nó không tồn tại.
+                File fileSaveDir = new File(fullSavePath);
+                if (!fileSaveDir.exists()) {
+                    fileSaveDir.mkdir();
+                }
+
+                // Danh mục các phần đã upload lên (Có thể là nhiều file).
+                for (Part part : request.getParts()) {
+                    if (part.getName().equals("file")) {
+                        String fileName = "product" + pname + (int) (Math.random() * 100000000) + ".jpg";
+                        if (pimage == null || pimage.equals("")) {
+                            fileName = dao.getProductByID(pId).getImageDf();
+                        }
+                        if (fileName != null && fileName.length() > 0) {
+                            String filePath = fullSavePath + File.separator + fileName;
+                            part.write(filePath);
+                            Product p = dao.getProductByID(pId);
+                            if (pimage == null || pimage.equalsIgnoreCase("")) {
+                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, p.getImageDf(), psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                            } else {
+                                dao.editProduct(pcatid, pprice, pname, pcolor, pdescription, presolution, pinsurance, format, ptid, fileName, psize, pquantity, pdiscount, ppriceout, Integer.parseInt(pid));
+                            }
+
+                            int quantity = p.getQuantity() + Integer.parseInt(pquantity);
+                            p.setQuantity(quantity);
+
+                            dao.updateQuantity(p);
+
+                            ProductLog pl = new ProductLog();
+
+                            pl.setUser(a);
+                            pl.setProduct(p);
+                            pl.setAction(4);
+                            pl.setPriceIn(Integer.parseInt(pprice));
+                            pl.setQuantity(Integer.parseInt(pquantity));
+                            pl.setDate(format);
+                            dao.addProductLog(pl);
+
+                        }
+
+                        // Thư mục để save file tải lên.
                     }
                 }
 
                 //////////////
             } else {
-                
 
             }
 
-            
         } catch (Exception e) {
         }
         response.sendRedirect("managerProduct");
