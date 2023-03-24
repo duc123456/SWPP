@@ -51,7 +51,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto">
-                    <h1>${thongBao}</h1>
+                    <h1 style="color: red;">${ms}</h1>
                     <table class="table bg-white shadow-md" >
 
                                 <tr>
