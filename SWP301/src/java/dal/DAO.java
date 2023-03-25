@@ -1832,7 +1832,7 @@ public class DAO extends DBContext {
                 + "FROM [SWP].[dbo].[OrderLog] ol\n"
                 + "INNER JOIN [Order] o ON o.OID = ol.OID\n"
                 + "WHERE ol.StatusID = (SELECT MAX(StatusID) FROM [SWP].[dbo].[OrderLog] WHERE OID = ol.OID)\n"
-                + "GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone";
+                + "GROUP BY ol.OID, o.UID, o.Address, o.[Date], o.Note, o.TotalPrice, o.GID, o.Phone order by ol.OID desc";
 
         try {
 

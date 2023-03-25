@@ -105,7 +105,7 @@
                                                         <div class="oders_info-product">
                                                             <div class="oders_info-product-child">
                                                                 <div>
-                                                                    <a href="detail?pid=${c.product.pId}"><img src="Image/${c.product.imageDf}" alt="" class="product_img"></a>
+                                                                    <a href="detail?pid=${c.product.pId}"><img src="ProductImage/${c.product.imageDf}" alt="" class="product_img"></a>
 
                                                                 </div>
                                                                 <div class="product-name">

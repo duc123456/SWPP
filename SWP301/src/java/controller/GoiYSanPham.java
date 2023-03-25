@@ -428,6 +428,7 @@ public class GoiYSanPham extends HttpServlet {
     
 
         }}
+        request.setAttribute("goiy", 1);
         request.setAttribute("product", list);
         request.getRequestDispatcher("index.jsp").forward(request, response);
         

@@ -68,7 +68,7 @@
                                 <tr class="align-middle">
                                     <td>${i}</td>
                                     <c:set var="i" value="${i+1}"></c:set>
-                                    <td><a href="detail?pid=${c.getProduct().getpId()}"><img src="Image/${c.getProduct().getImageDf()}" class="max-100"></a></td><!-- comment -->
+                                    <td><a href="detail?pid=${c.getProduct().getpId()}"><img src="ProductImage/${c.getProduct().getImageDf()}" class="max-100"></a></td><!-- comment -->
                                     <td><a href="detail?pid=${c.getProduct().getpId()}">${c.getProduct().getName()}</a></td>
                                     <td ><button class="btn-among about-cover" style="width: 20%"><a href="process?num=-1&id=${c.getProduct().getpId()}">-</a></button>
 

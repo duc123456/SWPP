@@ -97,63 +97,7 @@ public class LoginControl extends HttpServlet {
 //            out.println("sadasd");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
-        } else if (a.getRoleId() == 2) {
-
-            List<Product> list = dao.getAllProd();
-            // List<Category> listC = dao.getAllCategory();
-
-            int productList = dao.getProductCount();
-            request.setAttribute("numberOfProducts", productList);
-
-            int productListIn = dao.getProductCountInurance();
-            request.setAttribute("ProductInsurance", productListIn);
-
-            int productListSum = dao.getProductCountQuantity();
-            request.setAttribute("ProductSum", productListSum);
-
-            request.setAttribute("listP", list);
-            request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
-        } else if (a.getRoleId() == 3) {
-            List<OrderLog> list = dao.getAllOrderLog();
-
-            int productOrder = dao.getTotalOrder();
-            request.setAttribute("totalorder", productOrder);
-
-            int productOrder1 = dao.getOrder1();
-            request.setAttribute("order1", productOrder1);
-
-            int productOrder2 = dao.getOrder2();
-            request.setAttribute("order2", productOrder2);
-
-            int productOrder3 = dao.getOrder3();
-            request.setAttribute("order3", productOrder3);
-
-            int productOrder4 = dao.getOrder4();
-            request.setAttribute("order4", productOrder4);
-
-            request.setAttribute("listOD", list);
-            request.getRequestDispatcher("ManagerOrder.jsp").forward(request, response);
-        } else if (a.getRoleId() == 4) {
-
-            String role = request.getParameter("role");
-            List<User> list = null;
-            if (role == null || role.equalsIgnoreCase("0")) {
-                role = "0";
-                list = dao.getAllUser();
-            } else {
-                int role_ = Integer.parseInt(role);
-                list = dao.getUserbyRole(role_);
-            }
-            request.setAttribute("role", role);
-            int numberOfUser = list.size();
-            request.setAttribute(role, dao);
-
-            request.setAttribute("users", list);
-            request.setAttribute("total", numberOfUser);
-            request.getRequestDispatcher("user.jsp").forward(request, response);
-
-        } 
-          
+        } else{
             session.setAttribute("acc", a);
 
             session.removeAttribute("cart");
@@ -169,9 +113,33 @@ public class LoginControl extends HttpServlet {
                         session.setAttribute("size", c.getItems().size());
                     }
                 }
-                response.sendRedirect("listproduct");
+               
 
             }
+            if(a.getRoleId() == 1){
+                response.sendRedirect("listproduct");
+            }
+     
+            if(a.getRoleId() == 5){
+                String s = "Tài khoản này bị khóa";
+                request.setAttribute("ms", s);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+            if (a.getRoleId() == 2) {
+
+            response.sendRedirect("managerProduct");
+            
+        } else if (a.getRoleId() == 3) {
+            response.sendRedirect("managerorder");
+           
+        } else if (a.getRoleId() == 4) {
+
+            response.sendRedirect("dash");
+          
+
+        } 
+        }
+            
         
         //// request.getRequestDispatcher("home").forward(request, response);
 
